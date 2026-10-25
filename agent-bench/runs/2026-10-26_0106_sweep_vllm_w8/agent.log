@@ -1,0 +1,86 @@
+minisweagent: INFO: Results will be saved to                                                                            
+/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent                        
+Logging to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Lite, split test...                                         
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance filter: 300 -> 10 instances                                                                
+minisweagent: INFO: Running on 10 instances...                                                                          
+minisweagent: INFO: Building agent config from specs: ['swebench.yaml',                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/overlay.yaml']              
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-631c4b2a -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-14238:latest sleep 2h                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-0a30de78 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11630:latest sleep 2h                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-1bf638fb -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h                                     
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-e6288578 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-12125:latest sleep 2h                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-c9af2bfa -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-13230:latest sleep 2h                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-c9ca3d36 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-12708:latest sleep 2h                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-c6eb5d2c -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest sleep 2h                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-832451e4 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-13660:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-c6eb5d2c with ID                                         
+0570937547e0314fd5456aec723bc8566306e003d5ca781b7d74fad5241dd151                                                        
+minisweagent.environment: INFO: Started container minisweagent-c9ca3d36 with ID                                         
+994aa55de0373285048b0eb03105156f7ad5271672c7b1483d67b4eb9b443c7a                                                        
+minisweagent.environment: INFO: Started container minisweagent-631c4b2a with ID                                         
+7e9eae41a115b784667f567790b82e1dbca6b0b97136e733cb39950a16127e44                                                        
+minisweagent.environment: INFO: Started container minisweagent-832451e4 with ID                                         
+f13cb8a87a31e04c95c96ffefff0e932c15b178646190f3c33cb2161f9b87d33                                                        
+minisweagent.environment: INFO: Started container minisweagent-e6288578 with ID                                         
+29453a92f38fc0a72a363d501be309f9bf8395d854d1b61136bb2c45d1138bb9                                                        
+minisweagent.environment: INFO: Started container minisweagent-c9af2bfa with ID                                         
+1becb7c074205324ac9bce4f5a2a1f439fd36b7d4f2b66d1b5384b78d100705e                                                        
+minisweagent.environment: INFO: Started container minisweagent-0a30de78 with ID                                         
+cfe1c796223c5ce9cb05a9d83b1af776dc326c6b41308b599a629a2eddc1a262                                                        
+minisweagent.environment: INFO: Started container minisweagent-1bf638fb with ID                                         
+c875c4dea6a2c74cb8935ea63e21073c858a334244a12980bf28b2a3ca99cfdc                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-13660/d
+jango__django-13660.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-e920297f -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-14787:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-e920297f with ID                                         
+52d8260b0ff6e90a641ff83f9a233061be6594bb6369bed8825a2f4d8a9edec2                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-13230/d
+jango__django-13230.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-90427827 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-15347:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-90427827 with ID                                         
+919a2c122e3200b104ee5b77d0d3a1399ad1747fcfe4c5f759389a03ec75230f                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-11039/d
+jango__django-11039.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-14238/d
+jango__django-14238.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-15347/d
+jango__django-15347.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-11630/d
+jango__django-11630.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-12708/d
+jango__django-12708.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-14787/d
+jango__django-14787.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/django__django-12125/d
+jango__django-12125.traj.json'                                                                                          
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8/agent/astropy__astropy-12907
+/astropy__astropy-12907.traj.json'                                                                                      
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10/10 100% 1:00:47 eta: 0:00:00
+┏━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status    ┃ Count ┃ Most recent instances                                   ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Submitted      │     9 │ astropy__astropy-12907, django__django-14787, django... │
+│ LimitsExceeded │     1 │ django__django-12125                                    │
+└────────────────┴───────┴─────────────────────────────────────────────────────────┘

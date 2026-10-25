@@ -1,0 +1,57 @@
+
+== Docker
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+4f55086f7dd0: Pulling fs layer
+4f55086f7dd0: Download complete
+4f55086f7dd0: Pull complete
+d5e71e642bf5: Download complete
+Digest: sha256:11a3eb1597e864c51b3f56733cb2e8a90bf0c284bfc05f9444d81c558bc848aa
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+Unable to find image 'nvidia/cuda:12.9.1-base-ubuntu24.04' locally
+12.9.1-base-ubuntu24.04: Pulling from nvidia/cuda
+644e9b203583: Pulling fs layer
+32f112e3802c: Pulling fs layer
+6e8af4fd0a07: Pulling fs layer
+02559cd4bc8d: Pulling fs layer
+2cd52cbb1ebe: Pulling fs layer
+644e9b203583: Download complete
+02559cd4bc8d: Download complete
+2cd52cbb1ebe: Download complete
+6e8af4fd0a07: Download complete
+32f112e3802c: Download complete
+32f112e3802c: Pull complete
+644e9b203583: Pull complete
+02559cd4bc8d: Pull complete
+2cd52cbb1ebe: Pull complete
+6e8af4fd0a07: Pull complete
+Digest: sha256:29e5e3425e2e0f5a4e97c9fb4695ba4887cd78210a43cf94c3bcafc6ab01c5e6
+Status: Downloaded newer image for nvidia/cuda:12.9.1-base-ubuntu24.04
+name, memory.total [MiB]
+NVIDIA GeForce RTX 4090, 24564 MiB
+
+== vLLM venv (~/venvs/vllm)
+vllm 0.32.0 | torch 2.13.0+cu130 | cuda ok True NVIDIA GeForce RTX 4090
+
+== Agent venv (~/venvs/agent): mini-swe-agent + swebench harness
+mini-swe-agent 2.4.6 | swebench 5.0.2
+
+== SWE-bench Lite: dataset and one instance image
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating dev split:   0%|          | 0/23 [00:00<?, ? examples/s]Generating dev split: 100%|██████████| 23/23 [00:00<00:00, 4038.56 examples/s]
+Generating test split:   0%|          | 0/300 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 300/300 [00:00<00:00, 26208.39 examples/s]
+300 Lite test instances; first: astropy__astropy-12907
+docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest
+image pull ok
+
+== Download vLLM-format Qwen3.6-35B-A3B 4-bit (AWQ, ~25 GB)
+[90mHint: The `hf-cli` skill is not installed. Run `hf skills add -g` to teach your AI agents how to use the `hf` CLI.[0m
+Fetching 22 files:   0%|          | 0/22 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 22 files:   5%|▍         | 1/22 [00:00<00:05,  3.52it/s]Fetching 22 files:  14%|█▎        | 3/22 [00:00<00:02,  6.58it/s]Fetching 22 files:  18%|█▊        | 4/22 [00:00<00:03,  5.86it/s]Fetching 22 files:  41%|████      | 9/22 [00:01<00:01,  7.86it/s]Fetching 22 files:  45%|████▌     | 10/22 [00:01<00:02,  4.35it/s]Fetching 22 files:  50%|█████     | 11/22 [00:02<00:03,  2.92it/s]Fetching 22 files:  55%|█████▍    | 12/22 [00:20<00:41,  4.15s/it]Fetching 22 files:  59%|█████▉    | 13/22 [00:21<00:30,  3.38s/it]Fetching 22 files:  64%|██████▎   | 14/22 [00:22<00:21,  2.71s/it]Fetching 22 files:  68%|██████▊   | 15/22 [00:28<00:24,  3.52s/it]Fetching 22 files:  73%|███████▎  | 16/22 [01:09<01:23, 13.93s/it]Fetching 22 files:  77%|███████▋  | 17/22 [03:14<03:45, 45.15s/it]Fetching 22 files:  82%|████████▏ | 18/22 [07:59<07:36, 114.12s/it]Fetching 22 files:  86%|████████▋ | 19/22 [08:11<04:13, 84.47s/it] Fetching 22 files:  91%|█████████ | 20/22 [08:23<02:06, 63.09s/it]Fetching 22 files:  95%|█████████▌| 21/22 [08:31<00:46, 46.83s/it]Fetching 22 files: 100%|██████████| 22/22 [09:24<00:00, 48.65s/it]Fetching 22 files: 100%|██████████| 22/22 [09:24<00:00, 25.65s/it]
+download ok
+24G	/home/bench/.cache/huggingface
+/dev/sdd       1007G   39G  918G   5% /
+SETUP OK

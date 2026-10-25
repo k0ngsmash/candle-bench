@@ -1,0 +1,227 @@
+minisweagent: INFO: Results will be saved to                                                                            
+/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_smoke_zend_w1/agent                             
+Logging to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_smoke_zend_w1/agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Lite, split test...                                         
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance filter: 300 -> 2 instances                                                                 
+minisweagent: INFO: Running on 2 instances...                                                                           
+minisweagent: INFO: Building agent config from specs: ['swebench.yaml',                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_smoke_zend_w1/overlay.yaml']                   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-540d3ada -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h                                                                                                                   
+minisweagent.environment: INFO: Started container minisweagent-540d3ada with ID 3db383eb2d1030aa6d5426591cf2dcb082f37a99214ed964138f01734dee0c6c                                                 
+Retrying <unknown> in 4 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 4 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 4 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 8 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 16 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 32 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 60 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 60 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 60 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+minisweagent: ERROR: Error processing instance astropy__astropy-12907: No module named 'mcp'   
+Traceback (most recent call last):                                                             
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/run/benchmarks/swebench.py",
+line 154, in process_instance                                                                  
+    info = agent.run(task)                                                                     
+           ^^^^^^^^^^^^^^^                                                                     
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py",  
+line 98, in run                                                                                
+    self.step()                                                                                
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/run/benchmarks/utils/common.
+py", line 17, in step                                                                          
+    return super().step()                                                                      
+           ^^^^^^^^^^^^^^                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py",  
+line 128, in step                                                                              
+    return self.execute_actions(self.query())                                                  
+                                ^^^^^^^^^^^^                                                   
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py",  
+line 149, in query                                                                             
+    message = self.model.query(self.messages)                                                  
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                  
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py",   
+line 82, in query                                                                              
+    for attempt in retry(logger=logger, abort_exceptions=self.abort_exceptions):               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 514,  
+in __iter__                                                                                    
+    do = self.iter(retry_state=retry_state)                                                    
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                    
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 440,  
+in iter                                                                                        
+    result = action(retry_state)                                                               
+             ^^^^^^^^^^^^^^^^^^^                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 482,  
+in exc_check                                                                                   
+    retry_exc.reraise()                                                                        
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 216,  
+in reraise                                                                                     
+    raise self.last_attempt.result()                                                           
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^                                                           
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result                  
+    return self.__get_result()                                                                 
+           ^^^^^^^^^^^^^^^^^^^                                                                 
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result            
+    raise self._exception                                                                      
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py",   
+line 84, in query                                                                              
+    response = self._query(self._prepare_messages_for_api(messages), **kwargs)                 
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                 
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py",   
+line 66, in _query                                                                             
+    return litellm.completion(                                                                 
+           ^^^^^^^^^^^^^^^^^^^                                                                 
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/chat_completions/dispatch.py",   
+line 91, in completion                                                                         
+    return _DISPATCH.run(                                                                      
+           ^^^^^^^^^^^^^^                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/rust_bridge/dispatch.py", 
+line 81, in run                                                                                
+    return python(*args, **kwargs)                                                             
+           ^^^^^^^^^^^^^^^^^^^^^^^                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/utils.py", line 1983, in  
+wrapper                                                                                        
+    raise e                                                                                    
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/utils.py", line 1834, in  
+wrapper                                                                                        
+    result = original_function(*args, **kwargs)                                                
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/main.py", line 5297, in   
+completion                                                                                     
+    from litellm.responses.mcp.chat_completions_handler import acompletion_with_mcp            
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/responses/mcp/chat_completions_ha
+ndler.py", line 10, in <module>                                                                
+    from litellm.responses.mcp.litellm_proxy_mcp_handler import (                              
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/responses/mcp/litellm_proxy_mcp_h
+andler.py", line 13, in <module>                                                               
+    from litellm.proxy._experimental.mcp_server.catalog import catalog_operation,              
+global_manager                                                                                 
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/proxy/_experimental/mcp_server/ca
+talog.py", line 20, in <module>                                                                
+    from mcp.types import CacheableResult                                                      
+ModuleNotFoundError: No module named 'mcp'                                                     
+minisweagent: INFO: Saved trajectory to                                                        
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_smoke_zend_w1/agent/as
+tropy__astropy-12907/astropy__astropy-12907.traj.json'                                         
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name         
+minisweagent-3c2bb655 -w /testbed --rm                                                         
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest sleep 2h                   
+minisweagent.environment: INFO: Started container minisweagent-3c2bb655 with ID                
+cb273179ff9fe74af103a72558691ecc995ba3be64ba2c114af0f1d8761504f7                               
+Retrying <unknown> in 4 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 4 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 4 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 8 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 16 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 32 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 60 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 60 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+Retrying <unknown> in 60 seconds as it raised ModuleNotFoundError: No module named 'mcp'.
+minisweagent: ERROR: Error processing instance django__django-11039: No module named 'mcp'     
+Traceback (most recent call last):                                                             
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/run/benchmarks/swebench.py",
+line 154, in process_instance                                                                  
+    info = agent.run(task)                                                                     
+           ^^^^^^^^^^^^^^^                                                                     
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py",  
+line 98, in run                                                                                
+    self.step()                                                                                
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/run/benchmarks/utils/common.
+py", line 17, in step                                                                          
+    return super().step()                                                                      
+           ^^^^^^^^^^^^^^                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py",  
+line 128, in step                                                                              
+    return self.execute_actions(self.query())                                                  
+                                ^^^^^^^^^^^^                                                   
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py",  
+line 149, in query                                                                             
+    message = self.model.query(self.messages)                                                  
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                  
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py",   
+line 82, in query                                                                              
+    for attempt in retry(logger=logger, abort_exceptions=self.abort_exceptions):               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 514,  
+in __iter__                                                                                    
+    do = self.iter(retry_state=retry_state)                                                    
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                    
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 440,  
+in iter                                                                                        
+    result = action(retry_state)                                                               
+             ^^^^^^^^^^^^^^^^^^^                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 482,  
+in exc_check                                                                                   
+    retry_exc.reraise()                                                                        
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 216,  
+in reraise                                                                                     
+    raise self.last_attempt.result()                                                           
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^                                                           
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result                  
+    return self.__get_result()                                                                 
+           ^^^^^^^^^^^^^^^^^^^                                                                 
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result            
+    raise self._exception                                                                      
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py",   
+line 84, in query                                                                              
+    response = self._query(self._prepare_messages_for_api(messages), **kwargs)                 
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                 
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py",   
+line 66, in _query                                                                             
+    return litellm.completion(                                                                 
+           ^^^^^^^^^^^^^^^^^^^                                                                 
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/chat_completions/dispatch.py",   
+line 91, in completion                                                                         
+    return _DISPATCH.run(                                                                      
+           ^^^^^^^^^^^^^^                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/rust_bridge/dispatch.py", 
+line 81, in run                                                                                
+    return python(*args, **kwargs)                                                             
+           ^^^^^^^^^^^^^^^^^^^^^^^                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/utils.py", line 1983, in  
+wrapper                                                                                        
+    raise e                                                                                    
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/utils.py", line 1834, in  
+wrapper                                                                                        
+    result = original_function(*args, **kwargs)                                                
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/main.py", line 5297, in   
+completion                                                                                     
+    from litellm.responses.mcp.chat_completions_handler import acompletion_with_mcp            
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/responses/mcp/chat_completions_ha
+ndler.py", line 10, in <module>                                                                
+    from litellm.responses.mcp.litellm_proxy_mcp_handler import (                              
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/responses/mcp/litellm_proxy_mcp_h
+andler.py", line 13, in <module>                                                               
+    from litellm.proxy._experimental.mcp_server.catalog import catalog_operation,              
+global_manager                                                                                 
+  File                                                                                         
+"/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/proxy/_experimental/mcp_server/ca
+talog.py", line 20, in <module>                                                                
+    from mcp.types import CacheableResult                                                      
+ModuleNotFoundError: No module named 'mcp'                                                     
+minisweagent: INFO: Saved trajectory to                                                        
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_smoke_zend_w1/agent/dj
+ango__django-11039/django__django-11039.traj.json'                                             
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 100% 0:08:48 eta: 0:00:00
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status         ┃ Count ┃ Most recent instances                                   ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ ModuleNotFoundError │     2 │ django__django-11039, astropy__astropy-12907            │
+└─────────────────────┴───────┴─────────────────────────────────────────────────────────┘

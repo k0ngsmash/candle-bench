@@ -1,0 +1,28 @@
+{
+ "backend": "zend",
+ "workers": 1,
+ "tasks": 2,
+ "wall_seconds": 140,
+ "agent_exit": 0,
+ "score": null,
+ "metrics": {
+  "model_calls": 94,
+  "failed_calls": 0,
+  "prompt_tokens_total": 1297477,
+  "completion_tokens_total": 15752,
+  "call_seconds_median": 0.61,
+  "call_seconds_p90": 1.47,
+  "decode_tps_per_call_median": 141.1,
+  "completion_tps_aggregate": 112.5,
+  "steps_per_task_median": 29,
+  "task_minutes_median": 1.0,
+  "context_peak_tokens_median": 22209,
+  "context_peak_tokens_max": 23849,
+  "gpu_util_mean_pct": 58.1,
+  "gpu_mem_peak_mib": 23346.0,
+  "exit_statuses": {
+   "Submitted": 2
+  },
+  "model_busy_seconds": 92
+ }
+}

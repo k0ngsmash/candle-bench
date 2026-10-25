@@ -1,2 +1,5 @@
 scripts/setup/logs/
 *.tmp
+# agent-bench: keep summaries, call logs, predictions and reports; leave out full trajectories and harness logs
+agent-bench/runs/*/agent/*/
+agent-bench/runs/*/logs/

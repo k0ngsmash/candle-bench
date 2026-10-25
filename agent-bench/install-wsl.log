@@ -1,0 +1,43 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261025131330
+Username: THOR\k0ng
+RunAs User: THOR\k0ng
+Configuration Name: 
+Machine: THOR (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -NoExit -File C:\Users\k0ng\source\repos\candle-bench\agent-bench\install-wsl.ps1
+Process ID: 12452
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+== Installing WSL2 (no Linux distribution yet)
+Downloading: Windows Subsystem for Linux 3.0.3
+Installing: Windows Subsystem for Linux 3.0.3
+Windows Subsystem for Linux 3.0.3 has been installed.
+The operation completed successfully.
+The operation completed successfully.
+wsl --install exit 0
+== Writing .wslconfig
+[wsl2]
+# Leave headroom for Windows and for zend's ~23 GB warm tier when it runs.
+memory=24GB
+processors=12
+swap=8GB
+# Windows and Linux share localhost, so the agent in Linux reaches zend on Windows at 127.0.0.1.
+networkingMode=mirrored
+[experimental]
+# Give freed disk space back to D:.
+sparseVhd=true
+autoMemoryReclaim=gradual
+
+== DONE. Restart Windows, then run install-ubuntu.cmd.
+**********************
+Windows PowerShell transcript end
+End time: 20261025131414
+**********************

@@ -1,0 +1,52 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": ""
+  },
+  "django__django-11039": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11039",
+    "model_patch": "diff --git a/django/core/management/commands/sqlmigrate.py b/django/core/management/commands/sqlmigrate.py\nindex f0b663222a..4d1e116cd7 100755\n--- a/django/core/management/commands/sqlmigrate.py\n+++ b/django/core/management/commands/sqlmigrate.py\n@@ -56,7 +56,8 @@ class Command(BaseCommand):\n         targets = [(app_label, migration.name)]\n \n         # Show begin/end around output only for atomic migrations\n-        self.output_transaction = migration.atomic\n+        # that the database supports transactional DDL.\n+        self.output_transaction = migration.atomic and connection.features.can_rollback_ddl\n \n         # Make a plan that represents just the requested migrations and show SQL\n         # for it\n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": ""
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": ""
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": "diff --git a/django/db/backends/base/schema.py b/django/db/backends/base/schema.py\nindex 61f88401ab..1f521cfc5c 100755\n--- a/django/db/backends/base/schema.py\n+++ b/django/db/backends/base/schema.py\n@@ -393,7 +393,7 @@ class BaseDatabaseSchemaEditor:\n         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\n-            self._delete_composed_index(model, fields, {'index': True}, self.sql_delete_index)\n+            self._delete_composed_index(model, fields, {'index': True, 'unique': False}, self.sql_delete_index)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "                updateddate=updateddate,\n                author_name=author_name,\n                author_email=author_email,\n                author_link=author_link,\n                categories=self._get_dynamic_attr('item_categories', item),\n                item_copyright=self._get_dynamic_attr('item_copyright', item),\n                comments=self._get_dynamic_attr('item_comments', item),\n                **self.item_extra_kwargs(item)\n            )\n        return feed\n"
+  },
+  "django__django-13660": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13660",
+    "model_patch": "diff --git a/django/core/management/commands/shell.py b/django/core/management/commands/shell.py\nindex 2b306a579e..c7c69358cf 100755\n--- a/django/core/management/commands/shell.py\n+++ b/django/core/management/commands/shell.py\n@@ -84,13 +84,13 @@ class Command(BaseCommand):\n     def handle(self, **options):\n         # Execute the command and exit.\n         if options['command']:\n-            exec(options['command'])\n+            exec(options[\"command\"], {})\n             return\n \n         # Execute stdin if it has anything to read and exit.\n         # Not supported on Windows due to select.select() limitations.\n         if sys.platform != 'win32' and not sys.stdin.isatty() and select.select([sys.stdin], [], [], 0)[0]:\n-            exec(sys.stdin.read())\n+            exec(sys.stdin.read(), {})\n             return\n \n         available_shells = [options['interface']] if options['interface'] else self.shells\n"
+  },
+  "django__django-14238": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-14238",
+    "model_patch": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex 0f53d9c30b..d98b0ca8db 100755\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -2524,7 +2524,7 @@ class AutoFieldMeta(type):\n         return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n \n     def __subclasscheck__(self, subclass):\n-        return subclass in self._subclasses or super().__subclasscheck__(subclass)\n+        return (isinstance(subclass, type) and any(issubclass(subclass, cls) for cls in self._subclasses)) or super().__subclasscheck__(subclass)\n \n \n class AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta):\n"
+  },
+  "django__django-14787": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-14787",
+    "model_patch": "diff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 5c9a5d01c7..33388e3dcf 100755\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -1,6 +1,6 @@\n \"Functions that help with dynamically creating decorators for views.\"\n \n-from functools import partial, update_wrapper, wraps\n+from functools import WRAPPER_ASSIGNMENTS, partial, update_wrapper, wraps\n \n \n class classonlymethod(classmethod):\n@@ -38,6 +38,13 @@ def _multi_decorate(decorators, method):\n         # 'func'. Also, wrap method.__get__() in a function because new\n         # attributes can't be set on bound method objects, only on functions.\n         bound_method = partial(method.__get__(self, type(self)))\n+        # Copy attributes from the original method to the partial object\n+        # so that decorators can access them (e.g., __name__, __module__, etc.)\n+        for attr in WRAPPER_ASSIGNMENTS:\n+            try:\n+                setattr(bound_method, attr, getattr(method, attr))\n+            except AttributeError:\n+                pass\n         for dec in decorators:\n             bound_method = dec(bound_method)\n         return bound_method(*args, **kwargs)\n"
+  },
+  "django__django-15347": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15347",
+    "model_patch": "diff --git a/django/contrib/messages/storage/cookie.py b/django/contrib/messages/storage/cookie.py\nindex 1d390c71dd..e48d4edb08 100755\n--- a/django/contrib/messages/storage/cookie.py\n+++ b/django/contrib/messages/storage/cookie.py\n@@ -19,7 +19,7 @@ class MessageEncoder(json.JSONEncoder):\n             # Using 0/1 here instead of False/True to produce more compact json\n             is_safedata = 1 if isinstance(obj.message, SafeData) else 0\n             message = [self.message_key, is_safedata, obj.level, obj.message]\n-            if obj.extra_tags:\n+            if obj.extra_tags is not None:\n                 message.append(obj.extra_tags)\n             return message\n         return super().default(obj)\n"
+  }
+}

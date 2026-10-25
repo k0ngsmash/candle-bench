@@ -1,0 +1,51 @@
+{
+ "backend": "vllm",
+ "workers": 4,
+ "tasks": 30,
+ "wall_seconds": 10550,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 15,
+  "submitted": 30,
+  "empty_patches": 4,
+  "errors": 5,
+  "resolved_ids": [
+   "astropy__astropy-12907",
+   "django__django-11039",
+   "django__django-12708",
+   "django__django-13230",
+   "django__django-14238",
+   "django__django-14787",
+   "matplotlib__matplotlib-25498",
+   "pydata__xarray-5131",
+   "pytest-dev__pytest-7490",
+   "scikit-learn__scikit-learn-13142",
+   "scikit-learn__scikit-learn-14983",
+   "sphinx-doc__sphinx-8713",
+   "sympy__sympy-12481",
+   "sympy__sympy-18698",
+   "sympy__sympy-20590"
+  ]
+ },
+ "metrics": {
+  "model_calls": 1382,
+  "failed_calls": 0,
+  "prompt_tokens_total": 29781472,
+  "completion_tokens_total": 467870,
+  "call_seconds_median": 12.27,
+  "call_seconds_p90": 64.84,
+  "decode_tps_per_call_median": 11.9,
+  "completion_tps_aggregate": 44.3,
+  "steps_per_task_median": 44,
+  "task_minutes_median": 15.0,
+  "context_peak_tokens_median": 28997,
+  "context_peak_tokens_max": 65030,
+  "gpu_util_mean_pct": 99.7,
+  "gpu_mem_peak_mib": 24022.0,
+  "exit_statuses": {
+   "Submitted": 26,
+   "LimitsExceeded": 4
+  },
+  "model_busy_seconds": 37835
+ }
+}

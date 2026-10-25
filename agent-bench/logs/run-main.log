@@ -1,0 +1,143 @@
+
+######## --backend zend --tasks 30 --workers 4 --label main  (20:47)
+[20:47:38] zend: 30 tasks, 4 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2047_main_zend_w4
+[20:47:48] starting zend on Windows (standalone, passthrough)
+[20:48:03] waiting for zend (15s): loading
+[20:48:18] zend ready after 30s
+[20:48:58] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\":\"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 57, "prompt_tokens": 156, "total_tokens": 213, "completion_tokens_details": null, "prompt_tokens_details": null}}
+[20:48:58] agents running
+[21:46:13] agents finished: exit 0, 57.3 min
+[21:46:13] scoring with the SWE-bench harness
+[21:48:42] summary: {"backend": "zend", "workers": 4, "tasks": 30, "wall_seconds": 3435, "agent_exit": 0, "score": {"resolved": 14, "submitted": 30, "empty_patches": 13, "errors": 1, "resolved_ids": ["astropy__astropy-12907", "django__django-11039", "django__django-12708", "django__django-13230", "django__django-14238", "django__django-14787", "django__django-15347", "psf__requests-1963", "pydata__xarray-5131", "scikit-learn__scikit-learn-13142", "scikit-learn__scikit-learn-14983", "sphinx-doc__sphinx-8713", "sympy__sympy-12481", "sympy__sympy-22714"]}}
+# 2026-10-25_2047_main_zend_w4
+
+- Backend: **zend**, 4 parallel agents, 30 tasks
+- Resolved: **14 / 30** (submitted 30)
+- Wall time: 57.2 min; median task 5.3 min, 51.0 model calls
+- Model calls: 1569 (0 failed); median 4.64 s, p90 16.01 s
+- Tokens: 28,120,822 prompt, 397,679 generated; generation 115.8 t/s across the run, 26.0 t/s per call (median)
+- Context per task: median peak 28,037 tokens, largest 34,668
+- GPU: mean utilisation 96.0%, peak memory 23511.0 MiB
+- Agent exits: {'Submitted': 17, 'LimitsExceeded': 12}
+
+######## --backend vllm --tasks 30 --workers 4 --label main  (21:48)
+[21:48:42] vllm: 30 tasks, 4 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2148_main_vllm_w4
+[21:48:52] starting vLLM (cpu-offload-gb=6, max-model-len=65536) -> vllm-offload6.log
+[21:50:02] vLLM ready after 70s with cpu-offload-gb=6
+[21:50:25] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\": \"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 240, "prompt_tokens": 294, "total_tokens": 534, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens": null, "reasoning_tokens": 210, "rejected_prediction_tokens": null, "text_tokens": null, "image_tokens": null, "video_tokens": null}, "prompt_tokens_details": null}}
+[21:50:25] agents running
+[00:46:15] agents finished: exit 0, 175.8 min
+[00:46:27] scoring with the SWE-bench harness
+[00:49:45] summary: {"backend": "vllm", "workers": 4, "tasks": 30, "wall_seconds": 10550, "agent_exit": 0, "score": {"resolved": 15, "submitted": 30, "empty_patches": 4, "errors": 5, "resolved_ids": ["astropy__astropy-12907", "django__django-11039", "django__django-12708", "django__django-13230", "django__django-14238", "django__django-14787", "matplotlib__matplotlib-25498", "pydata__xarray-5131", "pytest-dev__pytest-7490", "scikit-learn__scikit-learn-13142", "scikit-learn__scikit-learn-14983", "sphinx-doc__sphinx-8713", "sympy__sympy-12481", "sympy__sympy-18698", "sympy__sympy-20590"]}}
+# 2026-10-25_2148_main_vllm_w4
+
+- Backend: **vllm**, 4 parallel agents, 30 tasks
+- Resolved: **15 / 30** (submitted 30)
+- Wall time: 175.8 min; median task 15.0 min, 44 model calls
+- Model calls: 1382 (0 failed); median 12.27 s, p90 64.84 s
+- Tokens: 29,781,472 prompt, 467,870 generated; generation 44.3 t/s across the run, 11.9 t/s per call (median)
+- Context per task: median peak 28,997 tokens, largest 65,030
+- GPU: mean utilisation 99.7%, peak memory 24022.0 MiB
+- Agent exits: {'Submitted': 26, 'LimitsExceeded': 4}
+
+######## --backend zend --tasks 10 --workers 8 --label sweep  (00:49)
+[00:49:46] zend: 10 tasks, 8 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0049_sweep_zend_w8
+[00:49:56] starting zend on Windows (standalone, passthrough)
+[00:50:11] waiting for zend (15s): loading
+[00:50:26] zend ready after 30s
+[00:51:05] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\":\"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 57, "prompt_tokens": 156, "total_tokens": 213, "completion_tokens_details": null, "prompt_tokens_details": null}}
+[00:51:05] agents running
+[01:05:05] agents finished: exit 0, 14.0 min
+[01:05:05] scoring with the SWE-bench harness
+[01:06:13] summary: {"backend": "zend", "workers": 8, "tasks": 10, "wall_seconds": 839, "agent_exit": 0, "score": {"resolved": 4, "submitted": 10, "empty_patches": 4, "errors": 0, "resolved_ids": ["astropy__astropy-12907", "django__django-11039", "django__django-14238", "django__django-14787"]}}
+# 2026-10-26_0049_sweep_zend_w8
+
+- Backend: **zend**, 8 parallel agents, 10 tasks
+- Resolved: **4 / 10** (submitted 10)
+- Wall time: 14.0 min; median task 8.5 min, 49 model calls
+- Model calls: 548 (0 failed); median 5.28 s, p90 22.36 s
+- Tokens: 10,640,671 prompt, 125,526 generated; generation 149.6 t/s across the run, 20.5 t/s per call (median)
+- Context per task: median peak 29,429 tokens, largest 34,333
+- GPU: mean utilisation 93.3%, peak memory 23714.0 MiB
+- Agent exits: {'Submitted': 6, 'LimitsExceeded': 4}
+
+######## --backend vllm --tasks 10 --workers 8 --label sweep  (01:06)
+[01:06:14] vllm: 10 tasks, 8 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0106_sweep_vllm_w8
+[01:06:24] starting vLLM (cpu-offload-gb=6, max-model-len=65536) -> vllm-offload6.log
+[01:08:04] vLLM ready after 100s with cpu-offload-gb=6
+[01:08:25] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\": \"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 221, "prompt_tokens": 294, "total_tokens": 515, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens": null, "reasoning_tokens": 191, "rejected_prediction_tokens": null, "text_tokens": null, "image_tokens": null, "video_tokens": null}, "prompt_tokens_details": null}}
+[01:08:25] agents running
+[02:09:18] agents finished: exit 0, 60.9 min
+[02:09:25] scoring with the SWE-bench harness
+[02:10:51] summary: {"backend": "vllm", "workers": 8, "tasks": 10, "wall_seconds": 3653, "agent_exit": 0, "score": {"resolved": 7, "submitted": 10, "empty_patches": 1, "errors": 0, "resolved_ids": ["astropy__astropy-12907", "django__django-11039", "django__django-12708", "django__django-13230", "django__django-14238", "django__django-14787", "django__django-15347"]}}
+# 2026-10-26_0106_sweep_vllm_w8
+
+- Backend: **vllm**, 8 parallel agents, 10 tasks
+- Resolved: **7 / 10** (submitted 10)
+- Wall time: 60.9 min; median task 15.2 min, 43 model calls
+- Model calls: 429 (0 failed); median 13.1 s, p90 69.98 s
+- Tokens: 8,114,130 prompt, 159,109 generated; generation 43.6 t/s across the run, 10.0 t/s per call (median)
+- Context per task: median peak 22,981 tokens, largest 44,341
+- GPU: mean utilisation 99.0%, peak memory 23903.0 MiB
+- Agent exits: {'Submitted': 9, 'LimitsExceeded': 1}
+
+######## --backend zend --tasks 10 --workers 1 --label sweep  (02:10)
+[02:10:51] zend: 10 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0210_sweep_zend_w1
+[02:11:01] starting zend on Windows (standalone, passthrough)
+[02:11:16] waiting for zend (15s): loading
+[02:11:31] zend ready after 30s
+[02:12:10] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\":\"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 57, "prompt_tokens": 156, "total_tokens": 213, "completion_tokens_details": null, "prompt_tokens_details": null}}
+[02:12:10] agents running
+[02:27:38] agents finished: exit 0, 15.5 min
+[02:27:39] scoring with the SWE-bench harness
+[02:28:38] summary: {"backend": "zend", "workers": 1, "tasks": 10, "wall_seconds": 928, "agent_exit": 0, "score": {"resolved": 5, "submitted": 10, "empty_patches": 3, "errors": 1, "resolved_ids": ["django__django-11039", "django__django-12708", "django__django-14238", "django__django-14787", "django__django-15347"]}}
+# 2026-10-26_0210_sweep_zend_w1
+
+- Backend: **zend**, 1 parallel agents, 10 tasks
+- Resolved: **5 / 10** (submitted 10)
+- Wall time: 15.5 min; median task 1.0 min, 46 model calls
+- Model calls: 507 (0 failed); median 0.74 s, p90 2.92 s
+- Tokens: 8,960,887 prompt, 123,143 generated; generation 132.7 t/s across the run, 142.7 t/s per call (median)
+- Context per task: median peak 23,534 tokens, largest 33,566
+- GPU: mean utilisation 75.5%, peak memory 23156.0 MiB
+- Agent exits: {'LimitsExceeded': 3, 'Submitted': 7}
+
+######## --backend vllm --tasks 10 --workers 1 --label sweep  (02:28)
+[02:28:38] vllm: 10 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1
+[02:28:48] starting vLLM (cpu-offload-gb=6, max-model-len=65536) -> vllm-offload6.log
+[02:30:08] vLLM ready after 80s with cpu-offload-gb=6
+[02:30:28] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\": \"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 204, "prompt_tokens": 294, "total_tokens": 498, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens": null, "reasoning_tokens": 174, "rejected_prediction_tokens": null, "text_tokens": null, "image_tokens": null, "video_tokens": null}, "prompt_tokens_details": null}}
+[02:30:28] agents running
+[04:46:30] agents finished: exit 0, 136.0 min
+[04:46:37] scoring with the SWE-bench harness
+[04:47:55] summary: {"backend": "vllm", "workers": 1, "tasks": 10, "wall_seconds": 8162, "agent_exit": 0, "score": {"resolved": 6, "submitted": 10, "empty_patches": 2, "errors": 1, "resolved_ids": ["astropy__astropy-12907", "django__django-11039", "django__django-12708", "django__django-14238", "django__django-14787", "django__django-15347"]}}
+# 2026-10-26_0228_sweep_vllm_w1
+
+- Backend: **vllm**, 1 parallel agents, 10 tasks
+- Resolved: **6 / 10** (submitted 10)
+- Wall time: 136.0 min; median task 7.4 min, 35 model calls
+- Model calls: 452 (1 failed); median 7.08 s, p90 46.11 s
+- Tokens: 9,432,074 prompt, 137,440 generated; generation 16.8 t/s across the run, 16.3 t/s per call (median)
+- Context per task: median peak 25,467 tokens, largest 65,528
+- GPU: mean utilisation 97.5%, peak memory 23620.0 MiB
+- Agent exits: {'Submitted': 8, 'ContextWindowExceededError': 1, 'LimitsExceeded': 1}
+
+MAIN DONE 04:47

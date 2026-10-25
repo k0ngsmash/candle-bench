@@ -1,0 +1,12 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": ""
+  },
+  "django__django-11039": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11039",
+    "model_patch": ""
+  }
+}

@@ -1,0 +1,37 @@
+{
+ "backend": "zend",
+ "workers": 1,
+ "tasks": 2,
+ "wall_seconds": 132,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 2,
+  "submitted": 2,
+  "empty_patches": 0,
+  "errors": 0,
+  "resolved_ids": [
+   "astropy__astropy-12907",
+   "django__django-11039"
+  ]
+ },
+ "metrics": {
+  "model_calls": 87,
+  "failed_calls": 0,
+  "prompt_tokens_total": 1200285,
+  "completion_tokens_total": 14765,
+  "call_seconds_median": 0.66,
+  "call_seconds_p90": 2.25,
+  "decode_tps_per_call_median": 156.7,
+  "completion_tps_aggregate": 111.9,
+  "steps_per_task_median": 42,
+  "task_minutes_median": 0.7,
+  "context_peak_tokens_median": 19848,
+  "context_peak_tokens_max": 28967,
+  "gpu_util_mean_pct": 55.2,
+  "gpu_mem_peak_mib": 23209.0,
+  "exit_statuses": {
+   "Submitted": 2
+  },
+  "model_busy_seconds": 86
+ }
+}

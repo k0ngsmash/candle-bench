@@ -1,0 +1,33 @@
+minisweagent: INFO: Results will be saved to                                                   
+/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1547_smoke_zend_w1/agen
+t                                                                                              
+Logging to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1547_smoke_zend_w1/agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Lite, split test...                
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance filter: 300 -> 2 instances                                        
+minisweagent: INFO: Running on 2 instances...                                                  
+minisweagent: INFO: Building agent config from specs: ['swebench.yaml',                        
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1547_smoke_zend_w1/ove
+rlay.yaml']                                                                                    
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name         
+minisweagent-32d2cb3b -w /testbed --rm                                                         
+docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h                 
+minisweagent.environment: INFO: Started container minisweagent-32d2cb3b with ID                
+3630131e35c354010fa2598d6b0a931e496162e2f16f8b66836efd4da482492d                               
+minisweagent: INFO: Saved trajectory to                                                        
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1547_smoke_zend_w1/age
+nt/astropy__astropy-12907/astropy__astropy-12907.traj.json'                                    
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name         
+minisweagent-1db1c82a -w /testbed --rm                                                         
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest sleep 2h                   
+minisweagent.environment: INFO: Started container minisweagent-1db1c82a with ID                
+fb91580b7e44bceeabc06cfbbd22dcb64662f26baabc0cc47d25098e91cd9c65                               
+minisweagent: INFO: Saved trajectory to                                                        
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1547_smoke_zend_w1/age
+nt/django__django-11039/django__django-11039.traj.json'                                        
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 100% 0:02:04 eta: 0:00:00
+┏━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status ┃ Count ┃ Most recent instances                                   ┃
+┡━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Submitted   │     2 │ django__django-11039, astropy__astropy-12907            │
+└─────────────┴───────┴─────────────────────────────────────────────────────────┘

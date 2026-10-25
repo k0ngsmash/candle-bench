@@ -1,0 +1,17 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 9 instances...
+  0%|          | 0/9 [00:00<?, ?it/s] 11%|█         | 1/9 [00:25<03:26, 25.85s/it]1 ran successfully, 0 failed:  11%|█         | 1/9 [00:25<03:26, 25.85s/it]2 ran successfully, 0 failed:  22%|██▏       | 2/9 [00:25<01:30, 12.93s/it]2 ran successfully, 0 failed:  33%|███▎      | 3/9 [00:26<00:53,  8.86s/it]3 ran successfully, 0 failed:  33%|███▎      | 3/9 [00:26<00:53,  8.86s/it]3 ran successfully, 0 failed:  33%|███▎      | 3/9 [00:38<01:16, 12.71s/it]3 ran successfully, 0 failed:  44%|████▍     | 4/9 [00:50<01:03, 12.74s/it]4 ran successfully, 0 failed:  44%|████▍     | 4/9 [00:50<01:03, 12.74s/it]4 ran successfully, 0 failed:  56%|█████▌    | 5/9 [00:51<00:41, 10.29s/it]5 ran successfully, 0 failed:  56%|█████▌    | 5/9 [00:51<00:41, 10.29s/it]5 ran successfully, 0 failed:  67%|██████▋   | 6/9 [00:53<00:26,  8.99s/it]6 ran successfully, 0 failed:  67%|██████▋   | 6/9 [00:53<00:26,  8.99s/it]6 ran successfully, 0 failed:  78%|███████▊  | 7/9 [01:02<00:17,  8.88s/it]7 ran successfully, 0 failed:  78%|███████▊  | 7/9 [01:02<00:17,  8.88s/it]7 ran successfully, 0 failed:  89%|████████▉ | 8/9 [01:18<00:09,  9.78s/it]8 ran successfully, 0 failed:  89%|████████▉ | 8/9 [01:18<00:09,  9.78s/it]8 ran successfully, 0 failed: 100%|██████████| 9/9 [01:19<00:00,  8.85s/it]9 ran successfully, 0 failed: 100%|██████████| 9/9 [01:19<00:00,  8.85s/it]9 ran successfully, 0 failed: 100%|██████████| 9/9 [01:19<00:00,  8.85s/it]
+All instances run.
+Total instances: 10
+Instances submitted: 10
+Instances completed: 9
+Instances incomplete: 0
+Instances resolved: 7
+Instances unresolved: 2
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 0
+Instances with empty patches: 1
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 10
+Report written to openai__passthrough.2026-10-26_0106_sweep_vllm_w8.json

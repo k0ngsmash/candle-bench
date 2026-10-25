@@ -1,0 +1,32 @@
+{
+ "backend": "zend",
+ "workers": 1,
+ "tasks": 2,
+ "wall_seconds": 545,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 0,
+  "submitted": 2,
+  "resolved_ids": []
+ },
+ "metrics": {
+  "model_calls": 0,
+  "failed_calls": 0,
+  "prompt_tokens_total": 0,
+  "completion_tokens_total": 0,
+  "call_seconds_median": null,
+  "call_seconds_p90": null,
+  "decode_tps_per_call_median": null,
+  "completion_tps_aggregate": 0.0,
+  "steps_per_task_median": null,
+  "task_minutes_median": null,
+  "context_peak_tokens_median": null,
+  "context_peak_tokens_max": null,
+  "gpu_util_mean_pct": 1.1,
+  "gpu_mem_peak_mib": 23639.0,
+  "exit_statuses": {
+   "ModuleNotFoundError": 2
+  },
+  "model_busy_seconds": 0
+ }
+}

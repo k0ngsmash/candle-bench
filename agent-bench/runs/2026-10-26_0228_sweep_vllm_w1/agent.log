@@ -1,0 +1,217 @@
+minisweagent: INFO: Results will be saved to                                                                            
+/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent                        
+Logging to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Lite, split test...                                         
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance filter: 300 -> 10 instances                                                                
+minisweagent: INFO: Running on 10 instances...                                                                          
+minisweagent: INFO: Building agent config from specs: ['swebench.yaml',                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/overlay.yaml']              
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-983e3c3a -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h                                     
+minisweagent.environment: INFO: Started container minisweagent-983e3c3a with ID                                         
+e325eabe73554e4510c24e5db4b894907298a7d78fd5810a0d645a17c25e6c4a                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/astropy__astropy-12907
+/astropy__astropy-12907.traj.json'                                                                                      
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-95aafb90 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-95aafb90 with ID                                         
+9292d8ff67d022f6e8cab79d5287c625ee3233dce412e1c25311dc2b7e489e87                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-11039/d
+jango__django-11039.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-79913d93 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11630:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-79913d93 with ID                                         
+60555f5a9f2e6f477c72e8ab7669e03842fce82356be3a330cd57780456fdb62                                                        
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm.turn_on_debug()'.
+
+minisweagent: ERROR: Error processing instance django__django-11630: litellm.ContextWindowExceededError:                
+litellm.BadRequestError: ContextWindowExceededError: OpenAIException - This model's maximum context length is 65536     
+tokens. However, your prompt contains at least 65537 input tokens, which exceeds this limit even without any output     
+tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=65537)                             
+Traceback (most recent call last):                                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 909, in completion    
+    raise e                                                                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 845, in completion    
+    ) = self.make_sync_openai_chat_completion_request(                                                                  
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                  
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 391, in 
+sync_wrapper                                                                                                            
+    result: Final = func(*args, **kwargs)                                                                               
+                    ^^^^^^^^^^^^^^^^^^^^^                                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 556, in               
+make_sync_openai_chat_completion_request                                                                                
+    raw_response = openai_client.chat.completions.with_raw_response.create(**data, timeout=timeout)                     
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                     
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/openai/_legacy_response.py", line 369, in wrapped          
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))                                                            
+                                      ^^^^^^^^^^^^^^^^^^^^^                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/openai/_utils/_utils.py", line 298, in wrapper             
+    return func(*args, **kwargs)                                                                                        
+           ^^^^^^^^^^^^^^^^^^^^^                                                                                        
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line    
+1296, in create                                                                                                         
+    return self._post(                                                                                                  
+           ^^^^^^^^^^^                                                                                                  
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/openai/_base_client.py", line 1375, in post                
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))                           
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                            
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/openai/_base_client.py", line 1148, in request             
+    raise self._make_status_error_from_response(err.response) from None                                                 
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 65536 tokens.   
+However, your prompt contains at least 65537 input tokens, which exceeds this limit even without any output tokens.     
+Please reduce the length of the input prompt. (parameter=input_tokens, value=65537)", 'type': 'BadRequestError',        
+'param': 'input_tokens', 'code': 400}}                                                                                  
+                                                                                                                        
+During handling of the above exception, another exception occurred:                                                     
+                                                                                                                        
+Traceback (most recent call last):                                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/main.py", line 6000, in completion                 
+    response = _complete_custom_openai(_dispatch_ctx)                                                                   
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                   
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/main.py", line 2746, in _complete_custom_openai    
+    raise e                                                                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/main.py", line 2718, in _complete_custom_openai    
+    response = openai_chat_completions.completion(                                                                      
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 920, in completion    
+    raise OpenAIError(                                                                                                  
+litellm.llms.openai.common_utils.OpenAIError: Error code: 400 - {'error': {'message': "This model's maximum context     
+length is 65536 tokens. However, your prompt contains at least 65537 input tokens, which exceeds this limit even without
+any output tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=65537)", 'type':        
+'BadRequestError', 'param': 'input_tokens', 'code': 400}}                                                               
+                                                                                                                        
+During handling of the above exception, another exception occurred:                                                     
+                                                                                                                        
+Traceback (most recent call last):                                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/run/benchmarks/swebench.py", line 154, in     
+process_instance                                                                                                        
+    info = agent.run(task)                                                                                              
+           ^^^^^^^^^^^^^^^                                                                                              
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py", line 98, in run           
+    self.step()                                                                                                         
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/run/benchmarks/utils/common.py", line 17, in  
+step                                                                                                                    
+    return super().step()                                                                                               
+           ^^^^^^^^^^^^^^                                                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py", line 128, in step         
+    return self.execute_actions(self.query())                                                                           
+                                ^^^^^^^^^^^^                                                                            
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/agents/default.py", line 149, in query        
+    message = self.model.query(self.messages)                                                                           
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                           
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py", line 82, in query   
+    for attempt in retry(logger=logger, abort_exceptions=self.abort_exceptions):                                        
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 514, in __iter__               
+    do = self.iter(retry_state=retry_state)                                                                             
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 440, in iter                   
+    result = action(retry_state)                                                                                        
+             ^^^^^^^^^^^^^^^^^^^                                                                                        
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/tenacity/__init__.py", line 462, in <lambda>               
+    self._add_action_func(lambda rs: rs.outcome.result())                                                               
+                                     ^^^^^^^^^^^^^^^^^^^                                                                
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result                                           
+    return self.__get_result()                                                                                          
+           ^^^^^^^^^^^^^^^^^^^                                                                                          
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result                                     
+    raise self._exception                                                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py", line 84, in query   
+    response = self._query(self._prepare_messages_for_api(messages), **kwargs)                                          
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                          
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/minisweagent/models/litellm_model.py", line 66, in _query  
+    return litellm.completion(                                                                                          
+           ^^^^^^^^^^^^^^^^^^^                                                                                          
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/chat_completions/dispatch.py", line 91, in         
+completion                                                                                                              
+    return _DISPATCH.run(                                                                                               
+           ^^^^^^^^^^^^^^                                                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/rust_bridge/dispatch.py", line 81, in run          
+    return python(*args, **kwargs)                                                                                      
+           ^^^^^^^^^^^^^^^^^^^^^^^                                                                                      
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/utils.py", line 1983, in wrapper                   
+    raise e                                                                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/utils.py", line 1834, in wrapper                   
+    result = original_function(*args, **kwargs)                                                                         
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                         
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/main.py", line 6122, in completion                 
+    raise exception_type(                                                                                               
+          ^^^^^^^^^^^^^^^                                                                                               
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py",    
+line 2745, in exception_type                                                                                            
+    raise e  # it's already mapped                                                                                      
+    ^^^^^^^                                                                                                             
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py",    
+line 2492, in exception_type                                                                                            
+    _map_openai_exception(                                                                                              
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py",    
+line 319, in _map_openai_exception                                                                                      
+    raise ContextWindowExceededError(                                                                                   
+litellm.exceptions.ContextWindowExceededError: litellm.ContextWindowExceededError: litellm.BadRequestError:             
+ContextWindowExceededError: OpenAIException - This model's maximum context length is 65536 tokens. However, your prompt 
+contains at least 65537 input tokens, which exceeds this limit even without any output tokens. Please reduce the length 
+of the input prompt. (parameter=input_tokens, value=65537)                                                              
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-11630/d
+jango__django-11630.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-17856480 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-12125:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-17856480 with ID                                         
+f423e41f30c4a55d637986cd1aa15667e0f6e66c864afad457478da66aee1c33                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-12125/d
+jango__django-12125.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-69f8236a -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-12708:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-69f8236a with ID                                         
+c2c817e045db3a6fdcbef7791984ca172ee928d94b0fccdeea2d79c8186ccd0b                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-12708/d
+jango__django-12708.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-d1edfabe -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-13230:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-d1edfabe with ID                                         
+4ba2a9c09b430e5cd85b1b407ee5b00c6776f6da356147a86dd15e1408403f59                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-13230/d
+jango__django-13230.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-38110041 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-13660:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-38110041 with ID                                         
+e176faa91e8c10bca110626adf8d962e5facc2273453920b5e819d740cb0e9c7                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-13660/d
+jango__django-13660.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-172f49bc -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-14238:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-172f49bc with ID                                         
+51d18f903784c84802464e3740a8e515fb04e570c92682152b2dc2303748d200                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-14238/d
+jango__django-14238.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-6bc9bbc2 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-14787:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-6bc9bbc2 with ID                                         
+190ae5081cd2e1d656c94a6788443fb3ecc50cf6787af252f7f84bfe6d2fe209                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-14787/d
+jango__django-14787.traj.json'                                                                                          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-f8f699f1 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-15347:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-f8f699f1 with ID                                         
+14c6c9f113a979b7d8a4ad6309245d1ded4baf6c4723ba6e66c9bd99e5c636cc                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0228_sweep_vllm_w1/agent/django__django-15347/d
+jango__django-15347.traj.json'                                                                                          
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10/10 100% 2:15:56 eta: 0:00:00
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status                ┃ Count ┃ Most recent instances                                   ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Submitted                  │     8 │ django__django-15347, django__django-14787, django__... │
+│ ContextWindowExceededError │     1 │ django__django-11630                                    │
+│ LimitsExceeded             │     1 │ django__django-12125                                    │
+└────────────────────────────┴───────┴─────────────────────────────────────────────────────────┘

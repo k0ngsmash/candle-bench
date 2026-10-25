@@ -1,0 +1,29 @@
+minisweagent: INFO: Results will be saved to                                                                            
+/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2023_smoke-pin_vllm_w1/agent                    
+Logging to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2023_smoke-pin_vllm_w1/agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Lite, split test...                                         
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance filter: 300 -> 2 instances                                                                 
+minisweagent: INFO: Running on 2 instances...                                                                           
+minisweagent: INFO: Building agent config from specs: ['swebench.yaml',                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2023_smoke-pin_vllm_w1/overlay.yaml']          
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-3b491d32 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h                                     
+minisweagent.environment: INFO: Started container minisweagent-3b491d32 with ID                                         
+b43a278033db2bdefc5ac278aa7afe13057b2ceeceea160bb25e6c8101d3ae83                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2023_smoke-pin_vllm_w1/agent/astropy__astropy-1
+2907/astropy__astropy-12907.traj.json'                                                                                  
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-f20e86f2 -w /testbed
+--rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest sleep 2h                                       
+minisweagent.environment: INFO: Started container minisweagent-f20e86f2 with ID                                         
+ebcb3de1c4183fda8c9cca958e4d29ed12ac469566849d308d1561a02d9c278b                                                        
+minisweagent: INFO: Saved trajectory to                                                                                 
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2023_smoke-pin_vllm_w1/agent/django__django-110
+39/django__django-11039.traj.json'                                                                                      
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 100% 0:13:17 eta: 0:00:00
+┏━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status ┃ Count ┃ Most recent instances                                   ┃
+┡━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Submitted   │     2 │ django__django-11039, astropy__astropy-12907            │
+└─────────────┴───────┴─────────────────────────────────────────────────────────┘

@@ -1,0 +1,69 @@
+{
+    "total_instances": 10,
+    "submitted_instances": 10,
+    "completed_instances": 7,
+    "resolved_instances": 6,
+    "unresolved_instances": 1,
+    "infra_failure_instances": 0,
+    "ambiguous_failure_instances": 0,
+    "empty_patch_instances": 2,
+    "error_instances": 1,
+    "completed_ids": [
+        "astropy__astropy-12907",
+        "django__django-11039",
+        "django__django-12708",
+        "django__django-13660",
+        "django__django-14238",
+        "django__django-14787",
+        "django__django-15347"
+    ],
+    "incomplete_ids": [],
+    "empty_patch_ids": [
+        "django__django-11630",
+        "django__django-12125"
+    ],
+    "submitted_ids": [
+        "astropy__astropy-12907",
+        "django__django-11039",
+        "django__django-11630",
+        "django__django-12125",
+        "django__django-12708",
+        "django__django-13230",
+        "django__django-13660",
+        "django__django-14238",
+        "django__django-14787",
+        "django__django-15347"
+    ],
+    "resolved_ids": [
+        "astropy__astropy-12907",
+        "django__django-11039",
+        "django__django-12708",
+        "django__django-14238",
+        "django__django-14787",
+        "django__django-15347"
+    ],
+    "unresolved_ids": [
+        "django__django-13660"
+    ],
+    "infra_failure_ids": [],
+    "ambiguous_failure_ids": [],
+    "failure_reasons": {},
+    "error_ids": [
+        "django__django-13230"
+    ],
+    "schema_version": 2,
+    "unstopped_instances": 0,
+    "unstopped_containers": [],
+    "unremoved_images": [
+        "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-11039:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-11630:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-12125:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-12708:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-13230:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-13660:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-14238:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-14787:latest",
+        "swebench/sweb.eval.x86_64.django_1776_django-15347:latest"
+    ]
+}

@@ -1,0 +1,30 @@
+== CUDA toolkit 13.0 for WSL-Ubuntu (compiler and headers only; the driver comes from Windows)
+installed
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+== FlashInfer prebuilt kernels
+ + flashinfer-jit-cache-sm89==0.7.0.post1+cu130
+ + flashinfer-jit-cache-sm90a==0.7.0.post1+cu130
+✅ flashinfer-jit-cache installed successfully.
+[20:23:19] vllm: 2 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_2023_smoke-pin_vllm_w1
+[20:23:29] starting vLLM (cpu-offload-gb=6, max-model-len=65536) -> vllm-offload6.log
+[20:25:29] vLLM ready after 120s with cpu-offload-gb=6
+[20:25:42] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\": \"ls\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 54, "prompt_tokens": 294, "total_tokens": 348, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens": null, "reasoning_tokens": 26, "rejected_prediction_tokens": null, "text_tokens": null, "image_tokens": null, "video_tokens": null}, "prompt_tokens_details": null}}
+[20:25:42] agents running
+[20:39:06] agents finished: exit 0, 13.4 min
+[20:39:13] scoring with the SWE-bench harness
+[20:40:19] summary: {"backend": "vllm", "workers": 1, "tasks": 2, "wall_seconds": 803, "agent_exit": 0, "score": {"resolved": 2, "submitted": 2, "empty_patches": 0, "errors": 0, "resolved_ids": ["astropy__astropy-12907", "django__django-11039"]}}
+# 2026-10-25_2023_smoke-pin_vllm_w1
+
+- Backend: **vllm**, 1 parallel agents, 2 tasks
+- Resolved: **2 / 2** (submitted 2)
+- Wall time: 13.4 min; median task 6.2 min, 22 model calls
+- Model calls: 71 (0 failed); median 5.85 s, p90 25.36 s
+- Tokens: 870,673 prompt, 12,783 generated; generation 15.9 t/s across the run, 16.0 t/s per call (median)
+- Context per task: median peak 16,850 tokens, largest 22,782
+- GPU: mean utilisation 93.7%, peak memory 23014.0 MiB
+- Agent exits: {'Submitted': 2}
+VLLM SMOKE DONE

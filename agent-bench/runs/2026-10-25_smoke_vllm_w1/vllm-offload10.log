@@ -1,0 +1,152 @@
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:347] 
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.32.0
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:347]   █▄█▀ █     █     █     █  model   cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:347] 
+(APIServer pid=1787) INFO 10-25 15:30:27 [api_utils.py:286] non-default args: {'model_tag': 'cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'host': '127.0.0.1', 'model': 'cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit', 'max_model_len': 65536, 'served_model_name': ['passthrough'], 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'cpu_offload_gb': 10.0, 'limit_mm_per_prompt': {'image': 0, 'video': 0}, 'max_num_seqs': 8}
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] Error in inspecting model architecture 'Qwen3_5MoeForConditionalGeneration'
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] Traceback (most recent call last):
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1569, in _run_in_subprocess
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     returned.check_returncode()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/usr/lib/python3.12/subprocess.py", line 502, in check_returncode
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     raise CalledProcessError(self.returncode, self.args, self.stdout,
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] subprocess.CalledProcessError: Command '['/home/bench/venvs/vllm/bin/python', '-m', 'vllm.model_executor.models.registry']' returned non-zero exit status 1.
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] 
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] The above exception was the direct cause of the following exception:
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] 
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] Traceback (most recent call last):
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1118, in _try_inspect_model_cls
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     return model.inspect_model_cls()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/logging_utils/log_time.py", line 18, in _wrapper
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     result = func(*args, **kwargs)
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]              ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1079, in inspect_model_cls
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     mi = _run_in_subprocess(
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]          ^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1572, in _run_in_subprocess
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     raise RuntimeError(
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] RuntimeError: Error raised in subprocess:
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] <frozen runpy>:128: RuntimeWarning: 'vllm.model_executor.models.registry' found in sys.modules after import of package 'vllm.model_executor.models', but prior to execution of 'vllm.model_executor.models.registry'; this may result in unpredictable behaviour
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] /tmp/tmpkuj8c767/cuda_utils.c:9:10: fatal error: Python.h: No such file or directory
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     9 | #include <Python.h>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]       |          ^~~~~~~~~~
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] compilation terminated.
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] Traceback (most recent call last):
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen runpy>", line 198, in _run_module_as_main
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen runpy>", line 88, in _run_code
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1595, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     _run()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1588, in _run
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     result = fn()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]              ^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1080, in <lambda>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     lambda: _ModelInfo.from_model_cls(self.load_model_cls())
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]                                       ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/registry.py", line 1093, in load_model_cls
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     mod = importlib.import_module(self.module_name)
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     return _bootstrap._gcd_import(name[level:], package, level)
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py", line 51, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     from vllm.model_executor.layers.mamba.gdn.qwen_gdn_linear_attn import (
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py", line 52, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     from vllm.third_party.flash_linear_attention.ops import (
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/__init__.py", line 9, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     from .chunk import chunk_gated_delta_rule
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py", line 13, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     from .chunk_delta_h import chunk_gated_delta_rule_fwd_h
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py", line 15, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     from .index import prepare_chunk_indices, prepare_chunk_offsets
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/index.py", line 16, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     from .utils import tensor_cache
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py", line 145, in <module>
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     device_platform = _check_platform()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]                       ^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py", line 130, in _check_platform
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     device = get_available_device()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]              ^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py", line 123, in get_available_device
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     return triton.runtime.driver.active.get_current_target().backend
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/runtime/driver.py", line 39, in active
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     self._active = self.default
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]                    ^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/runtime/driver.py", line 33, in default
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     self._default = _create_driver()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]                     ^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/runtime/driver.py", line 21, in _create_driver
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     return active_drivers[0]()
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]            ^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 336, in __init__
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     self.utils = CudaUtils()  # TODO: make static
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]                  ^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 66, in __init__
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     mod = compile_module_from_src(
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]           ^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/runtime/build.py", line 93, in compile_module_from_src
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     so = _build(name, src_path, tmpdir, library_dirs or [], include_dirs or [], libraries or [], ccflags or [])
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/runtime/build.py", line 48, in _build
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     subprocess.check_call(cc_cmd, stdout=subprocess.DEVNULL)
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]   File "/usr/lib/python3.12/subprocess.py", line 413, in check_call
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120]     raise CalledProcessError(retcode, cmd)
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] subprocess.CalledProcessError: Command '['/usr/bin/gcc', '/tmp/tmpkuj8c767/cuda_utils.c', '-O3', '-shared', '-fPIC', '-Wno-psabi', '-o', '/tmp/tmpkuj8c767/cuda_utils.cpython-312-x86_64-linux-gnu.so', '-l:libcuda.so.1', '-L/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/backends/nvidia/lib', '-L/usr/lib/wsl/lib', '-I/home/bench/venvs/vllm/lib/python3.12/site-packages/triton/backends/nvidia/include', '-I/tmp/tmpkuj8c767', '-I/usr/include/python3.12']' returned non-zero exit status 1.
+(APIServer pid=1787) ERROR 10-25 15:30:35 [registry.py:1120] 
+Traceback (most recent call last):
+  File "/home/bench/venvs/vllm/bin/vllm", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 120, in main
+    args.dispatch_function(args)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 156, in cmd
+    uvloop.run(run_server(args))
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+    return __asyncio.run(
+           ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1515, in uvloop.loop.Loop.run_until_complete
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+    return await main
+           ^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 177, in run_server
+    await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 195, in run_server_worker
+    async with build_async_engine_client(
+  File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 61, in build_async_engine_client
+    async with build_async_engine_client_from_engine_args(
+  File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 83, in build_async_engine_client_from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 2240, in create_engine_config
+    model_config = self.create_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1955, in create_model_config
+    return ModelConfig(
+           ^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+    s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ModelConfig
+  Value error, Model architectures ['Qwen3_5MoeForConditionalGeneration'] failed to be inspected. Please check the logs for more details. [type=value_error, input_value=ArgsKwargs((), {'model': ...nderer_num_workers': 1}), input_type=ArgsKwargs]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error

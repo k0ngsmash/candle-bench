@@ -1,0 +1,37 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 26 instances...
+  0%|          | 0/26 [00:00<?, ?it/s]  4%|▍         | 1/26 [00:19<08:16, 19.85s/it]1 ran successfully, 0 failed:   4%|▍         | 1/26 [00:19<08:16, 19.85s/it]1 ran successfully, 0 failed:   8%|▊         | 2/26 [00:28<05:36, 14.02s/it]2 ran successfully, 0 failed:   8%|▊         | 2/26 [00:28<05:36, 14.02s/it]2 ran successfully, 0 failed:  12%|█▏        | 3/26 [00:28<03:38,  9.49s/it]3 ran successfully, 0 failed:  12%|█▏        | 3/26 [00:28<03:38,  9.49s/it]3 ran successfully, 0 failed:  15%|█▌        | 4/26 [00:45<04:11, 11.43s/it]4 ran successfully, 0 failed:  15%|█▌        | 4/26 [00:45<04:11, 11.43s/it]4 ran successfully, 0 failed:  19%|█▉        | 5/26 [00:53<03:45, 10.76s/it]5 ran successfully, 0 failed:  19%|█▉        | 5/26 [00:53<03:45, 10.76s/it]5 ran successfully, 0 failed:  23%|██▎       | 6/26 [00:54<03:01,  9.07s/it]6 ran successfully, 0 failed:  23%|██▎       | 6/26 [00:54<03:01,  9.07s/it]6 ran successfully, 0 failed:  27%|██▋       | 7/26 [01:04<02:54,  9.17s/it]7 ran successfully, 0 failed:  27%|██▋       | 7/26 [01:04<02:54,  9.17s/it]7 ran successfully, 0 failed:  31%|███       | 8/26 [01:13<02:45,  9.20s/it]8 ran successfully, 0 failed:  31%|███       | 8/26 [01:13<02:45,  9.20s/it]8 ran successfully, 0 failed:  35%|███▍      | 9/26 [01:14<02:20,  8.26s/it]9 ran successfully, 0 failed:  35%|███▍      | 9/26 [01:14<02:20,  8.26s/it]9 ran successfully, 0 failed:  38%|███▊      | 10/26 [01:22<02:11,  8.24s/it]10 ran successfully, 0 failed:  38%|███▊      | 10/26 [01:22<02:11,  8.24s/it]10 ran successfully, 0 failed:  42%|████▏     | 11/26 [01:33<02:07,  8.47s/it]11 ran successfully, 0 failed:  42%|████▏     | 11/26 [01:33<02:07,  8.47s/it]11 ran successfully, 0 failed:  46%|████▌     | 12/26 [01:41<01:58,  8.48s/it]12 ran successfully, 0 failed:  46%|████▌     | 12/26 [01:41<01:58,  8.48s/it]12 ran successfully, 0 failed:  50%|█████     | 13/26 [01:44<01:44,  8.02s/it]13 ran successfully, 0 failed:  50%|█████     | 13/26 [01:44<01:44,  8.02s/it]13 ran successfully, 0 failed:  54%|█████▍    | 14/26 [01:49<01:33,  7.82s/it]14 ran successfully, 0 failed:  54%|█████▍    | 14/26 [01:49<01:33,  7.82s/it]14 ran successfully, 0 failed:  58%|█████▊    | 15/26 [02:13<01:38,  8.92s/it]15 ran successfully, 0 failed:  58%|█████▊    | 15/26 [02:13<01:38,  8.92s/it]15 ran successfully, 0 failed:  62%|██████▏   | 16/26 [02:19<01:27,  8.74s/it]16 ran successfully, 0 failed:  62%|██████▏   | 16/26 [02:19<01:27,  8.74s/it]16 ran successfully, 0 failed:  65%|██████▌   | 17/26 [02:21<01:14,  8.29s/it]17 ran successfully, 0 failed:  65%|██████▌   | 17/26 [02:21<01:14,  8.29s/it]17 ran successfully, 0 failed:  69%|██████▉   | 18/26 [02:31<01:07,  8.41s/it]18 ran successfully, 0 failed:  69%|██████▉   | 18/26 [02:31<01:07,  8.41s/it]18 ran successfully, 0 failed:  73%|███████▎  | 19/26 [02:39<00:58,  8.37s/it]19 ran successfully, 0 failed:  73%|███████▎  | 19/26 [02:39<00:58,  8.37s/it]19 ran successfully, 0 failed:  77%|███████▋  | 20/26 [02:42<00:48,  8.14s/it]20 ran successfully, 0 failed:  77%|███████▋  | 20/26 [02:42<00:48,  8.14s/it]20 ran successfully, 0 failed:  81%|████████  | 21/26 [02:43<00:38,  7.77s/it]21 ran successfully, 0 failed:  81%|████████  | 21/26 [02:43<00:38,  7.77s/it]21 ran successfully, 0 failed:  85%|████████▍ | 22/26 [02:52<00:31,  7.86s/it]22 ran successfully, 0 failed:  85%|████████▍ | 22/26 [02:52<00:31,  7.86s/it]22 ran successfully, 0 failed:  88%|████████▊ | 23/26 [02:55<00:22,  7.64s/it]23 ran successfully, 0 failed:  88%|████████▊ | 23/26 [02:55<00:22,  7.64s/it]23 ran successfully, 0 failed:  92%|█████████▏| 24/26 [03:05<00:15,  7.71s/it]24 ran successfully, 0 failed:  92%|█████████▏| 24/26 [03:05<00:15,  7.71s/it]24 ran successfully, 0 failed:  96%|█████████▌| 25/26 [03:09<00:07,  7.60s/it]25 ran successfully, 0 failed:  96%|█████████▌| 25/26 [03:09<00:07,  7.60s/it]25 ran successfully, 0 failed: 100%|██████████| 26/26 [03:10<00:00,  7.35s/it]26 ran successfully, 0 failed: 100%|██████████| 26/26 [03:10<00:00,  7.35s/it]26 ran successfully, 0 failed: 100%|██████████| 26/26 [03:10<00:00,  7.35s/it]
+Error in evaluation for django__django-11630: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-25_2148_main_vllm_w4/openai__passthrough/django__django-11630/run_instance.log) for more information.
+Error in evaluation for django__django-15347: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-25_2148_main_vllm_w4/openai__passthrough/django__django-15347/run_instance.log) for more information.
+Error in evaluation for psf__requests-1963: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-25_2148_main_vllm_w4/openai__passthrough/psf__requests-1963/run_instance.log) for more information.
+Error in evaluation for sympy__sympy-13895: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-25_2148_main_vllm_w4/openai__passthrough/sympy__sympy-13895/run_instance.log) for more information.
+Error in evaluation for sympy__sympy-22714: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-25_2148_main_vllm_w4/openai__passthrough/sympy__sympy-22714/run_instance.log) for more information.
+All instances run.
+Total instances: 30
+Instances submitted: 30
+Instances completed: 21
+Instances incomplete: 0
+Instances resolved: 15
+Instances unresolved: 6
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 1
+Instances with empty patches: 4
+Instances with errors: 5
+Unstopped containers: 0
+Unremoved images: 30
+Report written to openai__passthrough.2026-10-25_2148_main_vllm_w4.json

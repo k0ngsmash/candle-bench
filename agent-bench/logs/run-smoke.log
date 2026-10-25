@@ -1,0 +1,127 @@
+== dependencies (idempotent)
+python headers + ninja ok
+mcp ok
+triton target: GPUTarget(backend='cuda', arch=89, warp_size=32)
+[15:47:21] zend: 2 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1547_smoke_zend_w1
+[15:47:32] starting zend on Windows (standalone, passthrough)
+[15:47:47] waiting for zend (15s): loading
+[15:48:02] zend ready after 30s
+[15:48:42] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\":\"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 57, "prompt_tokens": 156, "total_tokens": 213, "completion_tokens_details": null, "prompt_tokens_details": null}}
+[15:48:42] agents running
+[15:50:54] agents finished: exit 0, 2.2 min
+[15:50:54] scoring with the SWE-bench harness
+[15:52:06] summary: {"backend": "zend", "workers": 1, "tasks": 2, "wall_seconds": 132, "agent_exit": 0, "score": {"resolved": 2, "submitted": 2, "empty_patches": 0, "errors": 0, "resolved_ids": ["astropy__astropy-12907", "django__django-11039"]}}
+# 2026-10-25_1547_smoke_zend_w1
+
+- Backend: **zend**, 1 parallel agents, 2 tasks
+- Resolved: **2 / 2** (submitted 2)
+- Wall time: 2.2 min; median task 0.7 min, 42 model calls
+- Model calls: 87 (0 failed); median 0.66 s, p90 2.25 s
+- Tokens: 1,200,285 prompt, 14,765 generated; generation 111.9 t/s across the run, 156.7 t/s per call (median)
+- Context per task: median peak 19,848 tokens, largest 28,967
+- GPU: mean utilisation 55.2%, peak memory 23209.0 MiB
+- Agent exits: {'Submitted': 2}
+[15:52:06] vllm: 2 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-25_1552_smoke_vllm_w1
+[15:52:16] starting vLLM (cpu-offload-gb=6, max-model-len=65536) -> vllm-offload6.log
+[15:53:38] vLLM exited (1) with offload 6; tail:
+           ^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 1120, in __init__
+    super().__init__(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 682, in __init__
+    with launch_core_engines(
+  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1351, in launch_core_engines
+    wait_for_engine_startup(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1431, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+[15:53:43] starting vLLM (cpu-offload-gb=8, max-model-len=65536) -> vllm-offload8.log
+[15:55:04] vLLM exited (1) with offload 8; tail:
+           ^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 1120, in __init__
+    super().__init__(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 682, in __init__
+    with launch_core_engines(
+  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1351, in launch_core_engines
+    wait_for_engine_startup(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1431, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+[15:55:09] starting vLLM (cpu-offload-gb=10, max-model-len=65536) -> vllm-offload10.log
+[15:56:30] vLLM exited (1) with offload 10; tail:
+           ^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 1120, in __init__
+    super().__init__(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 682, in __init__
+    with launch_core_engines(
+  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1351, in launch_core_engines
+    wait_for_engine_startup(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1431, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+[15:56:36] starting vLLM (cpu-offload-gb=12, max-model-len=65536) -> vllm-offload12.log
+[15:58:07] vLLM exited (1) with offload 12; tail:
+           ^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 1120, in __init__
+    super().__init__(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 682, in __init__
+    with launch_core_engines(
+  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1351, in launch_core_engines
+    wait_for_engine_startup(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1431, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+[15:58:13] starting vLLM (cpu-offload-gb=14, max-model-len=65536) -> vllm-offload14.log
+[15:59:45] vLLM exited (1) with offload 14; tail:
+           ^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 1120, in __init__
+    super().__init__(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 682, in __init__
+    with launch_core_engines(
+  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1351, in launch_core_engines
+    wait_for_engine_startup(
+  File "/home/bench/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1431, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/harness/run_bench.py", line 297, in <module>
+    main()
+  File "/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/harness/run_bench.py", line 255, in main
+    upstream = start_zend(run_dir) if a.backend == "zend" else start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/harness/run_bench.py", line 140, in start_vllm
+    raise RuntimeError("vLLM could not start with any offload setting tried")
+RuntimeError: vLLM could not start with any offload setting tried
+SMOKE DONE

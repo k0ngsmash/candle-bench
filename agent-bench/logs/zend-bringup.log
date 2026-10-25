@@ -1,0 +1,103 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261025133208
+Username: THOR\k0ng
+RunAs User: THOR\k0ng
+Configuration Name: 
+Machine: THOR (Microsoft Windows NT 10.0.26300.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\k0ng\source\repos\candle-bench\agent-bench\zend-bringup.ps1
+Process ID: 8700
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+== Local branch with the one-line model switch
+git : Switched to a new branch 'bench/zend-qwen36'
+At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:10 char:1
++ git -C $Repo checkout -B bench/zend-qwen36 upstream/main 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Switched to a n...ch/zend-qwen36':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+branch 'bench/zend-qwen36' set up to track 'upstream/main'.
+git : Switched to a new branch 'bench/zend-qwen36'
+At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:10 char:1
++ git -C $Repo checkout -B bench/zend-qwen36 upstream/main 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Switched to a n...ch/zend-qwen36':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+git : Checking patch host/src/model.rs...
+At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:11 char:1
++ git -C $Repo apply --verbose (Join-Path $PSScriptRoot 'zend-qwen36.pa ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Checking patch host/src/model.rs...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Applied patch host/src/model.rs cleanly.
+git : Checking patch host/src/model.rs...
+At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:11 char:1
++ git -C $Repo apply --verbose (Join-Path $PSScriptRoot 'zend-qwen36.pa ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Checking patch host/src/model.rs...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Applied patch host/src/model.rs cleanly.
+ host/src/model.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Based on upstream 35e9a2b8
+== cargo build --release -p zend
+
+build exit 0 (full output: D:\candle-work\logs\cargo-zend.log)
+== Standalone workspace
+
+
+
+repos:
+  - name: scratch
+
+jobs_dir: D:/candle-work/zend-ws/jobs-agent
+slots: 1
+checkouts:
+  - name: scratch
+    dir: D:/candle-work/zend-ws/scratch
+    push: false
+
+== DONE (zend.exe at D:\candle-work\candle\target\release\zend.exe)
+PS>TerminatingError(Invoke-RestMethod): "Unable to connect to the remote server"
+Starting: zend.exe --host 127.0.0.1 --port 8090 --agent D:\candle-work\zend-ws\agent.yaml --working-dir D:\candle-work\zend-ws --disable-layer repo_map --disable-layer code_reading
+[  10s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  20s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  30s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  40s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  50s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  60s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  70s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  80s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[  90s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 100s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 110s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 120s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 130s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 140s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 150s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 160s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 170s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 180s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 190s] state: {"state":"loading","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP
+[ 200s] state: {"state":"ready","started_at_ms":1792910674166,"build":"c8b4c0db8cd90bd0","model":{"name":"Qwen3.6-35B-A3B-UD-Q4_K_M.gguf","repo":"unsloth/Qwen3.6-35B-A3B-MTP-G
+== Smoke: plain passthrough turn
+0.6s  {"id":"chatcmpl-1792910872948","object":"chat.completion","created":1792910872,"model":"passthrough","choices":[{"index":0,"message":{"role":"assistant","content":"","reasoning_content":"Here\u0027s a thinking process:\n\n1.  **Analyze User Input:**\n   - User says: \"Reply with exactly: ready\"\n   - Constraint: \"Reply with exactly: ready\"\n   - Persona: \"terse assistant\" (already implied by the instruction, but I should keep"},"finish_reason":"length"}],"usage":{"prompt_tokens":18,"completion_tokens":64,"total_tokens":82}}
+== Smoke: passthrough turn offering a client tool
+0.6s  {"id":"chatcmpl-1792910873537","object":"chat.completion","created":1792910873,"model":"passthrough","choices":[{"index":0,"message":{"role":"assistant","content":"","reasoning_content":"The user wants to list the files in the current directory.\nI should use the `ls` command to achieve this.","tool_calls":[{"id":"chatcmpl-1792910873537-call-0","type":"function","function":{"name":"bash","arguments":"{\"command\":\"ls -la\"}"}}]},"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":159,"completion_tokens":53,"total_tokens":212}}
+memory.used [MiB], memory.total [MiB]
+23126 MiB, 24564 MiB
+zend stopped
+**********************
+Windows PowerShell transcript end
+End time: 20261025144754
+**********************
