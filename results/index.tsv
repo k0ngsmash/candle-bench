@@ -1,2 +1,9 @@
 ﻿date	host	commit	key	exit	rows	wall_s	vram_used_before_mib
 2026-10-25	thor	5739c544	qwen2-0.5b	0	6	-	1905
+2026-10-25	thor	bdc60bd3	qwen2-0.5b	0	6	5	1765
+2026-10-25	thor	bdc60bd3	llama3.2-3b	0	24	145	1720
+2026-10-25	thor	bdc60bd3	qwen3.5-0.8b	0	15	50	682
+2026-10-25	thor	bdc60bd3	qwen3-8b	0	16	316	659
+2026-10-25	thor	bdc60bd3	qwen3-30b-a3b	0	19	796	782
+2026-10-25	thor	7f4033e1	qwen3.6-35b-a3b	0	16	1153	1224
+2026-10-25	thor	7f4033e1	qwen3.6-35b-a3b-depth	0	5	1236	989

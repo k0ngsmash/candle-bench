@@ -7,3 +7,4 @@ qwen3.5-9b,Qwen3.5-9B,models::quantized_qwen35::tests::test_parallel_batched_for
 qwen3-30b-a3b,Qwen3-30B-A3B,models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding,1,MoE; John's main dev model; first test of expert streaming over PCIe 4.0 x16
 qwen3.6-35b-a3b,Qwen3.6-35B-A3B,models::quantized_qwen36_moe::tests::test_parallel_batched_forwarding_36_35b,0,MoE; ~28 GB weights so experts stream on 24 GB
 qwen3.8-flash-next,Qwen3.8-Flash-Next,models::quantized_qwen38_moe::tests::test_parallel_batched_forwarding,0,180B MoE; streams VRAM->RAM->NVMe; large download
+qwen3.6-35b-a3b-depth,Qwen3.6-35B-A3B,models::quantized_qwen36_moe::tests::long_context_36_35b,0,depth gate: one session at 32K and 128K tokens of context (agent-like memory)

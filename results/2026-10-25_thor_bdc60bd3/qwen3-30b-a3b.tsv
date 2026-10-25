@@ -1,0 +1,20 @@
+test	label	depth	prompt_tokens	mode	int8	contexts	valid	prefill_tps	decode_tps	quantized_pct	compress	peak_tokens
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	F16	perf	1	✓	5250.9	101.7	-	-	626
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	BF16	perf	1	✓	9086.5	135.0	-	-	626
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	BF16	perf	10	✓	17229.5	788.8	-	-	6310
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	Q8_0	perf	20	✓	17225.4	362.9	100.0%	1.88x	12620
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	Q4_0	perf	4	-	16460.6	235.2	100.0%	3.56x	2546
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C0	perf	2	✓	15035.0	165.0	100.0%	2.03x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C1	perf	2	✓	15009.7	175.6	100.0%	2.49x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C2	perf	2	✓	14935.7	174.1	100.0%	2.70x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C3	perf	2	✓	15031.5	180.1	100.0%	3.20x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C4	perf	2	✓	15039.4	178.5	100.0%	3.10x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C5	perf	2	✓	14815.2	159.7	100.0%	3.35x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C5	perf	8	✓	17391.7	369.4	100.0%	3.35x	5052
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C6	perf	2	✓	14825.6	161.5	100.0%	3.86x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C7	perf	2	✓	14795.2	161.0	100.0%	4.06x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C8	perf	2	✓	14851.2	160.4	100.0%	4.57x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C9	perf	2	✓	14716.5	160.5	100.0%	5.01x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	C10	perf	2	✓	14824.7	160.3	100.0%	5.45x	1292
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	BF16	perf	1	✓	10178.8	121.7	-	-	626
+models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding	Qwen3-30B-A3B		-	Q4_0	perf	20	-	17181.2	358.8	100.0%	3.56x	12620

@@ -1,0 +1,17 @@
+test	label	depth	prompt_tokens	mode	int8	contexts	valid	prefill_tps	decode_tps	quantized_pct	compress	peak_tokens
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	BF16	perf	1	✓	12192.8	95.4	-	-	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	F16	perf	1	✓	12522.1	96.2	-	-	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	F16	perf	2	✓	13065.0	189.6	-	-	1312
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	BF16	perf	4	✓	13434.4	360.2	-	-	2586
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	Q8_0	perf	4	✓	13161.6	240.7	100.0%	1.88x	2586
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C0	perf	1	✓	12340.1	85.0	100.0%	1.91x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C1	perf	1	✓	12251.1	87.2	100.0%	2.56x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C2	perf	1	✓	12294.2	88.1	100.0%	2.79x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C3	perf	1	✓	12363.4	87.1	100.0%	3.28x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C4	perf	1	✓	12319.7	86.9	100.0%	3.21x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C5	perf	1	✓	12255.6	87.0	100.0%	3.40x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C6	perf	1	✓	12320.6	86.3	100.0%	4.04x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C7	perf	1	✓	12486.6	86.2	100.0%	4.31x	636
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C8	perf	10	✓	13111.3	578.7	100.0%	4.79x	6410
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C9	perf	5	✓	13095.0	369.8	100.0%	5.17x	3222
+models::quantized_qwen3::tests::test_parallel_batched_forwarding	Qwen3-8B		-	C10	perf	5	✓	13059.6	371.3	100.0%	5.82x	3222

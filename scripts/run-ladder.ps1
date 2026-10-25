@@ -54,7 +54,8 @@ if ($LASTEXITCODE -ne 0) { Pop-Location; throw "Build failed - see $Logs\build_$
 
 # --- gates ---
 $ladder = Import-Csv (Join-Path $Bench 'ladder.csv')
-$todo = if ($Only) { $ladder | Where-Object { $Only -contains $_.key } } else { $ladder | Where-Object { $_.enabled -eq '1' } }
+$Only = @($Only | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+$todo = if ($Only.Count) { $Only | ForEach-Object { $k = $_; $ladder | Where-Object { $_.key -eq $k } } } else { $ladder | Where-Object { $_.enabled -eq '1' } }
 $index = Join-Path $Bench 'results\index.tsv'
 if (-not (Test-Path $index)) { "date`thost`tcommit`tkey`texit`trows`twall_s`tvram_used_before_mib" | Set-Content $index -Encoding UTF8 }
 foreach ($g in $todo) {

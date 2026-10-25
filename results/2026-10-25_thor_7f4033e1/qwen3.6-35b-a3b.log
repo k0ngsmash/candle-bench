@@ -1,0 +1,1906 @@
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:37:14
+   |
+37 |         f64::NAN
+   |              ^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:55:14
+   |
+55 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:57:14
+   |
+57 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:69:14
+   |
+69 |         f64::NAN
+   |              ^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:70:25
+   |
+70 |     } else if x == f64::INFINITY {
+   |                         ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:72:25
+   |
+72 |     } else if x == f64::NEG_INFINITY {
+   |                         ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:83:14
+   |
+83 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:85:14
+   |
+85 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+warning: `candle-core` (lib) generated 8 warnings
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:237:42
+    |
+237 |                         let mut m = f32::NEG_INFINITY;
+    |                                          ^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:253:43
+    |
+253 | ...                   if mv == f32::NEG_INFINITY {
+    |                                     ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:304:58
+    |
+304 |                         || (vec![0f32; dv], 0.0f32, f32::NEG_INFINITY),
+    |                                                          ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:405:34
+    |
+405 |                 let mut m = f32::NEG_INFINITY;
+    |                                  ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:427:35
+    |
+427 |                     if mv == f32::NEG_INFINITY {
+    |                                   ^^^^^^^^^^^^
+
+warning: `candle-nn` (lib) generated 5 warnings
+warning: use of deprecated constant `std::f32::MIN`: replaced by the `MIN` associated constant on `f32`
+   --> candle-transformers\src\models\modernbert.rs:302:27
+    |
+302 |     (inverted_mask * f32::MIN as f64)?.to_dtype(dtype)
+    |                           ^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-transformers\src\models\modernbert.rs:315:26
+    |
+315 |                     f32::NEG_INFINITY
+    |                          ^^^^^^^^^^^^
+
+warning: `candle-transformers` (lib test) generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 0.28s
+     Running unittests src\lib.rs (target\release\deps\candle_transformers-a8623c8d284fed38.exe)
+
+running 1 test
+test models::quantized_qwen36_moe::tests::test_parallel_batched_forwarding_36_35b ... 
+=== Qwen3.6-35B-A3B hybrid MoE batched forwarding ===
+
+✓ Model loaded
+
+  [host ram] after model load: private resident 23116 MiB of 46216 MiB committed | ≤2 MiB ×56: 91 | ≤16 MiB ×34: 340 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+✓ TestParams created successfully
+  - Dialect: Qwen35
+  - Generate tokens: 256
+  - Prompt system length: 541 chars
+  - Prompt user length: 2282 chars
+  - Names available: 99
+  VRAM wave log: D:\candle-work\candle\candle-transformers\..\target\vram_waves_1792897416.csv
+
+=== Running tests for config: TestConfig { mode: BF16, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 336 | live 0 | free 336 | blocked 0 | ceiling 336 | arenas 0 MiB | weight 14030 MiB | device free 1176 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 0 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17604 MiB ground)
+  [host ram] BF16×1 after prefill: private resident 23275 MiB of 46273 MiB committed | ≤2 MiB ×56: 91 | ≤16 MiB ×34: 347 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+forbidden-allocation detector requested but not compiled in; rebuild with --features forbidden_allocations
+  decode steps: first 15.3 ms | rest 51 × mean 17.1 ms (min 11.8, max 101.4)
+  speculative: 52 steps, 255 tokens, 4.90 accepted/step (288.0 tok/s over the cohort, 204 drafted at a ceiling of 4)
+  graphs: 103 waves, 23.3 segments/wave, 25.0 launches/segment, 2377 updated in place (27 reshaped), 22 instantiated; fold µs each: in place 8.4, reshaped 25.1, instantiated 124.5; recording µs/segment 45.1; 255 run as issued (0 behind a lease); library trial, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): BF16 x1 decode end ===
+  CARD                  24563.5 MiB total |  1268.5 free | 23295.0 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.5 of 32.0, peak 21.6; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.1)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 8 of which span-tenant 5, free 1, blocked 72, frontier 9)
+      live KV             128.0 MiB   (arenas 48.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 7
+    wave tier              16.0 MiB   (placed now, ceiling 9 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 96.7% | warm tier 9984 of 10496 experts | misses pinned 2168 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1951.0 MiB   (baseline before reservation 1677.5, since 273.5)
+  peak KV live            224.0 MiB   (14 regions)   granule 2 MiB
+[BF16] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 76.0 MiB, ffn 66.4 MiB, forward 8.1 MiB
+
+=== Running tests for config: TestConfig { mode: BF16, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 9 | blocked 72 | ceiling 9 | arenas 0 MiB | weight 18110 MiB | device free 1259 MiB | mid-wave claims 0 refused 0 | swept 1 arenas / 55 sweeps
+  - prefill: 2100 rows across 4 sequences, cap 2828 rows per wave (tier 704 + KV 176 of 17108 MiB ground)
+  [host ram] BF16×4 after prefill: private resident 23319 MiB of 46284 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  span settle: 2 pass(es), frontier 46 → 33, weight zone 17966.5 → 17966.5 MiB (+0 regions)
+  decode steps: first 16.7 ms | rest 52 × mean 19.2 ms (min 13.2, max 143.0)
+  speculative: 53 steps, 1020 tokens, 19.25 accepted/step (1004.7 tok/s over the cohort, 820 drafted at a ceiling of 4)
+  graphs: 105 waves, 13.2 segments/wave, 25.0 launches/segment, 26 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 12.9, reshaped 0.0, instantiated 0.0; recording µs/segment 47.7; 1323 run as issued (0 behind a lease); library trial, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): BF16 x4 decode end ===
+  CARD                  24563.5 MiB total |  1205.9 free | 23357.6 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 27 of which span-tenant 20, free 0, blocked 54, frontier 27)
+      live KV             432.0 MiB   (arenas 112.0 + span tenants 320.0)
+        recurrent state   20 regions,   303.9 MiB held, top 27  ← the frontier
+    wave tier              16.0 MiB   (placed now, ceiling 27 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 99.9% | warm tier 9984 of 10496 experts | misses pinned 263 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       2013.6 MiB   (baseline before reservation 1677.5, since 336.1)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[BF16] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: Q8_0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 27 | blocked 54 | ceiling 27 | arenas 0 MiB | weight 18110 MiB | device free 1257 MiB | mid-wave claims 0 refused 0 | swept 2 arenas / 114 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17604 MiB ground)
+  [host ram] Q8_0×1 after prefill: private resident 23322 MiB of 46288 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 7.9 ms | rest 51 × mean 12.9 ms (min 12.3, max 14.2)
+  speculative: 52 steps, 255 tokens, 4.90 accepted/step (383.5 tok/s over the cohort, 204 drafted at a ceiling of 4)
+  graphs: 103 waves, 12.9 segments/wave, 25.3 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 40.6; 1326 run as issued (0 behind a lease); library trial, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q8_0 x1 decode end ===
+  CARD                  24563.5 MiB total |  1249.2 free | 23314.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 10 of which span-tenant 5, free 6, blocked 65, frontier 16)
+      live KV             160.0 MiB   (arenas 80.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 7
+    wave tier              16.0 MiB   (placed now, ceiling 16 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 11 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1970.3 MiB   (baseline before reservation 1677.5, since 292.8)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[Q8_0] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 16 | blocked 65 | ceiling 16 | arenas 0 MiB | weight 18110 MiB | device free 1249 MiB | mid-wave claims 0 refused 0 | swept 3 arenas / 169 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17588 MiB ground)
+  [host ram] C0×1 after prefill: private resident 23322 MiB of 46288 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 7.8 ms | rest 52 × mean 13.1 ms (min 12.6, max 14.0)
+  speculative: 53 steps, 255 tokens, 4.81 accepted/step (369.6 tok/s over the cohort, 208 drafted at a ceiling of 4)
+  graphs: 105 waves, 12.9 segments/wave, 24.5 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 38.4; 1348 run as issued (0 behind a lease); library trial, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C0 x1 decode end ===
+  CARD                  24563.5 MiB total |  1249.2 free | 23314.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 11 of which span-tenant 5, free 6, blocked 64, frontier 17)
+      live KV             176.0 MiB   (arenas 96.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 8
+    wave tier              16.0 MiB   (placed now, ceiling 17 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 26 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1970.3 MiB   (baseline before reservation 1677.5, since 292.8)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[C0] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C1, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 17 | blocked 64 | ceiling 17 | arenas 0 MiB | weight 18110 MiB | device free 1249 MiB | mid-wave claims 0 refused 0 | swept 4 arenas / 225 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17572 MiB ground)
+  [host ram] C1×1 after prefill: private resident 23322 MiB of 46288 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 7.9 ms | rest 51 × mean 13.1 ms (min 12.7, max 13.9)
+  speculative: 52 steps, 255 tokens, 4.90 accepted/step (376.8 tok/s over the cohort, 204 drafted at a ceiling of 4)
+  graphs: 103 waves, 12.9 segments/wave, 25.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 40.1; 1323 run as issued (0 behind a lease); library trial, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C1 x1 decode end ===
+  CARD                  24563.5 MiB total |  1247.3 free | 23316.2 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 11 of which span-tenant 5, free 6, blocked 64, frontier 17)
+      live KV             176.0 MiB   (arenas 96.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 9
+    wave tier              16.0 MiB   (placed now, ceiling 17 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 10 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1972.2 MiB   (baseline before reservation 1677.5, since 294.7)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[C1] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C2, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 17 | blocked 64 | ceiling 17 | arenas 0 MiB | weight 18110 MiB | device free 1247 MiB | mid-wave claims 0 refused 0 | swept 5 arenas / 280 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17556 MiB ground)
+  [host ram] C2×1 after prefill: private resident 23322 MiB of 46288 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 7.8 ms | rest 51 × mean 12.8 ms (min 11.6, max 14.1)
+  speculative: 52 steps, 255 tokens, 4.90 accepted/step (386.6 tok/s over the cohort, 204 drafted at a ceiling of 4)
+  graphs: 103 waves, 15.9 segments/wave, 26.1 launches/segment, 772 updated in place (0 reshaped), 14 instantiated; fold µs each: in place 8.6, reshaped 0.0, instantiated 2656.6; recording µs/segment 42.1; 1016 run as issued (0 behind a lease); library learn, 30 held, 3 banned, 11 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C2 x1 decode end ===
+  CARD                  24563.5 MiB total |  1249.2 free | 23314.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 12 of which span-tenant 5, free 6, blocked 63, frontier 18)
+      live KV             192.0 MiB   (arenas 112.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 10
+    wave tier              16.0 MiB   (placed now, ceiling 18 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 17 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1970.3 MiB   (baseline before reservation 1677.5, since 292.8)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[C2] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C3, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 18 | blocked 63 | ceiling 18 | arenas 0 MiB | weight 18110 MiB | device free 1249 MiB | mid-wave claims 0 refused 0 | swept 6 arenas / 335 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17556 MiB ground)
+  [host ram] C3×1 after prefill: private resident 23322 MiB of 46290 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 8.4 ms | rest 52 × mean 13.0 ms (min 11.6, max 14.6)
+  speculative: 53 steps, 255 tokens, 4.81 accepted/step (373.1 tok/s over the cohort, 208 drafted at a ceiling of 4)
+  graphs: 105 waves, 9.1 segments/wave, 27.8 launches/segment, 930 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 8.8, reshaped 0.0, instantiated 0.0; recording µs/segment 45.7; 1749 run as issued (0 behind a lease); library trial, 34 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C3 x1 decode end ===
+  CARD                  24563.5 MiB total |  1247.2 free | 23316.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 12 of which span-tenant 5, free 6, blocked 63, frontier 18)
+      live KV             192.0 MiB   (arenas 112.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 10
+    wave tier              16.0 MiB   (placed now, ceiling 18 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 19 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1972.3 MiB   (baseline before reservation 1677.5, since 294.8)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[C3] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C4, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 18 | blocked 63 | ceiling 18 | arenas 0 MiB | weight 18110 MiB | device free 1249 MiB | mid-wave claims 0 refused 0 | swept 7 arenas / 391 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17508 MiB ground)
+  [host ram] C4×1 after prefill: private resident 23323 MiB of 46290 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 8.2 ms | rest 52 × mean 13.2 ms (min 11.8, max 14.7)
+  speculative: 53 steps, 255 tokens, 4.81 accepted/step (368.2 tok/s over the cohort, 208 drafted at a ceiling of 4)
+  graphs: 105 waves, 8.8 segments/wave, 27.7 launches/segment, 913 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 9.1, reshaped 0.0, instantiated 0.0; recording µs/segment 45.5; 1777 run as issued (0 behind a lease); library trial, 34 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C4 x1 decode end ===
+  CARD                  24563.5 MiB total |  1247.2 free | 23316.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 15 of which span-tenant 5, free 6, blocked 60, frontier 21)
+      live KV             240.0 MiB   (arenas 160.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 13
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 60 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1972.3 MiB   (baseline before reservation 1677.5, since 294.8)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[C4] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C5, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 21 | blocked 60 | ceiling 21 | arenas 0 MiB | weight 18110 MiB | device free 1247 MiB | mid-wave claims 0 refused 0 | swept 8 arenas / 447 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17508 MiB ground)
+  [host ram] C5×1 after prefill: private resident 23323 MiB of 46290 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×33: 388 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 8.7 ms | rest 52 × mean 13.1 ms (min 11.4, max 14.5)
+  speculative: 53 steps, 255 tokens, 4.81 accepted/step (368.9 tok/s over the cohort, 208 drafted at a ceiling of 4)
+  graphs: 105 waves, 8.9 segments/wave, 27.3 launches/segment, 914 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 8.6, reshaped 0.0, instantiated 0.0; recording µs/segment 43.7; 1768 run as issued (0 behind a lease); library trial, 34 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C5 x1 decode end ===
+  CARD                  24563.5 MiB total |  1247.2 free | 23316.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 14.8 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.3 MiB (peak     0.3)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 15 of which span-tenant 5, free 6, blocked 60, frontier 21)
+      live KV             240.0 MiB   (arenas 160.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 13
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 28 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1972.3 MiB   (baseline before reservation 1677.5, since 294.8)
+  peak KV live            736.0 MiB   (46 regions)   granule 2 MiB
+[C5] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 309.9 MiB, ffn 270.6 MiB, forward 18.3 MiB
+
+=== Running tests for config: TestConfig { mode: C5, use_batched: true, num_contexts: 8, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 21 | blocked 60 | ceiling 21 | arenas 0 MiB | weight 18110 MiB | device free 1245 MiB | mid-wave claims 0 refused 0 | swept 9 arenas / 503 sweeps
+  - prefill: 4160 rows across 8 sequences, cap 2828 rows per wave (tier 1392 + KV 336 of 16353 MiB ground)
+  [host ram] C5×8 after prefill: private resident 23325 MiB of 46292 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×34: 398 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  span settle: 3 pass(es), frontier 101 → 70, weight zone 17001.2 → 17001.2 MiB (+0 regions)
+  span settle: 1 pass(es), frontier 63 → 51, weight zone 17001.2 → 17129.0 MiB (+8 regions)
+  decode steps: first 17.0 ms | rest 55 × mean 22.2 ms (min 12.5, max 24.5)
+  speculative: 56 steps, 2040 tokens, 36.43 accepted/step (1647.4 tok/s over the cohort, 1676 drafted at a ceiling of 4)
+  graphs: 111 waves, 10.3 segments/wave, 27.3 launches/segment, 35 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 10.1, reshaped 0.0, instantiated 0.0; recording µs/segment 53.8; 1735 run as issued (0 behind a lease); library trial, 34 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C5 x8 decode end ===
+  CARD                  24563.5 MiB total |  1140.0 free | 23423.5 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 32.0, peak 22.0; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     3.8)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           1456.0 MiB   (91 x 16 MiB: live 55 of which span-tenant 40, free 0, blocked 36, frontier 55)
+      live KV             880.0 MiB   (arenas 240.0 + span tenants 640.0)
+        recurrent state   40 regions,   607.7 MiB held, top 51
+    wave tier              16.0 MiB   (placed now, ceiling 55 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         17941.3 MiB   (the expert side of the boundary)
+      experts resident  17941.3 MiB   (8569 slots of 2.09 MiB; zone 17941.3, min 1610.1, max 18110.9) | hit 99.7% | warm tier 9984 of 10496 experts | misses pinned 582 cold 0
+    unusable slack         10.7 MiB   (span tail the region count rounds off)
+  outside the span       2079.5 MiB   (baseline before reservation 1677.5, since 402.0)
+  peak KV live           1616.0 MiB   (101 regions)   granule 2 MiB
+[C5] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 380.0 MiB, ffn 331.8 MiB, forward 25.0 MiB
+
+=== Running tests for config: TestConfig { mode: C6, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 91 | live 0 | free 55 | blocked 36 | ceiling 55 | arenas 0 MiB | weight 17941 MiB | device free 1139 MiB | mid-wave claims 0 refused 0 | swept 18 arenas / 568 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17508 MiB ground)
+  [host ram] C6×1 after prefill: private resident 23332 MiB of 46299 MiB committed | ≤2 MiB ×55: 90 | ≤16 MiB ×34: 404 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 8.4 ms | rest 52 × mean 13.1 ms (min 11.6, max 14.6)
+  speculative: 53 steps, 255 tokens, 4.81 accepted/step (370.8 tok/s over the cohort, 208 drafted at a ceiling of 4)
+  graphs: 105 waves, 9.3 segments/wave, 27.4 launches/segment, 948 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 8.8, reshaped 0.0, instantiated 0.0; recording µs/segment 45.7; 1724 run as issued (0 behind a lease); library trial, 34 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C6 x1 decode end ===
+  CARD                  24563.5 MiB total |  1245.3 free | 23318.2 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 32.0, peak 22.5; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     3.8)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 15 of which span-tenant 5, free 6, blocked 60, frontier 21)
+      live KV             240.0 MiB   (arenas 160.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 13
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18100.5 MiB   (8645 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 6 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1974.2 MiB   (baseline before reservation 1677.5, since 296.7)
+  peak KV live           1616.0 MiB   (101 regions)   granule 2 MiB
+[C6] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 380.0 MiB, ffn 331.8 MiB, forward 25.0 MiB
+
+=== Running tests for config: TestConfig { mode: C7, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 21 | blocked 60 | ceiling 21 | arenas 0 MiB | weight 18110 MiB | device free 1247 MiB | mid-wave claims 0 refused 0 | swept 19 arenas / 624 sweeps
+  - prefill: 515 rows across 1 sequences, cap 2828 rows per wave (tier 176 + KV 48 of 17508 MiB ground)
+  [host ram] C7×1 after prefill: private resident 23332 MiB of 46299 MiB committed | ≤2 MiB ×55: 90 | ≤16 MiB ×34: 404 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  decode steps: first 8.2 ms | rest 52 × mean 13.1 ms (min 11.8, max 15.0)
+  speculative: 53 steps, 255 tokens, 4.81 accepted/step (369.4 tok/s over the cohort, 208 drafted at a ceiling of 4)
+  graphs: 105 waves, 8.7 segments/wave, 27.6 launches/segment, 898 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 9.2, reshaped 0.0, instantiated 0.0; recording µs/segment 45.6; 1794 run as issued (0 behind a lease); library lock, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C7 x1 decode end ===
+  CARD                  24563.5 MiB total |  1245.3 free | 23318.2 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 32.0, peak 22.5; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     3.8)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 15 of which span-tenant 5, free 6, blocked 60, frontier 21)
+      live KV             240.0 MiB   (arenas 160.0 + span tenants 80.0)
+        recurrent state    5 regions,    76.0 MiB held, top 13
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 100.0% | warm tier 9984 of 10496 experts | misses pinned 25 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1974.2 MiB   (baseline before reservation 1677.5, since 296.7)
+  peak KV live           1616.0 MiB   (101 regions)   granule 2 MiB
+[C7] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 380.0 MiB, ffn 331.8 MiB, forward 25.0 MiB
+
+=== Running tests for config: TestConfig { mode: C8, use_batched: true, num_contexts: 5, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 21 | blocked 60 | ceiling 21 | arenas 0 MiB | weight 18110 MiB | device free 1146 MiB | mid-wave claims 0 refused 0 | swept 20 arenas / 680 sweeps
+  - prefill: 2615 rows across 5 sequences, cap 2828 rows per wave (tier 880 + KV 208 of 16836 MiB ground)
+  [host ram] C8×5 after prefill: private resident 23332 MiB of 46299 MiB committed | ≤2 MiB ×55: 90 | ≤16 MiB ×34: 404 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  span settle: 3 pass(es), frontier 66 → 49, weight zone 17484.9 → 17484.9 MiB (+0 regions)
+  span settle: 1 pass(es), frontier 43 → 35, weight zone 17484.9 → 17484.9 MiB (+0 regions)
+  decode steps: first 10.9 ms | rest 52 × mean 18.5 ms (min 17.0, max 20.3)
+  speculative: 53 steps, 1275 tokens, 24.06 accepted/step (1307.0 tok/s over the cohort, 1040 drafted at a ceiling of 4)
+  graphs: 105 waves, 0.6 segments/wave, 21.9 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 43.1; 2656 run as issued (0 behind a lease); library lock, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C8 x5 decode end ===
+  CARD                  24563.5 MiB total |  1246.7 free | 23316.8 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 32.0, peak 22.6; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     3.8)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 39 of which span-tenant 25, free 0, blocked 42, frontier 39)
+      live KV             624.0 MiB   (arenas 224.0 + span tenants 400.0)
+        recurrent state   25 regions,   379.8 MiB held, top 35
+    wave tier              48.0 MiB   (placed now, ceiling 39 regions)
+      launch scratch        6.0 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 99.8% | warm tier 9984 of 10496 experts | misses pinned 207 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1972.8 MiB   (baseline before reservation 1677.5, since 295.3)
+  peak KV live           1616.0 MiB   (101 regions)   granule 2 MiB
+[C8] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 385.9 MiB, ffn 336.9 MiB, forward 25.0 MiB
+
+=== Running tests for config: TestConfig { mode: C9, use_batched: true, num_contexts: 2, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 0 | free 39 | blocked 42 | ceiling 39 | arenas 0 MiB | weight 18110 MiB | device free 1249 MiB | mid-wave claims 0 refused 0 | swept 26 arenas / 741 sweeps
+  - prefill: 1070 rows across 2 sequences, cap 2828 rows per wave (tier 368 + KV 96 of 17332 MiB ground)
+  [host ram] C9×2 after prefill: private resident 23335 MiB of 46302 MiB committed | ≤2 MiB ×54: 89 | ≤4 MiB ×25: 66 | ≤16 MiB ×34: 404 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  span settle: 2 pass(es), frontier 32 → 30, weight zone 18110.9 → 18110.9 MiB (+0 regions)
+  decode steps: first 9.8 ms | rest 13 × mean 15.4 ms (min 14.1, max 17.0)
+  speculative: 14 steps, 126 tokens, 9.00 accepted/step (599.6 tok/s over the cohort, 104 drafted at a ceiling of 4)
+  graphs: 27 waves, 1.6 segments/wave, 28.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 52.9; 669 run as issued (0 behind a lease); library lock, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C9 x2 decode end ===
+  CARD                  24563.5 MiB total |  1247.2 free | 23316.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 48.0, peak 22.6; the rest in 1 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     3.8)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           1296.0 MiB   (81 x 16 MiB: live 23 of which span-tenant 11, free 1, blocked 57, frontier 24)
+      live KV             368.0 MiB   (arenas 192.0 + span tenants 176.0)
+        held arenas        1 arenas,     16.0 MiB of span, top 16
+        recurrent state   10 regions,   151.9 MiB held, top 24  ← the frontier
+    wave tier              32.0 MiB   (placed now, ceiling 24 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         18110.9 MiB   (the expert side of the boundary)
+      experts resident  18110.9 MiB   (8650 slots of 2.09 MiB; zone 18110.9, min 1610.1, max 18110.9) | hit 99.8% | warm tier 9984 of 10496 experts | misses pinned 51 cold 0
+    unusable slack          1.1 MiB   (span tail the region count rounds off)
+  outside the span       1972.3 MiB   (baseline before reservation 1677.5, since 294.8)
+  peak KV live           1616.0 MiB   (101 regions)   granule 2 MiB
+[C9] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 385.9 MiB, ffn 336.9 MiB, forward 25.0 MiB
+
+=== Running tests for config: TestConfig { mode: C10, use_batched: true, num_contexts: 8, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 81 | live 1 | free 23 | blocked 57 | ceiling 24 | arenas 0 MiB | weight 18110 MiB | device free 1247 MiB | mid-wave claims 0 refused 0 | swept 27 arenas / 760 sweeps
+  - prefill: 4160 rows across 8 sequences, cap 2828 rows per wave (tier 1392 + KV 336 of 16319 MiB ground)
+  [host ram] C10×8 after prefill: private resident 23336 MiB of 46303 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×34: 404 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  span settle: 3 pass(es), frontier 102 → 72, weight zone 16967.8 → 16967.8 MiB (+0 regions)
+  span settle: 1 pass(es), frontier 65 → 52, weight zone 16967.8 → 17095.5 MiB (+8 regions)
+  decode steps: first 13.2 ms | rest 15 × mean 22.9 ms (min 14.8, max 24.8)
+  speculative: 16 steps, 504 tokens, 31.50 accepted/step (1414.8 tok/s over the cohort, 436 drafted at a ceiling of 4)
+  graphs: 31 waves, 0.0 segments/wave, 32.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 134.0; 820 run as issued (0 behind a lease); library lock, 33 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C10 x8 decode end ===
+  CARD                  24563.5 MiB total |  1247.2 free | 23316.3 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 48.0, peak 22.6; the rest in 1 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.2)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     3.8)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           1488.0 MiB   (93 x 16 MiB: live 54 of which span-tenant 41, free 0, blocked 39, frontier 54)
+      live KV             864.0 MiB   (arenas 208.0 + span tenants 656.0)
+        held arenas        1 arenas,     16.0 MiB of span, top 37
+        recurrent state   40 regions,   607.7 MiB held, top 52
+    wave tier              16.0 MiB   (placed now, ceiling 54 regions)
+      launch scratch        6.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         17907.8 MiB   (the expert side of the boundary)
+      experts resident  17907.8 MiB   (8553 slots of 2.09 MiB; zone 17907.8, min 1610.1, max 18110.9) | hit 99.4% | warm tier 9984 of 10496 experts | misses pinned 333 cold 0
+    unusable slack         12.2 MiB   (span tail the region count rounds off)
+  outside the span       1972.3 MiB   (baseline before reservation 1677.5, since 294.8)
+  peak KV live           1632.0 MiB   (102 regions)   granule 2 MiB
+[C10] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 385.9 MiB, ffn 336.9 MiB, forward 25.0 MiB
+
+=== Running tests for config: TestConfig { mode: C10, use_batched: true, num_contexts: 16, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 93 | live 1 | free 53 | blocked 39 | ceiling 54 | arenas 0 MiB | weight 17907 MiB | device free 1247 MiB | mid-wave claims 0 refused 0 | swept 37 arenas / 785 sweeps
+  - prefill: 8280 rows across 16 sequences, cap 2828 rows per wave (tier 2768 + KV 656 of 14993 MiB ground)
+  [host ram] C10×16 after prefill: private resident 23336 MiB of 46303 MiB committed | ≤2 MiB ×54: 89 | ≤16 MiB ×34: 404 | ≤128 MiB ×1: 128 | ≤1 GiB ×1: 516 | ≤2 GiB ×1: 1072 | ≤32 GiB ×1: 20904
+  span settle: 2 pass(es), frontier 194 → 92, weight zone 15257.2 → 15799.4 MiB (+34 regions)
+  decode steps: first 19.1 ms | rest 23 × mean 21.3 ms (min 10.5, max 26.3)
+  speculative: 24 steps, 1008 tokens, 42.00 accepted/step (1976.8 tok/s over the cohort, 682 drafted at a ceiling of 2)
+  graphs: 47 waves, 18.4 segments/wave, 27.9 launches/segment, 824 updated in place (4 reshaped), 14 instantiated; fold µs each: in place 8.9, reshaped 29.8, instantiated 168.6; recording µs/segment 55.5; 340 run as issued (0 behind a lease); library learn, 47 held, 0 banned, 0 benched, 1 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C10 x16 decode end ===
+  CARD                  24563.5 MiB total |  1243.3 free | 23320.2 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 32.0, peak 30.5; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     7.5)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     7.6)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           2208.0 MiB   (138 x 16 MiB: live 93 of which span-tenant 80, free 1, blocked 44, frontier 94)
+      live KV            1488.0 MiB   (arenas 208.0 + span tenants 1280.0)
+        recurrent state   80 regions,  1215.5 MiB held, top 92
+    wave tier              16.0 MiB   (placed now, ceiling 94 regions)
+      launch scratch        7.7 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         17185.5 MiB   (the expert side of the boundary)
+      experts resident  17185.5 MiB   (8208 slots of 2.09 MiB; zone 17185.5, min 1610.1, max 18110.9) | hit 98.8% | warm tier 9984 of 10496 experts | misses pinned 605 cold 0
+    unusable slack         14.5 MiB   (span tail the region count rounds off)
+  outside the span       1976.2 MiB   (baseline before reservation 1677.5, since 298.7)
+  peak KV live           3104.0 MiB   (194 regions)   granule 2 MiB
+[C10] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 461.9 MiB, ffn 403.3 MiB, forward 30.0 MiB
+  VRAM wave log: 801 waves written to D:\candle-work\candle\candle-transformers\..\target\vram_waves_1792897416.csv
+
+=== All tests completed ===
+
+--- Config: TestConfig { mode: BF16, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: BF16, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 1 Output ---
+The Backyard Astronaut
+Ian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Ian felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 2 Output ---
+The Backyard Astronaut
+Liam had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Liam felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle
+
+--- Session 3 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Jackson felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 4/4 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q8_0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C1, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C2, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C3, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C4, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C5, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C5, use_batched: true, num_contexts: 8, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 1 Output ---
+The Backyard Astronaut
+Ian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Ian felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 2 Output ---
+The Backyard Astronaut
+Liam had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Liam felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle
+
+--- Session 3 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Jackson felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 4 Output ---
+The Backyard Astronaut
+Marcus had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Marcus felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 5 Output ---
+The Backyard Astronaut
+Sophie had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning she climbed inside.
+
+"Probably," she agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button she'd salvaged from a demolished factory. When she pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where her daughter had once played.
+
+Sophie felt her organs compress as acceleration pinned her to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle
+
+--- Session 6 Output ---
+The Backyard Astronaut
+Jennifer had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning she climbed inside.
+
+"Probably," she agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button she'd salvaged from a demolished factory. When she pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where her daughter had once played.
+
+Jennifer felt her organs compress as acceleration pinned her to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 7 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Jackson felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 8/8 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C6, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C7, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C8, use_batched: true, num_contexts: 5, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Bo felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 1 Output ---
+The Backyard Astronaut
+Ian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Ian felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 2 Output ---
+The Backyard Astronaut
+Liam had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Liam felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle
+
+--- Session 3 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Jackson felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+
+--- Session 4 Output ---
+The Backyard Astronaut
+Marcus had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance. The sold Tesla. The maxed credit cards. All of it funneled into the towering cylinder of riveted steel that now dominated their backyard.
+
+"You'll die," she'd said, not unkindly, the morning he climbed inside.
+
+"Probably," he agreed, kissing her forehead. "But I'll die up there."
+The ignition sequence was elegant in its simplicity—twenty minutes of valve checks, fuel pressurization, and one big red button he'd salvaged from a demolished factory. When he pressed it, the neighborhood shook.
+
+Dogs howled.
+
+Car alarms sang in harmony.
+
+The rocket rose on a column of fire that scorched the grass where his daughter had once played.
+
+Marcus felt his organs compress as acceleration pinned him to the seat.
+
+The altimeter spun wildly.
+
+Through the porthole, blue sky faded to black velvet studded with stars that didn't twinkle.
+
+
+✓ 5/5 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C9, use_batched: true, num_contexts: 2, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 1 Output ---
+The Backyard Astronaut
+Ian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+✓ 2/2 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C10, use_batched: true, num_contexts: 8, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 1 Output ---
+The Backyard Astronaut
+Ian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 2 Output ---
+The Backyard Astronaut
+Liam had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance
+
+--- Session 3 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 4 Output ---
+The Backyard Astronaut
+Marcus had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 5 Output ---
+The Backyard Astronaut
+Sophie had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her husband knew better—he'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 6 Output ---
+The Backyard Astronaut
+Jennifer had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 7 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+✓ 8/8 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C10, use_batched: true, num_contexts: 16, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+
+--- Session 0 Output ---
+The Backyard Astronaut
+Bo had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 1 Output ---
+The Backyard Astronaut
+Ian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 2 Output ---
+The Backyard Astronaut
+Liam had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance
+
+--- Session 3 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 4 Output ---
+The Backyard Astronaut
+Marcus had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 5 Output ---
+The Backyard Astronaut
+Sophie had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her husband knew better—he'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 6 Output ---
+The Backyard Astronaut
+Jennifer had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 7 Output ---
+The Backyard Astronaut
+Jackson had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 8 Output ---
+The Backyard Astronaut
+Sebastian had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance
+
+--- Session 9 Output ---
+The Backyard Astronaut
+Alexandria had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage ref
+
+--- Session 10 Output ---
+The Backyard Astronaut
+Christopher had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage refinance.
+
+--- Session 11 Output ---
+The Backyard Astronaut
+Bartholomew had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The
+
+--- Session 12 Output ---
+The Backyard Astronaut
+Alexandros had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage ref
+
+--- Session 13 Output ---
+The Backyard Astronaut
+Marguerite had been welding in her garage for three years straight.
+
+Her neighbors thought she was building a water tower. Her wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage ref
+
+--- Session 14 Output ---
+The Backyard Astronaut
+Maximiliano had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage ref
+
+--- Session 15 Output ---
+The Backyard Astronaut
+Constantinop had been welding in his garage for three years straight.
+
+His neighbors thought he was building a water tower. His wife knew better—she'd watched the blueprints multiply across their dining room table like a technical infection, each one more ambitious than the last. The mortgage ref
+✓ 16/16 sessions matched expected output (100% pass, threshold 100%)
+
+
+=== Performance Comparison ===
+┌──────────┬──────┬─────────┬──────────┬───────┬────────────┬──────────────┬─────────────┬───────────────┬───────────┬──────────┬────────────┬──────────┬───────┐
+│ KvMode   │ int8 │ Batched │ Contexts │ Valid │ t/s (bulk) │ t/s (single) │ perf (bulk) │ perf (single) │ %Quantized│ Compress │ Peak Tokens│ Frontier │ Eff%  │
+├──────────┼──────┼─────────┼──────────┼───────┼────────────┼──────────────┼─────────────┼───────────────┼───────────┼──────────┼────────────┼──────────┼───────┤
+│     BF16 │ prec │   yes   │        1 │   ✓   │     2182.3 │        287.1 │    baseline │      baseline │      -    │      -   │        905 │        - │     - │
+│     BF16 │ prec │   yes   │        4 │   ✓   │    10675.2 │       1004.4 │     +389.2% │       +249.8% │      -    │      -   │       3662 │        - │     - │
+│     Q8_0 │ prec │   yes   │        1 │   ✓   │     5109.2 │        383.3 │     +134.1% │        +33.5% │    100.0% │    1.88x │        905 │        - │     - │
+│       C0 │ prec │   yes   │        1 │   ✓   │     5108.1 │        369.5 │     +134.1% │        +28.7% │    100.0% │    2.21x │        905 │        - │     - │
+│       C1 │ prec │   yes   │        1 │   ✓   │     5184.3 │        376.6 │     +137.6% │        +31.2% │    100.0% │    2.66x │        905 │        - │     - │
+│       C2 │ prec │   yes   │        1 │   ✓   │     5203.9 │        386.5 │     +138.5% │        +34.6% │    100.0% │    3.11x │        905 │        - │     - │
+│       C3 │ prec │   yes   │        1 │   ✓   │     5179.4 │        372.9 │     +137.3% │        +29.9% │    100.0% │    3.34x │        905 │        - │     - │
+│       C4 │ prec │   yes   │        1 │   ✓   │     5229.6 │        368.1 │     +139.6% │        +28.2% │    100.0% │    3.58x │        905 │        - │     - │
+│       C5 │ prec │   yes   │        1 │   ✓   │     5427.0 │        368.8 │     +148.7% │        +28.5% │    100.0% │    3.91x │        905 │        - │     - │
+│       C5 │ prec │   yes   │        8 │   ✓   │    10892.4 │       1647.1 │     +399.1% │       +473.7% │    100.0% │    3.91x │       7284 │        - │     - │
+│       C6 │ prec │   yes   │        1 │   ✓   │     5707.1 │        370.7 │     +161.5% │        +29.1% │    100.0% │    4.40x │        905 │        - │     - │
+│       C7 │ prec │   yes   │        1 │   ✓   │     5760.0 │        369.3 │     +163.9% │        +28.6% │    100.0% │    4.60x │        905 │        - │     - │
+│       C8 │ prec │   yes   │        5 │   ✓   │    13091.8 │       1305.9 │     +499.9% │       +354.8% │    100.0% │    5.25x │       4567 │        - │     - │
+│       C9 │ prec │   yes   │        2 │   ✓   │     8893.2 │        598.5 │     +307.5% │       +108.4% │    100.0% │    5.83x │       1466 │        - │     - │
+│      C10 │ prec │   yes   │        8 │   ✓   │    11424.8 │       1413.8 │     +423.5% │       +392.4% │    100.0% │    6.43x │       5748 │        - │     - │
+│      C10 │ prec │   yes   │       16 │   ✓   │    11752.1 │       1975.9 │     +438.5% │       +588.2% │    100.0% │    6.42x │      11482 │        - │     - │
+└──────────┴──────┴─────────┴──────────┴───────┴────────────┴──────────────┴─────────────┴───────────────┴───────────┴──────────┴────────────┴──────────┴───────┘
+
+=== KV compression by side ===
+  KvMode    total        K        V  K formats | V formats
+    Q8_0    1.88x    1.88x    1.88x  Q8_0 100% | Q8_0 100%
+      C0    2.21x    1.78x    2.91x  Q8_KS 100% | Q4_0 75% Q8_0 25%
+      C1    2.66x    2.27x    3.21x  Q4_0 29% Q4_1 17% Q8_KS 54% | Q4_0 88% Q8_0 12%
+      C2    3.11x    2.45x    4.25x  Q4_0 35% Q4_1 17% Q8_0 48% | Q3_0 72% Q3_1 8% Q4_0 19% Q8_0 1%
+      C3    3.34x    2.69x    4.40x  Q4_0 31% Q4_1 17% Q5_0 20% Q5_1 4% Q8_0 27% | Q3_0 75% Q3_1 23% Q4_0 3% Q5_0 0%
+      C4    3.58x    2.47x    6.49x  Q4_0 8% Q4_1 13% Q5_0 28% Q5_1 16% Q8_0 34% | Q1_S 31% Q2_S 21% Q2_A 17% Q3_0 8% Q3_1 20% Q4_0 3% Q5_0 0%
+      C5    3.91x    2.75x    6.76x  Q4_0 41% Q4_1 17% Q5_0 13% Q5_1 3% Q8_0 27% | Q1_S 36% Q2_S 21% Q2_A 16% Q3_0 6% Q3_1 19% Q4_0 2% Q5_0 0%
+      C5    3.91x    2.75x    6.76x  Q4_0 41% Q4_1 17% Q5_0 13% Q5_1 2% Q8_0 27% | Q1_S 36% Q2_S 22% Q2_A 16% Q3_0 6% Q3_1 20% Q4_0 1% Q5_0 0%
+      C6    4.40x    3.17x    7.18x  Q2_S 1% Q2_A 2% Q3_0 26% Q3_1 20% Q4_0 21% Q4_1 3% Q5_0 2% Q5_1 4% Q8_0 21% | Q1_S 43% Q2_S 21% Q2_A 12% Q3_0 6% Q3_1 17% Q4_0 1% Q5_0 0%
+      C7    4.60x    3.35x    7.36x  Q2_S 3% Q2_A 7% Q3_0 32% Q3_1 20% Q4_0 11% Q4_1 2% Q5_0 2% Q5_1 5% Q8_0 19% | Q1_S 46% Q2_S 20% Q2_A 10% Q3_0 7% Q3_1 16% Q4_0 0%
+      C8    5.25x    4.54x    6.21x  Q0_V 0% Q1_S 1% Q2_S 24% Q2_A 11% Q3_0 28% Q3_1 7% Q4_0 2% Q4_1 26% | Q1_S 29% Q2_S 18% Q2_A 17% Q3_0 14% Q3_1 15% Q4_0 6%
+      C9    5.83x    4.91x    7.18x  Q0_X 0% Q0_V 0% Q0_M2 0% Q1_S 1% Q1_A 0% Q0_M4 1% Q2_S 22% Q2_A 12% Q3_0 29% Q3_1 36% | Q0_X 4% Q0_V 20% Q0_M2 2% Q1_S 10% Q1_A 2% Q0_M4 4% Q2_S 13% Q2_A 16% Q3_0 11% Q3_1 16% Q4_0 3%
+     C10    6.43x    5.36x    8.02x  Q0_X 1% Q0_V 3% Q0_M2 1% Q1_S 9% Q1_A 2% Q0_M4 5% Q2_S 26% Q2_A 15% Q3_0 11% Q3_1 1% Q4_0 2% Q4_1 24% | Q0_X 4% Q0_V 26% Q0_M2 2% Q1_S 13% Q1_A 2% Q0_M4 4% Q2_S 11% Q2_A 13% Q3_0 10% Q3_1 14% Q4_0 2%
+     C10    6.42x    5.36x    8.00x  Q0_X 1% Q0_V 2% Q0_M2 1% Q1_S 9% Q1_A 2% Q0_M4 5% Q2_S 26% Q2_A 15% Q3_0 11% Q3_1 1% Q4_0 2% Q4_1 24% | Q0_X 4% Q0_V 26% Q0_M2 2% Q1_S 13% Q1_A 2% Q0_M4 4% Q2_S 11% Q2_A 13% Q3_0 10% Q3_1 14% Q4_0 2%
+
+=== Host RAM, this process, at the end of each decode (MiB) ===
+  pinned now (driver-locked, outside the working set): 22491 MiB
+                       │    #1 BF16×1 │    #2 BF16×4 │    #3 Q8_0×1 │      #4 C0×1 │      #5 C1×1 │      #6 C2×1 │      #7 C3×1 │      #8 C4×1 │      #9 C5×1 │     #10 C5×8 │     #11 C6×1 │     #12 C7×1 │     #13 C8×5 │     #14 C9×2 │    #15 C10×8 │   #16 C10×16
+resident, all          │        23576 │        23581 │        23581 │        23581 │        23581 │        23581 │        23582 │        23582 │        23583 │        23591 │        23591 │        23591 │        23591 │        23594 │        23594 │        23598
+  image (exe + DLLs)   │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258 │          258
+  mapped files         │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1
+  private              │        23318 │        23322 │        23322 │        23322 │        23322 │        23322 │        23323 │        23323 │        23324 │        23332 │        23332 │        23332 │        23332 │        23336 │        23336 │        23340
+committed, private     │        46284 │        46288 │        46288 │        46288 │        46288 │        46288 │        46290 │        46290 │        46291 │        46299 │        46299 │        46299 │        46299 │        46303 │        46303 │        46309
+committed, mapped      │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11
+committed, image       │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336
+  private allocations by committed size (last column):
+          size ≤   count   resident  committed
+           4 KiB       4          0          0
+           8 KiB      10          0          0
+          32 KiB      22          0          1
+          64 KiB      25          1          1
+         128 KiB       2          0          0
+         256 KiB       1          0          0
+         512 KiB       1          0          0
+           1 MiB       7          6          6
+           2 MiB      54         89         89
+           4 MiB      24         62         72
+           8 MiB       8         54         54
+          16 MiB      35        413        507
+          32 MiB     718         60      22488
+          64 MiB       8         34        471
+         128 MiB       1        128        128
+           1 GiB       1        516        516
+           2 GiB       1       1072       1072
+          32 GiB       1      20904      20904
+  largest resident allocations (last column):
+                  base  kind       resident  committed  name
+          0x1a00000000  Private       20904      20904  -
+           0xe25400000  Private        1072       1072  -
+           0xe05000000  Private         516        516  -
+        0x7ffdd09b0000  Image           136        719  cublasLt64_12.dll
+         0x20646820000  Private         128        128  -
+        0x7ff698e60000  Image            94        338  candle_transformers-a8623c8d284fed38.exe
+         0x2061ed80000  Private          34         34  -
+         0x20603310000  Private          27         27  -
+         0x2063aab0000  Private          17         17  -
+         0x2063df30000  Private          17         17  -
+         0x20645850000  Private          16         16  -
+         0x20a488c0000  Private          16         16  -
+         0x20ba9480000  Private          16         16  -
+         0x20c22450000  Private          15         16  -
+         0x20601ba0000  Private          15         16  -
+         0x2063bb40000  Private          15         16  -
+
+=== Host Pinned RAM ===
+  Machine: 61.61 GiB total | 43.78 GiB free at launch (the baseline) | 40.82 GiB free mid-load | 1.55 GiB already pinned when sized
+  Ceilings on the warm tier (lowest wins):
+    expert share of the host tier pool        50.61 GiB
+    available RAM less headroom               40.78 GiB
+    pinnable region (total less pageable reserve)    47.06 GiB
+  Bound by: nothing — the tier holds every evictable expert
+  Warm tier: 9984 of 9984 evictable experts (100%), 20.41 GiB at 2.09 MiB/slot
+  Shortfall: 0 experts with no warm copy, 0.00 GiB — every miss on one of these reads the pack
+  Free RAM low-water across the run: 20.42 GiB  (headroom asked for 3.00 GiB)
+  Wave arenas (used/peak/cap MiB): fwd 0.0/461.9/0.0 | attn 0.0/403.3/0.0 | ffn 0.0/30.0/0.0
+
+=== DeltaNet dispatch (path taken) ===
+  dn:mix               fused FUSED             23550
+  Boundary growth: asked 803 | no-spare 186 | spare offered 8202 regions | target-unchanged 0 | target-backwards 0 | floor-refused 0 | at-limit 590 | SLOTS GAINED 4314
+
+=== Span (device 0): end of run ===
+  CARD                  24563.5 MiB total |  1248.0 free | 23315.5 in use
+  reserved              21344.0 MiB
+    fixed blocks         1936.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 15.4 of 32.0, peak 30.5; the rest in 0 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1826.6 MiB   (every non-expert weight)
+      dense padding        13.4 MiB   (to the region grid)
+        held    10.0 MiB (peak    10.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     0.9 MiB (peak     0.9)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     7.5)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     0.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\batched_inference.rs:900:37
+        held     0.0 MiB (peak     0.0)  candle-transformers\src\models\delta_net\cuda.rs:756:23
+        held     0.0 MiB (peak     7.6)  candle-transformers\src\models\wave_driver.rs:517:33
+    KV regions           2208.0 MiB   (138 x 16 MiB: live 0 of which span-tenant 0, free 94, blocked 44, frontier 0)
+      live KV               0.0 MiB   (arenas 0.0 + span tenants 0.0)
+    wave tier              16.0 MiB   (placed now, ceiling 94 regions)
+      launch scratch        7.7 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone         17185.5 MiB   (the expert side of the boundary)
+    unusable slack         14.5 MiB   (span tail the region count rounds off)
+  outside the span       1971.5 MiB   (baseline before reservation 1677.5, since 294.0)
+  peak KV live           3104.0 MiB   (194 regions)   granule 2 MiB
+  Spare calc: observing 1 | pressure 63 | occupancy-bound 39 | fragmented 9 | granted 16694 regions || KV purchases: conceded 24 / refused 0
+  Zone growth: called 0 | already whole 0 | no spare 0 | bought no layer 0 | under step floor 0 | wave live 0 | APPLIED 0
+  Pinned now, by consumer:
+    weight warm tier                          20.41 GiB
+    staging buffers                            1.05 GiB
+    host-mapped weights                        0.50 GiB
+    TOTAL                                     21.96 GiB
+
+=== Expert Pipeline Stats: prefill ===
+┌──────────────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
+│ Metric               │    #1 BF16×1 │    #2 BF16×4 │    #3 Q8_0×1 │      #4 C0×1 │      #5 C1×1 │      #6 C2×1 │      #7 C3×1 │      #8 C4×1 │      #9 C5×1 │     #10 C5×8 │     #11 C6×1 │     #12 C7×1 │     #13 C8×5 │     #14 C9×2 │    #15 C10×8 │   #16 C10×16 │
+├──────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+│ Expert hits          │         8321 │        16636 │        11176 │        11183 │        11213 │        11218 │        11213 │        11235 │        11301 │        23242 │        11284 │        11304 │        17277 │        12055 │        23693 │        39671 │
+│ Expert misses        │         4092 │         2319 │         1258 │         1251 │         1221 │         1216 │         1221 │         1199 │         1133 │         3411 │         1150 │         1130 │         1868 │         1265 │         2960 │         6235 │
+│ Hit rate             │        67.0% │        87.8% │        89.9% │        89.9% │        90.2% │        90.2% │        90.2% │        90.4% │        90.9% │        87.2% │        90.8% │        90.9% │        90.2% │        90.5% │        88.9% │        86.4% │
+│   LRU replay         │        30.2% │        83.0% │        79.8% │        77.8% │        78.2% │        77.9% │        77.8% │        78.3% │        78.5% │        85.3% │        82.7% │        78.3% │        82.3% │        80.7% │        82.7% │        57.3% │
+│   ceiling (MIN)      │        38.3% │        85.4% │        82.3% │        79.5% │        79.9% │        79.5% │        79.5% │        79.9% │        80.2% │        89.9% │        87.1% │        80.0% │        86.2% │        84.7% │        85.9% │        91.6% │
+│   pinned misses      │         4092 │         2319 │         1258 │         1251 │         1221 │         1216 │         1221 │         1199 │         1133 │         3411 │         1150 │         1130 │         1868 │         1265 │         2960 │         6235 │
+│   cold misses        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Worker promotions    │          200 │           40 │            1 │            0 │            0 │            0 │            0 │            0 │            0 │           33 │           22 │            0 │           66 │          170 │            0 │          271 │
+│ Ring slots taken     │          208 │           40 │            1 │            0 │            0 │            0 │            0 │            0 │            0 │           34 │           22 │            0 │           66 │          170 │            1 │          271 │
+│   victims claimed    │          208 │           40 │            1 │            0 │            0 │            0 │            0 │            0 │            0 │           34 │            0 │            0 │            5 │            0 │            1 │           13 │
+│   victims skipped    │            7 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            1 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Misses unslotted     │         3884 │         2279 │         1257 │         1251 │         1221 │         1216 │         1221 │         1199 │         1133 │         3377 │         1128 │         1130 │         1802 │         1095 │         2959 │         5964 │
+│   decode unslotted   │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Pipeline lag (inv.)  │         0.01 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │
+│ Hot VRAM (resident)  │    14030 MiB │    17966 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    17001 MiB │    18087 MiB │    18100 MiB │    17484 MiB │    18110 MiB │    16967 MiB │    15257 MiB │
+│ Zone cedeable        │    12420 MiB │    16356 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    15391 MiB │    16500 MiB │    16500 MiB │    15874 MiB │    16500 MiB │    15357 MiB │    13647 MiB │
+│ Warm tier slots      │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │
+│   of which pageable  │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Pad slots            │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │
+│ Staged (cold)        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   from pageable      │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Stage requests       │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Staged ahead         │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   then routed        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   predicted: routed  │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │
+│   lookahead: routed  │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │
+│   listed on landing  │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Pad evictions        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Evictions            │          208 │          109 │            1 │            0 │            0 │            0 │            0 │            0 │            0 │          564 │            0 │            0 │          304 │            0 │          547 │         1215 │
+│   regret (demand)    │            - │  15.4% of 52 │    0.0% of 2 │    0.0% of 1 │            - │            - │            - │    0.0% of 1 │    0.0% of 3 │            - │            - │            - │   33.3% of 3 │            - │            - │    0.0% of 6 │
+│   paid (demand)      │            - │  82.1% of 56 │   50.0% of 2 │    0.0% of 1 │            - │            - │            - │    0.0% of 1 │    0.0% of 4 │            - │            - │            - │  65.6% of 64 │            - │            - │ 77.2% of 272 │
+│   regret (ahead)     │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   evict cost µs      │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   paid (ahead)       │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ Read-ahead claims    │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   from the pad       │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   judged             │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   precision          │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │
+│ Look-ahead precision │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   recall             │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ List precision       │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   recall             │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   union recall       │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ Markov precision     │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ Recency precision    │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   window (images)    │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │           28 │            5 │            5 │            4 │            7 │           27 │           32 │
+│   depth (rows)       │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │
+│   pad pins held      │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Read-ahead GiB       │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │
+│ Staged GiB           │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │
+│ Stage read GB/s      │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   pack reads         │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│     requests         │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   spec stalls        │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │
+│   pageable reads     │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ Routed layers        │           80 │          120 │           80 │           80 │           80 │           80 │           80 │           80 │           80 │          160 │           80 │           80 │          120 │           80 │          160 │          280 │
+└──────────────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘
+
+=== Expert Pipeline Stats: decode ===
+┌──────────────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
+│ Metric               │    #1 BF16×1 │    #2 BF16×4 │    #3 Q8_0×1 │      #4 C0×1 │      #5 C1×1 │      #6 C2×1 │      #7 C3×1 │      #8 C4×1 │      #9 C5×1 │     #10 C5×8 │     #11 C6×1 │     #12 C7×1 │     #13 C8×5 │     #14 C9×2 │    #15 C10×8 │   #16 C10×16 │
+├──────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+│ Expert hits          │        55713 │        87054 │        57627 │        58492 │        57581 │        57618 │        58530 │        58323 │        58453 │       142538 │        58200 │        58368 │        92511 │        18848 │        38770 │        46654 │
+│ Expert misses        │         1927 │           95 │            5 │            4 │            2 │            2 │            6 │           20 │            8 │          412 │            6 │           20 │          173 │           29 │          247 │          574 │
+│ Hit rate             │        96.7% │        99.9% │       100.0% │       100.0% │       100.0% │       100.0% │       100.0% │       100.0% │       100.0% │        99.7% │       100.0% │       100.0% │        99.8% │        99.8% │        99.4% │        98.8% │
+│   LRU replay         │        97.9% │        98.4% │        97.9% │        97.9% │        97.9% │        97.9% │        98.0% │        98.0% │        98.0% │        98.8% │        98.0% │        98.0% │        98.4% │        96.7% │        97.8% │        97.3% │
+│   ceiling (MIN)      │        98.1% │        99.0% │        98.2% │        98.2% │        98.2% │        98.1% │        98.2% │        98.2% │        98.2% │        99.4% │        98.2% │        98.2% │        99.0% │        97.0% │        98.5% │        98.8% │
+│   pinned misses      │         2168 │          263 │           11 │           26 │           10 │           17 │           19 │           60 │           28 │          582 │            6 │           25 │          207 │           51 │          333 │          605 │
+│   cold misses        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Worker promotions    │         2168 │          262 │           11 │           26 │           10 │           17 │           19 │           60 │           28 │          582 │            6 │           25 │          207 │           51 │          333 │          591 │
+│ Ring slots taken     │         2162 │          263 │           11 │           26 │           10 │           17 │           19 │           60 │           28 │          582 │            6 │           25 │          207 │           51 │          333 │          598 │
+│   victims claimed    │          211 │          193 │           11 │           26 │           10 │           17 │           19 │           60 │           28 │          154 │            6 │            5 │           78 │           51 │          205 │           75 │
+│   victims skipped    │            1 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Misses unslotted     │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   decode unslotted   │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Pipeline lag (inv.)  │         0.62 │         0.73 │         0.77 │         0.66 │         0.63 │         0.64 │         0.57 │         0.54 │         0.58 │         0.36 │         0.34 │         0.40 │         0.09 │         0.26 │         0.24 │         0.08 │
+│ Hot VRAM (resident)  │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    17941 MiB │    18100 MiB │    18110 MiB │    18110 MiB │    18110 MiB │    17907 MiB │    17185 MiB │
+│ Zone cedeable        │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16331 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16500 MiB │    16297 MiB │    15575 MiB │
+│ Warm tier slots      │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │   9984 (95%) │
+│   of which pageable  │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Pad slots            │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │        10496 │
+│ Staged (cold)        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   from pageable      │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Stage requests       │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Staged ahead         │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   then routed        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   predicted: routed  │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │
+│   lookahead: routed  │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │       0 of 0 │
+│   listed on landing  │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Pad evictions        │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Evictions            │          211 │          193 │           11 │           26 │           10 │           17 │           19 │           60 │           28 │          154 │            6 │            5 │           78 │           51 │          205 │           75 │
+│   regret (demand)    │  2.8% of 399 │  0.0% of 199 │   0.0% of 11 │   0.0% of 26 │   0.0% of 10 │   0.0% of 17 │   0.0% of 18 │   0.0% of 57 │   3.6% of 28 │  1.1% of 188 │    0.0% of 6 │    0.0% of 5 │   3.8% of 80 │   0.0% of 49 │  3.8% of 208 │   9.8% of 82 │
+│   paid (demand)      │ 18.3% of 2344 │  9.6% of 271 │   0.0% of 11 │   0.0% of 26 │   0.0% of 10 │   0.0% of 17 │   0.0% of 18 │   0.0% of 56 │   0.0% of 28 │ 26.5% of 616 │   0.0% of 28 │   0.0% of 25 │  9.6% of 208 │  0.9% of 220 │ 25.2% of 329 │ 36.9% of 601 │
+│   regret (ahead)     │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   evict cost µs      │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   paid (ahead)       │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ Read-ahead claims    │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   from the pad       │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   judged             │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│   precision          │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │         0.0% │
+│ Look-ahead precision │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   recall             │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ List precision       │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │   50/0/0/0/0 │
+│   recall             │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    1/0/0/0/0 │
+│   union recall       │    0/0/0/0/0 │    7/3/2/1/2 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │ 0/0/11/16/11 │    0/0/0/0/0 │    0/0/0/0/0 │    3/2/2/3/2 │   25/0/0/0/0 │    0/0/0/4/0 │    5/6/5/7/4 │    0/0/7/6/4 │    5/6/5/7/7 │ 14/13/15/14/13 │
+│ Markov precision     │ 38/67/29/38/25 │ 100/57/44/29/44 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │    0/0/0/0/0 │ 0/0/100/100/100 │            - │            - │ 17/21/32/38/43 │   50/0/0/0/0 │  0/0/0/100/0 │ 29/39/35/48/33 │ 0/0/75/50/67 │ 39/36/30/38/37 │ 27/22/26/23/20 │
+│ Recency precision    │ 50/33/33/29/29 │            - │            - │            - │            - │            - │            - │            - │            - │ 100/100/100/100/100 │            - │            - │ 100/100/100/100/100 │            - │ 0/38/38/38/38 │ 16/16/16/16/17 │
+│   window (images)    │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            2 │            1 │
+│   depth (rows)       │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │            4 │
+│   pad pins held      │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │            0 │
+│ Read-ahead GiB       │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │
+│ Staged GiB           │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │         0.00 │
+│ Stage read GB/s      │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   pack reads         │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│     requests         │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│   spec stalls        │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │ 0 no slot · 0 in use │
+│   pageable reads     │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │            - │
+│ Routed layers        │         2284 │         2328 │         2284 │         2328 │         2284 │         2284 │         2328 │         2328 │         2328 │         2460 │         2328 │         2328 │         2328 │          612 │          700 │         1006 │
+└──────────────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘
+
+=== Prediction cells (v votes 0-3, m Markov 0-3, r recent) ===
+  hop 1: v0m3r0 50%/74  v0m2r1 29%/4  v0m3r1 29%/4  v0m2r0 28%/102  v0m1r1 15%/17  v0m1r0 14%/181  v0m0r1 12%/62
+  hop 2: v0m3r0 42%/83  v0m3r1 31%/3  v0m2r0 28%/106  v0m2r1 20%/10  v0m1r1 19%/16  v0m0r1 15%/63  v0m1r0 14%/244
+  hop 3: v0m3r0 38%/76  v0m2r0 30%/125  v0m2r1 25%/6  v0m1r1 24%/7  v0m3r1 23%/3  v0m1r0 20%/227  v0m0r1 15%/76
+  hop 4: v0m3r0 46%/86  v0m2r0 32%/109  v0m3r1 31%/6  v0m2r1 21%/9  v0m1r0 18%/239  v0m0r1 16%/67  v0m1r1 11%/9
+  hop 5: v0m3r0 44%/67  v0m2r0 24%/135  v0m3r1 23%/3  v0m0r1 18%/80  v0m1r0 17%/221  v0m1r1 15%/3  v0m2r1 15%/3
+
+=== Decode victims by tag (p prediction band, hit on last visit, place, reload): regret%/n ===
+  #1 BF16×1: p0 cold behind warm 2%/372  p0 hit behind warm 19%/16  p0 cold ahead warm 0%/10  p0 hit ahead warm 0%/1
+  #2 BF16×4: p0 cold behind warm 0%/199
+  #3 Q8_0×1: p0 cold behind warm 0%/11
+  #4 C0×1: p0 cold behind warm 0%/26
+  #5 C1×1: p0 cold behind warm 0%/10
+  #6 C2×1: p0 cold behind warm 0%/15  p0 cold ahead warm 0%/2
+  #7 C3×1: p0 cold behind warm 0%/18
+  #8 C4×1: p0 cold behind warm 0%/51  p0 cold ahead warm 0%/6
+  #9 C5×1: p0 cold behind warm 4%/28
+  #10 C5×8: p0 cold behind warm 0%/174  p0 cold ahead warm 0%/12  p0 hit behind warm 100%/1  p0 hit ahead warm 100%/1
+  #11 C6×1: p0 cold behind warm 0%/6
+  #12 C7×1: p0 cold behind warm 0%/5
+  #13 C8×5: p0 cold behind warm 3%/67  p0 cold ahead warm 8%/13
+  #14 C9×2: p0 cold behind warm 0%/37  p0 cold ahead warm 0%/12
+  #15 C10×8: p0 cold behind warm 3%/183  p0 cold ahead warm 0%/22  p0 hit behind warm 67%/3
+  #16 C10×16: p0 cold behind warm 3%/65  p0 hit behind warm 75%/8  p0 cold ahead warm 0%/6  p1 cold behind warm 0%/3
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1584 filtered out; finished in 1150.29s
+

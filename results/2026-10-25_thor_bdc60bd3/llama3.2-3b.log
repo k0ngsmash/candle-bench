@@ -1,0 +1,1151 @@
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:37:14
+   |
+37 |         f64::NAN
+   |              ^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:55:14
+   |
+55 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:57:14
+   |
+57 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:69:14
+   |
+69 |         f64::NAN
+   |              ^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:70:25
+   |
+70 |     } else if x == f64::INFINITY {
+   |                         ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:72:25
+   |
+72 |     } else if x == f64::NEG_INFINITY {
+   |                         ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:83:14
+   |
+83 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:85:14
+   |
+85 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+warning: `candle-core` (lib) generated 8 warnings
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:237:42
+    |
+237 |                         let mut m = f32::NEG_INFINITY;
+    |                                          ^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:253:43
+    |
+253 | ...                   if mv == f32::NEG_INFINITY {
+    |                                     ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:304:58
+    |
+304 |                         || (vec![0f32; dv], 0.0f32, f32::NEG_INFINITY),
+    |                                                          ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:405:34
+    |
+405 |                 let mut m = f32::NEG_INFINITY;
+    |                                  ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:427:35
+    |
+427 |                     if mv == f32::NEG_INFINITY {
+    |                                   ^^^^^^^^^^^^
+
+warning: `candle-nn` (lib) generated 5 warnings
+warning: use of deprecated constant `std::f32::MIN`: replaced by the `MIN` associated constant on `f32`
+   --> candle-transformers\src\models\modernbert.rs:302:27
+    |
+302 |     (inverted_mask * f32::MIN as f64)?.to_dtype(dtype)
+    |                           ^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-transformers\src\models\modernbert.rs:315:26
+    |
+315 |                     f32::NEG_INFINITY
+    |                          ^^^^^^^^^^^^
+
+warning: `candle-transformers` (lib test) generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 0.28s
+     Running unittests src\lib.rs (target\release\deps\candle_transformers-a8623c8d284fed38.exe)
+
+running 1 test
+test models::quantized_llama::tests::test_parallel_batched_forwarding_llama3 ... 
+=== Setting up Test Parameters ===
+
+Using device: Cuda(CudaDevice(DeviceId(1)))
+
+int8 mode = Precision
+
+
+=== Loading Model ===
+
+Model pack: "C:\\Users\\k0ng\\.cache\\zend\\models\\bartowski--Llama-3.2-3B-Instruct-GGUF\\Llama-3.2-3B-Instruct-Q4_K_M.precision.pack.gguf"
+✓ Model loaded
+
+  [host ram] after model load: private resident 2495 MiB of 26266 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×27: 327 | ≤64 MiB ×7: 408 | ≤2 GiB ×1: 1503
+✓ TestParams created successfully
+  - Dialect: Llama3
+  - Generate tokens: 40
+  - Prompt system length: 541 chars
+  - Prompt user length: 2282 chars
+  - Names available: 99
+  VRAM wave log: D:\candle-work\candle\candle-transformers\..\target\vram_waves_1792889389.csv
+
+=== Running tests for config: TestConfig { mode: F32, use_batched: false, num_contexts: 1, num_repeats: 4, test_mode: None } ===
+  [regions] total 1223 | live 0 | free 1223 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 0 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 0 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19536 MiB ground)
+  [host ram] F32×1 after prefill: private resident 2641 MiB of 25791 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 335 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+forbidden-allocation detector requested but not compiled in; rebuild with --features forbidden_allocations
+  decode steps: first 30.9 ms | rest 38 × mean 5.7 ms (min 5.5, max 6.3)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (158.1 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 26.4 segments/wave, 10.7 launches/segment, 1026 updated in place (3 reshaped), 4 instantiated; fold µs each: in place 2.3, reshaped 3.7, instantiated 192.8; recording µs/segment 12.7; 101 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): F32 x1 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 41.2 of 64.0, peak 41.2; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held    16.7 MiB (peak    16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 9 of which span-tenant 2, free 1, blocked 1213, frontier 10)
+      live KV             144.0 MiB   (arenas 112.0 + span tenants 32.0)
+        held arenas        2 arenas,     32.0 MiB of span, top 4
+    wave tier              16.0 MiB   (placed now, ceiling 10 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            160.0 MiB   (10 regions)   granule 2 MiB
+[F32] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 20.3 MiB, ffn 24.1 MiB, forward 3.1 MiB
+
+=== Running tests for config: TestConfig { mode: F16, use_batched: true, num_contexts: 1, num_repeats: 4, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 2 | free 8 | blocked 1213 | ceiling 10 | arenas 0 MiB | weight 0 MiB | device free 766 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 1 sweeps
+[2m2026-10-25T00:49:53.238782Z[0m [33m WARN[0m [2mcandle_nn::kv_cache::held_ground[0m[2m:[0m held ground had no room for a buffer inside a forward; it goes to the CUDA pool, outside the reservation, and the next provisioning covers it [3msite[0m[2m=[0mcandle-core\src\cuda_backend\kernel_scratch.rs:127:11 [3mbytes[0m[2m=[0m17550000 [3mused[0m[2m=[0m43240112 [3mpending[0m[2m=[0m0 [3mcapacity[0m[2m=[0m67108864 [3mlargest_free[0m[2m=[0m16777216 [3marenas[0m[2m=[0m2 [3mholders[0m[2m=[0mcandle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29 20480 KiB in 2 (peak 20480 KiB); candle-core\src\cuda_backend\kernel_scratch.rs:127:11 17138 KiB in 1 (peak 17138 KiB); candle-core\src\quantized\pinned_staging.rs:808:37 4096 KiB in 1 (peak 4096 KiB); candle-core\src\cuda_backend\info_ring.rs:107:51 512 KiB in 1 (peak 512 KiB)
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19504 MiB ground)
+  [host ram] F16×1 after prefill: private resident 2649 MiB of 25831 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 336 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.3 ms | rest 38 × mean 6.0 ms (min 5.8, max 7.0)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (166.2 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 14.5 segments/wave, 10.7 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.2; 565 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): F16 x1 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 41.2 of 80.0, peak 41.2; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held    16.7 MiB (peak    16.7) — 1 to the pool (16.7 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 10 of which span-tenant 3, free 0, blocked 1213, frontier 10)
+      live KV             160.0 MiB   (arenas 112.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 6
+    wave tier              16.0 MiB   (placed now, ceiling 10 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            160.0 MiB   (10 regions)   granule 2 MiB
+[F16] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 20.3 MiB, ffn 24.1 MiB, forward 3.1 MiB
+
+=== Running tests for config: TestConfig { mode: F16, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 7 | blocked 1213 | ceiling 10 | arenas 0 MiB | weight 0 MiB | device free 734 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 2 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19440 MiB ground)
+  [host ram] F16×4 after prefill: private resident 2653 MiB of 25803 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 339 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 7.7 ms | rest 38 × mean 6.4 ms (min 6.2, max 7.4)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (624.1 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.6; 48 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): F16 x4 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 56.5 of 80.0, peak 56.5; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    32.0) — 1 to the pool (16.7 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 25 of which span-tenant 3, free 0, blocked 1198, frontier 25)
+      live KV             400.0 MiB   (arenas 352.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 6
+    wave tier              16.0 MiB   (placed now, ceiling 25 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            400.0 MiB   (25 regions)   granule 2 MiB
+[F16] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: R16, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 22 | blocked 1198 | ceiling 25 | arenas 0 MiB | weight 0 MiB | device free 766 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 3 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19472 MiB ground)
+  [host ram] R16×1 after prefill: private resident 2653 MiB of 25835 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 339 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 7.1 ms | rest 38 × mean 7.0 ms (min 6.7, max 7.5)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (143.4 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 14.5 segments/wave, 10.7 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.1; 564 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): R16 x1 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 41.3 of 80.0, peak 56.5; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held    16.7 MiB (peak    32.0) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-core\src\cuda_backend\device.rs:545:14
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 21 of which span-tenant 3, free 0, blocked 1202, frontier 21)
+      live KV             336.0 MiB   (arenas 288.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            400.0 MiB   (25 regions)   granule 2 MiB
+[R16] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q8_0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 734 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 4 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19472 MiB ground)
+  [host ram] Q8_0×1 after prefill: private resident 2654 MiB of 25804 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 340 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 7.2 ms | rest 38 × mean 6.5 ms (min 5.6, max 9.7)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (153.2 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 14.5 segments/wave, 10.7 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 13.3; 564 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q8_0 x1 decode end ===
+  CARD                  24563.5 MiB total |    45.1 free | 24518.4 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.0 of 80.0, peak 58.0; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    33.5 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-core\src\cuda_backend\device.rs:545:14
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 16 of which span-tenant 3, free 0, blocked 1207, frontier 16)
+      live KV             256.0 MiB   (arenas 208.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 16 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3030.4 MiB   (baseline before reservation 1533.5, since 1496.9)
+  peak KV live            432.0 MiB   (27 regions)   granule 2 MiB
+[Q8_0] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q8_Q4, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 13 | blocked 1207 | ceiling 16 | arenas 0 MiB | weight 0 MiB | device free 765 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 5 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19456 MiB ground)
+  [host ram] Q8_Q4×1 after prefill: private resident 2654 MiB of 25804 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 340 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.0 ms | rest 38 × mean 5.9 ms (min 5.7, max 6.4)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (170.0 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 14.5 segments/wave, 10.7 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 13.3; 564 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q8_Q4 x1 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.0 of 80.0, peak 58.0; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    33.5 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-core\src\cuda_backend\device.rs:545:14
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 16 of which span-tenant 3, free 0, blocked 1207, frontier 16)
+      live KV             256.0 MiB   (arenas 208.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 16 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            432.0 MiB   (27 regions)   granule 2 MiB
+[Q8_Q4] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: BF16, use_batched: true, num_contexts: 4, num_repeats: 4, test_mode: None } ===
+  [regions] total 1223 | live 3 | free 13 | blocked 1207 | ceiling 16 | arenas 0 MiB | weight 0 MiB | device free 765 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 6 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19440 MiB ground)
+  [host ram] BF16×4 after prefill: private resident 2654 MiB of 25804 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 340 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.7 ms | rest 38 × mean 5.3 ms (min 5.1, max 6.8)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (746.2 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.2; 46 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): BF16 x4 decode end ===
+  CARD                  24563.5 MiB total |     0.9 free | 24562.6 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 56.6 of 80.0, peak 58.0; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+        held     0.0 MiB (peak     0.0)  candle-core\src\cuda_backend\device.rs:545:14
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 25 of which span-tenant 3, free 2, blocked 1196, frontier 27)
+      live KV             400.0 MiB   (arenas 352.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 27 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3074.6 MiB   (baseline before reservation 1533.5, since 1541.1)
+  peak KV live            432.0 MiB   (27 regions)   granule 2 MiB
+[BF16] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q8_1, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: None } ===
+  [regions] total 1223 | live 3 | free 24 | blocked 1196 | ceiling 27 | arenas 0 MiB | weight 0 MiB | device free 768 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 7 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19408 MiB ground)
+  [host ram] Q8_1×4 after prefill: private resident 2655 MiB of 25805 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×28: 341 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  span settle: 4 pass(es), frontier 43 → 17, weight zone 0.0 → 0.0 MiB (+0 regions)
+  decode steps: first 11.6 ms | rest 38 × mean 7.9 ms (min 6.1, max 66.5)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (500.3 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 17.4; 47 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q8_1 x4 decode end ===
+  CARD                  24563.5 MiB total |     7.3 free | 24556.2 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 56.2 of 80.0, peak 58.0; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     1.1 MiB (peak     1.1)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 17 of which span-tenant 3, free 0, blocked 1206, frontier 17)
+      live KV             272.0 MiB   (arenas 224.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 17 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3068.2 MiB   (baseline before reservation 1533.5, since 1534.7)
+  peak KV live            688.0 MiB   (43 regions)   granule 2 MiB
+[Q8_1] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q8_KS, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: None } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 775 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 8 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19408 MiB ground)
+  [host ram] Q8_KS×4 after prefill: private resident 2666 MiB of 25816 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 352 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  span settle: 4 pass(es), frontier 44 → 17, weight zone 0.0 → 0.0 MiB (+0 regions)
+  decode steps: first 12.3 ms | rest 38 × mean 8.0 ms (min 6.3, max 63.7)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (493.9 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.7; 47 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q8_KS x4 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 57.3 of 80.0, peak 71.5; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 17 of which span-tenant 3, free 0, blocked 1206, frontier 17)
+      live KV             272.0 MiB   (arenas 224.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 17 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[Q8_KS] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q8_Q4, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(CoherenceCheck) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 768 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 9 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19392 MiB ground)
+  [host ram] Q8_Q4×4 after prefill: private resident 2668 MiB of 25818 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 354 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 11.0 ms | rest 38 × mean 6.2 ms (min 6.0, max 7.3)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (628.1 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.1; 47 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q8_Q4 x4 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 57.3 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 44 of which span-tenant 3, free 0, blocked 1179, frontier 44)
+      live KV             704.0 MiB   (arenas 656.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 44 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[Q8_Q4] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q4_0, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(NameGreeting) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 766 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 10 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19408 MiB ground)
+  [host ram] Q4_0×4 after prefill: private resident 2668 MiB of 25818 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 354 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 10.9 ms | rest 38 × mean 5.9 ms (min 5.7, max 6.9)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (666.8 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.1; 47 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q4_0 x4 decode end ===
+  CARD                  24563.5 MiB total |     0.0 free | 24563.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 57.3 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 41 of which span-tenant 3, free 0, blocked 1182, frontier 41)
+      live KV             656.0 MiB   (arenas 608.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 41 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3075.5 MiB   (baseline before reservation 1533.5, since 1542.0)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[Q4_0] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q4_1, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(NameGreeting) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 734 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 11 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19408 MiB ground)
+  [host ram] Q4_1×4 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 10.9 ms | rest 38 × mean 6.1 ms (min 5.9, max 7.2)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (639.9 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.6; 47 run as issued (0 behind a lease); library trial, 17 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q4_1 x4 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 57.3 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 42 of which span-tenant 3, free 0, blocked 1181, frontier 42)
+      live KV             672.0 MiB   (arenas 624.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 42 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[Q4_1] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: Q4_KS, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(Skip) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 12 sweeps
+  - prefill: 1996 rows across 4 sequences, cap 7781 rows per wave (tier 240 + KV 224 of 19408 MiB ground)
+  [host ram] Q4_KS×4 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 10.7 ms | rest 38 × mean 6.0 ms (min 5.8, max 7.5)
+  speculative: 39 steps, 156 tokens, 4.00 accepted/step (657.2 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 27.8 segments/wave, 13.8 launches/segment, 24 updated in place (3 reshaped), 4 instantiated; fold µs each: in place 2.7, reshaped 3.7, instantiated 5291.5; recording µs/segment 16.9; 48 run as issued (0 behind a lease); library learn, 8 held, 2 banned, 4 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): Q4_KS x4 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 57.3 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 42 of which span-tenant 3, free 0, blocked 1181, frontier 42)
+      live KV             672.0 MiB   (arenas 624.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 42 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[Q4_KS] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 13 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19440 MiB ground)
+  [host ram] C0×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.1 ms | rest 38 × mean 5.8 ms (min 5.5, max 6.5)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (171.3 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 5.7 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 12.8; 907 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C0 x1 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 17 of which span-tenant 3, free 0, blocked 1206, frontier 17)
+      live KV             272.0 MiB   (arenas 224.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 17 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C0] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C1, use_batched: true, num_contexts: 1, num_repeats: 4, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 789 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 14 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19424 MiB ground)
+  [host ram] C1×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.0 ms | rest 38 × mean 5.8 ms (min 5.4, max 6.7)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (172.6 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 7.9 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.2; 823 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C1 x1 decode end ===
+  CARD                  24563.5 MiB total |     6.8 free | 24556.7 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 32 of which span-tenant 3, free 0, blocked 1191, frontier 32)
+      live KV             512.0 MiB   (arenas 464.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 32 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3068.7 MiB   (baseline before reservation 1533.5, since 1535.2)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C1] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C2, use_batched: true, num_contexts: 1, num_repeats: 4, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 29 | blocked 1191 | ceiling 32 | arenas 0 MiB | weight 0 MiB | device free 783 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 15 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19392 MiB ground)
+  [host ram] C2×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 5.9 ms | rest 38 × mean 5.7 ms (min 5.3, max 7.7)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (175.5 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 7.9 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 13.2; 824 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C2 x1 decode end ===
+  CARD                  24563.5 MiB total |     8.5 free | 24555.0 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 35 of which span-tenant 3, free 0, blocked 1188, frontier 35)
+      live KV             560.0 MiB   (arenas 512.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 35 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3067.0 MiB   (baseline before reservation 1533.5, since 1533.5)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C2] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C3, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 32 | blocked 1188 | ceiling 35 | arenas 0 MiB | weight 0 MiB | device free 780 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 16 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19360 MiB ground)
+  [host ram] C3×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.1 ms | rest 38 × mean 5.8 ms (min 5.4, max 6.3)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (173.5 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 6.6 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.7; 875 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C3 x1 decode end ===
+  CARD                  24563.5 MiB total |    14.3 free | 24549.2 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 21 of which span-tenant 3, free 0, blocked 1202, frontier 21)
+      live KV             336.0 MiB   (arenas 288.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3061.2 MiB   (baseline before reservation 1533.5, since 1527.7)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C3] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C4, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 18 | blocked 1202 | ceiling 21 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 17 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19344 MiB ground)
+  [host ram] C4×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.1 ms | rest 38 × mean 5.8 ms (min 5.4, max 6.3)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (173.4 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 6.6 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.8; 875 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C4 x1 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 22 of which span-tenant 3, free 0, blocked 1201, frontier 22)
+      live KV             352.0 MiB   (arenas 304.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 22 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C4] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C5, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 19 | blocked 1201 | ceiling 22 | arenas 0 MiB | weight 0 MiB | device free 783 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 18 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19360 MiB ground)
+  [host ram] C5×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.1 ms | rest 38 × mean 5.8 ms (min 5.4, max 6.3)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (173.1 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 6.6 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 15.1; 875 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C5 x1 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 21 of which span-tenant 3, free 0, blocked 1202, frontier 21)
+      live KV             336.0 MiB   (arenas 288.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 21 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C5] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C6, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 18 | blocked 1202 | ceiling 21 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 19 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19344 MiB ground)
+  [host ram] C6×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.6 ms | rest 38 × mean 5.8 ms (min 5.4, max 6.5)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (172.4 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 6.6 segments/wave, 11.0 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.8; 875 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C6 x1 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 22 of which span-tenant 3, free 0, blocked 1201, frontier 22)
+      live KV             352.0 MiB   (arenas 304.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 22 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C6] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C7, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 19 | blocked 1201 | ceiling 22 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 20 sweeps
+  - prefill: 489 rows across 1 sequences, cap 7781 rows per wave (tier 64 + KV 64 of 19344 MiB ground)
+  [host ram] C7×1 after prefill: private resident 2669 MiB of 25819 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 355 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 6.1 ms | rest 38 × mean 5.8 ms (min 5.4, max 6.4)
+  speculative: 39 steps, 39 tokens, 1.00 accepted/step (173.3 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 6.6 segments/wave, 10.9 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 14.8; 874 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C7 x1 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 58.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    32.0 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     2.2 MiB (peak     2.2)  candle-core\src\cuda_backend\device.rs:545:14
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 22 of which span-tenant 3, free 0, blocked 1201, frontier 22)
+      live KV             352.0 MiB   (arenas 304.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 22 regions)
+      launch scratch        1.4 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live            704.0 MiB   (44 regions)   granule 2 MiB
+[C7] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 83.0 MiB, ffn 98.2 MiB, forward 12.7 MiB
+
+=== Running tests for config: TestConfig { mode: C8, use_batched: true, num_contexts: 10, num_repeats: 1, test_mode: Some(StoryRewrite) } ===
+  [regions] total 1223 | live 3 | free 19 | blocked 1201 | ceiling 22 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 21 sweeps
+  - prefill: 4930 rows across 10 sequences, cap 7781 rows per wave (tier 576 + KV 544 of 19216 MiB ground)
+  [host ram] C8×10 after prefill: private resident 2672 MiB of 25822 MiB committed | ≤2 MiB ×57: 91 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 358 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  span settle: 4 pass(es), frontier 87 → 23, weight zone 0.0 → 0.0 MiB (+0 regions)
+  decode steps: first 134.1 ms | rest 38 × mean 8.7 ms (min 8.1, max 11.4)
+  speculative: 39 steps, 390 tokens, 10.00 accepted/step (839.8 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 3.7 segments/wave, 13.9 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 16.4; 987 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C8 x10 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 59.7 of 80.0, peak 72.6; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.8 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.4 MiB (peak     4.4)  candle-core\src\cuda_backend\device.rs:545:14
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 29 of which span-tenant 3, free 0, blocked 1194, frontier 29)
+      live KV             464.0 MiB   (arenas 416.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 29 regions)
+      launch scratch        1.5 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live           1392.0 MiB   (87 regions)   granule 2 MiB
+[C8] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 205.1 MiB, ffn 242.5 MiB, forward 31.4 MiB
+
+=== Running tests for config: TestConfig { mode: C9, use_batched: true, num_contexts: 10, num_repeats: 1, test_mode: Some(CoherenceCheck) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 22 sweeps
+  - prefill: 4930 rows across 10 sequences, cap 7781 rows per wave (tier 576 + KV 544 of 19232 MiB ground)
+  [host ram] C9×10 after prefill: private resident 2674 MiB of 25825 MiB committed | ≤2 MiB ×57: 91 | ≤4 MiB ×23: 64 | ≤16 MiB ×29: 352 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  span settle: 4 pass(es), frontier 87 → 23, weight zone 0.0 → 0.0 MiB (+0 regions)
+  decode steps: first 143.1 ms | rest 38 × mean 8.8 ms (min 8.2, max 11.5)
+  speculative: 39 steps, 390 tokens, 10.00 accepted/step (815.7 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 4.0 segments/wave, 13.9 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 17.3; 974 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C9 x10 decode end ===
+  CARD                  24563.5 MiB total |     4.0 free | 24559.5 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 59.7 of 80.0, peak 75.3; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.8 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.4 MiB (peak     4.4)  candle-core\src\cuda_backend\device.rs:545:14
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 28 of which span-tenant 3, free 0, blocked 1195, frontier 28)
+      live KV             448.0 MiB   (arenas 400.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 28 regions)
+      launch scratch        1.5 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3071.5 MiB   (baseline before reservation 1533.5, since 1538.0)
+  peak KV live           1392.0 MiB   (87 regions)   granule 2 MiB
+[C9] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 205.1 MiB, ffn 242.5 MiB, forward 31.4 MiB
+
+=== Running tests for config: TestConfig { mode: C10, use_batched: true, num_contexts: 5, num_repeats: 1, test_mode: Some(CoherenceCheck) } ===
+  [regions] total 1223 | live 3 | free 1220 | blocked 0 | ceiling 1223 | arenas 0 MiB | weight 0 MiB | device free 776 MiB | mid-wave claims 0 refused 0 | swept 0 arenas / 23 sweeps
+  - prefill: 2485 rows across 5 sequences, cap 7781 rows per wave (tier 288 + KV 272 of 19312 MiB ground)
+  [host ram] C10×5 after prefill: private resident 2667 MiB of 25824 MiB committed | ≤2 MiB ×56: 90 | ≤4 MiB ×24: 67 | ≤16 MiB ×30: 350 | ≤64 MiB ×7: 408 | ≤128 MiB ×1: 128 | ≤2 GiB ×1: 1503
+  decode steps: first 11.7 ms | rest 38 × mean 6.8 ms (min 6.5, max 8.0)
+  speculative: 39 steps, 195 tokens, 5.00 accepted/step (726.9 tok/s over the cohort, 0 drafted at a ceiling of 0)
+  graphs: 39 waves, 4.4 segments/wave, 13.9 launches/segment, 0 updated in place (0 reshaped), 0 instantiated; fold µs each: in place 0.0, reshaped 0.0, instantiated 0.0; recording µs/segment 16.4; 962 run as issued (0 behind a lease); library trial, 9 held, 0 banned, 0 benched, 0 reopened
+  lease waits: 0 leases waited 0.0 ms in all (0.0 µs each)
+  cpu experts: on, not yet calibrated · 0 layers served, 0 experts, 0 rows, 0.0 ms pool time (0.0 µs a layer)
+    split: cut n≤0 · cpu µs n1/n2/n4 0/0/0 · gpu µs n1 0 · copy µs 0 · handoff µs 0 · read µs 0 · max experts 0 · cap rows 0
+
+=== Span (device 0): C10 x5 decode end ===
+  CARD                  24563.5 MiB total |     8.7 free | 24554.8 in use
+  reserved              21488.0 MiB
+    fixed blocks         1920.0 MiB   (laid down before the boundary, immovable)
+      held bootstrap       32.0 MiB   (held ground used 59.5 of 80.0, peak 75.3; the rest in 2 held arenas, below)
+      persist staging      64.0 MiB   (hot→warm copy buffer and seal gathers)
+      dense weights      1811.2 MiB   (every non-expert weight)
+      dense padding        12.8 MiB   (to the region grid)
+        held    30.6 MiB (peak    33.5) — 2 to the pool (33.5 MiB, widest 16.7)  candle-core\src\cuda_backend\kernel_scratch.rs:127:11
+        held    20.0 MiB (peak    20.0)  candle-nn\src\kv_cache\chunked\slot_state_arena.rs:334:29
+        held     4.4 MiB (peak     4.4)  candle-core\src\cuda_backend\device.rs:545:14
+        held     4.0 MiB (peak     4.0)  candle-core\src\quantized\pinned_staging.rs:808:37
+        held     0.5 MiB (peak     0.5)  candle-core\src\cuda_backend\info_ring.rs:107:51
+    KV regions          19568.0 MiB   (1223 x 16 MiB: live 50 of which span-tenant 3, free 0, blocked 1173, frontier 50)
+      live KV             800.0 MiB   (arenas 752.0 + span tenants 48.0)
+        held arenas        2 arenas,     48.0 MiB of span, top 5
+    wave tier              16.0 MiB   (placed now, ceiling 50 regions)
+      launch scratch        1.5 MiB   (priced into each forward's span, carved by its launchers)
+    weight zone             0.0 MiB   (the expert side of the boundary)
+    unusable slack          0.0 MiB   (span tail the region count rounds off)
+  outside the span       3066.8 MiB   (baseline before reservation 1533.5, since 1533.3)
+  peak KV live           1392.0 MiB   (87 regions)   granule 2 MiB
+[C10] wave arena peaks (process-wide; tier is placed per forward and absent between them): attention 205.1 MiB, ffn 242.5 MiB, forward 31.4 MiB
+  VRAM wave log: 1012 waves written to D:\candle-work\candle\candle-transformers\..\target\vram_waves_1792889389.csv
+
+=== All tests completed ===
+
+--- Config: TestConfig { mode: F32, use_batched: false, num_contexts: 1, num_repeats: 4, test_mode: None } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: F16, use_batched: true, num_contexts: 1, num_repeats: 4, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: F16, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 4/4 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: R16, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q8_0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q8_Q4, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: BF16, use_batched: true, num_contexts: 4, num_repeats: 4, test_mode: None } ---
+✓ 4/4 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q8_1, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: None } ---
+✓ 4/4 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q8_KS, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: None } ---
+✓ 4/4 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q8_Q4, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(CoherenceCheck) } ---
+✓ 4/4 sessions produced coherent output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q4_0, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(NameGreeting) } ---
+✓ 4/4 sessions produced non-empty output (100% pass, threshold 100%)
+✓ 3/3 different-name session pairs produced distinct output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q4_1, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(NameGreeting) } ---
+✓ 4/4 sessions produced non-empty output (100% pass, threshold 100%)
+✓ 3/3 different-name session pairs produced distinct output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: Q4_KS, use_batched: true, num_contexts: 4, num_repeats: 1, test_mode: Some(Skip) } ---
+
+--- Config: TestConfig { mode: C0, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C1, use_batched: true, num_contexts: 1, num_repeats: 4, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C2, use_batched: true, num_contexts: 1, num_repeats: 4, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C3, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C4, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C5, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C6, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C7, use_batched: true, num_contexts: 1, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 1/1 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C8, use_batched: true, num_contexts: 10, num_repeats: 1, test_mode: Some(StoryRewrite) } ---
+✓ 10/10 sessions matched expected output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C9, use_batched: true, num_contexts: 10, num_repeats: 1, test_mode: Some(CoherenceCheck) } ---
+✓ 10/10 sessions produced coherent output (100% pass, threshold 100%)
+
+--- Config: TestConfig { mode: C10, use_batched: true, num_contexts: 5, num_repeats: 1, test_mode: Some(CoherenceCheck) } ---
+✓ 5/5 sessions produced coherent output (100% pass, threshold 100%)
+
+
+=== Performance Comparison ===
+┌──────────┬──────┬─────────┬──────────┬───────┬────────────┬──────────────┬─────────────┬───────────────┬───────────┬──────────┬────────────┬──────────┬───────┐
+│ KvMode   │ int8 │ Batched │ Contexts │ Valid │ t/s (bulk) │ t/s (single) │ perf (bulk) │ perf (single) │ %Quantized│ Compress │ Peak Tokens│ Frontier │ Eff%  │
+├──────────┼──────┼─────────┼──────────┼───────┼────────────┼──────────────┼─────────────┼───────────────┼───────────┼──────────┼────────────┼──────────┼───────┤
+│      F32 │ prec │   no    │        1 │   ✓   │     1161.4 │        158.0 │    baseline │      baseline │      -    │      -   │        654 │        - │     - │
+│      F16 │ prec │   yes   │        1 │   ✓   │    22653.3 │        166.1 │    +1850.4% │         +5.2% │      -    │      -   │        654 │        - │     - │
+│      F16 │ prec │   yes   │        4 │   ✓   │    27203.8 │        623.6 │    +2242.2% │       +294.8% │      -    │      -   │       2658 │        - │     - │
+│      R16 │ prec │   yes   │        1 │   ✓   │    22195.3 │        143.3 │    +1811.0% │         -9.3% │      0.0% │      -   │        654 │        - │     - │
+│     Q8_0 │ prec │   yes   │        1 │   ✓   │    22926.0 │        153.1 │    +1873.9% │         -3.1% │    100.0% │    1.88x │        654 │        - │     - │
+│    Q8_Q4 │ prec │   yes   │        1 │   ✓   │    23292.9 │        169.9 │    +1905.5% │         +7.5% │    100.0% │    2.29x │        654 │        - │     - │
+│     BF16 │ prec │   yes   │        4 │   ✓   │    27269.2 │        745.6 │    +2247.9% │       +372.0% │      -    │      -   │       2658 │        - │     - │
+│     Q8_1 │ prec │   yes   │        4 │   ✓   │    27201.0 │        500.1 │    +2242.0% │       +216.6% │    100.0% │    1.78x │       2658 │        - │     - │
+│    Q8_KS │ prec │   yes   │        4 │   ✓   │    27016.1 │        493.6 │    +2226.1% │       +212.5% │    100.0% │    1.78x │       2658 │        - │     - │
+│    Q8_Q4 │ prec │   yes   │        4 │   ✓   │    27124.9 │        627.6 │    +2235.4% │       +297.3% │    100.0% │    2.29x │       2658 │        - │     - │
+│     Q4_0 │ prec │   yes   │        4 │   -   │    26591.2 │        666.3 │    +2189.5% │       +321.8% │    100.0% │    3.56x │       2658 │        - │     - │
+│     Q4_1 │ prec │   yes   │        4 │   -   │    27175.3 │        639.4 │    +2239.8% │       +304.8% │    100.0% │    3.20x │       2658 │        - │     - │
+│    Q4_KS │ prec │   yes   │        4 │   -   │    26829.8 │        656.6 │    +2210.0% │       +315.7% │    100.0% │    3.20x │       2658 │        - │     - │
+│       C0 │ prec │   yes   │        1 │   ✓   │    22994.8 │        171.2 │    +1879.8% │         +8.4% │    100.0% │    1.89x │        654 │        - │     - │
+│       C1 │ prec │   yes   │        1 │   ✓   │    22955.1 │        172.4 │    +1876.4% │         +9.2% │    100.0% │    2.28x │        654 │        - │     - │
+│       C2 │ prec │   yes   │        1 │   ✓   │    22899.5 │        175.3 │    +1871.6% │        +11.0% │    100.0% │    2.50x │        654 │        - │     - │
+│       C3 │ prec │   yes   │        1 │   ✓   │    23615.8 │        173.3 │    +1933.3% │         +9.7% │    100.0% │    3.06x │        654 │        - │     - │
+│       C4 │ prec │   yes   │        1 │   ✓   │    23566.7 │        173.2 │    +1929.1% │         +9.7% │    100.0% │    2.85x │        654 │        - │     - │
+│       C5 │ prec │   yes   │        1 │   ✓   │    23019.9 │        173.0 │    +1882.0% │         +9.5% │    100.0% │    3.13x │        654 │        - │     - │
+│       C6 │ prec │   yes   │        1 │   ✓   │    23646.8 │        172.3 │    +1936.0% │         +9.1% │    100.0% │    3.58x │        654 │        - │     - │
+│       C7 │ prec │   yes   │        1 │   ✓   │    23076.7 │        173.2 │    +1886.9% │         +9.6% │    100.0% │    3.78x │        654 │        - │     - │
+│       C8 │ prec │   yes   │       10 │   ✓   │    27416.7 │        839.4 │    +2260.6% │       +431.4% │    100.0% │    3.99x │       6590 │        - │     - │
+│       C9 │ prec │   yes   │       10 │   ✓   │    27118.6 │        815.4 │    +2234.9% │       +416.2% │    100.0% │    4.22x │       6590 │        - │     - │
+│      C10 │ prec │   yes   │        5 │   ✓   │    27112.1 │        726.4 │    +2234.3% │       +359.9% │    100.0% │    4.43x │       3312 │        - │     - │
+└──────────┴──────┴─────────┴──────────┴───────┴────────────┴──────────────┴─────────────┴───────────────┴───────────┴──────────┴────────────┴──────────┴───────┘
+
+=== KV compression by side ===
+  KvMode    total        K        V  K formats | V formats
+    Q8_0    1.88x    1.88x    1.88x  Q8_0 100% | Q8_0 100%
+   Q8_Q4    2.29x    1.78x    3.20x  Q8_1 100% | Q4_1 100%
+    Q8_1    1.78x    1.78x    1.78x  Q8_1 100% | Q8_1 100%
+   Q8_KS    1.78x    1.78x    1.78x  Q8_KS 100% | Q8_KS 100%
+   Q8_Q4    2.29x    1.78x    3.20x  Q8_1 100% | Q4_1 100%
+    Q4_0    3.56x    3.56x    3.56x  Q4_0 100% | Q4_0 100%
+    Q4_1    3.20x    3.20x    3.20x  Q4_1 100% | Q4_1 100%
+   Q4_KS    3.20x    3.20x    3.20x  Q4_KS 100% | Q4_KS 100%
+      C0    1.89x    1.78x    2.02x  Q8_KS 100% | Q4_0 16% Q8_0 84%
+      C1    2.28x    2.11x    2.49x  Q4_0 19% Q4_1 16% Q8_KS 65% | Q4_0 53% Q8_0 47%
+      C2    2.50x    2.30x    2.74x  Q4_0 24% Q4_1 20% Q8_0 57% | Q3_0 5% Q3_1 8% Q4_0 53% Q8_0 35%
+      C3    3.06x    2.65x    3.63x  Q4_0 22% Q4_1 19% Q5_0 20% Q5_1 15% Q8_0 25% | Q3_0 22% Q3_1 20% Q4_0 35% Q5_0 23%
+      C4    2.85x    2.33x    3.66x  Q4_0 7% Q4_1 12% Q5_0 19% Q5_1 18% Q8_0 44% | Q1_S 0% Q2_S 0% Q2_A 1% Q3_0 22% Q3_1 20% Q4_0 33% Q5_0 23%
+      C5    3.13x    2.68x    3.75x  Q4_0 28% Q4_1 17% Q5_0 17% Q5_1 14% Q8_0 24% | Q1_S 0% Q2_S 1% Q2_A 2% Q3_0 27% Q3_1 22% Q4_0 29% Q5_0 20%
+      C6    3.58x    3.31x    3.89x  Q0_V 0% Q1_S 0% Q2_S 1% Q2_A 5% Q3_0 12% Q3_1 21% Q4_0 21% Q4_1 14% Q5_0 6% Q5_1 13% Q8_0 8% | Q1_S 0% Q2_S 1% Q2_A 3% Q3_0 33% Q3_1 22% Q4_0 26% Q5_0 15%
+      C7    3.78x    3.51x    4.09x  Q1_S 0% Q2_S 2% Q2_A 8% Q3_0 17% Q3_1 20% Q4_0 19% Q4_1 12% Q5_0 4% Q5_1 13% Q8_0 5% | Q1_S 0% Q2_S 1% Q2_A 4% Q3_0 36% Q3_1 21% Q4_0 37%
+      C8    3.99x    4.17x    3.81x  Q0_V 1% Q1_S 1% Q2_S 13% Q2_A 14% Q3_0 15% Q3_1 15% Q4_0 13% Q4_1 29% | Q1_S 0% Q2_S 0% Q2_A 2% Q3_0 17% Q3_1 18% Q4_0 63%
+      C9    4.22x    4.60x    3.89x  Q0_X 0% Q0_V 1% Q0_M2 0% Q1_S 1% Q1_A 0% Q0_M4 2% Q2_S 10% Q2_A 13% Q3_0 16% Q3_1 56% | Q0_X 0% Q0_V 0% Q0_M2 0% Q1_S 0% Q1_A 0% Q0_M4 0% Q2_S 1% Q2_A 3% Q3_0 22% Q3_1 19% Q4_0 55%
+     C10    4.43x    4.92x    4.03x  Q0 0% Q0_X 2% Q0_V 4% Q0_M2 0% Q1_S 3% Q1_A 1% Q0_M4 5% Q2_S 15% Q2_A 15% Q3_0 18% Q3_1 15% Q4_0 5% Q4_1 18% | Q0 0% Q0_X 0% Q0_V 0% Q0_M2 0% Q1_S 1% Q1_A 0% Q0_M4 0% Q2_S 2% Q2_A 4% Q3_0 29% Q3_1 19% Q4_0 45%
+
+=== Host RAM, this process, at the end of each decode (MiB) ===
+  pinned now (driver-locked, outside the working set): 0 MiB
+                       │     #1 F32×1 │     #2 F16×1 │     #3 F16×4 │     #4 R16×1 │    #5 Q8_0×1 │   #6 Q8_Q4×1 │    #7 BF16×4 │    #8 Q8_1×4 │   #9 Q8_KS×4 │  #10 Q8_Q4×4 │   #11 Q4_0×4 │   #12 Q4_1×4 │  #13 Q4_KS×4 │     #14 C0×1 │     #15 C1×1 │     #16 C2×1 │     #17 C3×1 │     #18 C4×1 │     #19 C5×1 │     #20 C6×1 │     #21 C7×1 │    #22 C8×10 │    #23 C9×10 │    #24 C10×5
+resident, all          │         2923 │         2923 │         2927 │         2928 │         2929 │         2929 │         2929 │         2938 │         2941 │         2942 │         2942 │         2943 │         2943 │         2943 │         2943 │         2943 │         2943 │         2943 │         2943 │         2943 │         2943 │         2965 │         2966 │         2949
+  image (exe + DLLs)   │          273 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274 │          274
+  mapped files         │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1 │            1
+  private              │         2649 │         2649 │         2653 │         2653 │         2654 │         2654 │         2654 │         2664 │         2666 │         2668 │         2668 │         2669 │         2669 │         2669 │         2669 │         2669 │         2669 │         2669 │         2669 │         2669 │         2669 │         2690 │         2691 │         2675
+committed, private     │        25799 │        25831 │        25803 │        25835 │        25804 │        25804 │        25804 │        25814 │        25816 │        25818 │        25818 │        25819 │        25819 │        25819 │        25819 │        25819 │        25819 │        25819 │        25819 │        25819 │        25819 │        25840 │        25842 │        25830
+committed, mapped      │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11 │           11
+committed, image       │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336 │         1336
+  private allocations by committed size (last column):
+          size ≤   count   resident  committed
+           4 KiB       4          0          0
+           8 KiB      10          0          0
+          16 KiB       1          0          0
+          32 KiB      14          0          0
+          64 KiB       7          0          0
+         128 KiB       1          0          0
+         256 KiB       2          0          0
+           1 MiB       7          6          6
+           2 MiB      56         90         90
+           4 MiB      24         67         72
+           8 MiB       8         54         54
+          16 MiB      30        358        442
+          32 MiB     765         59      23125
+          64 MiB       7        408        408
+         128 MiB       1        128        128
+           2 GiB       1       1503       1503
+  largest resident allocations (last column):
+                  base  kind       resident  committed  name
+         0x284e2d80000  Private        1503       1503  -
+        0x7ffdd1af0000  Image           136        719  cublasLt64_12.dll
+         0x27e38660000  Private         128        128  -
+        0x7ff698e60000  Image           110        338  candle_transformers-a8623c8d284fed38.exe
+         0x27e16800000  Private          64         64  -
+         0x27e1a800000  Private          64         64  -
+         0x27e1e800000  Private          64         64  -
+         0x284a27e0000  Private          64         64  -
+         0x27e22800000  Private          60         60  -
+         0x27e12e00000  Private          58         58  -
+         0x27e0f6e0000  Private          34         34  -
+         0x27eb2d10000  Private          27         27  -
+         0x27e30e70000  Private          15         16  -
+         0x27e366c0000  Private          14         16  -
+         0x27e33510000  Private          14         16  -
+         0x27e37690000  Private          14         16  -
+
+=== Host Pinned RAM ===
+  (no warm tier was sized in this process)
+  pinned held: 0.00 GiB
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1584 filtered out; finished in 143.30s
+

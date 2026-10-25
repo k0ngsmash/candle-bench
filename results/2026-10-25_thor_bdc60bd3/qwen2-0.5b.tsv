@@ -1,0 +1,7 @@
+test	label	depth	prompt_tokens	mode	int8	contexts	valid	prefill_tps	decode_tps	quantized_pct	compress	peak_tokens
+models::quantized_qwen2::tests::test_parallel_batched_forwarding	Qwen2-0.5B		-	F32	off	1	-	56258.1	483.8	-	-	308
+models::quantized_qwen2::tests::test_parallel_batched_forwarding	Qwen2-0.5B		-	BF16	off	1	-	53527.4	469.4	-	-	308
+models::quantized_qwen2::tests::test_parallel_batched_forwarding	Qwen2-0.5B		-	F16	off	1	-	53243.5	464.6	-	-	308
+models::quantized_qwen2::tests::test_parallel_batched_forwarding	Qwen2-0.5B		-	F16	off	4	-	108010.1	1543.5	-	-	1272
+models::quantized_qwen2::tests::test_parallel_batched_forwarding	Qwen2-0.5B		-	F16	off	60	-	151665.0	8664.4	-	-	18612
+models::quantized_qwen2::tests::test_parallel_batched_forwarding	Qwen2-0.5B		-	BF16	off	60	-	152269.3	8643.0	-	-	18612

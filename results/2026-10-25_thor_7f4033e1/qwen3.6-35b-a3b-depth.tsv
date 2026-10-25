@@ -1,0 +1,6 @@
+test	label	depth	prompt_tokens	mode	int8	contexts	valid	prefill_tps	decode_tps	quantized_pct	compress	peak_tokens
+models::quantized_qwen36_moe::tests::long_context_36_35b	Qwen3.6-35B-A3B	32768	32128	BF16	perf	1	✓	7121.7	99.6	-	-	32235
+models::quantized_qwen36_moe::tests::long_context_36_35b	Qwen3.6-35B-A3B	32768	32128	C5	perf	1	✓	7146.5	74.8	100.0%	3.97x	32235
+models::quantized_qwen36_moe::tests::long_context_36_35b	Qwen3.6-35B-A3B	32768	32128	C10	perf	1	✓	7121.6	81.4	100.0%	6.67x	32235
+models::quantized_qwen36_moe::tests::long_context_36_35b	Qwen3.6-35B-A3B	131072	128433	BF16	perf	1	✓	2635.8	60.6	-	-	128540
+models::quantized_qwen36_moe::tests::long_context_36_35b	Qwen3.6-35B-A3B	131072	128433	C10	perf	1	✓	2625.9	28.6	100.0%	6.80x	128540
