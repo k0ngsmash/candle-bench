@@ -1,0 +1,9 @@
+key,label,test,enabled,notes
+qwen2-0.5b,Qwen2-0.5B,models::quantized_qwen2::tests::test_parallel_batched_forwarding,1,smoke test; relaxed 80% validity threshold by design
+llama3.2-3b,Llama-3.2-3B,models::quantized_llama::tests::test_parallel_batched_forwarding_llama3,1,dense; John's batch_test integration model
+qwen3.5-0.8b,Qwen3.5-0.8B,models::quantized_qwen35::tests::test_parallel_batched_forwarding_0_8b,1,hybrid; up to 256 sessions on big cards
+qwen3-8b,Qwen3-8B,models::quantized_qwen3::tests::test_parallel_batched_forwarding,1,dense ablation baseline
+qwen3.5-9b,Qwen3.5-9B,models::quantized_qwen35::tests::test_parallel_batched_forwarding_9b,0,
+qwen3-30b-a3b,Qwen3-30B-A3B,models::quantized_qwen3_moe::tests::test_parallel_batched_forwarding,1,MoE; John's main dev model; first test of expert streaming over PCIe 4.0 x16
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,models::quantized_qwen36_moe::tests::test_parallel_batched_forwarding_36_35b,0,MoE; ~28 GB weights so experts stream on 24 GB
+qwen3.8-flash-next,Qwen3.8-Flash-Next,models::quantized_qwen38_moe::tests::test_parallel_batched_forwarding,0,180B MoE; streams VRAM->RAM->NVMe; large download
