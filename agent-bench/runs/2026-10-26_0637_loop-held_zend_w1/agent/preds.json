@@ -1,0 +1,77 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..45bea3608 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -242,7 +242,7 @@ def _cstack(left, right):\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": ""
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": ""
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": ""
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": ""
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": ""
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": ""
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "diff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..014cef6919 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2422,13 +2422,15 @@ class Figure(FigureBase):\n                     \"The Figure parameters 'tight_layout' and \"\n                     \"'constrained_layout' cannot be used together. Please use \"\n                     \"'layout' parameter\")\n-            self.set_layout_engine(layout='tight')\n-            if isinstance(tight_layout, dict):\n-                self.get_layout_engine().set(**tight_layout)\n+            if tight_layout:\n+                self.set_layout_engine(layout='tight')\n+                if isinstance(tight_layout, dict):\n+                    self.get_layout_engine().set(**tight_layout)\n         elif constrained_layout is not None:\n-            self.set_layout_engine(layout='constrained')\n-            if isinstance(constrained_layout, dict):\n-                self.get_layout_engine().set(**constrained_layout)\n+            if constrained_layout:\n+                self.set_layout_engine(layout='constrained')\n+                if isinstance(constrained_layout, dict):\n+                    self.get_layout_engine().set(**constrained_layout)\n         else:\n             # everything is None, so use default:\n             self.set_layout_engine(layout=layout)\n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": ""
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": ""
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": ""
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\nindex a0eb97792..3880522fb 100755\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -2190,6 +2190,11 @@ def _print_Tr(self, p):\n         contents = self._print(p.args[0])\n         return r'\\mbox{Tr}\\left(%s\\right)' % (contents)\n \n+    def _print_Trace(self, expr):\n+        # Trace of a matrix expression\n+        mat = expr.arg\n+        return r'\\operatorname{Tr}\\left(%s\\right)' % self._print(mat)\n+\n     def _print_totient(self, expr, exp=None):\n         if exp is not None:\n             return r'\\left(\\phi\\left(%s\\right)\\right)^{%s}' % (self._print(expr.args[0]),\n"
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": "\"\"\"\nBase class to provide str and repr hooks that `init_printing` can overwrite.\n\nThis is exposed publicly in the `printing.defaults` module,\nbut cannot be defined there without causing circular imports.\n\"\"\"\n\nclass Printable:\n    __slots__ = ()\n\n    \"\"\"\n    The default implementation of printing for SymPy classes.\n\n    This implements a hack that allows us to print elements of built-in\n    Python containers in a readable way. Natively Python uses ``repr()``\n    even if ``str()`` was explicitly requested. Mix in this trait into\n    a class to get proper default printing.\n\n    This also adds support for LaTeX printing in jupyter notebooks.\n    \"\"\"\n"
+  }
+}

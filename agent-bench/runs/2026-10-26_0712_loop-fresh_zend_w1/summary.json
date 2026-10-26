@@ -1,0 +1,40 @@
+{
+ "backend": "zend",
+ "workers": 1,
+ "tasks": 15,
+ "fresh_context": true,
+ "wall_seconds": 6000,
+ "agent_exit": -15,
+ "score": {
+  "resolved": 1,
+  "submitted": 5,
+  "empty_patches": 3,
+  "errors": 0,
+  "resolved_ids": [
+   "django__django-13230"
+  ]
+ },
+ "metrics": {
+  "model_calls": 344,
+  "failed_calls": 0,
+  "prompt_tokens_total": 5933864,
+  "completion_tokens_total": 72998,
+  "call_seconds_median": 16.74,
+  "call_seconds_p90": 32.91,
+  "decode_tps_per_call_median": 7.8,
+  "completion_tps_aggregate": 12.2,
+  "steps_per_task_median": 45,
+  "task_minutes_median": 8.9,
+  "context_peak_tokens_median": 24111,
+  "context_peak_tokens_max": 33468,
+  "gpu_util_mean_pct": 79.8,
+  "gpu_mem_peak_mib": 23458.0,
+  "exit_statuses": {
+   "LimitsExceeded": 3,
+   "Submitted": 2
+  },
+  "max_command_repeats_median": 3,
+  "tasks_repeating_a_command_5plus": 2,
+  "model_busy_seconds": 5824
+ }
+}

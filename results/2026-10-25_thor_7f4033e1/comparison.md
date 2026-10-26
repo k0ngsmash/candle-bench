@@ -52,7 +52,7 @@ since upstream's depth table was recorded — **the published depth table looks 
 C10 halves decode at 128K on both machines (28.6 vs 60.6 here; 14.5 vs 27.9 upstream): compressed
 KV reads cost more per token as the cache grows, which upstream's §3.5 already describes.
 
-## For capacity planning
+## What it means for long agent sessions
 
 - A single agent with 128K tokens of memory on this model decodes at ~60 t/s uncompressed.
 - Compression to ~7× buys memory capacity at the cost of half the decode at that depth.

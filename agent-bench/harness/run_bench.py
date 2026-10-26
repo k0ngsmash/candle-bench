@@ -191,14 +191,17 @@ def task_ids(n):
     return cache.read_text().split()[:n]
 
 
-def overlay(path, max_tokens):
+def overlay(path, max_tokens, repetition_penalty=None):
     import yaml
+    sampling = json.loads(json.dumps(SAMPLING))
+    if repetition_penalty is not None:
+        sampling["extra_body"]["repetition_penalty"] = repetition_penalty
     cfg = {
         "agent": {"step_limit": STEP_LIMIT, "cost_limit": 0},
         "model": {
             "model_name": "openai/passthrough",
             "model_kwargs": {"api_base": f"http://127.0.0.1:{PROXY_PORT}/v1", "api_key": "none",
-                             "timeout": 3600, "max_tokens": max_tokens, **SAMPLING},
+                             "timeout": 3600, "max_tokens": max_tokens, **sampling},
             "cost_tracking": "ignore_errors",
         },
     }
@@ -247,12 +250,17 @@ def main():
     ap.add_argument("--keep-backend", action="store_true", help="leave the server running afterwards")
     ap.add_argument("--no-eval", action="store_true")
     ap.add_argument("--rescore", metavar="RUN_DIR", help="only (re)score an existing run")
+    ap.add_argument("--repetition-penalty", type=float,
+                    help="override the repetition penalty sent to the backend (vLLM honours it; zend ignores it)")
+    ap.add_argument("--tasks-file", help="run exactly these instance ids (one per line) instead of the standard list")
+    ap.add_argument("--fresh-context", action="store_true",
+                    help="proxy makes every call a new conversation (tests zend without its held context)")
     a = ap.parse_args()
     if a.rescore:
         rescore(Path(a.rescore).resolve())
         return
 
-    ids = task_ids(a.tasks)
+    ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks)
     run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}_w{a.workers}"
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
@@ -262,7 +270,8 @@ def main():
     upstream = start_zend(run_dir) if a.backend == "zend" else start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
 
     proxy = subprocess.Popen([str(AGENT_BIN / "python"), str(HERE / "proxy.py"), "--listen", str(PROXY_PORT),
-                              "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")])
+                              "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")]
+                             + (["--fresh-context"] if a.fresh_context else []))
     time.sleep(3)
     stop = threading.Event()
     sampler = threading.Thread(target=gpu_sampler, args=(run_dir / "gpu.csv", stop), daemon=True)
@@ -275,7 +284,7 @@ def main():
         stop.set(); proxy.terminate()
         stop_vllm() if a.backend == "vllm" else stop_zend()
         sys.exit(1)
-    overlay(run_dir / "overlay.yaml", MAX_TOKENS)
+    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty)
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
     agent_cmd = [str(AGENT_BIN / "mini-extra"), "swebench", "--subset", "lite", "--split", "test",
@@ -284,7 +293,17 @@ def main():
     log("agents running")
     t0 = time.time()
     with open(run_dir / "agent.log", "w") as f:
-        rc = subprocess.run(agent_cmd, stdout=f, stderr=subprocess.STDOUT, env=env).returncode
+        agent = subprocess.Popen(agent_cmd, stdout=f, stderr=subprocess.STDOUT, env=env)
+        while agent.poll() is None:
+            time.sleep(30)
+            # zend writes every conversation to its substrate on D:; stop rather than fill the disk.
+            free_gb = shutil.disk_usage("/mnt/d").free / 2**30
+            if free_gb < 40:
+                log(f"D: has {free_gb:.0f} GB free - stopping the agents to protect the disk")
+                agent.terminate()
+                agent.wait(120)
+                break
+        rc = agent.returncode
     wall = time.time() - t0
     log(f"agents finished: exit {rc}, {wall/60:.1f} min")
     stop.set(); proxy.terminate()
@@ -293,7 +312,7 @@ def main():
 
     resolved = None if a.no_eval else score(run_dir, ids)
 
-    summary = {"backend": a.backend, "workers": a.workers, "tasks": len(ids), "wall_seconds": round(wall),
+    summary = {"backend": a.backend, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
                "agent_exit": rc, "score": resolved}
     (run_dir / "summary.json").write_text(json.dumps(summary, indent=1))
     log(f"summary: {json.dumps(summary)}")

@@ -29,6 +29,16 @@ async def handle(request: web.Request) -> web.Response:
         body = json.loads(raw) if raw else {}
     except ValueError:
         body = {}
+    conv = conversation_tag(body)          # before any change, so calls group by task
+    if app["fresh"] and request.path.endswith("/chat/completions") and body.get("messages"):
+        # Make every call a new conversation to zend, so it rebuilds the context from the client's
+        # history (answers and tool calls, no earlier reasoning) instead of the context it holds.
+        app["state"]["n"] += 1
+        for m in body["messages"]:
+            if m.get("role") == "user" and isinstance(m.get("content"), str):
+                m["content"] += f"\n\n(request {app['state']['n']})"
+                break
+        raw = json.dumps(body).encode()
     t0 = time.time()
     async with app["session"].request(
         request.method, app["upstream"] + request.path_qs, data=raw,
@@ -50,7 +60,7 @@ async def handle(request: web.Request) -> web.Response:
             pass
         rec = {
             "t_start": round(t0, 3), "seconds": round(t1 - t0, 3), "status": status,
-            "conv": conversation_tag(body), "n_messages": len(body.get("messages", [])),
+            "conv": conv, "n_messages": len(body.get("messages", [])),
             "prompt_tokens": usage.get("prompt_tokens"), "completion_tokens": usage.get("completion_tokens"),
             "finish_reason": finish, "tool_calls": n_calls,
         }
@@ -72,9 +82,10 @@ def main():
     p.add_argument("--listen", type=int, required=True)
     p.add_argument("--upstream", required=True, help="e.g. http://127.0.0.1:8090")
     p.add_argument("--log", required=True)
+    p.add_argument("--fresh-context", action="store_true")
     a = p.parse_args()
     app = web.Application(client_max_size=256 * 1024 * 1024)
-    app.update(upstream=a.upstream.rstrip("/"), log=a.log)
+    app.update(upstream=a.upstream.rstrip("/"), log=a.log, fresh=a.fresh_context, state={"n": 0})
     app.on_startup.append(on_startup)
     app.on_cleanup.append(on_cleanup)
     app.router.add_route("*", "/{tail:.*}", handle)

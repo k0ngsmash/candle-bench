@@ -29,12 +29,23 @@ def main(run_dir: Path):
     gen_busy = sum(secs)
 
     exits = defaultdict(int)
+    max_repeats = []   # per task: how many times its most repeated command was issued
     for traj in (run_dir / "agent").glob("*/*.traj.json"):
         try:
-            info = json.loads(traj.read_text()).get("info", {})
-            exits[info.get("exit_status", "unknown")] += 1
+            d = json.loads(traj.read_text())
         except ValueError:
             exits["unreadable"] += 1
+            continue
+        exits[d.get("info", {}).get("exit_status", "unknown")] += 1
+        cmds = defaultdict(int)
+        for m in d.get("messages", []):
+            for tc in (m.get("tool_calls") or []) if m.get("role") == "assistant" else []:
+                try:
+                    cmds[json.loads(tc["function"]["arguments"]).get("command", "")] += 1
+                except (ValueError, KeyError, TypeError, AttributeError):
+                    pass
+        if cmds:
+            max_repeats.append(max(cmds.values()))
 
     gpu = list(csv.DictReader(open(run_dir / "gpu.csv"))) if (run_dir / "gpu.csv").exists() else []
     util = [float(r["util_pct"]) for r in gpu if r.get("util_pct", "").replace(".", "").isdigit()]
@@ -54,6 +65,8 @@ def main(run_dir: Path):
         "gpu_util_mean_pct": round(st.mean(util), 1) if util else None,
         "gpu_mem_peak_mib": max(mem) if mem else None,
         "exit_statuses": dict(exits),
+        "max_command_repeats_median": st.median(max_repeats) if max_repeats else None,
+        "tasks_repeating_a_command_5plus": sum(1 for r in max_repeats if r >= 5),
         "model_busy_seconds": round(gen_busy),
     }
     s["metrics"] = m
@@ -70,7 +83,9 @@ def main(run_dir: Path):
              f"{m['decode_tps_per_call_median']} t/s per call (median)",
              f"- Context per task: median peak {m['context_peak_tokens_median']:,} tokens, largest {m['context_peak_tokens_max']:,}" if peaks else "- Context: n/a",
              f"- GPU: mean utilisation {m['gpu_util_mean_pct']}%, peak memory {m['gpu_mem_peak_mib']} MiB",
-             f"- Agent exits: {dict(exits)}"]
+             f"- Agent exits: {dict(exits)}",
+             f"- Looping: median task's most-repeated command issued {m['max_command_repeats_median']}x; "
+             f"{m['tasks_repeating_a_command_5plus']} task(s) issued one command 5+ times"]
     (run_dir / "summary.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 

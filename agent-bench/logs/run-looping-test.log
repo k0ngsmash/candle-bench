@@ -1,0 +1,82 @@
+######## zend, held context  (06:37)
+[06:37:31] zend: 15 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0637_loop-held_zend_w1
+[06:37:41] starting zend on Windows (standalone, passthrough)
+[06:37:56] waiting for zend (15s): loading
+[06:38:11] zend ready after 30s
+[06:38:51] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\":\"ls -la\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 57, "prompt_tokens": 156, "total_tokens": 213, "completion_tokens_details": null, "prompt_tokens_details": null}}
+[06:38:51] agents running
+[07:11:21] agents finished: exit 0, 32.5 min
+[07:11:21] scoring with the SWE-bench harness
+[07:12:30] summary: {"backend": "zend", "workers": 1, "tasks": 15, "fresh_context": false, "wall_seconds": 1950, "agent_exit": 0, "score": {"resolved": 1, "submitted": 15, "empty_patches": 11, "errors": 1, "resolved_ids": ["astropy__astropy-12907"]}}
+# 2026-10-26_0637_loop-held_zend_w1
+
+- Backend: **zend**, 1 parallel agents, 15 tasks
+- Resolved: **1 / 15** (submitted 15)
+- Wall time: 32.5 min; median task 2.1 min, 75.0 model calls
+- Model calls: 1064 (0 failed); median 0.73 s, p90 3.81 s
+- Tokens: 22,567,472 prompt, 243,360 generated; generation 124.8 t/s across the run, 135.0 t/s per call (median)
+- Context per task: median peak 33,002 tokens, largest 34,650
+- GPU: mean utilisation 74.1%, peak memory 23472.0 MiB
+- Agent exits: {'Submitted': 4, 'LimitsExceeded': 11}
+- Looping: median task's most-repeated command issued 5x; 8 task(s) issued one command 5+ times
+######## zend, fresh context  (07:12)
+[07:12:30] zend: 15 tasks, 1 parallel agents -> /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_0712_loop-fresh_zend_w1
+[07:12:40] starting zend on Windows (standalone, passthrough)
+[07:12:55] waiting for zend (15s): loading
+[07:13:10] zend ready after 30s
+[07:13:49] preflight request ok: This is mini-swe-agent version 2.4.6.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/bench/.config/mini-swe-agent/.env'
+{"tool_calls": ["{\"command\":\"ls\"}"], "finish": "tool_calls", "usage": {"completion_tokens": 116, "prompt_tokens": 161, "total_tokens": 277, "completion_tokens_details": null, "prompt_tokens_details": null}}
+[07:13:49] agents running
+[08:53:49] D: has 38 GB free - stopping the agents to protect the disk
+[08:53:49] agents finished: exit -15, 100.0 min
+[08:53:50] scoring with the SWE-bench harness
+Error handling request from 127.0.0.1
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1013, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/web_protocol.py", line 577, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/web_app.py", line 563, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/harness/proxy.py", line 43, in handle
+    async with app["session"].request(
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/client.py", line 1756, in __aenter__
+    self._resp: _RetType_co = await self._coro
+                              ^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/client.py", line 900, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/client.py", line 878, in _connect_and_send_request
+    await resp.start(conn)
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/client_reqrep.py", line 745, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bench/venvs/agent/lib/python3.12/site-packages/aiohttp/streams.py", line 716, in read
+    await self._waiter
+aiohttp.client_exceptions.ClientOSError: [Errno 104] Connection reset by peer
+[08:54:24] summary: {"backend": "zend", "workers": 1, "tasks": 15, "fresh_context": true, "wall_seconds": 6000, "agent_exit": -15, "score": {"resolved": 1, "submitted": 5, "empty_patches": 3, "errors": 0, "resolved_ids": ["django__django-13230"]}}
+# 2026-10-26_0712_loop-fresh_zend_w1
+
+- Backend: **zend**, 1 parallel agents, 15 tasks
+- Resolved: **1 / 15** (submitted 5)
+- Wall time: 100.0 min; median task 8.9 min, 45 model calls
+- Model calls: 344 (0 failed); median 16.74 s, p90 32.91 s
+- Tokens: 5,933,864 prompt, 72,998 generated; generation 12.2 t/s across the run, 7.8 t/s per call (median)
+- Context per task: median peak 24,111 tokens, largest 33,468
+- GPU: mean utilisation 79.8%, peak memory 23458.0 MiB
+- Agent exits: {'LimitsExceeded': 3, 'Submitted': 2}
+- Looping: median task's most-repeated command issued 3x; 2 task(s) issued one command 5+ times
+LOOPING TEST DONE 08:54

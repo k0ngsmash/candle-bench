@@ -1,0 +1,27 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": ""
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": "diff --git a/django/core/checks/model_checks.py b/django/core/checks/model_checks.py\nindex 5c2266ca1d..5528a37ea0 100755\n--- a/django/core/checks/model_checks.py\n+++ b/django/core/checks/model_checks.py\n@@ -19,7 +19,7 @@ def check_all_models(app_configs=None, **kwargs):\n         models = chain.from_iterable(app_config.get_models() for app_config in app_configs)\n     for model in models:\n         if model._meta.managed and not model._meta.proxy:\n-            db_table_models[model._meta.db_table].append(model._meta.label)\n+            db_table_models[(model._meta.app_label, model._meta.db_table)].append(model._meta.label)\n         if not inspect.ismethod(model.check):\n             errors.append(\n                 Error(\n@@ -35,12 +35,12 @@ def check_all_models(app_configs=None, **kwargs):\n             indexes[model_index.name].append(model._meta.label)\n         for model_constraint in model._meta.constraints:\n             constraints[model_constraint.name].append(model._meta.label)\n-    for db_table, model_labels in db_table_models.items():\n+    for (app_label, db_table), model_labels in db_table_models.items():\n         if len(model_labels) != 1:\n             errors.append(\n                 Error(\n                     \"db_table '%s' is used by multiple models: %s.\"\n-                    % (db_table, ', '.join(db_table_models[db_table])),\n+                    % (db_table, ', '.join(db_table_models[(app_label, db_table)])),\n                     obj=db_table,\n                     id='models.E028',\n                 )\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": ""
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": ""
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 68ffb0bfe0..53a69c9c0b 100755\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -213,6 +213,7 @@ class Feed:\n                 author_email=author_email,\n                 author_link=author_link,\n                 categories=self._get_dynamic_attr('item_categories', item),\n+                comments=self._get_dynamic_attr('item_comments', item),\n                 item_copyright=self._get_dynamic_attr('item_copyright', item),\n                 **self.item_extra_kwargs(item)\n             )\n"
+  }
+}

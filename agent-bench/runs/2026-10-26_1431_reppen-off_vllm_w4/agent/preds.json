@@ -1,0 +1,77 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..45bea3608 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -242,7 +242,7 @@ def _cstack(left, right):\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": "diff --git a/django/db/backends/base/schema.py b/django/db/backends/base/schema.py\nindex 61f88401ab..1f521cfc5c 100755\n--- a/django/db/backends/base/schema.py\n+++ b/django/db/backends/base/schema.py\n@@ -393,7 +393,7 @@ class BaseDatabaseSchemaEditor:\n         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\n-            self._delete_composed_index(model, fields, {'index': True}, self.sql_delete_index)\n+            self._delete_composed_index(model, fields, {'index': True, 'unique': False}, self.sql_delete_index)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 68ffb0bfe0..1be9d97b8a 100755\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -74,6 +74,9 @@ class Feed:\n             return [enc]\n         return []\n \n+    def item_comments(self, item):\n+        return None\n+\n     def _get_dynamic_attr(self, attname, obj, default=None):\n         try:\n             attr = getattr(self, attname)\n@@ -214,6 +217,7 @@ class Feed:\n                 author_link=author_link,\n                 categories=self._get_dynamic_attr('item_categories', item),\n                 item_copyright=self._get_dynamic_attr('item_copyright', item),\n+                comments=self._get_dynamic_attr('item_comments', item),\n                 **self.item_extra_kwargs(item)\n             )\n         return feed\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": ""
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": "diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py\nindex f33bcbdccf..0bd9d375b8 100755\n--- a/django/core/management/commands/inspectdb.py\n+++ b/django/core/management/commands/inspectdb.py\n@@ -119,6 +119,11 @@ class Command(BaseCommand):\n                         for c in constraints.values()\n                         if c[\"unique\"] and len(c[\"columns\"]) == 1\n                     ]\n+                    # Count self-referential relations for this table\n+                    self_ref_count = sum(\n+                        1 for col, (ref_col, ref_table) in relations.items()\n+                        if ref_table == table_name\n+                    )\n                     table_description = connection.introspection.get_table_description(\n                         cursor, table_name\n                     )\n@@ -182,6 +187,8 @@ class Command(BaseCommand):\n                             if ref_db_table == table_name\n                             else table2model(ref_db_table)\n                         )\n+                        if rel_to == \"self\" and self_ref_count > 1:\n+                            extra_params[\"related_name\"] = \"%s_set\" % att_name\n                         if rel_to in known_models:\n                             field_type = \"%s(%s\" % (rel_type, rel_to)\n                         else:\n"
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "diff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..0648640708 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2416,7 +2416,7 @@ class Figure(FigureBase):\n                     \"The Figure parameters 'layout' and 'constrained_layout' \"\n                     \"cannot be used together. Please use 'layout' only.\")\n             self.set_layout_engine(layout=layout)\n-        elif tight_layout is not None:\n+        elif tight_layout:\n             if constrained_layout is not None:\n                 _api.warn_external(\n                     \"The Figure parameters 'tight_layout' and \"\n@@ -2425,7 +2425,7 @@ class Figure(FigureBase):\n             self.set_layout_engine(layout='tight')\n             if isinstance(tight_layout, dict):\n                 self.get_layout_engine().set(**tight_layout)\n-        elif constrained_layout is not None:\n+        elif constrained_layout:\n             self.set_layout_engine(layout='constrained')\n             if isinstance(constrained_layout, dict):\n                 self.get_layout_engine().set(**constrained_layout)\n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": "diff --git a/src/_pytest/python.py b/src/_pytest/python.py\nindex 37735784..c959d04d 100755\n--- a/src/_pytest/python.py\n+++ b/src/_pytest/python.py\n@@ -1264,6 +1264,7 @@ def _show_fixtures_per_test(config, session):\n         else:\n             funcargspec = argname\n         tw.line(funcargspec, green=True)\n+        tw.line(\"    scope: %s\" % fixture_def.scope)\n         fixture_doc = fixture_def.func.__doc__\n         if fixture_doc:\n             write_docstring(tw, fixture_doc)\n@@ -1347,6 +1348,7 @@ def _showfixtures_main(config, session):\n         else:\n             funcargspec = argname\n         tw.line(funcargspec, green=True)\n+        tw.line(\"    scope: %s\" % fixturedef.scope)\n         loc = getlocation(fixturedef.func, curdir)\n         doc = fixturedef.func.__doc__ or \"\"\n         if doc:\n"
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": "diff --git a/src/_pytest/skipping.py b/src/_pytest/skipping.py\nindex 335e10996..d74d4d62f 100755\n--- a/src/_pytest/skipping.py\n+++ b/src/_pytest/skipping.py\n@@ -261,7 +261,12 @@ def pytest_runtest_call(item: Item) -> Generator[None, None, None]:\n def pytest_runtest_makereport(item: Item, call: CallInfo[None]):\n     outcome = yield\n     rep = outcome.get_result()\n-    xfailed = item._store.get(xfailed_key, None)\n+    # Refresh xfailed marks since they might have been added dynamically\n+    # during the test call.\n+    try:\n+        xfailed = evaluate_xfail_marks(item)\n+    except fail.Exception:\n+        xfailed = None  # Error in xfail expression was already reported\n     # unittest special case, see setting of unexpectedsuccess_key\n     if unexpectedsuccess_key in item._store and rep.when == \"call\":\n         reason = item._store[unexpectedsuccess_key]\n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": ""
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": ""
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\nindex a0eb97792..1faaa5c79 100755\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -2190,6 +2190,11 @@ def _print_Tr(self, p):\n         contents = self._print(p.args[0])\n         return r'\\mbox{Tr}\\left(%s\\right)' % (contents)\n \n+    def _print_Trace(self, expr):\n+        # Handle Trace from sympy.matrices.expressions.trace\n+        contents = self._print(expr.arg)\n+        return r\"\\mathrm{Tr}\\left(%s\\right)\" % (contents)\n+\n     def _print_totient(self, expr, exp=None):\n         if exp is not None:\n             return r'\\left(\\phi\\left(%s\\right)\\right)^{%s}' % (self._print(expr.args[0]),\n"
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": "diff --git a/sympy/core/_print_helpers.py b/sympy/core/_print_helpers.py\nindex 96d7e72676..f7875b9eec 100755\n--- a/sympy/core/_print_helpers.py\n+++ b/sympy/core/_print_helpers.py\n@@ -17,6 +17,8 @@ class Printable:\n     This also adds support for LaTeX printing in jupyter notebooks.\n     \"\"\"\n \n+    __slots__ = ()\n+\n     # Note, we always use the default ordering (lex) in __str__ and __repr__,\n     # regardless of the global setting. See issue 5487.\n     def __str__(self):\n"
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": ""
+  }
+}
