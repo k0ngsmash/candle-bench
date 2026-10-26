@@ -1,0 +1,57 @@
+{
+ "backend": "llama",
+ "workers": 4,
+ "tasks": 30,
+ "fresh_context": false,
+ "repetition_penalty": null,
+ "wall_seconds": 4230,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 17,
+  "submitted": 30,
+  "empty_patches": 8,
+  "errors": 0,
+  "resolved_ids": [
+   "astropy__astropy-12907",
+   "django__django-11039",
+   "django__django-12125",
+   "django__django-12708",
+   "django__django-13230",
+   "django__django-14238",
+   "django__django-14787",
+   "django__django-15347",
+   "psf__requests-1963",
+   "pydata__xarray-5131",
+   "pytest-dev__pytest-7490",
+   "scikit-learn__scikit-learn-13142",
+   "scikit-learn__scikit-learn-14983",
+   "sphinx-doc__sphinx-8713",
+   "sympy__sympy-12481",
+   "sympy__sympy-20590",
+   "sympy__sympy-22714"
+  ]
+ },
+ "metrics": {
+  "model_calls": 1613,
+  "failed_calls": 0,
+  "prompt_tokens_total": 32199416,
+  "completion_tokens_total": 353734,
+  "call_seconds_median": 5.0,
+  "call_seconds_p90": 20.5,
+  "decode_tps_per_call_median": 23.9,
+  "completion_tps_aggregate": 83.6,
+  "steps_per_task_median": 59,
+  "task_minutes_median": 8.8,
+  "context_peak_tokens_median": 32095,
+  "context_peak_tokens_max": 59459,
+  "gpu_util_mean_pct": 43.1,
+  "gpu_mem_peak_mib": 24043.0,
+  "exit_statuses": {
+   "Submitted": 22,
+   "LimitsExceeded": 8
+  },
+  "max_command_repeats_median": 2.0,
+  "tasks_repeating_a_command_5plus": 1,
+  "model_busy_seconds": 14644
+ }
+}

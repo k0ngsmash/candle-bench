@@ -1,0 +1,144 @@
+minisweagent: INFO: Results will be saved to /mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent                                                    
+Logging to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Lite, split test...                                                                                                                  
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance filter: 300 -> 30 instances                                                                                                                                         
+minisweagent: INFO: Running on 30 instances...                                                                                                                                                   
+minisweagent: INFO: Building agent config from specs: ['swebench.yaml', '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/overlay.yaml']               
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-4e2df37d -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h                                                                                                                   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-d56c5d6c -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-12125:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-5e523981 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-1e658ed0 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11630:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-1e658ed0 with ID 52ed7c23166193739cb3902e063151891f43fd6c2b3c659f8499454b430fd3b2                                                 
+minisweagent.environment: INFO: Started container minisweagent-5e523981 with ID 2e9208c20031fd17ccfaa308db0a31f46be0c886416dba3469456458c409e4e5                                                 
+minisweagent.environment: INFO: Started container minisweagent-d56c5d6c with ID 44252ae3005901daf948d2619e5f75b3b1fcb930cd6a7847203422e24f2a18e8                                                 
+minisweagent.environment: INFO: Started container minisweagent-4e2df37d with ID 1e98bd0a563d332463fbbaa76e342a01b3b6f4a37255c3df66dffff324c90a12                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-11039/django__django-11039.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-1d39374d -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-12708:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-1d39374d with ID 66099419b8443f7dab5e5dc0825b9ae137e657d94cf1d94a8e57fbc5632b5da1                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-12125/django__django-12125.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-8ffaccc1 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-13230:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-8ffaccc1 with ID c3b317eefb198b0a75a222ac880e75b6f392b574316a393bf01668f91d6392c6                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-12708/django__django-12708.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-50bde1a9 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-13660:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-50bde1a9 with ID 8f332953bbc5694547c708896ee38f8838ed2fe7e4dbe0849f5d860443118b9e                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-13230/django__django-13230.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-791cbbe7 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-14238:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-791cbbe7 with ID 4afe919913dce95cba900487a515fb637a94e4da358a2284625def9749c232e7                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/astropy__astropy-12907/astropy__astropy-12907.traj.json'                                       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-8c3b36cd -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-14787:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-8c3b36cd with ID e1bbdbfe89701b98f35f8dab94ce5fd6f94a5dfb817086b058c213dc760e0849                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-11630/django__django-11630.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-61e969ee -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-15347:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-61e969ee with ID 3ccf0876e94de215db472b83be0f263f477bcda8abca5278909e5cd205bc3f95                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-13660/django__django-13660.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-be7f5e45 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-15819:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-be7f5e45 with ID e77368f0b2dd977c53427ff7416ecd8861555605fa7a6c6a92ef364c052f4fa6                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-14238/django__django-14238.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-91e3cf90 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-16400:latest
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-91e3cf90 with ID c4e242fba34940e6f4e9625642f3b70f63e502ce4535fc1f9384061caff07281                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-15347/django__django-15347.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-07747f04 -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-18869:latest sleep 2h                                                                                                             
+minisweagent.environment: INFO: Started container minisweagent-07747f04 with ID 7fab615438a9bd830a1842502932d950d73b2bf8b727d18cb34acd4fe3f1c234                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/matplotlib__matplotlib-18869/matplotlib__matplotlib-18869.traj.json'                           
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-f97a492d -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-23987:latest sleep 2h                                                                                                             
+minisweagent.environment: INFO: Started container minisweagent-f97a492d with ID 55459380da7a75ed776fd4b175d1bdb2d8c033a1420bb6af75cbcdc2edb9a841                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-15819/django__django-15819.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-b7fdeedb -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-25498:latest sleep 2h                                                                                                             
+minisweagent.environment: INFO: Started container minisweagent-b7fdeedb with ID 73b746f5418011d39bea66140516aa17c07b6a53c1b546db2b1023f0f1c79464                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-14787/django__django-14787.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-6627dfb4 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.psf_1776_requests-1963:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-6627dfb4 with ID b9ade7eb73fc4cf9a8b50364b2bab0da705f5e50502f37573043ee41cae19050                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/django__django-16400/django__django-16400.traj.json'   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-8f486adc -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.pydata_1776_xarray-5131:latest 
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-8f486adc with ID ee826ce314f0fa9e2d062933387ee459298879b1cb2521cd3ce5899e99fc2f6d                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/matplotlib__matplotlib-23987/matplotlib__matplotlib-23987.traj.json'                           
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-057bcd83 -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5221:latest sleep 2h                                                                                                                  
+minisweagent.environment: INFO: Started container minisweagent-057bcd83 with ID f11ae170e1c4172948036beb8bf770942f5db3b46aa16b003501871cde109ebc                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/pydata__xarray-5131/pydata__xarray-5131.traj.json'     
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-9e8c63ce -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7490:latest sleep 2h                                                                                                                  
+minisweagent.environment: INFO: Started container minisweagent-9e8c63ce with ID ff9f6f226e53da3705834885841f81d5b6e873e4634dc2cbcd68a084a2dcb990                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/psf__requests-1963/psf__requests-1963.traj.json'       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-648c1377 -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-13142:latest sleep 2h                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-648c1377 with ID f3e0492207f1d93e4a94bbf5359b2eee2162029dd23898477606bbf461ac259d                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/pytest-dev__pytest-5221/pytest-dev__pytest-5221.traj.json'                                     
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-3d777bb7 -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-14983:latest sleep 2h                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-3d777bb7 with ID e2a124c27cc3f17778917d51bf51bdb6de52dabdd21b15d11e824144e3e7ff20                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/matplotlib__matplotlib-25498/matplotlib__matplotlib-25498.traj.json'                           
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-9c8cf96e -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-7686:latest sleep 2h                                                                                                                  
+minisweagent.environment: INFO: Started container minisweagent-9c8cf96e with ID c55b573f4b3f0d7bd46e46b871e676664b911fb887936ddc1c33eec51dcd0bf4                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/scikit-learn__scikit-learn-13142/scikit-learn__scikit-learn-13142.traj.json'                   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-a5ebfea7 -w /testbed --rm                                                                    
+docker.io/swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8713:latest sleep 2h                                                                                                                  
+minisweagent.environment: INFO: Started container minisweagent-a5ebfea7 with ID a5885ab3dd0b421a957d2d06b4d6c4ea1ffa391bdab5a8f5539452413548d2ce                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/pytest-dev__pytest-7490/pytest-dev__pytest-7490.traj.json'                                     
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-e51dc83b -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-12481:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-e51dc83b with ID 296e0c6a3de2e293c99efffa17d138084dee297c7bc73c3a4d7d4d47b94ef249                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-12481/sympy__sympy-12481.traj.json'       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-b509b7c9 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-13895:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-b509b7c9 with ID 30bb483753e145caf7cabb5c636cddac6878a95a2d14fee565e70dfdaf3b810b                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/scikit-learn__scikit-learn-14983/scikit-learn__scikit-learn-14983.traj.json'                   
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-2f9b25a4 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-15308:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-2f9b25a4 with ID c8cf73d71e1ba1e3b84ac8286b0f0336eb1aa73ee45cf12caaea42d27fe938e1                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sphinx-doc__sphinx-8713/sphinx-doc__sphinx-8713.traj.json'                                     
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-74ebf76a -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-17022:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-74ebf76a with ID 4faae7a2c8068dc70bb457aba537f56618fd7603b7c949135d795ddf6bf3265c                                                 
+minisweagent: INFO: Saved trajectory to                                                                                                                                                          
+'/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sphinx-doc__sphinx-7686/sphinx-doc__sphinx-7686.traj.json'                                     
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-f1ffc269 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-18698:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-f1ffc269 with ID 087ba7266122f107ea3781962409bf562f2aebe8bbca0eab9ed5672d50e9f91c                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-15308/sympy__sympy-15308.traj.json'       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-bf5677e7 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-20590:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-bf5677e7 with ID 772dfad47dab8879a192a9f52880e544932b123b4ed39bd1b744b663e1a43c9f                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-20590/sympy__sympy-20590.traj.json'       
+minisweagent.environment: DEBUG: Starting container with command: docker run -d --name minisweagent-0a591b7b -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.sympy_1776_sympy-22714:latest  
+sleep 2h                                                                                                                                                                                         
+minisweagent.environment: INFO: Started container minisweagent-0a591b7b with ID 99a47264956501dcf8bb0f0d626bae26306379419c26aa1ac02d85455aa7c6e7                                                 
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-17022/sympy__sympy-17022.traj.json'       
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-13895/sympy__sympy-13895.traj.json'       
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-18698/sympy__sympy-18698.traj.json'       
+minisweagent: INFO: Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1937_main_llama_w4/agent/sympy__sympy-22714/sympy__sympy-22714.traj.json'       
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 30/30 100% 1:10:02 eta: 0:00:00
+┏━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status    ┃ Count ┃ Most recent instances                                   ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Submitted      │    22 │ sympy__sympy-22714, sympy__sympy-20590, sympy__sympy... │
+│ LimitsExceeded │     8 │ sympy__sympy-18698, sympy__sympy-13895, sympy__sympy... │
+└────────────────┴───────┴─────────────────────────────────────────────────────────┘

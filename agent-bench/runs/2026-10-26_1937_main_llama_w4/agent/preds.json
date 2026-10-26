@@ -1,0 +1,152 @@
+{
+  "django__django-11039": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11039",
+    "model_patch": "diff --git a/django/core/management/commands/sqlmigrate.py b/django/core/management/commands/sqlmigrate.py\nindex f0b663222a..b7c77bced3 100755\n--- a/django/core/management/commands/sqlmigrate.py\n+++ b/django/core/management/commands/sqlmigrate.py\n@@ -56,7 +56,8 @@ class Command(BaseCommand):\n         targets = [(app_label, migration.name)]\n \n         # Show begin/end around output only for atomic migrations\n-        self.output_transaction = migration.atomic\n+        # and databases that support transactional DDL\n+        self.output_transaction = migration.atomic and connection.features.can_rollback_ddl\n \n         # Make a plan that represents just the requested migrations and show SQL\n         # for it\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": "Patch saved\ndiff --git a/django/db/migrations/serializer.py b/django/db/migrations/serializer.py\nindex 7d226955d5..a648873792 100755\n--- a/django/db/migrations/serializer.py\n+++ b/django/db/migrations/serializer.py\n@@ -267,9 +267,15 @@ class TypeSerializer(BaseSerializer):\n         if hasattr(self.value, \"__module__\"):\n             module = self.value.__module__\n             if module == builtins.__name__:\n-                return self.value.__name__, set()\n+                return self.value.__qualname__, set()\n+            elif '<' in self.value.__qualname__:\n+                # Local class - can't be imported from outside the scope\n+                raise ValueError(\n+                    \"Cannot serialize local class %r. Only top-level classes and \"\n+                    \"nested classes are supported.\" % self.value\n+                )\n             else:\n-                return \"%s.%s\" % (module, self.value.__name__), {\"import %s\" % module}\n+                return \"%s.%s\" % (module, self.value.__qualname__), {\"import %s\" % module}\n \n \n class UUIDSerializer(BaseSerializer):\n"
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": "diff --git a/django/db/backends/base/schema.py b/django/db/backends/base/schema.py\nindex 61f88401ab..7c707871f0 100755\n--- a/django/db/backends/base/schema.py\n+++ b/django/db/backends/base/schema.py\n@@ -393,7 +393,7 @@ class BaseDatabaseSchemaEditor:\n         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\n-            self._delete_composed_index(model, fields, {'index': True}, self.sql_delete_index)\n+            self._delete_composed_index(model, fields, {'unique': False, 'index': True}, self.sql_delete_index)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 68ffb0bfe0..a09cc5fe74 100755\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -214,6 +214,7 @@ class Feed:\n                 author_link=author_link,\n                 categories=self._get_dynamic_attr('item_categories', item),\n                 item_copyright=self._get_dynamic_attr('item_copyright', item),\n+                comments=self._get_dynamic_attr('item_comments', item),\n                 **self.item_extra_kwargs(item)\n             )\n         return feed\n"
+  },
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..ac0130b23 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -234,15 +234,29 @@ def _cstack(left, right):\n     noutp = _compute_n_outputs(left, right)\n \n     if isinstance(left, Model):\n-        cleft = _coord_matrix(left, 'left', noutp)\n+        # For CompoundModel, we need to compute its separability first\n+        try:\n+            cleft = _coord_matrix(left, 'left', noutp)\n+        except NotImplementedError:\n+            # left is a CompoundModel - use its separability matrix\n+            sepleft = _separable(left)\n+            cleft = np.zeros((noutp, sepleft.shape[1]))\n+            cleft[:sepleft.shape[0], :sepleft.shape[1]] = sepleft\n     else:\n         cleft = np.zeros((noutp, left.shape[1]))\n         cleft[: left.shape[0], : left.shape[1]] = left\n     if isinstance(right, Model):\n-        cright = _coord_matrix(right, 'right', noutp)\n+        # For CompoundModel, we need to compute its separability first\n+        try:\n+            cright = _coord_matrix(right, 'right', noutp)\n+        except NotImplementedError:\n+            # right is a CompoundModel - use its separability matrix\n+            sepright = _separable(right)\n+            cright = np.zeros((noutp, sepright.shape[1]))\n+            cright[-sepright.shape[0]:, -sepright.shape[1]:] = sepright\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n@@ -269,7 +283,11 @@ def _cdot(left, right):\n         Return ``n_inputs``, ``n_outputs`` for a model or coord_matrix.\n         \"\"\"\n         if isinstance(input, Model):\n-            coords = _coord_matrix(input, position, input.n_outputs)\n+            try:\n+                coords = _coord_matrix(input, position, input.n_outputs)\n+            except NotImplementedError:\n+                # input is a CompoundModel - use its separability matrix\n+                coords = _separable(input)\n         else:\n             coords = input\n         return coords\n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": "No patch file exists yet, creating it now...\ndiff --git a/django/core/checks/model_checks.py b/django/core/checks/model_checks.py\nindex 5c2266ca1d..6dc4727831 100755\n--- a/django/core/checks/model_checks.py\n+++ b/django/core/checks/model_checks.py\n@@ -5,6 +5,7 @@ from itertools import chain\n \n from django.apps import apps\n from django.core.checks import Error, Tags, register\n+from django.db import connections\n \n \n @register(Tags.models)\n@@ -14,12 +15,43 @@ def check_all_models(app_configs=None, **kwargs):\n     constraints = defaultdict(list)\n     errors = []\n     if app_configs is None:\n-        models = apps.get_models()\n+        models = list(apps.get_models())\n     else:\n-        models = chain.from_iterable(app_config.get_models() for app_config in app_configs)\n+        models = list(chain.from_iterable(\n+            app_config.get_models() for app_config in app_configs))\n+\n+    # Check for db_table collisions. Models from different apps can have the same\n+    # table name if they're on different databases (multi-database setup).\n+    # We need to check collisions per database using the router.\n     for model in models:\n         if model._meta.managed and not model._meta.proxy:\n-            db_table_models[model._meta.db_table].append(model._meta.label)\n+            db_table_models[model._meta.db_table].append(model)\n+\n+    from django.db import router\n+    for db_table, models_list in db_table_models.items():\n+        if len(models_list) > 1:\n+            # Check if any two models could be on the same database.\n+            # Group models by the databases they're allowed on.\n+            db_to_models = defaultdict(list)\n+            for model in models_list:\n+                for db in connections:\n+                    if router.allow_migrate_model(db, model):\n+                        db_to_models[db].append(model._meta.label)\n+\n+            # If any database has multiple models with the same table name, report an error.\n+            for db, model_labels in db_to_models.items():\n+                if len(set(model_labels)) > 1:\n+                    errors.append(\n+                        Error(\n+                            \"db_table '%s' is used by multiple models: %s.\"\n+                            % (db_table, ', '.join(sorted(set(model_labels)))),\n+                            obj=db_table,\n+                            id='models.E028',\n+                        )\n+                    )\n+                    break  # Only report once per db_table\n+\n+    for model in models:\n         if not inspect.ismethod(model.check):\n             errors.append(\n                 Error(\n@@ -35,16 +67,7 @@ def check_all_models(app_configs=None, **kwargs):\n             indexes[model_index.name].append(model._meta.label)\n         for model_constraint in model._meta.constraints:\n             constraints[model_constraint.name].append(model._meta.label)\n-    for db_table, model_labels in db_table_models.items():\n-        if len(model_labels) != 1:\n-            errors.append(\n-                Error(\n-                    \"db_table '%s' is used by multiple models: %s.\"\n-                    % (db_table, ', '.join(db_table_models[db_table])),\n-                    obj=db_table,\n-                    id='models.E028',\n-                )\n-            )\n+\n     for index_name, model_labels in indexes.items():\n         if len(model_labels) > 1:\n             model_labels = set(model_labels)\n@@ -58,6 +81,7 @@ def check_all_models(app_configs=None, **kwargs):\n                     id='models.E029' if len(model_labels) == 1 else 'models.E030',\n                 ),\n             )\n+\n     for constraint_name, model_labels in constraints.items():\n         if len(model_labels) > 1:\n             model_labels = set(model_labels)\n@@ -71,9 +95,15 @@ def check_all_models(app_configs=None, **kwargs):\n                     id='models.E031' if len(model_labels) == 1 else 'models.E032',\n                 ),\n             )\n+\n     return errors\n \n \n+@register(Tags.models)\n+def check_lazy_references(app_configs=None, **kwargs):\n+    return _check_lazy_references(apps)\n+\n+\n def _check_lazy_references(apps, ignore=None):\n     \"\"\"\n     Ensure all lazy (i.e. string) model references have been resolved.\n@@ -191,8 +221,3 @@ def _check_lazy_references(apps, ignore=None):\n         for model_key in pending_models\n         for func in apps._pending_operations[model_key]\n     )), key=lambda error: error.msg)\n-\n-\n-@register(Tags.models)\n-def check_lazy_references(app_configs=None, **kwargs):\n-    return _check_lazy_references(apps)\n"
+  },
+  "django__django-13660": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13660",
+    "model_patch": "diff --git a/django/core/management/commands/shell.py b/django/core/management/commands/shell.py\nindex 2b306a579e..c7c69358cf 100755\n--- a/django/core/management/commands/shell.py\n+++ b/django/core/management/commands/shell.py\n@@ -84,13 +84,13 @@ class Command(BaseCommand):\n     def handle(self, **options):\n         # Execute the command and exit.\n         if options['command']:\n-            exec(options['command'])\n+            exec(options[\"command\"], {})\n             return\n \n         # Execute stdin if it has anything to read and exit.\n         # Not supported on Windows due to select.select() limitations.\n         if sys.platform != 'win32' and not sys.stdin.isatty() and select.select([sys.stdin], [], [], 0)[0]:\n-            exec(sys.stdin.read())\n+            exec(sys.stdin.read(), {})\n             return\n \n         available_shells = [options['interface']] if options['interface'] else self.shells\n"
+  },
+  "django__django-14238": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-14238",
+    "model_patch": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex 0f53d9c30b..0ce7de02c6 100755\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -2524,7 +2524,7 @@ class AutoFieldMeta(type):\n         return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n \n     def __subclasscheck__(self, subclass):\n-        return subclass in self._subclasses or super().__subclasscheck__(subclass)\n+        return issubclass(subclass, self._subclasses) or super().__subclasscheck__(subclass)\n \n \n class AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta):\n"
+  },
+  "django__django-15347": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15347",
+    "model_patch": "diff --git a/django/contrib/messages/storage/cookie.py b/django/contrib/messages/storage/cookie.py\nindex 1d390c71dd..e48d4edb08 100755\n--- a/django/contrib/messages/storage/cookie.py\n+++ b/django/contrib/messages/storage/cookie.py\n@@ -19,7 +19,7 @@ class MessageEncoder(json.JSONEncoder):\n             # Using 0/1 here instead of False/True to produce more compact json\n             is_safedata = 1 if isinstance(obj.message, SafeData) else 0\n             message = [self.message_key, is_safedata, obj.level, obj.message]\n-            if obj.extra_tags:\n+            if obj.extra_tags is not None:\n                 message.append(obj.extra_tags)\n             return message\n         return super().default(obj)\n"
+  },
+  "matplotlib__matplotlib-18869": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-18869",
+    "model_patch": "diff --git a/lib/matplotlib/__init__.py b/lib/matplotlib/__init__.py\nindex b657a35cf..16ab00c72 100755\n--- a/lib/matplotlib/__init__.py\n+++ b/lib/matplotlib/__init__.py\n@@ -148,6 +148,8 @@ def __getattr__(name):\n         else:  # Get the version from the _version.py setuptools_scm file.\n             __version__ = _version.version\n         return __version__\n+    elif name in (\"version_info\", \"version_tuple\"):\n+        return _version.version_tuple\n     raise AttributeError(f\"module {__name__!r} has no attribute {name!r}\")\n \n \n"
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": ""
+  },
+  "django__django-14787": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-14787",
+    "model_patch": "diff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 5c9a5d01c7..6a898cc758 100755\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -1,6 +1,6 @@\n \"Functions that help with dynamically creating decorators for views.\"\n \n-from functools import partial, update_wrapper, wraps\n+from functools import WRAPPER_ASSIGNMENTS, partial, update_wrapper, wraps\n \n \n class classonlymethod(classmethod):\n@@ -19,6 +19,26 @@ def _update_method_wrapper(_wrapper, decorator):\n     update_wrapper(_wrapper, dummy)\n \n \n+class _BoundMethodWrapper:\n+    \"\"\"\n+    A wrapper that behaves like a bound method but has proper function attributes.\n+\n+    This is needed because when decorators use @wraps(func) and func is a partial\n+    object (bound_method), the wrapper doesn't get proper attributes like __name__,\n+    __module__, etc. from the original method.\n+    \"\"\"\n+\n+    def __init__(self, func, source):\n+        self._func = func\n+        # Copy attributes from the original method to this wrapper\n+        for attr in WRAPPER_ASSIGNMENTS:\n+            if hasattr(source, attr):\n+                setattr(self, attr, getattr(source, attr))\n+\n+    def __call__(self, *args, **kwargs):\n+        return self._func(*args, **kwargs)\n+\n+\n def _multi_decorate(decorators, method):\n     \"\"\"\n     Decorate `method` with one or more function decorators. `decorators` can be\n@@ -37,7 +57,9 @@ def _multi_decorate(decorators, method):\n         # 'self' argument, but it's a closure over self so it can call\n         # 'func'. Also, wrap method.__get__() in a function because new\n         # attributes can't be set on bound method objects, only on functions.\n-        bound_method = partial(method.__get__(self, type(self)))\n+        # Use _BoundMethodWrapper to ensure proper attributes are available\n+        # when decorators use @wraps(func).\n+        bound_method = _BoundMethodWrapper(method.__get__(self, type(self)), method)\n         for dec in decorators:\n             bound_method = dec(bound_method)\n         return bound_method(*args, **kwargs)\n"
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": ""
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "diff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..005c4b7e7c 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2416,19 +2416,32 @@ class Figure(FigureBase):\n                     \"The Figure parameters 'layout' and 'constrained_layout' \"\n                     \"cannot be used together. Please use 'layout' only.\")\n             self.set_layout_engine(layout=layout)\n+        elif tight_layout is not None and constrained_layout is not None:\n+            # Both provided, warn but let the truthy one take priority\n+            _api.warn_external(\n+                \"The Figure parameters 'tight_layout' and \"\n+                \"'constrained_layout' cannot be used together. Please use \"\n+                \"'layout' parameter\")\n+            if tight_layout:\n+                self.set_layout_engine(layout='tight')\n+                if isinstance(tight_layout, dict):\n+                    self.get_layout_engine().set(**tight_layout)\n+            elif constrained_layout:\n+                self.set_layout_engine(layout='constrained')\n+                if isinstance(constrained_layout, dict):\n+                    self.get_layout_engine().set(**constrained_layout)\n         elif tight_layout is not None:\n-            if constrained_layout is not None:\n-                _api.warn_external(\n-                    \"The Figure parameters 'tight_layout' and \"\n-                    \"'constrained_layout' cannot be used together. Please use \"\n-                    \"'layout' parameter\")\n-            self.set_layout_engine(layout='tight')\n-            if isinstance(tight_layout, dict):\n-                self.get_layout_engine().set(**tight_layout)\n+            # Only tight_layout provided\n+            if tight_layout:\n+                self.set_layout_engine(layout='tight')\n+                if isinstance(tight_layout, dict):\n+                    self.get_layout_engine().set(**tight_layout)\n         elif constrained_layout is not None:\n-            self.set_layout_engine(layout='constrained')\n-            if isinstance(constrained_layout, dict):\n-                self.get_layout_engine().set(**constrained_layout)\n+            # Only constrained_layout provided\n+            if constrained_layout:\n+                self.set_layout_engine(layout='constrained')\n+                if isinstance(constrained_layout, dict):\n+                    self.get_layout_engine().set(**constrained_layout)\n         else:\n             # everything is None, so use default:\n             self.set_layout_engine(layout=layout)\n"
+  },
+  "pydata__xarray-5131": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pydata__xarray-5131",
+    "model_patch": "diff --git a/xarray/core/groupby.py b/xarray/core/groupby.py\nindex 8a097251..af5abd9a 100755\n--- a/xarray/core/groupby.py\n+++ b/xarray/core/groupby.py\n@@ -436,7 +436,7 @@ class GroupBy(SupportsArithmetic):\n         return zip(self._unique_coord.values, self._iter_grouped())\n \n     def __repr__(self):\n-        return \"{}, grouped over {!r} \\n{!r} groups with labels {}.\".format(\n+        return \"{}, grouped over {!r}\\n{!r} groups with labels {}.\".format(\n             self.__class__.__name__,\n             self._unique_coord.name,\n             self._unique_coord.size,\n"
+  },
+  "psf__requests-1963": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "psf__requests-1963",
+    "model_patch": "diff --git a/requests/sessions.py b/requests/sessions.py\nindex 425db22..e8ba056 100755\n--- a/requests/sessions.py\n+++ b/requests/sessions.py\n@@ -180,6 +180,8 @@ class SessionRedirectMixin(object):\n \n             extract_cookies_to_jar(self.cookies, prepared_request, resp.raw)\n \n+            req = prepared_request\n+\n             i += 1\n             yield resp\n \n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": ""
+  },
+  "matplotlib__matplotlib-25498": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-25498",
+    "model_patch": ""
+  },
+  "scikit-learn__scikit-learn-13142": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "scikit-learn__scikit-learn-13142",
+    "model_patch": "diff --git a/sklearn/mixture/base.py b/sklearn/mixture/base.py\nindex bd34333c0..bba515479 100755\n--- a/sklearn/mixture/base.py\n+++ b/sklearn/mixture/base.py\n@@ -260,6 +260,10 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):\n         # Always do a final e-step to guarantee that the labels returned by\n         # fit_predict(X) are always consistent with fit(X).predict(X)\n         # for any value of max_iter and tol (and any random_state).\n+        # The model parameters are set to best_params before computing the\n+        # final e-step so that the returned labels are consistent with\n+        # the parameters stored in the model.\n+        self._set_parameters(best_params)\n         _, log_resp = self._e_step(X)\n \n         if not self.converged_:\n@@ -268,8 +272,6 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):\n                           'or increase max_iter, tol '\n                           'or check for degenerate data.'\n                           % (init + 1), ConvergenceWarning)\n-\n-        self._set_parameters(best_params)\n         self.n_iter_ = best_n_iter\n         self.lower_bound_ = max_lower_bound\n \n"
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": "No patch.txt found, creating it now\ndiff --git a/src/_pytest/skipping.py b/src/_pytest/skipping.py\nindex 335e10996..edc1fd620 100755\n--- a/src/_pytest/skipping.py\n+++ b/src/_pytest/skipping.py\n@@ -261,7 +261,12 @@ def pytest_runtest_call(item: Item) -> Generator[None, None, None]:\n def pytest_runtest_makereport(item: Item, call: CallInfo[None]):\n     outcome = yield\n     rep = outcome.get_result()\n-    xfailed = item._store.get(xfailed_key, None)\n+    # Re-evaluate xfail marks in case they were added dynamically during test execution.\n+    # Only do this for the 'call' phase since that's when dynamic markers can be added.\n+    if rep.when == \"call\":\n+        item._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\n+    else:\n+        xfailed = item._store.get(xfailed_key, None)\n     # unittest special case, see setting of unexpectedsuccess_key\n     if unexpectedsuccess_key in item._store and rep.when == \"call\":\n         reason = item._store[unexpectedsuccess_key]\n"
+  },
+  "sympy__sympy-12481": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-12481",
+    "model_patch": "diff --git a/sympy/combinatorics/permutations.py b/sympy/combinatorics/permutations.py\nindex 136ed5a47..5f0d4fb4f 100755\n--- a/sympy/combinatorics/permutations.py\n+++ b/sympy/combinatorics/permutations.py\n@@ -897,8 +897,9 @@ def __new__(cls, *args, **kwargs):\n         temp = flatten(args)\n         if has_dups(temp):\n             if is_cycle:\n-                raise ValueError('there were repeated elements; to resolve '\n-                'cycles use Cycle%s.' % ''.join([str(tuple(c)) for c in args]))\n+                # Non-disjoint cycles are allowed; they will be applied\n+                # left-to-right using the Cycle class below\n+                pass\n             else:\n                 raise ValueError('there were repeated elements.')\n         temp = set(temp)\n"
+  },
+  "scikit-learn__scikit-learn-14983": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "scikit-learn__scikit-learn-14983",
+    "model_patch": "diff --git a/sklearn/model_selection/_split.py b/sklearn/model_selection/_split.py\nindex c49a3ce6a..0fa507b39 100755\n--- a/sklearn/model_selection/_split.py\n+++ b/sklearn/model_selection/_split.py\n@@ -1103,6 +1103,9 @@ class _RepeatedSplits(metaclass=ABCMeta):\n         self.random_state = random_state\n         self.cvargs = cvargs\n \n+    def __repr__(self):\n+        return _build_repr(self)\n+\n     def split(self, X, y=None, groups=None):\n         \"\"\"Generates indices to split data into training and test set.\n \n@@ -1216,6 +1219,10 @@ class RepeatedKFold(_RepeatedSplits):\n         super().__init__(\n             KFold, n_repeats, random_state, n_splits=n_splits)\n \n+    @property\n+    def n_splits(self):\n+        return self.cvargs['n_splits']\n+\n \n class RepeatedStratifiedKFold(_RepeatedSplits):\n     \"\"\"Repeated Stratified K-Fold cross validator.\n@@ -1269,6 +1276,10 @@ class RepeatedStratifiedKFold(_RepeatedSplits):\n         super().__init__(\n             StratifiedKFold, n_repeats, random_state, n_splits=n_splits)\n \n+    @property\n+    def n_splits(self):\n+        return self.cvargs['n_splits']\n+\n \n class BaseShuffleSplit(metaclass=ABCMeta):\n     \"\"\"Base class for ShuffleSplit and StratifiedShuffleSplit\"\"\"\n"
+  },
+  "sphinx-doc__sphinx-8713": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-8713",
+    "model_patch": "diff --git a/sphinx/ext/napoleon/docstring.py b/sphinx/ext/napoleon/docstring.py\nindex 755088ca5..7ff0c834d 100755\n--- a/sphinx/ext/napoleon/docstring.py\n+++ b/sphinx/ext/napoleon/docstring.py\n@@ -682,7 +682,12 @@ class GoogleDocstring:\n         return self._parse_generic_section(_('Notes'), use_admonition)\n \n     def _parse_other_parameters_section(self, section: str) -> List[str]:\n-        return self._format_fields(_('Other Parameters'), self._consume_fields())\n+        if self._config.napoleon_use_param:\n+            fields = self._consume_fields(multiple=True)\n+            return self._format_docutils_params(fields)\n+        else:\n+            fields = self._consume_fields()\n+            return self._format_fields(_('Other Parameters'), fields)\n \n     def _parse_parameters_section(self, section: str) -> List[str]:\n         if self._config.napoleon_use_param:\n"
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\nold mode 100755\nnew mode 100644\nindex a0eb97792..1b1dbcf03\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -1454,6 +1454,10 @@ def latexslice(x):\n     def _print_BlockMatrix(self, expr):\n         return self._print(expr.blocks)\n \n+\n+    def _print_Trace(self, expr):\n+        return r\"\\operatorname{Tr}\\left(%s\\right)\" % self._print(expr.arg)\n+\n     def _print_Transpose(self, expr):\n         mat = expr.arg\n         from sympy.matrices import MatrixSymbol\n"
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": "Patch saved to /tmp/patch.txt\ndiff --git a/sympy/core/_print_helpers.py b/sympy/core/_print_helpers.py\nindex 96d7e72676..f7875b9eec 100755\n--- a/sympy/core/_print_helpers.py\n+++ b/sympy/core/_print_helpers.py\n@@ -17,6 +17,8 @@ class Printable:\n     This also adds support for LaTeX printing in jupyter notebooks.\n     \"\"\"\n \n+    __slots__ = ()\n+\n     # Note, we always use the default ordering (lex) in __str__ and __repr__,\n     # regardless of the global setting. See issue 5487.\n     def __str__(self):\n"
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": ""
+  },
+  "sympy__sympy-18698": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-18698",
+    "model_patch": ""
+  },
+  "sympy__sympy-22714": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-22714",
+    "model_patch": "diff --git a/sympy/geometry/point.py b/sympy/geometry/point.py\nindex 73c20334d0..b237c58f87 100755\n--- a/sympy/geometry/point.py\n+++ b/sympy/geometry/point.py\n@@ -152,7 +152,7 @@ def __new__(cls, *args, **kwargs):\n                         'warn' or 'ignore'.'''))\n         if any(coords[dim:]):\n             raise ValueError('Nonzero coordinates cannot be removed.')\n-        if any(a.is_number and im(a) for a in coords):\n+        if any(a.is_number and im(a).is_zero is not True for a in coords):\n             raise ValueError('Imaginary coordinates are not permitted.')\n         if not all(isinstance(a, Expr) for a in coords):\n             raise TypeError('Coordinates must be valid SymPy expressions.')\n"
+  }
+}

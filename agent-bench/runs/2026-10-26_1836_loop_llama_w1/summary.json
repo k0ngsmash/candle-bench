@@ -1,0 +1,43 @@
+{
+ "backend": "llama",
+ "workers": 1,
+ "tasks": 15,
+ "fresh_context": false,
+ "repetition_penalty": null,
+ "wall_seconds": 3570,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 3,
+  "submitted": 15,
+  "empty_patches": 7,
+  "errors": 2,
+  "resolved_ids": [
+   "astropy__astropy-12907",
+   "django__django-13230",
+   "sympy__sympy-20590"
+  ]
+ },
+ "metrics": {
+  "model_calls": 1032,
+  "failed_calls": 0,
+  "prompt_tokens_total": 24507853,
+  "completion_tokens_total": 243533,
+  "call_seconds_median": 1.62,
+  "call_seconds_p90": 6.86,
+  "decode_tps_per_call_median": 72.8,
+  "completion_tps_aggregate": 68.2,
+  "steps_per_task_median": 75.0,
+  "task_minutes_median": 3.6,
+  "context_peak_tokens_median": 39185,
+  "context_peak_tokens_max": 61500,
+  "gpu_util_mean_pct": 45.5,
+  "gpu_mem_peak_mib": 21655.0,
+  "exit_statuses": {
+   "Submitted": 8,
+   "LimitsExceeded": 7
+  },
+  "max_command_repeats_median": 2,
+  "tasks_repeating_a_command_5plus": 1,
+  "model_busy_seconds": 3073
+ }
+}

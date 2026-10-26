@@ -1,0 +1,21 @@
+diff --git a/zend/src/session.rs b/zend/src/session.rs
+index 0e3657ee..3cf70fec 100644
+--- a/zend/src/session.rs
++++ b/zend/src/session.rs
+@@ -5689,6 +5689,16 @@ async fn passthrough_turn(
+         PASSTHROUGH_RESPONSE_TOKENS,
+         &state.think_closer_phrase,
+     );
++    // Bench-only experiment (local branch, never pushed): override the
++    // in-block reflection-marker suppression for passthrough turns, to test
++    // whether discouraging "Wait"/"Hmm" makes agents repeat themselves.
++    if let Some(p) = std::env::var("ZEND_PT_SUPPRESS_PENALTY")
++        .ok()
++        .and_then(|v| v.parse::<f32>().ok())
++    {
++        sampling.segment_suppress_penalty = p;
++        tracing::info!(key, penalty = p, "passthrough: reflection suppression overridden (bench)");
++    }
+     let options = candle_conversation::TurnOptions {
+         max_tokens,
+         sampling: Some(sampling),

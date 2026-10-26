@@ -1,0 +1,10 @@
+2026-10-26 18:31:45,233 - minisweagent - INFO - Loading dataset princeton-nlp/SWE-Bench_Lite, split test...
+2026-10-26 18:31:49,723 - minisweagent - INFO - Instance filter: 300 -> 2 instances
+2026-10-26 18:31:49,725 - minisweagent - INFO - Running on 2 instances...
+2026-10-26 18:31:49,726 - minisweagent - INFO - Building agent config from specs: ['swebench.yaml', '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1831_smoke_llama_w1/overlay.yaml']
+2026-10-26 18:31:54,196 - minisweagent.environment - DEBUG - Starting container with command: docker run -d --name minisweagent-507d7f83 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h
+2026-10-26 18:31:54,722 - minisweagent.environment - INFO - Started container minisweagent-507d7f83 with ID 37d0265635f04e86dc8a3b6f0d4cd3306227059d6a7cef3014d56a6c80861e3f
+2026-10-26 18:33:14,580 - minisweagent - INFO - Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1831_smoke_llama_w1/agent/astropy__astropy-12907/astropy__astropy-12907.traj.json'
+2026-10-26 18:33:14,590 - minisweagent.environment - DEBUG - Starting container with command: docker run -d --name minisweagent-f5601309 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.django_1776_django-11039:latest sleep 2h
+2026-10-26 18:33:15,017 - minisweagent.environment - INFO - Started container minisweagent-f5601309 with ID b22d402f6d53a46f41f60a0f4cde14af5cfb58afc27b6c1090e9ddc7c3047d20
+2026-10-26 18:34:49,473 - minisweagent - INFO - Saved trajectory to '/mnt/c/Users/k0ng/source/repos/candle-bench/agent-bench/runs/2026-10-26_1831_smoke_llama_w1/agent/django__django-11039/django__django-11039.traj.json'

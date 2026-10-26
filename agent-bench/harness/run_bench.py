@@ -33,6 +33,10 @@ PROXY_PORT = 9000
 ZEND_URL = "http://127.0.0.1:8090"
 VLLM_URL = "http://127.0.0.1:8000"
 VLLM_MODEL = "cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit"
+LLAMA_URL = "http://127.0.0.1:8001"
+LLAMA_SERVER = HOME / "llama.cpp/build/bin/llama-server"
+# The same checkpoint zend loads (unsloth UD-Q4_K_M, pinned revision), as llama.cpp reads it.
+LLAMA_GGUF = HOME / "models/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf"
 
 # The sampling zend uses for every passthrough turn (zend/src/coding_sampling.rs): vLLM is given
 # the same so the comparison is engine against engine. zend ignores these fields on passthrough.
@@ -68,17 +72,19 @@ def stop_zend():
                    capture_output=True)
 
 
-def start_zend(run_dir):
+def start_zend(run_dir, zend_env=()):
     """Launch start-zend.ps1 on Windows and poll zend's status from here.
 
     The script is not waited on: zend, started from it with Start-Process, inherits the
     interop pipes, so the PowerShell process's output never reaches end-of-file while zend
     runs. Its own transcript goes to zend-start.log instead.
     """
-    log("starting zend on Windows (standalone, passthrough)")
+    log("starting zend on Windows (standalone, passthrough)" + (f" with {' '.join(zend_env)}" if zend_env else ""))
+    # Environment for the zend process: set in the PowerShell session that launches it.
+    env_ps = "".join(f"$env:{k}='{v}'; " for k, v in (e.split("=", 1) for e in zend_env))
     win_log = f"{WIN_BENCH}\\runs\\{run_dir.name}\\zend-start.log"
     subprocess.Popen(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command",
-                      f"Start-Transcript -Path '{win_log}' -Force | Out-Null; "
+                      f"Start-Transcript -Path '{win_log}' -Force | Out-Null; {env_ps}"
                       f"& '{WIN_BENCH}\\start-zend.ps1'; Stop-Transcript | Out-Null"],
                      stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                      start_new_session=True)
@@ -181,6 +187,47 @@ def preflight_call(run_dir):
     log(f"preflight request ok: {r.stdout.strip()}")
 
 
+class Llama:
+    proc = None
+
+
+def stop_llama():
+    if Llama.proc and Llama.proc.poll() is None:
+        Llama.proc.terminate()
+        try:
+            Llama.proc.wait(60)
+        except subprocess.TimeoutExpired:
+            Llama.proc.kill()
+    Llama.proc = None
+    subprocess.run(["pkill", "-f", "llama-server"], capture_output=True)
+    time.sleep(3)
+
+
+def start_llama(run_dir, cpu_moe_list, max_len, slots):
+    """llama.cpp's server on the identical GGUF. --n-cpu-moe keeps that many layers' experts in RAM
+    (computed on the CPU); the rest of the model is on the GPU. Tries each value until one starts."""
+    for n in cpu_moe_list:
+        args = [str(LLAMA_SERVER), "-m", str(LLAMA_GGUF), "--alias", "passthrough", "--jinja",
+                "--host", "127.0.0.1", "--port", "8001", "-ngl", "99", "--n-cpu-moe", str(n),
+                "-c", str(max_len * slots), "--parallel", str(slots), "--flash-attn", "on", "--metrics"]
+        llog = run_dir / f"llama-cpumoe{n}.log"
+        log(f"starting llama.cpp (--n-cpu-moe {n}, {slots} slots x {max_len} ctx) -> {llog.name}")
+        Llama.proc = subprocess.Popen(args, stdout=open(llog, "w"), stderr=subprocess.STDOUT)
+        t0 = time.time()
+        while time.time() - t0 < 900:
+            time.sleep(10)
+            if Llama.proc.poll() is not None:
+                log(f"llama.cpp exited ({Llama.proc.returncode}) with --n-cpu-moe {n}; tail:\n" +
+                    "".join(open(llog, errors="replace").readlines()[-12:]))
+                break
+            if http_ok(f"{LLAMA_URL}/health")[0]:
+                log(f"llama.cpp ready after {time.time()-t0:.0f}s with --n-cpu-moe {n}")
+                (run_dir / "llama-config.json").write_text(json.dumps({"n_cpu_moe": n, "ctx_per_slot": max_len, "slots": slots, "args": args}, indent=1))
+                return LLAMA_URL
+        stop_llama()
+    raise RuntimeError("llama.cpp could not start with any --n-cpu-moe value tried")
+
+
 def task_ids(n):
     """Every 10th SWE-bench Lite test instance (30 in all, across all 12 repos), first n of them."""
     cache = BENCH / "instances.txt"
@@ -191,11 +238,15 @@ def task_ids(n):
     return cache.read_text().split()[:n]
 
 
-def overlay(path, max_tokens, repetition_penalty=None):
+def overlay(path, max_tokens, repetition_penalty=None, backend="zend"):
     import yaml
     sampling = json.loads(json.dumps(SAMPLING))
     if repetition_penalty is not None:
         sampling["extra_body"]["repetition_penalty"] = repetition_penalty
+    if backend == "llama":
+        # llama.cpp names it repeat_penalty and applies it over the last 64 tokens: the windowed kind,
+        # like zend's, not vLLM's whole-conversation kind.
+        sampling["extra_body"]["repeat_penalty"] = sampling["extra_body"].pop("repetition_penalty")
     cfg = {
         "agent": {"step_limit": STEP_LIMIT, "cost_limit": 0},
         "model": {
@@ -239,9 +290,14 @@ def rescore(run_dir):
     subprocess.run([str(AGENT_BIN / "python"), str(HERE / "summarize.py"), str(run_dir)])
 
 
+def stop_backend(backend):
+    {"zend": stop_zend, "vllm": stop_vllm, "llama": stop_llama}[backend]()
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backend", choices=["zend", "vllm"])
+    ap.add_argument("--backend", choices=["zend", "vllm", "llama"])
+    ap.add_argument("--cpu-moe", default="8,12,16,20", help="llama.cpp --n-cpu-moe values to try, in order")
     ap.add_argument("--tasks", type=int, default=2)
     ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--label", default="run")
@@ -255,6 +311,8 @@ def main():
     ap.add_argument("--tasks-file", help="run exactly these instance ids (one per line) instead of the standard list")
     ap.add_argument("--fresh-context", action="store_true",
                     help="proxy makes every call a new conversation (tests zend without its held context)")
+    ap.add_argument("--zend-env", action="append", default=[], metavar="KEY=VALUE",
+                    help="environment variable for the zend process (repeatable), e.g. ZEND_PT_SUPPRESS_PENALTY=0")
     a = ap.parse_args()
     if a.rescore:
         rescore(Path(a.rescore).resolve())
@@ -266,8 +324,15 @@ def main():
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
     log(f"{a.backend}: {len(ids)} tasks, {a.workers} parallel agents -> {run_dir}")
 
-    stop_vllm(); stop_zend(); time.sleep(5)
-    upstream = start_zend(run_dir) if a.backend == "zend" else start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
+    stop_vllm(); stop_llama(); stop_zend(); time.sleep(5)
+    if a.backend == "zend":
+        if a.zend_env:
+            (run_dir / "zend-env.txt").write_text("\n".join(a.zend_env) + "\n")
+        upstream = start_zend(run_dir, a.zend_env)
+    elif a.backend == "vllm":
+        upstream = start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
+    else:
+        upstream = start_llama(run_dir, [int(x) for x in a.cpu_moe.split(",")], a.max_model_len, max(a.workers, 1))
 
     proxy = subprocess.Popen([str(AGENT_BIN / "python"), str(HERE / "proxy.py"), "--listen", str(PROXY_PORT),
                               "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")]
@@ -282,9 +347,9 @@ def main():
     except RuntimeError as e:
         log(str(e))
         stop.set(); proxy.terminate()
-        stop_vllm() if a.backend == "vllm" else stop_zend()
+        stop_backend(a.backend)
         sys.exit(1)
-    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty)
+    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend)
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
     agent_cmd = [str(AGENT_BIN / "mini-extra"), "swebench", "--subset", "lite", "--split", "test",
@@ -308,7 +373,7 @@ def main():
     log(f"agents finished: exit {rc}, {wall/60:.1f} min")
     stop.set(); proxy.terminate()
     if not a.keep_backend:
-        stop_vllm() if a.backend == "vllm" else stop_zend()
+        stop_backend(a.backend)
 
     resolved = None if a.no_eval else score(run_dir, ids)
 
