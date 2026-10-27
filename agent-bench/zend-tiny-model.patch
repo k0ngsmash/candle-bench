@@ -1,0 +1,13 @@
+diff --git a/host/src/model.rs b/host/src/model.rs
+index ff9052c1..6872e7b1 100644
+--- a/host/src/model.rs
++++ b/host/src/model.rs
+@@ -15,7 +15,7 @@ use serde::Serialize;
+ /// runs on every card in the fleet: the expert cache streams what VRAM cannot
+ /// hold, and every rung is the same model, so a substrate written on one card
+ /// opens on another.
+-pub const MODEL: Model = Model::Qwen38_FlashNext;
++pub const MODEL: Model = Model::Qwen35_0_8B_Q8;
+ 
+ /// The model as `/v1/status` and `/v1/telemetry` name it.
+ #[derive(Debug, Clone, Serialize, PartialEq, Eq)]

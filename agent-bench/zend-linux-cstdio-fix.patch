@@ -1,0 +1,34 @@
+diff --git a/candle-kernels/src/paged-glue/paged_glue_kernel.cuh b/candle-kernels/src/paged-glue/paged_glue_kernel.cuh
+index 25bcaa59..b1a4ef45 100644
+--- a/candle-kernels/src/paged-glue/paged_glue_kernel.cuh
++++ b/candle-kernels/src/paged-glue/paged_glue_kernel.cuh
+@@ -1,4 +1,5 @@
+ #pragma once
++#include <cstdio>
+ // =============================================================================
+ // paged_glue_kernel.cuh — reprojection "glue" attention (decode-derivative).
+ //
+diff --git a/candle-kernels/src/quantized/repack_gemx.cu b/candle-kernels/src/quantized/repack_gemx.cu
+index 874d0032..140965b0 100644
+--- a/candle-kernels/src/quantized/repack_gemx.cu
++++ b/candle-kernels/src/quantized/repack_gemx.cu
+@@ -14,6 +14,7 @@
+ 
+ #include "repack_gemx.cuh"
+ #include <cuda_runtime.h>
++#include <cstdio>
+ #include <stdint.h>
+ 
+ // =============================================================================
+diff --git a/candle-kernels/src/simple/moe_bucketize_live.cuh b/candle-kernels/src/simple/moe_bucketize_live.cuh
+index a69f3838..d099c217 100644
+--- a/candle-kernels/src/simple/moe_bucketize_live.cuh
++++ b/candle-kernels/src/simple/moe_bucketize_live.cuh
+@@ -8,6 +8,7 @@
+ // =============================================================================
+ #pragma once
+ 
++#include <cstdio>
+ #include "moe_bucketize_common.cuh"
+ #include "../moe_read_ahead.cuh"
+ 

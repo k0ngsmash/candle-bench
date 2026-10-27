@@ -1,0 +1,128 @@
+   Compiling candle-kernels v0.9.1 (/home/bench/candle-zend/candle-kernels)
+   Compiling cluster v0.1.0 (/home/bench/candle-zend/cluster)
+warning: use of deprecated method `std::sync::atomic::Atomic::<usize>::fetch_update`: renamed to `try_update` for consistency
+  --> cluster/src/session/gauge.rs:41:23
+   |
+41 |         let _ = gauge.fetch_update(Ordering::Relaxed, Ordering::Relaxed, |held| {
+   |                       ^^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+help: replace the use of the deprecated method
+   |
+41 -         let _ = gauge.fetch_update(Ordering::Relaxed, Ordering::Relaxed, |held| {
+41 +         let _ = gauge.try_update(Ordering::Relaxed, Ordering::Relaxed, |held| {
+   |
+
+   Compiling cluster-dial v0.1.0 (/home/bench/candle-zend/cluster-dial)
+   Compiling agent v0.1.0 (/home/bench/candle-zend/agent)
+   Compiling web v0.1.0 (/home/bench/candle-zend/web)
+warning: `cluster` (lib) generated 1 warning (run `cargo fix --lib -p cluster` to apply 1 suggestion)
+   Compiling candle-core v0.9.1 (/home/bench/candle-zend/candle-core)
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:37:14
+   |
+37 |         f64::NAN
+   |              ^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:55:14
+   |
+55 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:57:14
+   |
+57 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:69:14
+   |
+69 |         f64::NAN
+   |              ^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:70:25
+   |
+70 |     } else if x == f64::INFINITY {
+   |                         ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:72:25
+   |
+72 |     } else if x == f64::NEG_INFINITY {
+   |                         ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:83:14
+   |
+83 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core/src/cpu/erf.rs:85:14
+   |
+85 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+   Compiling candle-nn v0.9.1 (/home/bench/candle-zend/candle-nn)
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn/src/cpu_flash_attention.rs:237:42
+    |
+237 |                         let mut m = f32::NEG_INFINITY;
+    |                                          ^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn/src/cpu_flash_attention.rs:253:43
+    |
+253 | ...                   if mv == f32::NEG_INFINITY {
+    |                                     ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn/src/cpu_flash_attention.rs:304:58
+    |
+304 |                         || (vec![0f32; dv], 0.0f32, f32::NEG_INFINITY),
+    |                                                          ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn/src/cpu_flash_attention.rs:405:34
+    |
+405 |                 let mut m = f32::NEG_INFINITY;
+    |                                  ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn/src/cpu_flash_attention.rs:427:35
+    |
+427 |                     if mv == f32::NEG_INFINITY {
+    |                                   ^^^^^^^^^^^^
+
+   Compiling candle-transformers v0.9.1 (/home/bench/candle-zend/candle-transformers)
+   Compiling candle-onnx v0.9.1 (/home/bench/candle-zend/candle-onnx)
+warning: use of deprecated constant `std::f32::MIN`: replaced by the `MIN` associated constant on `f32`
+   --> candle-transformers/src/models/modernbert.rs:302:27
+    |
+302 |     (inverted_mask * f32::MIN as f64)?.to_dtype(dtype)
+    |                           ^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-transformers/src/models/modernbert.rs:315:26
+    |
+315 |                     f32::NEG_INFINITY
+    |                          ^^^^^^^^^^^^
+
+warning: `candle-nn` (lib) generated 5 warnings
+warning: `candle-core` (lib) generated 8 warnings
+   Compiling candle-conversation v0.9.1 (/home/bench/candle-zend/candle-conversation)
+warning: `candle-transformers` (lib) generated 2 warnings
+   Compiling host v0.1.0 (/home/bench/candle-zend/host)
+   Compiling substrate-git v0.1.0 (/home/bench/candle-zend/substrate-git)
+   Compiling store-events v0.1.0 (/home/bench/candle-zend/store-events)
+   Compiling zend v0.1.0 (/home/bench/candle-zend/zend)
+    Finished `release` profile [optimized] target(s) in 5m 48s

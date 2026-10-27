@@ -1,0 +1,36 @@
+diff --git a/candle-kernels/src/fast_exp.cuh b/candle-kernels/src/fast_exp.cuh
+index d15b0c6b..0cea21f5 100644
+--- a/candle-kernels/src/fast_exp.cuh
++++ b/candle-kernels/src/fast_exp.cuh
+@@ -252,6 +252,7 @@
+ #define FAST_EXP_CUH
+ 
+ #include <cuda_runtime.h>
++#include <cfloat>
+ #include <cuda_fp16.h>
+ #include <cuda_bf16.h>
+ 
+diff --git a/candle-kernels/src/quantize/select_kv_format.cuh b/candle-kernels/src/quantize/select_kv_format.cuh
+index afbf92ee..3f72b44f 100644
+--- a/candle-kernels/src/quantize/select_kv_format.cuh
++++ b/candle-kernels/src/quantize/select_kv_format.cuh
+@@ -151,6 +151,7 @@
+ 
+ #pragma once
+ 
++#include <cfloat>
+ #include "fp8_e4m3_utils.cuh"
+ #include "../arena_table.cuh"
+ #include "../convert/convert_all.cuh"
+diff --git a/candle-kernels/src/simple/tensor_assert.cu b/candle-kernels/src/simple/tensor_assert.cu
+index 0e32fbbc..fbf3ff34 100644
+--- a/candle-kernels/src/simple/tensor_assert.cu
++++ b/candle-kernels/src/simple/tensor_assert.cu
+@@ -47,6 +47,7 @@
+ // Empty tensors are a no-op (the launcher returns before launching).
+ 
+ #include <cstdint>
++#include <cfloat>
+ #include <cuda_runtime.h>
+ #include <cuda_fp16.h>
+ #include <cuda_bf16.h>
