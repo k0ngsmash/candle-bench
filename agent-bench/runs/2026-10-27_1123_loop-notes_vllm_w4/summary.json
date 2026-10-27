@@ -1,0 +1,44 @@
+{
+ "backend": "vllm",
+ "workers": 4,
+ "tasks": 15,
+ "fresh_context": false,
+ "repetition_penalty": null,
+ "wall_seconds": 7020,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 4,
+  "submitted": 15,
+  "empty_patches": 5,
+  "errors": 1,
+  "resolved_ids": [
+   "astropy__astropy-12907",
+   "django__django-12708",
+   "django__django-13230",
+   "sympy__sympy-20590"
+  ]
+ },
+ "metrics": {
+  "model_calls": 905,
+  "failed_calls": 0,
+  "prompt_tokens_total": 22769938,
+  "completion_tokens_total": 312441,
+  "call_seconds_median": 11.91,
+  "call_seconds_p90": 67.9,
+  "decode_tps_per_call_median": 12.4,
+  "completion_tps_aggregate": 44.5,
+  "steps_per_task_median": 67.0,
+  "task_minutes_median": 20.8,
+  "context_peak_tokens_median": 36380,
+  "context_peak_tokens_max": 64787,
+  "gpu_util_mean_pct": 98.9,
+  "gpu_mem_peak_mib": 23749.0,
+  "exit_statuses": {
+   "Submitted": 10,
+   "LimitsExceeded": 5
+  },
+  "max_command_repeats_median": 3,
+  "tasks_repeating_a_command_5plus": 1,
+  "model_busy_seconds": 24929
+ }
+}

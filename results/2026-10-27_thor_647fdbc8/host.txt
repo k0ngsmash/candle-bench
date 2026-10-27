@@ -1,0 +1,8 @@
+﻿host: thor
+commit: 647fdbc8 (john-sharratt/candle main)
+date: 2026-10-27T13:23:39.5837571+08:00
+gpu: NVIDIA GeForce RTX 4090, 616.56, 24564 MiB, 4, 16, 8.9
+cpu: AMD Ryzen 7 9800X3D 8-Core Processor
+ram: 32GB@4800, 32GB@4800
+nvcc: Cuda compilation tools, release 12.9, V12.9.86
+rustc: rustc 1.99.1 (58cf8f9c3 2026-10-13)

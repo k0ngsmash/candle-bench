@@ -1,0 +1,77 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..45bea3608 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -242,7 +242,7 @@ def _cstack(left, right):\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": "diff --git a/django/core/checks/model_checks.py b/django/core/checks/model_checks.py\nindex 5c2266ca1d..9e6f779d64 100755\n--- a/django/core/checks/model_checks.py\n+++ b/django/core/checks/model_checks.py\n@@ -4,7 +4,9 @@ from collections import defaultdict\n from itertools import chain\n \n from django.apps import apps\n+from django.conf import settings\n from django.core.checks import Error, Tags, register\n+from django.db import connections, router\n \n \n @register(Tags.models)\n@@ -36,15 +38,16 @@ def check_all_models(app_configs=None, **kwargs):\n         for model_constraint in model._meta.constraints:\n             constraints[model_constraint.name].append(model._meta.label)\n     for db_table, model_labels in db_table_models.items():\n-        if len(model_labels) != 1:\n-            errors.append(\n-                Error(\n-                    \"db_table '%s' is used by multiple models: %s.\"\n-                    % (db_table, ', '.join(db_table_models[db_table])),\n-                    obj=db_table,\n-                    id='models.E028',\n+        if len(model_labels) > 1:\n+            if _has_db_table_collision(db_table, model_labels):\n+                errors.append(\n+                    Error(\n+                        \"db_table '%s' is used by multiple models: %s.\"\n+                        % (db_table, ', '.join(db_table_models[db_table])),\n+                        obj=db_table,\n+                        id='models.E028',\n+                    )\n                 )\n-            )\n     for index_name, model_labels in indexes.items():\n         if len(model_labels) > 1:\n             model_labels = set(model_labels)\n@@ -74,6 +77,40 @@ def check_all_models(app_configs=None, **kwargs):\n     return errors\n \n \n+def _has_db_table_collision(db_table, model_labels):\n+    \"\"\"\n+    Determine if models with the same db_table have a collision.\n+\n+    When DATABASE_ROUTERS is configured, models may be on different databases,\n+    so we only flag a collision if models share a common allowed database.\n+    When no router is configured, all models use the default database.\n+    \"\"\"\n+    if not settings.DATABASE_ROUTERS:\n+        # No router configured, all models use the default database.\n+        return True\n+\n+    # Router configured - check if models share a common allowed database.\n+    # Get the model objects for each label.\n+    models = []\n+    for label in model_labels:\n+        app_label, model_name = label.split('.')\n+        models.append(apps.get_model(app_label, model_name))\n+\n+    # Check each database to see if multiple models with the same db_table\n+    # are allowed on that database.\n+    for db_alias in connections:\n+        allowed_count = sum(\n+            1 for model in models\n+            if router.allow_migrate(\n+                db_alias, model._meta.app_label, model_name=model._meta.model_name\n+            )\n+        )\n+        if allowed_count > 1:\n+            return True\n+\n+    return False\n+\n+\n def _check_lazy_references(apps, ignore=None):\n     \"\"\"\n     Ensure all lazy (i.e. string) model references have been resolved.\ndiff --git a/docs/ref/checks.txt b/docs/ref/checks.txt\nindex 99f4e1d316..97023e24e1 100755\n--- a/docs/ref/checks.txt\n+++ b/docs/ref/checks.txt\n@@ -304,8 +304,8 @@ Models\n * **models.E026**: The model cannot have more than one field with\n   ``primary_key=True``.\n * **models.W027**: ``<database>`` does not support check constraints.\n-* **models.E028**: ``db_table`` ``<db_table>`` is used by multiple models:\n-  ``<model list>``.\n+* **models.E028**: ``db_table`` ``<db_table>`` is used by multiple models\n+  with the same allowed database: ``<model list>``.\n * **models.E029**: index name ``<index>`` is not unique for model ``<model>``.\n * **models.E030**: index name ``<index>`` is not unique amongst models:\n   ``<model list>``.\n"
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 68ffb0bfe0..b06b2ad0fd 100755\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -198,6 +198,7 @@ class Feed:\n             updateddate = self._get_dynamic_attr('item_updateddate', item)\n             if updateddate and is_naive(updateddate):\n                 updateddate = make_aware(updateddate, tz)\n+            comments = self._get_dynamic_attr('item_comments', item)\n \n             feed.add_item(\n                 title=title,\n@@ -214,6 +215,7 @@ class Feed:\n                 author_link=author_link,\n                 categories=self._get_dynamic_attr('item_categories', item),\n                 item_copyright=self._get_dynamic_attr('item_copyright', item),\n+                comments=comments,\n                 **self.item_extra_kwargs(item)\n             )\n         return feed\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": ""
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": "Need to create patch first\n"
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": "diff --git a/django/db/backends/base/schema.py b/django/db/backends/base/schema.py\nindex 61f88401ab..1f521cfc5c 100755\n--- a/django/db/backends/base/schema.py\n+++ b/django/db/backends/base/schema.py\n@@ -393,7 +393,7 @@ class BaseDatabaseSchemaEditor:\n         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\n-            self._delete_composed_index(model, fields, {'index': True}, self.sql_delete_index)\n+            self._delete_composed_index(model, fields, {'index': True, 'unique': False}, self.sql_delete_index)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": "diff --git a/src/_pytest/python.py b/src/_pytest/python.py\nindex 37735784..58037f7e 100755\n--- a/src/_pytest/python.py\n+++ b/src/_pytest/python.py\n@@ -1262,7 +1262,7 @@ def _show_fixtures_per_test(config, session):\n             bestrel = get_best_relpath(fixture_def.func)\n             funcargspec = \"{} -- {}\".format(argname, bestrel)\n         else:\n-            funcargspec = argname\n+            funcargspec = \"%s (scope: %s)\" % (argname, fixture_def.scope)\n         tw.line(funcargspec, green=True)\n         fixture_doc = fixture_def.func.__doc__\n         if fixture_doc:\n@@ -1343,9 +1343,9 @@ def _showfixtures_main(config, session):\n         if verbose <= 0 and argname[0] == \"_\":\n             continue\n         if verbose > 0:\n-            funcargspec = \"%s -- %s\" % (argname, bestrel)\n+            funcargspec = \"%s -- %s (scope: %s)\" % (argname, bestrel, fixturedef.scope)\n         else:\n-            funcargspec = argname\n+            funcargspec = \"%s (scope: %s)\" % (argname, fixturedef.scope)\n         tw.line(funcargspec, green=True)\n         loc = getlocation(fixturedef.func, curdir)\n         doc = fixturedef.func.__doc__ or \"\"\n"
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "No patch.txt found, generating...\ndiff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..9297b8d0cd 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2407,16 +2407,16 @@ class Figure(FigureBase):\n         self._layout_engine = None\n \n         if layout is not None:\n-            if (tight_layout is not None):\n+            if tight_layout is not None:\n                 _api.warn_external(\n                     \"The Figure parameters 'layout' and 'tight_layout' cannot \"\n                     \"be used together. Please use 'layout' only.\")\n-            if (constrained_layout is not None):\n+            if constrained_layout is not None:\n                 _api.warn_external(\n                     \"The Figure parameters 'layout' and 'constrained_layout' \"\n                     \"cannot be used together. Please use 'layout' only.\")\n             self.set_layout_engine(layout=layout)\n-        elif tight_layout is not None:\n+        elif tight_layout:\n             if constrained_layout is not None:\n                 _api.warn_external(\n                     \"The Figure parameters 'tight_layout' and \"\n@@ -2425,7 +2425,7 @@ class Figure(FigureBase):\n             self.set_layout_engine(layout='tight')\n             if isinstance(tight_layout, dict):\n                 self.get_layout_engine().set(**tight_layout)\n-        elif constrained_layout is not None:\n+        elif constrained_layout:\n             self.set_layout_engine(layout='constrained')\n             if isinstance(constrained_layout, dict):\n                 self.get_layout_engine().set(**constrained_layout)\n"
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": ""
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\nindex a0eb97792..c320a1b81 100755\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -1470,6 +1470,15 @@ def _print_Adjoint(self, expr):\n         else:\n             return r\"%s^\\dagger\" % self._print(mat)\n \n+\n+    def _print_Trace(self, expr):\n+        mat = expr.arg\n+        from sympy.matrices import MatrixSymbol\n+        if not isinstance(mat, MatrixSymbol):\n+            return r\"\\operatorname{Tr}\\left(%s\\right)\" % self._print(mat)\n+        else:\n+            return r\"\\operatorname{Tr}%s\" % self._print(mat)\n+\n     def _print_MatAdd(self, expr):\n         terms = [self._print(t) for t in expr.args]\n         l = []\n"
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": "diff --git a/sympy/core/_print_helpers.py b/sympy/core/_print_helpers.py\nindex 96d7e72676..f7875b9eec 100755\n--- a/sympy/core/_print_helpers.py\n+++ b/sympy/core/_print_helpers.py\n@@ -17,6 +17,8 @@ class Printable:\n     This also adds support for LaTeX printing in jupyter notebooks.\n     \"\"\"\n \n+    __slots__ = ()\n+\n     # Note, we always use the default ordering (lex) in __str__ and __repr__,\n     # regardless of the global setting. See issue 5487.\n     def __str__(self):\n"
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": "diff --git a/sympy/core/power.py b/sympy/core/power.py\nindex b2832dd26..f03202537 100755\n--- a/sympy/core/power.py\n+++ b/sympy/core/power.py\n@@ -1185,6 +1185,11 @@ def as_numer_denom(self):\n         elif dnonpos is None and not int_exp:\n             n = base\n             d = S.One\n+        # Also check if n's sign is unknown (e.g. -3*x - 1 where x is not constrained)\n+        # If n's sign is unknown and exp is not an integer, don't split\n+        elif n.is_positive is None and n.is_negative is None and not int_exp:\n+            n = base\n+            d = S.One\n         if neg_exp:\n             n, d = d, n\n             exp = -exp\n"
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": ""
+  }
+}

@@ -1,0 +1,1291 @@
+    Updating crates.io index
+     Locking 978 packages to highest compatible versions
+      Adding aes-gcm v0.10.3 (available: v0.11.1)
+      Adding argon2 v0.5.3 (available: v0.6.0)
+      Adding axum v0.7.9 (available: v0.8.9)
+      Adding base64 v0.22.1 (available: v0.23.1)
+      Adding bincode v1.3.3 (available: v3.0.0)
+      Adding boa_engine v0.21.1 (available: v0.22.0)
+      Adding chacha20poly1305 v0.10.1 (available: v0.11.0)
+      Adding chrono-tz v0.9.0 (available: v0.10.4)
+      Adding clap-verbosity-flag v2.2.3 (available: v3.0.4)
+      Adding cpal v0.15.3 (available: v0.18.2)
+      Adding criterion v0.5.1 (available: v0.8.2)
+      Adding cudarc v0.17.8 (available: v0.19.10)
+      Adding digest v0.10.7 (available: v0.11.3)
+      Adding dns-lookup v2.1.1 (available: v4.0.2)
+      Adding ed25519-dalek v2.2.0 (available: v3.0.0)
+      Adding enterpolation v0.2.1 (available: v0.3.0)
+      Adding evalexpr v12.0.3 (available: v13.1.0)
+      Adding fancy-regex v0.13.0 (available: v0.20.0)
+      Adding float8 v0.4.2 (available: v0.7.0)
+      Adding flume v0.11.1 (available: v0.12.0)
+      Adding gemm v0.18.2 (available: v0.19.0)
+      Adding generic-array v0.14.7 (available: v0.14.9)
+      Adding getrandom v0.2.17 (available: v0.4.3)
+      Adding git2 v0.20.4 (available: v0.21.0)
+      Adding gloo v0.11.0 (available: v0.12.0)
+      Adding hf-hub v0.4.3 (available: v1.0.0)
+      Adding hkdf v0.12.4 (available: v0.13.0)
+      Adding hmac v0.12.1 (available: v0.13.0)
+      Adding icu_collections v2.0.0 (available: v2.4.0)
+      Adding icu_normalizer v2.0.1 (available: v2.4.0)
+      Adding icu_normalizer_data v2.0.0 (available: v2.4.0)
+      Adding icu_properties v2.0.2 (available: v2.4.0)
+      Adding icu_properties_data v2.0.1 (available: v2.4.0)
+      Adding idna_adapter v1.2.1 (available: v1.2.2)
+      Adding imageproc v0.24.1 (available: v0.27.0)
+      Adding matchit v0.7.3 (available: v0.9.2)
+      Adding md-5 v0.10.6 (available: v0.11.0)
+      Adding minicov v0.3.8 (available: v0.3.9)
+      Adding notify v6.1.1 (available: v8.2.1)
+      Adding nvml-wrapper v0.12.1 (available: v0.13.0)
+      Adding oci-spec v0.6.7 (available: v0.6.8)
+      Adding p256 v0.13.2 (available: v0.14.0)
+      Adding parquet v51.0.0 (available: v60.0.0)
+      Adding pbkdf2 v0.12.2 (available: v0.13.0)
+      Adding pkcs8 v0.10.2 (available: v0.11.0)
+      Adding pyo3 v0.22.6 (available: v0.30.1)
+      Adding rand v0.9.5 (available: v0.10.3)
+      Adding rand_distr v0.5.1 (available: v0.6.0)
+      Adding reqwest v0.12.28 (available: v0.13.5)
+      Adding rubato v0.15.0 (available: v5.0.1)
+      Adding rusqlite v0.31.0 (available: v0.41.0)
+      Adding safetensors v0.4.5 (available: v0.8.0)
+      Adding schemars v0.8.22 (available: v1.2.3)
+      Adding scraper v0.21.0 (available: v0.29.0)
+      Adding scrypt v0.11.0 (available: v0.12.0)
+      Adding serial_test v3.5.0 (available: v4.0.1)
+      Adding sha1 v0.10.7 (available: v0.11.0)
+      Adding sha2 v0.10.9 (available: v0.11.1)
+      Adding sha3 v0.10.9 (available: v0.12.0)
+      Adding similar v2.7.0 (available: v3.2.1)
+      Adding strum v0.26.3 (available: v0.28.0)
+      Adding strum_macros v0.26.4 (available: v0.28.0)
+      Adding symphonia v0.5.5 (available: v0.6.1)
+      Adding sysinfo v0.31.4 (available: v0.39.6)
+      Adding thiserror v1.0.69 (available: v2.0.21)
+      Adding tokenizers v0.21.4 (available: v0.23.2)
+      Adding tokio-tungstenite v0.23.1 (available: v0.30.0)
+      Adding tokio-tungstenite v0.24.0 (available: v0.30.0)
+      Adding totp-rs v5.7.2 (available: v6.0.0)
+      Adding tree-sitter v0.26.13 (available: v0.27.1)
+      Adding tree-sitter-iter v1.30.1 (available: v1.31.1)
+      Adding tree-sitter-php v0.24.2 (available: v0.25.1)
+      Adding ureq v2.12.1 (available: v3.5.0)
+      Adding validator v0.18.1 (available: v0.21.0)
+      Adding wasm-streams v0.4.1 (available: v0.4.2)
+      Adding web-sys v0.3.70 (available: v0.3.106)
+      Adding windows v0.54.0 (available: v0.62.2)
+      Adding windows-sys v0.59.0 (available: v0.61.2)
+      Adding yamlpatch v1.30.1 (available: v1.31.1)
+      Adding yamlpath v1.30.1 (available: v1.31.1)
+      Adding yew v0.20.0 (available: v0.23.0)
+      Adding yew-agent v0.2.0 (available: v0.5.0)
+      Adding yoke v0.7.5 (available: v0.8.4)
+      Adding zip v1.3.1 (available: v9.1.2)
+ Downloading crates ...
+  Downloaded getrandom v0.4.3
+  Downloaded h3-quinn v0.0.10
+  Downloaded hex v0.4.3
+  Downloaded gemm-f32 v0.18.2
+  Downloaded gemm-f16 v0.18.2
+  Downloaded httpdate v1.0.3
+  Downloaded gemm-c64 v0.18.2
+  Downloaded matchers v0.2.0
+  Downloaded gemm-c32 v0.18.2
+  Downloaded fxhash v0.2.1
+  Downloaded inout v0.1.4
+  Downloaded heck v0.5.0
+  Downloaded adler2 v2.0.1
+  Downloaded generic-array v0.14.7
+  Downloaded hyper-tls v0.6.0
+  Downloaded gemm-f64 v0.18.2
+  Downloaded ghash v0.5.1
+  Downloaded ident_case v1.0.1
+  Downloaded http-body v1.1.0
+  Downloaded mac v0.1.1
+  Downloaded lazy_static v1.5.1
+  Downloaded macro_rules_attribute v0.2.3
+  Downloaded keccak v0.1.6
+  Downloaded lru-slab v0.1.3
+  Downloaded md-5 v0.10.6
+  Downloaded idna_adapter v1.2.1
+  Downloaded include_dir v0.7.4
+  Downloaded macro_rules_attribute-proc_macro v0.2.3
+  Downloaded is_terminal_polyfill v1.70.2
+  Downloaded itoa v1.0.18
+  Downloaded match_token v0.1.0
+  Downloaded include_dir_macros v0.7.4
+  Downloaded if-addrs v0.15.0
+  Downloaded memoffset v0.9.1
+  Downloaded mime v0.3.17
+  Downloaded rand_pcg v0.10.2
+  Downloaded rustc_version v0.4.1
+  Downloaded scopeguard v1.2.0
+  Downloaded salsa20 v0.10.2
+  Downloaded gemm v0.18.2
+  Downloaded globset v0.4.20
+  Downloaded hashlink v0.9.1
+  Downloaded group v0.13.0
+  Downloaded socks v0.3.4
+  Downloaded time-core v0.1.9
+  Downloaded lock_api v0.4.14
+  Downloaded libloading v0.8.9
+  Downloaded latex2mathml v0.2.3
+  Downloaded jobserver v0.1.35
+  Downloaded matchit v0.7.3
+  Downloaded ipnet v2.12.2
+  Downloaded rand_core v0.6.4
+  Downloaded gemm-common v0.18.2
+  Downloaded try-lock v0.2.5
+  Downloaded getrandom v0.2.17
+  Downloaded rustls-native-certs v0.8.5
+  Downloaded iana-time-zone v0.1.65
+  Downloaded http-body-util v0.1.5
+  Downloaded hyper-rustls v0.27.10
+  Downloaded httparse v1.10.1
+  Downloaded getopts v0.2.24
+  Downloaded hmac v0.12.1
+  Downloaded hf-hub v0.4.3
+  Downloaded litrs v1.0.1
+  Downloaded base16ct v0.2.0
+  Downloaded serde_path_to_error v0.1.20
+  Downloaded servo_arc v0.4.3
+  Downloaded shlex v2.0.1
+  Downloaded asn1-rs-derive v0.6.0
+  Downloaded slab v0.4.12
+  Downloaded strum_macros v0.26.4
+  Downloaded thiserror-impl v1.0.69
+  Downloaded tokio-rustls v0.26.6
+  Downloaded toml_datetime v1.1.2+spec-1.1.0
+  Downloaded castaway v0.2.4
+  Downloaded litemap v0.8.3
+  Downloaded mime_guess v2.0.5
+  Downloaded memmap2 v0.9.12
+  Downloaded markup5ever v0.14.1
+  Downloaded chrono-tz-build v0.3.0
+  Downloaded getrandom v0.3.4
+  Downloaded icu_provider v2.4.0
+  Downloaded icu_properties v2.0.2
+  Downloaded cpufeatures v0.2.17
+  Downloaded string_cache v0.8.9
+  Downloaded autocfg v1.5.1
+  Downloaded tendril v0.4.3
+  Downloaded time-macros v0.2.32
+  Downloaded bit-vec v0.6.3
+  Downloaded derive_builder_macro v0.20.2
+  Downloaded dirs-sys v0.5.0
+  Downloaded dyn-stack-macros v0.1.3
+  Downloaded fixedbitset v0.4.2
+  Downloaded fs2 v0.4.3
+  Downloaded log v0.4.34
+  Downloaded instant-acme v0.8.5
+  Downloaded selectors v0.26.0
+  Downloaded serde_core v1.0.229
+  Downloaded boa_gc v0.21.1
+  Downloaded byteorder v1.5.0
+  Downloaded fallible-streaming-iterator v0.1.9
+  Downloaded half v2.7.1
+  Downloaded ahash v0.8.12
+  Downloaded icu_normalizer_data v2.0.0
+  Downloaded anstream v1.0.0
+  Downloaded anyhow v1.0.104
+  Downloaded sharded-slab v0.1.7
+  Downloaded curve25519-dalek-derive v0.1.1
+  Downloaded dashmap v6.2.1
+  Downloaded dtoa v1.0.11
+  Downloaded dynify-macros v0.1.2
+  Downloaded dary_heap v0.3.9
+  Downloaded utf8_iter v1.0.4
+  Downloaded validator_derive v0.18.2
+  Downloaded webpki-roots v0.26.11
+  Downloaded universal-hash v0.5.1
+  Downloaded want v0.3.2
+  Downloaded zerofrom v0.1.8
+  Downloaded boa_string v0.21.1
+  Downloaded indicatif v0.17.11
+  Downloaded fallible-iterator v0.3.0
+  Downloaded intrusive-collections v0.9.7
+  Downloaded rayon-core v1.13.0
+  Downloaded chacha20 v0.10.2
+  Downloaded ecdsa v0.16.9
+  Downloaded float8 v0.3.0
+  Downloaded foldhash v0.2.0
+  Downloaded new_debug_unreachable v1.0.6
+  Downloaded minimal-lexical v0.2.1
+  Downloaded icu_normalizer v2.0.1
+  Downloaded unicase v2.10.0
+  Downloaded num-iter v0.1.46
+  Downloaded openssl-macros v0.1.1
+  Downloaded openssl-probe v0.2.2
+  Downloaded ssh2 v0.9.6
+  Downloaded toml_edit v0.25.17+spec-1.1.0
+  Downloaded console v0.15.11
+  Downloaded cookie v0.18.2
+  Downloaded xsum v0.1.6
+  Downloaded phf_codegen v0.11.3
+  Downloaded precomputed-hash v0.1.1
+  Downloaded icu_locale_core v2.4.0
+  Downloaded ignore v0.4.33
+  Downloaded futures-channel v0.3.34
+  Downloaded zmij v1.0.23
+  Downloaded powerfmt v0.2.1
+  Downloaded icu_collections v2.0.0
+  Downloaded rfc6979 v0.4.0
+  Downloaded multer v3.1.0
+  Downloaded html5ever v0.29.1
+  Downloaded http v1.5.0
+  Downloaded num_enum v0.7.6
+  Downloaded num_enum_derive v0.7.6
+  Downloaded pbkdf2 v0.12.2
+  Downloaded same-file v1.0.6
+  Downloaded crossbeam-utils v0.8.23
+  Downloaded dynify v0.1.2
+  Downloaded yasna v0.6.0
+  Downloaded phf_shared v0.11.3
+  Downloaded pin-project-lite v0.2.17
+  Downloaded scrypt v0.11.0
+  Downloaded strsim v0.11.1
+  Downloaded small_btree v0.1.0
+  Downloaded ppv-lite86 v0.2.21
+  Downloaded indexmap v2.14.2
+  Downloaded rand v0.9.5
+  Downloaded rustls-webpki v0.103.16
+  Downloaded futures-lite v2.6.1
+  Downloaded zune-core v0.5.3
+  Downloaded tower-layer v0.3.3
+  Downloaded onig v6.5.3
+  Downloaded bit-set v0.5.3
+  Downloaded asn1-rs-impl v0.2.0
+  Downloaded block-buffer v0.10.4
+  Downloaded rustversion v1.0.23
+  Downloaded sec1 v0.7.3
+  Downloaded sha2 v0.10.9
+  Downloaded string_cache_codegen v0.5.4
+  Downloaded simd-adler32 v0.3.10
+  Downloaded streaming-iterator v0.1.9
+  Downloaded memchr v2.8.3
+  Downloaded cfg-if v1.0.5
+  Downloaded base64 v0.23.1
+  Downloaded poly1305 v0.8.0
+  Downloaded thiserror-impl v2.0.21
+  Downloaded prost-types v0.12.6
+  Downloaded tungstenite v0.24.0
+  Downloaded tracing-log v0.2.0
+  Downloaded h3 v0.0.8
+  Downloaded quinn-udp v0.5.16
+  Downloaded clap_lex v1.1.1
+  Downloaded colorchoice v1.0.5
+  Downloaded darling_macro v0.20.11
+  Downloaded document-features v0.2.12
+  Downloaded errno v0.3.14
+  Downloaded semver v1.0.28
+  Downloaded anstyle-parse v1.0.0
+  Downloaded spin v0.9.9
+  Downloaded equivalent v1.0.3
+  Downloaded toml_parser v1.1.5+spec-1.1.0
+  Downloaded boa_macros v0.21.1
+  Downloaded foreign-types v0.3.2
+  Downloaded futures-io v0.3.34
+  Downloaded futf v0.1.5
+  Downloaded urlencoding v2.1.3
+  Downloaded utf8parse v0.2.2
+  Downloaded write16 v1.0.0
+  Downloaded hashbrown v0.14.5
+  Downloaded hashbrown v0.16.1
+  Downloaded crossbeam v0.8.5
+  Downloaded crossbeam-deque v0.8.8
+  Downloaded deranged v0.5.9
+  Downloaded unicode-normalization-alignments v0.1.12
+  Downloaded digest v0.10.7
+  Downloaded num-conv v0.2.2
+  Downloaded crossbeam-channel v0.5.17
+  Downloaded crypto-bigint v0.5.5
+  Downloaded url v2.5.8
+  Downloaded tempfile v3.27.0
+  Downloaded ed25519 v2.2.3
+  Downloaded ff v0.13.1
+  Downloaded num_cpus v1.17.0
+  Downloaded parking v2.2.1
+  Downloaded opaque-debug v0.3.1
+  Downloaded phf_generator v0.11.3
+  Downloaded itertools v0.12.1
+  Downloaded idna v1.1.0
+  Downloaded tinyvec v1.13.3
+  Downloaded phf_shared v0.13.1
+  Downloaded potential_utf v0.1.6
+  Downloaded hashbrown v0.17.1
+  Downloaded clap_derive v4.6.7
+  Downloaded writeable v0.6.4
+  Downloaded zerovec-derive v0.11.7
+  Downloaded tree-sitter-css v0.25.0
+  Downloaded psl-types v2.0.11
+  Downloaded signature v2.2.0
+  Downloaded hyper-util v0.1.21
+  Downloaded pkg-config v0.3.34
+  Downloaded icu_properties_data v2.0.1
+  Downloaded stable_deref_trait v1.2.1
+  Downloaded subtle v2.6.1
+  Downloaded futures-util v0.3.34
+  Downloaded hyper v1.12.0
+  Downloaded hkdf v0.12.4
+  Downloaded quinn v0.11.12
+  Downloaded rand_chacha v0.3.1
+  Downloaded atomic-waker v1.1.2
+  Downloaded anstyle-query v1.1.5
+  Downloaded base32 v0.5.1
+  Downloaded base64 v0.13.1
+  Downloaded pem-rfc7468 v0.7.0
+  Downloaded scraper v0.21.0
+  Downloaded serde_derive_internals v0.29.1
+  Downloaded cfg_aliases v0.2.2
+  Downloaded itertools v0.14.0
+  Downloaded libm v0.2.16
+  Downloaded constant_time_eq v0.3.1
+  Downloaded cow-utils v0.1.3
+  Downloaded float16 v0.1.7
+  Downloaded thiserror v1.0.69
+  Downloaded synstructure v0.14.0
+  Downloaded tinystr v0.8.5
+  Downloaded prost-build v0.12.6
+  Downloaded proc-macro-error v1.0.4
+  Downloaded h2 v0.4.20
+  Downloaded num-bigint v0.4.8
+  Downloaded ego-tree v0.9.0
+  Downloaded sysinfo v0.31.4
+  Downloaded parse-zoneinfo v0.3.1
+  Downloaded nvml-wrapper-sys v0.9.1
+  Downloaded p256 v0.13.2
+  Downloaded bit-vec v0.9.1
+  Downloaded bytemuck_derive v1.12.1
+  Downloaded cipher v0.4.4
+  Downloaded crossbeam-queue v0.3.14
+  Downloaded futures-macro v0.3.34
+  Downloaded zerovec v0.11.9
+  Downloaded ug v0.5.0
+  Downloaded uuid v1.29.0
+  Downloaded utf-8 v0.7.6
+  Downloaded utf16_iter v1.0.5
+  Downloaded tokio-native-tls v0.3.1
+  Downloaded ctr v0.9.2
+  Downloaded data-encoding v2.11.1
+  Downloaded wrapcenum-derive v0.4.1
+  Downloaded tokio-stream v0.1.19
+  Downloaded yoke-derive v0.7.5
+  Downloaded multimap v0.10.1
+  Downloaded multiversion_no_op v1.0.0
+  Downloaded ed25519-dalek v2.2.0
+  Downloaded dns-lookup v2.1.1
+  Downloaded either v1.19.0
+  Downloaded rcgen v0.14.10
+  Downloaded asn1-rs v0.7.2
+  Downloaded ryu v1.0.23
+  Downloaded percent-encoding v2.3.2
+  Downloaded smallvec v1.16.4
+  Downloaded tree-sitter-java v0.23.5
+  Downloaded zeroize v1.9.1
+  Downloaded num-integer v0.1.47
+  Downloaded num-rational v0.4.2
+  Downloaded reborrow v0.5.5
+  Downloaded serde_plain v1.0.2
+  Downloaded tree-sitter-go v0.25.0
+  Downloaded fast-float2 v0.2.4
+  Downloaded password-hash v0.5.0
+  Downloaded strum v0.26.3
+  Downloaded tokio-macros v2.7.2
+  Downloaded git2 v0.20.4
+  Downloaded tree-sitter-language v0.1.9
+  Downloaded phf v0.11.3
+  Downloaded primeorder v0.13.6
+  Downloaded boa_interner v0.21.1
+  Downloaded clap_builder v4.6.7
+  Downloaded tree-sitter v0.26.13
+  Downloaded tracing-core v0.1.36
+  Downloaded typenum v1.20.1
+  Downloaded cssparser-macros v0.6.1
+  Downloaded dirs v6.0.0
+  Downloaded unicode_categories v0.1.1
+  Downloaded zip v1.3.1
+  Downloaded derive_builder v0.20.2
+  Downloaded seq-macro v0.3.6
+  Downloaded rand_core v0.10.1
+  Downloaded publicsuffix v2.3.0
+  Downloaded synstructure v0.13.2
+  Downloaded equator-macro v0.4.2
+  Downloaded thiserror v2.0.21
+  Downloaded tokio-tungstenite v0.24.0
+  Downloaded futures v0.3.34
+  Downloaded axum-core v0.4.5
+  Downloaded futures-core v0.3.34
+  Downloaded pkcs8 v0.10.2
+  Downloaded tracing-subscriber v0.3.23
+  Downloaded unicode-bidi v0.3.18
+  Downloaded bincode v1.3.3
+  Downloaded constant_time_eq v0.4.2
+  Downloaded validator v0.18.1
+  Downloaded num v0.4.3
+  Downloaded tree-sitter-python v0.25.0
+  Downloaded boa_parser v0.21.1
+  Downloaded regex v1.13.1
+  Downloaded dyn-stack v0.13.2
+  Downloaded quote v1.0.47
+  Downloaded number_prefix v0.4.0
+  Downloaded flume v0.11.1
+  Downloaded nom v7.1.3
+  Downloaded fdeflate v0.3.7
+  Downloaded blake3 v1.8.7
+  Downloaded float8 v0.4.2
+  Downloaded serde_urlencoded v0.7.1
+  Downloaded cookie_store v0.22.1
+  Downloaded tap v1.0.1
+  Downloaded aligned-vec v0.6.4
+  Downloaded miniz_oxide v0.9.1
+  Downloaded serde_derive v1.0.229
+  Downloaded idna v0.5.0
+  Downloaded paste v1.0.15
+  Downloaded pastey v0.2.3
+  Downloaded prost v0.12.6
+  Downloaded fancy-regex v0.13.0
+  Downloaded openssl-sys v0.9.117
+  Downloaded rand v0.10.3
+  Downloaded dtoa-short v0.3.5
+  Downloaded signal-hook-registry v1.4.8
+  Downloaded yoke-derive v0.8.4
+  Downloaded yoke v0.8.4
+  Downloaded tree-sitter-html v0.23.2
+  Downloaded option-ext v0.2.0
+  Downloaded zerocopy-derive v0.8.63
+  Downloaded ryu-js v1.0.3
+  Downloaded parking_lot_core v0.9.12
+  Downloaded argon2 v0.5.3
+  Downloaded num_threads v0.1.8
+  Downloaded aho-corasick v1.1.5
+  Downloaded fixedbitset v0.5.7
+  Downloaded ug-cuda v0.5.0
+  Downloaded phf_generator v0.13.1
+  Downloaded proc-macro-error-attr v1.0.4
+  Downloaded derive_builder_core v0.20.2
+  Downloaded rusticata-macros v4.1.0
+  Downloaded prettyplease v0.2.37
+  Downloaded tokenizers v0.21.4
+  Downloaded walkdir v2.5.0
+  Downloaded nu-ansi-term v0.50.3
+  Downloaded tower-service v0.3.3
+  Downloaded siphasher v1.0.4
+  Downloaded rayon v1.12.0
+  Downloaded serde v1.0.229
+  Downloaded pin-project-internal v1.1.13
+  Downloaded darling v0.20.11
+  Downloaded futures-sink v0.3.34
+  Downloaded version_check v0.9.5
+  Downloaded rustls-platform-verifier v0.7.1
+  Downloaded socket2 v0.6.5
+  Downloaded monostate-impl v0.1.18
+  Downloaded proc-macro-crate v3.5.0
+  Downloaded pulldown-cmark-escape v0.11.0
+  Downloaded spki v0.7.3
+  Downloaded crc32fast v1.5.3
+  Downloaded unicode-ident v1.0.27
+  Downloaded chacha20 v0.9.1
+  Downloaded core_detect v1.0.0
+  Downloaded rustc-hash v2.1.3
+  Downloaded sha1 v0.10.7
+  Downloaded futures-concurrency v7.7.1
+  Downloaded rand_distr v0.5.1
+  Downloaded find-msvc-tools v0.1.15
+  Downloaded unicode-segmentation v1.13.3
+  Downloaded native-tls v0.2.18
+  Downloaded phf_macros v0.13.1
+  Downloaded totp-rs v5.7.2
+  Downloaded blake2 v0.10.6
+  Downloaded rand_core v0.9.5
+  Downloaded static_assertions v1.1.0
+  Downloaded form_urlencoded v1.2.2
+  Downloaded untrusted v0.9.0
+  Downloaded flate2 v1.1.10
+  Downloaded serde_json v1.0.154
+  Downloaded image v0.25.10
+  Downloaded serde_yaml v0.9.34+deprecated
+  Downloaded zerotrie v0.2.5
+  Downloaded base64 v0.22.1
+  Downloaded similar v2.7.0
+  Downloaded crypto-common v0.1.7
+  Downloaded moxcms v0.8.1
+  Downloaded compact_str v0.9.1
+  Downloaded tracing-attributes v0.1.31
+  Downloaded cssparser v0.34.0
+  Downloaded derive_more v0.99.20
+  Downloaded futures-executor v0.3.34
+  Downloaded dyn-clone v1.0.20
+  Downloaded zerofrom-derive v0.1.8
+  Downloaded oid-registry v0.8.1
+  Downloaded polyval v0.6.2
+  Downloaded yoke v0.7.5
+  Downloaded parking_lot v0.12.5
+  Downloaded sync_wrapper v1.0.2
+  Downloaded schemars_derive v0.8.22
+  Downloaded rand v0.8.8
+  Downloaded bytemuck v1.25.2
+  Downloaded raw-cpuid v11.6.0
+  Downloaded allocator-api2 v0.2.21
+  Downloaded aead v0.5.2
+  Downloaded phf v0.13.1
+  Downloaded tree-sitter-javascript v0.25.0
+  Downloaded tower v0.5.3
+  Downloaded quinn-proto v0.11.19
+  Downloaded pem v4.0.0
+  Downloaded phf_macros v0.11.3
+  Downloaded rayon-cond v0.4.0
+  Downloaded chrono v0.4.45
+  Downloaded boa_ast v0.21.1
+  Downloaded thin-vec v0.2.21
+  Downloaded syn v3.0.9
+  Downloaded crossbeam-epoch v0.9.21
+  Downloaded monostate v0.1.18
+  Downloaded equator v0.4.2
+  Downloaded displaydoc v0.2.7
+  Downloaded axum-macros v0.4.2
+  Downloaded regex-syntax v0.8.11
+  Downloaded clap v4.6.7
+  Downloaded darling_core v0.20.11
+  Downloaded mio v1.2.4
+  Downloaded num-complex v0.4.6
+  Downloaded fnv v1.0.7
+  Downloaded arrayvec v0.7.8
+  Downloaded thread_local v1.1.10
+  Downloaded futures-task v0.3.34
+  Downloaded protoc-bin-vendored v3.3.0
+  Downloaded unsafe-libyaml v0.2.11
+  Downloaded foreign-types-shared v0.1.1
+  Downloaded pulldown-cmark v0.13.5
+  Downloaded cpufeatures v0.3.1
+  Downloaded schemars v0.8.22
+  Downloaded tag_ptr v0.1.0
+  Downloaded evalexpr v12.0.3
+  Downloaded elliptic-curve v0.13.8
+  Downloaded once_cell v1.21.4
+  Downloaded safetensors v0.4.5
+  Downloaded byteorder-lite v0.1.0
+  Downloaded prost-derive v0.12.6
+  Downloaded rand_chacha v0.9.0
+  Downloaded bytes v1.12.1
+  Downloaded pin-project v1.1.13
+  Downloaded base64ct v1.8.3
+  Downloaded fastrand v2.5.0
+  Downloaded simdutf8 v0.1.5
+  Downloaded cc v1.10.0
+  Downloaded anstyle v1.0.14
+  Downloaded bitflags v2.13.2
+  Downloaded rustls-pki-types v1.15.1
+  Downloaded der-parser v10.0.0
+  Downloaded chacha20poly1305 v0.10.1
+  Downloaded zune-jpeg v0.5.15
+  Downloaded async-trait v0.1.92
+  Downloaded esaxx-rs v0.1.10
+  Downloaded proc-macro2 v1.0.107
+  Downloaded const-oid v0.9.6
+  Downloaded x509-parser v0.18.1
+  Downloaded tower-http v0.6.11
+  Downloaded axum v0.7.9
+  Downloaded der v0.7.10
+  Downloaded num-traits v0.2.19
+  Downloaded webpki-roots v1.0.11
+  Downloaded zlib-rs v0.6.8
+  Downloaded portable-atomic v1.15.0
+  Downloaded reqwest v0.12.28
+  Downloaded aes-gcm v0.10.3
+  Downloaded pulp v0.21.5
+  Downloaded aes v0.8.4
+  Downloaded ureq v2.12.1
+  Downloaded png v0.18.1
+  Downloaded nvml-wrapper v0.12.1
+  Downloaded syn v1.0.109
+  Downloaded tracing v0.1.44
+  Downloaded tokio-util v0.7.20
+  Downloaded unicode-normalization v0.1.26
+  Downloaded curve25519-dalek v4.1.3
+  Downloaded rusqlite v0.31.0
+  Downloaded tree-sitter-rust v0.24.2
+  Downloaded unicode-width v0.2.2
+  Downloaded rustls v0.23.46
+  Downloaded rustix v1.1.6
+  Downloaded regress v0.10.5
+  Downloaded winnow v1.0.4
+  Downloaded bstr v1.13.1
+  Downloaded chrono-tz v0.9.0
+  Downloaded tree-sitter-c v0.24.2
+  Downloaded vcpkg v0.2.15
+  Downloaded libssh2-sys v0.3.3
+  Downloaded time v0.3.55
+  Downloaded zerocopy v0.8.63
+  Downloaded syn v2.0.119
+  Downloaded regex-automata v0.4.18
+  Downloaded tree-sitter-bash v0.25.1
+  Downloaded openssl v0.10.81
+  Downloaded tree-sitter-ruby v0.23.1
+  Downloaded cudarc v0.17.8
+  Downloaded petgraph v0.6.5
+  Downloaded tree-sitter-php v0.24.2
+  Downloaded encoding_rs v0.8.42
+  Downloaded spm_precompiled v0.1.4
+  Downloaded libc v0.2.191
+  Downloaded libz-sys v1.1.30
+  Downloaded onig_sys v69.9.3
+  Downloaded tree-sitter-typescript v0.23.2
+  Downloaded boa_engine v0.21.1
+  Downloaded tree-sitter-cpp v0.23.4
+  Downloaded pxfm v0.1.30
+  Downloaded sha3 v0.10.9
+  Downloaded tokio v1.54.1
+  Downloaded ring v0.17.14
+  Downloaded libgit2-sys v0.18.8+1.9.7
+  Downloaded protoc-bin-vendored-macos-aarch_64 v3.3.0
+  Downloaded protoc-bin-vendored-macos-x86_64 v3.3.0
+  Downloaded linux-raw-sys v0.12.1
+  Downloaded protoc-bin-vendored-win32 v3.3.0
+  Downloaded protoc-bin-vendored-linux-aarch_64 v3.3.0
+  Downloaded protoc-bin-vendored-linux-x86_64 v3.3.0
+  Downloaded protoc-bin-vendored-linux-ppcle_64 v3.3.0
+  Downloaded protoc-bin-vendored-linux-x86_32 v3.3.0
+  Downloaded protoc-bin-vendored-linux-s390_64 v3.3.0
+  Downloaded libsqlite3-sys v0.28.0
+  Downloaded miniz_oxide v0.8.9
+   Compiling libc v0.2.191
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling cfg-if v1.0.5
+   Compiling version_check v0.9.5
+   Compiling find-msvc-tools v0.1.15
+   Compiling shlex v2.0.1
+   Compiling zeroize v1.9.1
+   Compiling serde_core v1.0.229
+   Compiling once_cell v1.21.4
+   Compiling memchr v2.8.3
+   Compiling subtle v2.6.1
+   Compiling typenum v1.20.1
+   Compiling smallvec v1.16.4
+   Compiling itoa v1.0.18
+   Compiling serde v1.0.229
+   Compiling generic-array v0.14.7
+   Compiling log v0.4.34
+   Compiling autocfg v1.5.1
+   Compiling pin-project-lite v0.2.17
+   Compiling zerocopy v0.8.63
+   Compiling libm v0.2.16
+   Compiling bitflags v2.13.2
+   Compiling scopeguard v1.2.0
+   Compiling getrandom v0.3.4
+   Compiling stable_deref_trait v1.2.1
+   Compiling num-traits v0.2.19
+   Compiling const-oid v0.9.6
+   Compiling equivalent v1.0.3
+   Compiling lock_api v0.4.14
+   Compiling parking_lot_core v0.9.12
+   Compiling pkg-config v0.3.34
+   Compiling bytes v1.12.1
+   Compiling hashbrown v0.17.1
+   Compiling futures-core v0.3.34
+   Compiling zmij v1.0.23
+   Compiling syn v2.0.119
+   Compiling syn v3.0.9
+   Compiling tracing-core v0.1.36
+   Compiling futures-sink v0.3.34
+   Compiling jobserver v0.1.35
+   Compiling block-buffer v0.10.4
+   Compiling getrandom v0.2.17
+   Compiling crossbeam-utils v0.8.23
+   Compiling cc v1.10.0
+   Compiling rand_core v0.6.4
+   Compiling indexmap v2.14.2
+   Compiling parking_lot v0.12.5
+   Compiling rand_core v0.9.5
+   Compiling vcpkg v0.2.15
+   Compiling crypto-common v0.1.7
+   Compiling digest v0.10.7
+   Compiling foldhash v0.2.0
+   Compiling cpufeatures v0.2.17
+   Compiling socket2 v0.6.5
+   Compiling errno v0.3.14
+   Compiling slab v0.4.12
+   Compiling futures-io v0.3.34
+   Compiling signal-hook-registry v1.4.8
+   Compiling mio v1.2.4
+   Compiling tree-sitter-language v0.1.9
+   Compiling futures-channel v0.3.34
+   Compiling siphasher v1.0.4
+   Compiling serde_json v1.0.154
+   Compiling crossbeam-epoch v0.9.21
+   Compiling http v1.5.0
+   Compiling futures-task v0.3.34
+   Compiling crossbeam-deque v0.8.8
+   Compiling paste v1.0.15
+   Compiling writeable v0.6.4
+   Compiling rustversion v1.0.23
+   Compiling litemap v0.8.3
+   Compiling percent-encoding v2.3.2
+   Compiling icu_properties_data v2.0.1
+   Compiling ring v0.17.14
+   Compiling rustls-pki-types v1.15.1
+   Compiling icu_normalizer_data v2.0.0
+   Compiling crc32fast v1.5.3
+   Compiling either v1.19.0
+   Compiling thiserror v1.0.69
+   Compiling untrusted v0.9.0
+   Compiling write16 v1.0.0
+   Compiling httparse v1.10.1
+   Compiling utf16_iter v1.0.5
+   Compiling num-integer v0.1.47
+   Compiling rayon-core v1.13.0
+   Compiling byteorder v1.5.0
+   Compiling openssl-sys v0.9.117
+   Compiling ahash v0.8.12
+   Compiling simd-adler32 v0.3.10
+   Compiling rustls v0.23.46
+   Compiling num-conv v0.2.2
+   Compiling time-core v0.1.9
+   Compiling synstructure v0.14.0
+   Compiling synstructure v0.13.2
+   Compiling time-macros v0.2.32
+   Compiling form_urlencoded v1.2.2
+   Compiling phf_shared v0.11.3
+   Compiling deranged v0.5.9
+   Compiling sha2 v0.10.9
+   Compiling num_threads v0.1.8
+   Compiling thiserror v2.0.21
+   Compiling utf8_iter v1.0.4
+   Compiling adler2 v2.0.1
+   Compiling anyhow v1.0.104
+   Compiling powerfmt v0.2.1
+   Compiling rand v0.8.8
+   Compiling rayon v1.12.0
+   Compiling http-body v1.1.0
+   Compiling aho-corasick v1.1.5
+   Compiling pulp v0.21.5
+   Compiling zerocopy-derive v0.8.63
+   Compiling tracing-attributes v0.1.31
+   Compiling thiserror-impl v1.0.69
+   Compiling serde_derive v1.0.229
+   Compiling zerofrom-derive v0.1.8
+   Compiling displaydoc v0.2.7
+   Compiling yoke-derive v0.8.4
+   Compiling tokio-macros v2.7.2
+   Compiling zerovec-derive v0.11.7
+   Compiling bytemuck_derive v1.12.1
+   Compiling futures-macro v0.3.34
+   Compiling tokio v1.54.1
+   Compiling tracing v0.1.44
+   Compiling zerofrom v0.1.8
+   Compiling time v0.3.55
+   Compiling yoke v0.8.4
+   Compiling thiserror-impl v2.0.21
+   Compiling regex-syntax v0.8.11
+   Compiling futures-util v0.3.34
+   Compiling zerovec v0.11.9
+   Compiling bytemuck v1.25.2
+   Compiling zerotrie v0.2.5
+   Compiling num-complex v0.4.6
+   Compiling phf_generator v0.11.3
+   Compiling tinystr v0.8.5
+   Compiling potential_utf v0.1.6
+   Compiling icu_locale_core v2.4.0
+   Compiling icu_collections v2.0.0
+   Compiling miniz_oxide v0.9.1
+   Compiling num-bigint v0.4.8
+   Compiling regex-automata v0.4.18
+   Compiling icu_provider v2.4.0
+   Compiling icu_properties v2.0.2
+   Compiling icu_normalizer v2.0.1
+   Compiling reborrow v0.5.5
+   Compiling dyn-stack-macros v0.1.3
+   Compiling tower-service v0.3.3
+   Compiling dyn-stack v0.13.2
+   Compiling idna_adapter v1.2.1
+   Compiling idna v1.1.0
+   Compiling ppv-lite86 v0.2.21
+   Compiling rand_chacha v0.9.0
+   Compiling url v2.5.8
+   Compiling flate2 v1.1.10
+   Compiling rand v0.9.5
+   Compiling tokio-util v0.7.20
+   Compiling raw-cpuid v11.6.0
+   Compiling rand_distr v0.5.1
+   Compiling half v2.7.1
+   Compiling rustls-webpki v0.103.16
+   Compiling openssl-probe v0.2.2
+   Compiling fastrand v2.5.0
+   Compiling atomic-waker v1.1.2
+   Compiling seq-macro v0.3.6
+   Compiling heck v0.5.0
+   Compiling try-lock v0.2.5
+   Compiling strsim v0.11.1
+   Compiling fnv v1.0.7
+   Compiling ident_case v1.0.1
+   Compiling base64 v0.23.1
+   Compiling gemm-common v0.18.2
+   Compiling darling_core v0.20.11
+   Compiling h2 v0.4.20
+   Compiling want v0.3.2
+   Compiling httpdate v1.0.3
+   Compiling base64ct v1.8.3
+   Compiling ryu v1.0.23
+   Compiling webpki-roots v1.0.11
+   Compiling libloading v0.8.9
+   Compiling utf8parse v0.2.2
+   Compiling ipnet v2.12.2
+   Compiling openssl v0.10.81
+   Compiling minimal-lexical v0.2.1
+   Compiling static_assertions v1.1.0
+   Compiling rand_core v0.10.1
+   Compiling foreign-types-shared v0.1.1
+   Compiling anstyle-parse v1.0.0
+   Compiling foreign-types v0.3.2
+   Compiling openssl-macros v0.1.1
+   Compiling http-body-util v0.1.5
+   Compiling nom v7.1.3
+   Compiling encoding_rs v0.8.42
+   Compiling libz-sys v1.1.30
+   Compiling hmac v0.12.1
+   Compiling sync_wrapper v1.0.2
+   Compiling darling_macro v0.20.11
+   Compiling colorchoice v1.0.5
+   Compiling utf-8 v0.7.6
+   Compiling anstyle v1.0.14
+   Compiling anstyle-query v1.1.5
+   Compiling mime v0.3.17
+   Compiling darling v0.20.11
+   Compiling base64 v0.22.1
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling getrandom v0.4.3
+   Compiling tower-layer v0.3.3
+   Compiling native-tls v0.2.18
+   Compiling rustix v1.1.6
+   Compiling anstream v1.0.0
+   Compiling phf_codegen v0.11.3
+   Compiling sha1 v0.10.7
+   Compiling clap_lex v1.1.1
+   Compiling multiversion_no_op v1.0.0
+   Compiling core_detect v1.0.0
+   Compiling simdutf8 v0.1.5
+   Compiling cudarc v0.17.8
+   Compiling cpufeatures v0.3.1
+   Compiling itertools v0.12.1
+   Compiling regex v1.13.1
+   Compiling clap_builder v4.6.7
+   Compiling tokio-rustls v0.26.6
+   Compiling tower v0.5.3
+   Compiling gemm-f32 v0.18.2
+   Compiling clap_derive v4.6.7
+   Compiling hyper v1.12.0
+   Compiling rustls-native-certs v0.8.5
+   Compiling float8 v0.3.0
+   Compiling futures-executor v0.3.34
+   Compiling cookie v0.18.2
+   Compiling rustc-hash v2.1.3
+   Compiling futures v0.3.34
+   Compiling clap v4.6.7
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling hyper-util v0.1.21
+   Compiling gemm-f16 v0.18.2
+   Compiling prost-derive v0.12.6
+   Compiling pem-rfc7468 v0.7.0
+   Compiling serde_urlencoded v0.7.1
+   Compiling gemm-c64 v0.18.2
+   Compiling gemm-c32 v0.18.2
+   Compiling gemm-f64 v0.18.2
+   Compiling num-rational v0.4.2
+   Compiling yoke-derive v0.7.5
+   Compiling num-iter v0.1.46
+   Compiling num_cpus v1.17.0
+   Compiling portable-atomic v1.15.0
+   Compiling litrs v1.0.1
+   Compiling psl-types v2.0.11
+   Compiling data-encoding v2.11.1
+   Compiling unicode-width v0.2.2
+   Compiling yoke v0.7.5
+   Compiling publicsuffix v2.3.0
+   Compiling num v0.4.3
+   Compiling document-features v0.2.12
+   Compiling gemm v0.18.2
+   Compiling der v0.7.10
+   Compiling hyper-rustls v0.27.10
+   Compiling candle-kernels v0.9.1 (/home/bench/candle-zend/candle-kernels)
+   Compiling tokio-native-tls v0.3.1
+   Compiling rand_chacha v0.3.1
+   Compiling safetensors v0.4.5
+   Compiling memmap2 v0.9.12
+   Compiling prettyplease v0.2.37
+   Compiling unsafe-libyaml v0.2.11
+   Compiling linux-raw-sys v0.12.1
+   Compiling semver v1.0.28
+   Compiling zip v1.3.1
+   Compiling prost v0.12.6
+   Compiling rustc_version v0.4.1
+   Compiling serde_yaml v0.9.34+deprecated
+   Compiling ug v0.5.0
+   Compiling spki v0.7.3
+   Compiling cookie_store v0.22.1
+   Compiling hyper-tls v0.6.0
+   Compiling float8 v0.4.2
+   Compiling tower-http v0.6.11
+error: failed to run custom build command for `candle-kernels v0.9.1 (/home/bench/candle-zend/candle-kernels)`
+
+Caused by:
+  process didn't exit successfully: `/home/bench/candle-zend/target/release/build/candle-kernels-bce52abecfc815b5/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-changed=build.rs
+  cargo:rerun-if-changed=build_utils.rs
+  cargo:rerun-if-changed=build_lints.rs
+  cargo:rerun-if-changed=src/blocks.cuh
+  cargo:rerun-if-changed=src/convert/block_q8a128.cuh
+  cargo:rerun-if-changed=src/convert/block_fp8.cuh
+  cargo:rerun-if-changed=src/convert/block_q4_0.cuh
+  cargo:rerun-if-changed=src/convert/block_q8_0.cuh
+  cargo:rerun-if-changed=src/convert/block_q4_ks.cuh
+  cargo:rerun-if-changed=src/convert/block_q0_m2.cuh
+  cargo:rerun-if-changed=src/convert/block_q0_x.cuh
+  cargo:rerun-if-changed=src/convert/block_q5_1.cuh
+  cargo:rerun-if-changed=src/convert/int8_elem.cuh
+  cargo:rerun-if-changed=src/convert/block_q1_s.cuh
+  cargo:rerun-if-changed=src/convert/block_q3_0.cuh
+  cargo:rerun-if-changed=src/convert/block_r16.cuh
+  cargo:rerun-if-changed=src/convert/block_q4_1.cuh
+  cargo:rerun-if-changed=src/convert/block_q2_1.cuh
+  cargo:rerun-if-changed=src/convert/block_f16.cuh
+  cargo:rerun-if-changed=src/convert/convert.cuh
+  cargo:rerun-if-changed=src/convert/block_q0_v.cuh
+  cargo:rerun-if-changed=src/convert/block_q1_a.cuh
+  cargo:rerun-if-changed=src/convert/convert_all.cuh
+  cargo:rerun-if-changed=src/convert/block_q2_a.cuh
+  cargo:rerun-if-changed=src/convert/block_bf16.cuh
+  cargo:rerun-if-changed=src/convert/block_q5_0.cuh
+  cargo:rerun-if-changed=src/convert/block_f32.cuh
+  cargo:rerun-if-changed=src/convert/block_q0.cuh
+  cargo:rerun-if-changed=src/convert/block_q8_ks.cuh
+  cargo:rerun-if-changed=src/convert/block_q2_s.cuh
+  cargo:rerun-if-changed=src/convert/block_q8_1.cuh
+  cargo:rerun-if-changed=src/convert/block_q0_m4.cuh
+  cargo:rerun-if-changed=src/convert/block_q3_1.cuh
+  cargo:rerun-if-changed=src/convert/block_q2_0.cuh
+  cargo:rerun-if-changed=src/device_caps.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q_awq_g64.cuh
+  cargo:rerun-if-changed=src/dequant/dequant.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q8_0.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q2_k.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q3_k.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q8_1.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_ko.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q_awq.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q5_1.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q4_0.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q6_k.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q5_k.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q4_1.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q8a128.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q5_0.cuh
+  cargo:rerun-if-changed=src/dequant/dequant_q4_k.cuh
+  cargo:rerun-if-changed=src/quantized/dispatch_table.cuh
+  cargo:rerun-if-changed=src/quantized/repack_gemx.cuh
+  cargo:rerun-if-changed=src/quantized/dispatcher.cu
+  cargo:rerun-if-changed=src/quantized/helpers.cuh
+  cargo:rerun-if-changed=src/quantized/math.cuh
+  cargo:rerun-if-changed=src/quantized/kernel.cuh
+  cargo:rerun-if-changed=src/quantized/dense_narrow.cuh
+  cargo:rerun-if-changed=src/quantized/matmul_status.cuh
+  cargo:rerun-if-changed=src/quantized/quantized.cuh
+  cargo:rerun-if-changed=src/quantized/loader/mxfp4.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q2_K.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q6_K.cuh
+  cargo:rerun-if-changed=src/quantized/loader/marlin_dequant.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q3_KO.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q4_0.cuh
+  cargo:rerun-if-changed=src/quantized/loader/gemx_dequant.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q8_K.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q8_0.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q_awq.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q4_1.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q5_0.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q5_K.cuh
+  cargo:rerun-if-changed=src/quantized/loader/generic.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q5_1.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q_awq_g64.cuh
+  cargo:rerun-if-changed=src/quantized/loader/cast_scale.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q8_1.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q2_KO.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q4_K.cuh
+  cargo:rerun-if-changed=src/quantized/loader/q3_K.cuh
+  cargo:rerun-if-changed=src/quantized/loader/scale_types.cuh
+  cargo:rerun-if-changed=src/quantized/block_compact.cuh
+  cargo:rerun-if-changed=src/quantized/narrow_layout.cuh
+  cargo:rerun-if-changed=src/quantized/repack_gemx.cu
+  cargo:rerun-if-changed=src/quantized/process_tile.cuh
+  cargo:rerun-if-changed=src/quantized/impl/q6_k_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_1_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_k_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q_awq_g64_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_k_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_0_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_0_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_k_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q_awq_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_1_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q_awq_g64_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_1_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_1_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q3_k_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_1_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_0_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q_awq_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q6_k_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_1_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_0_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_k_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_k_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_k_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/common.cuh
+  cargo:rerun-if-changed=src/quantized/impl/q8_k_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q3_k_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q2_K_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_1_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_0_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_0_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_0_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q6_k_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_k_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_0_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q_awq_g64_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_1_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_0_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q3_k_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_0_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_k_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_k_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q2_ko_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/kernel_instantiate.cuh
+  cargo:rerun-if-changed=src/quantized/impl/q5_0_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q6_k_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_k_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/mxfp4_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_0_q8.cu
+  cargo:rerun-if-changed=src/quantized/impl/q3_k_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q2_K_f16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q3_ko_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q4_1_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q2_K_bf16.cu
+  cargo:rerun-if-changed=src/quantized/impl/q5_1_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q_awq_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q2_K_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/qkv_segmented_f32.cu
+  cargo:rerun-if-changed=src/quantized/impl/q8_1_f16.cu
+  cargo:rerun-if-changed=src/quantized/pdl.cuh
+  cargo:rerun-if-changed=src/quantized/dequantize.cu
+  cargo:rerun-if-changed=src/quantized/types.cuh
+  cargo:rerun-if-changed=src/quantized/moe_live.cuh
+  cargo:rerun-if-changed=src/quantized/dequantize.cuh
+  cargo:rerun-if-changed=src/quantized/loaders.cuh
+  cargo:rerun-if-changed=src/quantized/mma_dequant.cuh
+  cargo:rerun-if-changed=src/quantized/reduce.cuh
+  cargo:rerun-if-changed=src/quantized/splitk_segs.cuh
+  cargo:rerun-if-changed=src/paged-glue/paged_glue_api_bf16.cu
+  cargo:rerun-if-changed=src/paged-glue/paged_glue_kernel.cuh
+  cargo:rerun-if-changed=src/paged-glue/paged_glue_api_fp16.cu
+  cargo:rerun-if-changed=src/simple/fill.cu
+  cargo:rerun-if-changed=src/simple/prov_sign_pack.cu
+  cargo:rerun-if-changed=src/simple/warp_reduce.cuh
+  cargo:rerun-if-changed=src/simple/binary.cu
+  cargo:rerun-if-changed=src/simple/qsa_page_place.cu
+  cargo:rerun-if-changed=src/simple/quantized.cu
+  cargo:rerun-if-changed=src/simple/sinkhorn.cu
+  cargo:rerun-if-changed=src/simple/scatter_op_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/moe_bucketize.cu
+  cargo:rerun-if-changed=src/simple/softmax_utils.cuh
+  cargo:rerun-if-changed=src/simple/qsa_score_paged.cu
+  cargo:rerun-if-changed=src/simple/moe_shared_residual.cu
+  cargo:rerun-if-changed=src/simple/binary_utils.cuh
+  cargo:rerun-if-changed=src/simple/unary.cu
+  cargo:rerun-if-changed=src/simple/compressor_pool.cu
+  cargo:rerun-if-changed=src/simple/repeat_penalty_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/binary_op_macros.cuh
+  cargo:rerun-if-changed=src/simple/multinomial.cu
+  cargo:rerun-if-changed=src/simple/unary_utils.cuh
+  cargo:rerun-if-changed=src/simple/sort_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/sub_at_indices.cu
+  cargo:rerun-if-changed=src/simple/conv_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/fletcher32.cu
+  cargo:rerun-if-changed=src/simple/nvtx.cu
+  cargo:rerun-if-changed=src/simple/kv_record_fill.cu
+  cargo:rerun-if-changed=src/simple/compatibility.cuh
+  cargo:rerun-if-changed=src/simple/hyper_mhc.cu
+  cargo:rerun-if-changed=src/simple/comp_idx.cu
+  cargo:rerun-if-changed=src/simple/reduce.cu
+  cargo:rerun-if-changed=src/simple/fused_silu_mul.cu
+  cargo:rerun-if-changed=src/simple/multinomial_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/sort.cu
+  cargo:rerun-if-changed=src/simple/moe_cpu_export.cu
+  cargo:rerun-if-changed=src/simple/kv_migrate.cu
+  cargo:rerun-if-changed=src/simple/ple_fused.cu
+  cargo:rerun-if-changed=src/simple/affine_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/qsa_topk.cu
+  cargo:rerun-if-changed=src/simple/gather_r16_kv.cu
+  cargo:rerun-if-changed=src/simple/moe_bucketize_narrow.cuh
+  cargo:rerun-if-changed=src/simple/bdp.cu
+  cargo:rerun-if-changed=src/simple/moe_bucketize_live.cuh
+  cargo:rerun-if-changed=src/simple/ple_gather_dequant.cu
+  cargo:rerun-if-changed=src/simple/quantized_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/gather_rows.cu
+  cargo:rerun-if-changed=src/simple/cuda_utils.cuh
+  cargo:rerun-if-changed=src/simple/fill_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/kv_hash.cu
+  cargo:rerun-if-changed=src/simple/router_topk.cu
+  cargo:rerun-if-changed=src/simple/affine.cu
+  cargo:rerun-if-changed=src/simple/reduce_utils.cuh
+  cargo:rerun-if-changed=src/simple/moe_scatter.cu
+  cargo:rerun-if-changed=src/simple/indexer_score.cu
+  cargo:rerun-if-changed=src/simple/moe_bucketize_common.cuh
+  cargo:rerun-if-changed=src/simple/rows_scatter.cu
+  cargo:rerun-if-changed=src/simple/conv.cu
+  cargo:rerun-if-changed=src/simple/f32_rows_matmul.cu
+  cargo:rerun-if-changed=src/simple/tensor_assert.cu
+  cargo:rerun-if-changed=src/simple/repeat_penalty.cu
+  cargo:rerun-if-changed=src/simple/indexing.cu
+  cargo:rerun-if-changed=src/simple/w4a16_repack.cu
+  cargo:rerun-if-changed=src/simple/add_at_indices.cu
+  cargo:rerun-if-changed=src/simple/silu_fwd.cuh
+  cargo:rerun-if-changed=src/simple/handoff_ping.cu
+  cargo:rerun-if-changed=src/simple/gr_hyper.cu
+  cargo:rerun-if-changed=src/simple/vec_utils.cuh
+  cargo:rerun-if-changed=src/simple/indexing_utils.cuh
+  cargo:rerun-if-changed=src/simple/fast_exp.cu
+  cargo:rerun-if-changed=src/simple/qsa_rope_rows.cu
+  cargo:rerun-if-changed=src/simple/rope_utils.cuh
+  cargo:rerun-if-changed=src/simple/embed_gather_dequant.cu
+  cargo:rerun-if-changed=src/simple/cast.cu
+  cargo:rerun-if-changed=src/simple/qsa_index_append.cu
+  cargo:rerun-if-changed=src/simple/reduce_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/mul_at_indices.cu
+  cargo:rerun-if-changed=src/simple/corpus_gather.cu
+  cargo:rerun-if-changed=src/simple/moe_bucketize_cpu.cuh
+  cargo:rerun-if-changed=src/simple/div_at_indices.cu
+  cargo:rerun-if-changed=src/simple/sub_at_indices_with_values.cu
+  cargo:rerun-if-changed=src/simple/sigmoid_fwd.cuh
+  cargo:rerun-if-changed=src/simple/cast_dispatcher.cu
+  cargo:rerun-if-changed=src/simple/ternary.cu
+  cargo:rerun-if-changed=src/delta-net/delta_net_api_f32.cu
+  cargo:rerun-if-changed=src/delta-net/delta_net_timeline.cuh
+  cargo:rerun-if-changed=src/delta-net/delta_net_short_span_kernel.cuh
+  cargo:rerun-if-changed=src/delta-net/delta_net_common.cuh
+  cargo:rerun-if-changed=src/delta-net/delta_net_decode_kernel.cuh
+  cargo:rerun-if-changed=src/delta-net/delta_net_fold_kernel.cuh
+  cargo:rerun-if-changed=src/delta-net/delta_net_prefill_kernel.cuh
+  cargo:rerun-if-changed=src/paged-prefill/kv_prestage_kernel.cuh
+  cargo:rerun-if-changed=src/paged-prefill/paged_prefill_int8_api.cu
+  cargo:rerun-if-changed=src/paged-prefill/kv_store.cuh
+  cargo:rerun-if-changed=src/paged-prefill/kv_stage.cuh
+  cargo:rerun-if-changed=src/paged-prefill/paged_prefill_int8_bf16.cu
+  cargo:rerun-if-changed=src/paged-prefill/paged_prefill_int8_fp16.cu
+  cargo:rerun-if-changed=src/paged-prefill/column_stage.cuh
+  cargo:rerun-if-changed=src/paged-prefill/qsa_walk.cuh
+  cargo:rerun-if-changed=src/paged-prefill/pal_rank.cuh
+  cargo:rerun-if-changed=src/paged-prefill/rope_hoist.cuh
+  cargo:rerun-if-changed=src/paged-prefill/paged_prefill_int8_kernel.cuh
+  cargo:rerun-if-changed=src/provenance/bdp_imma.cu
+  cargo:rerun-if-changed=src/provenance/bdp_scan.cu
+  cargo:rerun-if-changed=src/provenance/bdp_chunk.cuh
+  cargo:rerun-if-changed=src/provenance/bdp_vote.cuh
+  cargo:rerun-if-changed=src/provenance/bdp_bmma.cu
+  cargo:rerun-if-changed=src/dit-attn/dit_attn_int8.cu
+  cargo:rerun-if-changed=src/paged-latent/latent_decode_kernel.cuh
+  cargo:rerun-if-changed=src/paged-latent/paged_latent_api_bf16.cu
+  cargo:rerun-if-changed=src/paged-latent/latent_common.cuh
+  cargo:rerun-if-changed=src/paged-latent/latent_prefill_kernel.cuh
+  cargo:rerun-if-changed=src/api.cu
+  cargo:rerun-if-changed=src/arena_table.cuh
+  cargo:rerun-if-changed=src/qsa_select.cuh
+  cargo:rerun-if-changed=src/paged-decode/decode_helpers.cuh
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_bf16_hd64.cu
+  cargo:rerun-if-changed=src/paged-decode/int8_decode_tile_kernel.cuh
+  cargo:rerun-if-changed=src/paged-decode/int8_decode_kernel.cuh
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_hd_fp16.cuh
+  cargo:rerun-if-changed=src/paged-decode/kernel_scratch.cu
+  cargo:rerun-if-changed=src/paged-decode/pal_iter.cuh
+  cargo:rerun-if-changed=src/paged-decode/slot_types.cuh
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_hd_bf16.cuh
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_fp16_hd128.cu
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_fp16_hd256.cu
+  cargo:rerun-if-changed=src/paged-decode/fused_attn_utils.cuh
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_bf16_hd128.cu
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_fp16_hd64.cu
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_api_bf16.cu
+  cargo:rerun-if-changed=src/paged-decode/int8_decode_emit.cuh
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_bf16_hd256.cu
+  cargo:rerun-if-changed=src/paged-decode/paged_decode_api_fp16.cu
+  cargo:rerun-if-changed=src/moe_read_ahead.cuh
+  cargo:rerun-if-changed=src/grow_scratch.cuh
+  cargo:rerun-if-changed=src/fast_exp.cuh
+  cargo:rerun-if-changed=src/rope/rope_table.cuh
+  cargo:rerun-if-changed=src/sampling/batched_sampling_api.cu
+  cargo:rerun-if-changed=src/sampling/philox.cuh
+  cargo:rerun-if-changed=src/sampling/allow_list.cu
+  cargo:rerun-if-changed=src/sampling/argmax_rows.cu
+  cargo:rerun-if-changed=src/sampling/batched_sampling_f32.cu
+  cargo:rerun-if-changed=src/sampling/count_table.cu
+  cargo:rerun-if-changed=src/sampling/batched_sampling.cuh
+  cargo:rerun-if-changed=src/sampling/batched_sampling_f16.cu
+  cargo:rerun-if-changed=src/sampling/batched_sampling_fp8_e4m3.cu
+  cargo:rerun-if-changed=src/sampling/batched_sampling_bf16.cu
+  cargo:rerun-if-changed=src/mma/mma_wrappers.cuh
+  cargo:rerun-if-changed=src/mma/arch_traits.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q8_ks.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q3_1.cuh
+  cargo:rerun-if-changed=src/quantize/fp8_e4m3_utils.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q8_0.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q4_0.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q3_0.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q2_a.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q2_0.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q4_k.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q5_k.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_r16.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_kernels.cu
+  cargo:rerun-if-changed=src/quantize/quantize_q5_0.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q8_1.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q1_s.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q2_1.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q8a128.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q6_k.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q0_v.cuh
+  cargo:rerun-if-changed=src/quantize/select_kv_format.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q_awq.cuh
+  cargo:rerun-if-changed=src/quantize/quantize.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q4_ks.cuh
+  cargo:rerun-if-changed=src/quantize/transpose_batch.cuh
+  cargo:rerun-if-changed=src/quantize/q0_v_tables.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q4_1.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q0.cuh
+  cargo:rerun-if-changed=src/quantize/select_lane_roundtrip.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q3_k.cuh
+  cargo:rerun-if-changed=src/quantize/q8a128_tile.cuh
+  cargo:rerun-if-changed=src/quantize/palette4_convert.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q2_s.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q1_a.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q5_1.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q8_k.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q2_k.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_ko.cuh
+  cargo:rerun-if-changed=src/quantize/quantize_q_awq_g64.cuh
+  cargo:rerun-if-env-changed=CUDA_COMPUTE_CAP
+  cargo:rustc-env=CUDA_COMPUTE_CAP=89
+
+  --- stderr
+
+  thread 'main' (938921) panicked at candle-kernels/build_utils.rs:658:13:
+  Include file not found: '../loader/q3_k.cuh' (referenced from /home/bench/candle-zend/candle-kernels/src/quantized/impl/q3_k_f16.cu)
+  Searched in:
+    - /home/bench/candle-zend/candle-kernels/src/quantized/impl
+    - src
+    - src/quantized
+    - src/quantized/impl
+    - src/quantized/loader
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+warning: build failed, waiting for other jobs to finish...

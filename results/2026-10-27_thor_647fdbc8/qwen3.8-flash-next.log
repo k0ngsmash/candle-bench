@@ -1,0 +1,121 @@
+   Compiling candle-kernels v0.9.1 (D:\candle-work\candle\candle-kernels)
+   Compiling candle-core v0.9.1 (D:\candle-work\candle\candle-core)
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:37:14
+   |
+37 |         f64::NAN
+   |              ^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:55:14
+   |
+55 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:57:14
+   |
+57 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NAN`: replaced by the `NAN` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:69:14
+   |
+69 |         f64::NAN
+   |              ^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:70:25
+   |
+70 |     } else if x == f64::INFINITY {
+   |                         ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:72:25
+   |
+72 |     } else if x == f64::NEG_INFINITY {
+   |                         ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:83:14
+   |
+83 |         f64::INFINITY
+   |              ^^^^^^^^
+
+warning: use of deprecated constant `std::f64::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f64`
+  --> candle-core\src\cpu\erf.rs:85:14
+   |
+85 |         f64::NEG_INFINITY
+   |              ^^^^^^^^^^^^
+
+   Compiling candle-nn v0.9.1 (D:\candle-work\candle\candle-nn)
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:237:42
+    |
+237 |                         let mut m = f32::NEG_INFINITY;
+    |                                          ^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:253:43
+    |
+253 | ...                   if mv == f32::NEG_INFINITY {
+    |                                     ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:304:58
+    |
+304 |                         || (vec![0f32; dv], 0.0f32, f32::NEG_INFINITY),
+    |                                                          ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:405:34
+    |
+405 |                 let mut m = f32::NEG_INFINITY;
+    |                                  ^^^^^^^^^^^^
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-nn\src\cpu_flash_attention.rs:427:35
+    |
+427 |                     if mv == f32::NEG_INFINITY {
+    |                                   ^^^^^^^^^^^^
+
+warning: `candle-nn` (lib) generated 5 warnings
+warning: `candle-core` (lib) generated 8 warnings
+   Compiling candle-transformers v0.9.1 (D:\candle-work\candle\candle-transformers)
+warning: use of deprecated constant `std::f32::MIN`: replaced by the `MIN` associated constant on `f32`
+   --> candle-transformers\src\models\modernbert.rs:302:27
+    |
+302 |     (inverted_mask * f32::MIN as f64)?.to_dtype(dtype)
+    |                           ^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `std::f32::NEG_INFINITY`: replaced by the `NEG_INFINITY` associated constant on `f32`
+   --> candle-transformers\src\models\modernbert.rs:315:26
+    |
+315 |                     f32::NEG_INFINITY
+    |                          ^^^^^^^^^^^^
+
+warning: `candle-transformers` (lib test) generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 1m 18s
+     Running unittests src\lib.rs (target\release\deps\candle_transformers-a8623c8d284fed38.exe)
+
+running 1 test
+test models::quantized_qwen38_moe::tests::test_parallel_batched_forwarding ... 
+=== Qwen3.8-Flash-Next (qwen4exp) batched forwarding ===
+
+Error: live table: mapped allocation of 75264 entries failed: CUDA_ERROR_ALREADY_MAPPED
+FAILED
+
+failures:
+
+failures:
+    models::quantized_qwen38_moe::tests::test_parallel_batched_forwarding
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1589 filtered out; finished in 6433.34s
+
+error: test failed, to rerun pass `-p candle-transformers --lib`

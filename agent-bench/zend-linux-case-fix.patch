@@ -1,0 +1,169 @@
+diff --git a/candle-kernels/src/quantized/impl/q3_k_bf16.cu b/candle-kernels/src/quantized/impl/q3_k_bf16.cu
+index e7bd5e7b..843535cb 100644
+--- a/candle-kernels/src/quantized/impl/q3_k_bf16.cu
++++ b/candle-kernels/src/quantized/impl/q3_k_bf16.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q3_k.cuh"
++#include "../loader/q3_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q3_k_f16.cu b/candle-kernels/src/quantized/impl/q3_k_f16.cu
+index dff41992..109e8ef4 100644
+--- a/candle-kernels/src/quantized/impl/q3_k_f16.cu
++++ b/candle-kernels/src/quantized/impl/q3_k_f16.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q3_k.cuh"
++#include "../loader/q3_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q3_k_q8.cu b/candle-kernels/src/quantized/impl/q3_k_q8.cu
+index f0f40aaf..cab68f48 100644
+--- a/candle-kernels/src/quantized/impl/q3_k_q8.cu
++++ b/candle-kernels/src/quantized/impl/q3_k_q8.cu
+@@ -20,7 +20,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q3_k.cuh"
++#include "../loader/q3_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q4_k_bf16.cu b/candle-kernels/src/quantized/impl/q4_k_bf16.cu
+index e3315404..7a4e0908 100644
+--- a/candle-kernels/src/quantized/impl/q4_k_bf16.cu
++++ b/candle-kernels/src/quantized/impl/q4_k_bf16.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q4_k.cuh"
++#include "../loader/q4_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q4_k_f16.cu b/candle-kernels/src/quantized/impl/q4_k_f16.cu
+index fab0a3cc..4d11801e 100644
+--- a/candle-kernels/src/quantized/impl/q4_k_f16.cu
++++ b/candle-kernels/src/quantized/impl/q4_k_f16.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q4_k.cuh"
++#include "../loader/q4_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q4_k_f32.cu b/candle-kernels/src/quantized/impl/q4_k_f32.cu
+index 5eccdf1e..0d7fd618 100644
+--- a/candle-kernels/src/quantized/impl/q4_k_f32.cu
++++ b/candle-kernels/src/quantized/impl/q4_k_f32.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q4_k.cuh"
++#include "../loader/q4_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q4_k_q8.cu b/candle-kernels/src/quantized/impl/q4_k_q8.cu
+index e3b36091..1b4ecd07 100644
+--- a/candle-kernels/src/quantized/impl/q4_k_q8.cu
++++ b/candle-kernels/src/quantized/impl/q4_k_q8.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q4_k.cuh"
++#include "../loader/q4_K.cuh"
+ 
+ // K/128 format parameters:
+ // qk = 128 elements per block
+diff --git a/candle-kernels/src/quantized/impl/q5_k_bf16.cu b/candle-kernels/src/quantized/impl/q5_k_bf16.cu
+index 612917f8..df6d9016 100644
+--- a/candle-kernels/src/quantized/impl/q5_k_bf16.cu
++++ b/candle-kernels/src/quantized/impl/q5_k_bf16.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q5_k.cuh"
++#include "../loader/q5_K.cuh"
+ 
+ constexpr int QK5_K_K128 = 128;
+ constexpr int QI5_K_K128 = 32;
+diff --git a/candle-kernels/src/quantized/impl/q5_k_f16.cu b/candle-kernels/src/quantized/impl/q5_k_f16.cu
+index 7acfe55f..432c3d11 100644
+--- a/candle-kernels/src/quantized/impl/q5_k_f16.cu
++++ b/candle-kernels/src/quantized/impl/q5_k_f16.cu
+@@ -17,7 +17,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q5_k.cuh"
++#include "../loader/q5_K.cuh"
+ 
+ constexpr int QK5_K_K128 = 128;
+ constexpr int QI5_K_K128 = 32;
+diff --git a/candle-kernels/src/quantized/impl/q5_k_q8.cu b/candle-kernels/src/quantized/impl/q5_k_q8.cu
+index e7d71a1c..8a50153f 100644
+--- a/candle-kernels/src/quantized/impl/q5_k_q8.cu
++++ b/candle-kernels/src/quantized/impl/q5_k_q8.cu
+@@ -20,7 +20,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q5_k.cuh"
++#include "../loader/q5_K.cuh"
+ 
+ constexpr int QK5_K_K128 = 128;
+ constexpr int QI5_K_K128 = 32;
+diff --git a/candle-kernels/src/quantized/impl/q6_k_bf16.cu b/candle-kernels/src/quantized/impl/q6_k_bf16.cu
+index c742d468..d058571d 100644
+--- a/candle-kernels/src/quantized/impl/q6_k_bf16.cu
++++ b/candle-kernels/src/quantized/impl/q6_k_bf16.cu
+@@ -19,7 +19,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q6_k.cuh"
++#include "../loader/q6_K.cuh"
+ 
+ // K/128 format: 128 elements per block, 32 ints of data
+ constexpr int QK6_K_K128 = 128;
+diff --git a/candle-kernels/src/quantized/impl/q6_k_f16.cu b/candle-kernels/src/quantized/impl/q6_k_f16.cu
+index 5d8c2140..c8299d1e 100644
+--- a/candle-kernels/src/quantized/impl/q6_k_f16.cu
++++ b/candle-kernels/src/quantized/impl/q6_k_f16.cu
+@@ -19,7 +19,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q6_k.cuh"
++#include "../loader/q6_K.cuh"
+ 
+ // K/128 format: 128 elements per block, 32 ints of data
+ constexpr int QK6_K_K128 = 128;
+diff --git a/candle-kernels/src/quantized/impl/q6_k_q8.cu b/candle-kernels/src/quantized/impl/q6_k_q8.cu
+index 19765b32..8dfeaefe 100644
+--- a/candle-kernels/src/quantized/impl/q6_k_q8.cu
++++ b/candle-kernels/src/quantized/impl/q6_k_q8.cu
+@@ -22,7 +22,7 @@
+ 
+ #include "kernel_instantiate.cuh"
+ #include "common.cuh"
+-#include "../loader/q6_k.cuh"
++#include "../loader/q6_K.cuh"
+ 
+ // K/128 format: 128 elements per block, 32 ints of data
+ constexpr int QK6_K_K128 = 128;
