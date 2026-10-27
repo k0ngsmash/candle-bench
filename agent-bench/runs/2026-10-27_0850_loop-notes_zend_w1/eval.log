@@ -1,0 +1,21 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 4 instances...
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:17<00:51, 17.18s/it]1 ran successfully, 0 failed:  25%|██▌       | 1/4 [00:17<00:51, 17.18s/it]1 ran successfully, 0 failed:  50%|█████     | 2/4 [00:25<00:25, 12.97s/it]2 ran successfully, 0 failed:  50%|█████     | 2/4 [00:25<00:25, 12.97s/it]2 ran successfully, 0 failed:  75%|███████▌  | 3/4 [00:26<00:08,  8.98s/it]3 ran successfully, 0 failed:  75%|███████▌  | 3/4 [00:26<00:08,  8.98s/it]3 ran successfully, 0 failed: 100%|██████████| 4/4 [01:02<00:00, 15.54s/it]4 ran successfully, 0 failed: 100%|██████████| 4/4 [01:02<00:00, 15.54s/it]4 ran successfully, 0 failed: 100%|██████████| 4/4 [01:02<00:00, 15.54s/it]
+Error in evaluation for sympy__sympy-20590: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-27_0850_loop-notes_zend_w1/openai__passthrough/sympy__sympy-20590/run_instance.log) for more information.
+All instances run.
+Total instances: 15
+Instances submitted: 15
+Instances completed: 3
+Instances incomplete: 0
+Instances resolved: 3
+Instances unresolved: 0
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 0
+Instances with empty patches: 11
+Instances with errors: 1
+Unstopped containers: 0
+Unremoved images: 15
+Report written to openai__passthrough.2026-10-27_0850_loop-notes_zend_w1.json

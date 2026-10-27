@@ -1,0 +1,77 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..45bea3608 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -242,7 +242,7 @@ def _cstack(left, right):\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": "import inspect\nimport types\nfrom collections import defaultdict\nfrom itertools import chain\n\nfrom django.apps import apps\nfrom django.core.checks import Error, Tags, register\nfrom django.db import connections, router\n\n\n@register(Tags.models)\ndef check_all_models(app_configs=None, **kwargs):\n    db_table_models = defaultdict(list)\n    indexes = defaultdict(list)\n    constraints = defaultdict(list)\n    errors = []\n    if app_configs is None:\n        models = apps.get_models()\n    else:\n        models = chain.from_iterable(app_config.get_models() for app_config in app_configs)\n    for model in models:\n        if model._meta.managed and not model._meta.proxy:\n            db_table_models[model._meta.db_table].append(model)\n        if not inspect.ismethod(model.check):\n            errors.append(\n                Error(\n                    \"The '%s.check()' class method is currently overridden by %r.\"\n                    % (model.__name__, model.check),\n                    obj=model,\n                    id='models.E020'\n                )\n            )\n        else:\n            errors.extend(model.check(**kwargs))\n        for model_index in model._meta.indexes:\n            indexes[model_index.name].append(model._meta.label)\n        for model_constraint in model._meta.constraints:\n            constraints[model_constraint.name].append(model._meta.label)\n    for db_table, model_list in db_table_models.items():\n        if len(model_list) > 1:\n            # Check if the models can be on the same database\n            # If they can't (due to routing), don't report an error\n            can_be_on_same_db = False\n            for db_alias in connections.databases:\n                if all(\n                    router.allow_migrate_model(db_alias, model)\n                    for model in model_list\n                ):\n                    can_be_on_same_db = True\n                    break\n            if can_be_on_same_db:\n                errors.append(\n                    Error(\n                        \"db_table '%s' is used by multiple models: %s.\"\n                        % (db_table, ', '.join(model._meta.label for model in model_list)),\n                        obj=db_table,\n                        id='models.E028',\n                    )\n                )\n    for index_name, model_labels in indexes.items():\n        if len(model_labels) > 1:\n            model_labels = set(model_labels)\n            errors.append(\n                Error(\n                    \"index name '%s' is not unique %s %s.\" % (\n                        index_name,\n                        'for model' if len(model_labels) == 1 else 'amongst models:',\n                        ', '.join(sorted(model_labels)),\n                    ),\n                    id='models.E029' if len(model_labels) == 1 else 'models.E030',\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": "diff --git a/django/db/migrations/serializer.py b/django/db/migrations/serializer.py\nindex 7d226955d5..d366b2cda8 100755\n--- a/django/db/migrations/serializer.py\n+++ b/django/db/migrations/serializer.py\n@@ -266,10 +266,16 @@ class TypeSerializer(BaseSerializer):\n                 return string, set(imports)\n         if hasattr(self.value, \"__module__\"):\n             module = self.value.__module__\n+            # Use __qualname__ for nested classes, but fall back to __name__ for\n+            # local classes (e.g., classes defined inside methods) since they\n+            # can't be serialized.\n+            class_name = self.value.__qualname__\n+            if '<' in class_name:\n+                class_name = self.value.__name__\n             if module == builtins.__name__:\n-                return self.value.__name__, set()\n+                return class_name, set()\n             else:\n-                return \"%s.%s\" % (module, self.value.__name__), {\"import %s\" % module}\n+                return \"%s.%s\" % (module, class_name), {\"import %s\" % module}\n \n \n class UUIDSerializer(BaseSerializer):\n"
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": ""
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "                updateddate=updateddate,\n                author_name=author_name,\n                author_email=author_email,\n                author_link=author_link,\n                categories=self._get_dynamic_attr('item_categories', item),\n                item_copyright=self._get_dynamic_attr('item_copyright', item),\n                comments=self._get_dynamic_attr('item_comments', item),\n                **self.item_extra_kwargs(item)\n            )\n        return feed\n"
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": ""
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": ""
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "diff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..014cef6919 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2422,13 +2422,15 @@ class Figure(FigureBase):\n                     \"The Figure parameters 'tight_layout' and \"\n                     \"'constrained_layout' cannot be used together. Please use \"\n                     \"'layout' parameter\")\n-            self.set_layout_engine(layout='tight')\n-            if isinstance(tight_layout, dict):\n-                self.get_layout_engine().set(**tight_layout)\n+            if tight_layout:\n+                self.set_layout_engine(layout='tight')\n+                if isinstance(tight_layout, dict):\n+                    self.get_layout_engine().set(**tight_layout)\n         elif constrained_layout is not None:\n-            self.set_layout_engine(layout='constrained')\n-            if isinstance(constrained_layout, dict):\n-                self.get_layout_engine().set(**constrained_layout)\n+            if constrained_layout:\n+                self.set_layout_engine(layout='constrained')\n+                if isinstance(constrained_layout, dict):\n+                    self.get_layout_engine().set(**constrained_layout)\n         else:\n             # everything is None, so use default:\n             self.set_layout_engine(layout=layout)\n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": "diff --git a/- b/-\nnew file mode 100644\n--- /dev/null\n+++ b/-\n@@ -0,0 +1,1483 @@\n+\"\"\" Python test discovery, setup and run of test functions. \"\"\"\n+from __future__ import absolute_import\n+from __future__ import division\n+from __future__ import print_function\n+\n"
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": ""
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": ""
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": ""
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": ""
+  }
+}

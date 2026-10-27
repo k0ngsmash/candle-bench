@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 9 instances...
+  0%|          | 0/9 [00:00<?, ?it/s] 11%|█         | 1/9 [00:18<02:31, 18.96s/it]1 ran successfully, 0 failed:  11%|█         | 1/9 [00:18<02:31, 18.96s/it]1 ran successfully, 0 failed:  22%|██▏       | 2/9 [00:22<01:19, 11.37s/it]2 ran successfully, 0 failed:  22%|██▏       | 2/9 [00:22<01:19, 11.37s/it]2 ran successfully, 0 failed:  33%|███▎      | 3/9 [00:23<00:47,  7.90s/it]3 ran successfully, 0 failed:  33%|███▎      | 3/9 [00:23<00:47,  7.90s/it]3 ran successfully, 0 failed:  44%|████▍     | 4/9 [00:37<00:47,  9.42s/it]4 ran successfully, 0 failed:  44%|████▍     | 4/9 [00:37<00:47,  9.42s/it]4 ran successfully, 0 failed:  56%|█████▌    | 5/9 [00:49<00:39,  9.85s/it]5 ran successfully, 0 failed:  56%|█████▌    | 5/9 [00:49<00:39,  9.85s/it]5 ran successfully, 0 failed:  67%|██████▋   | 6/9 [00:53<00:26,  8.92s/it]6 ran successfully, 0 failed:  67%|██████▋   | 6/9 [00:53<00:26,  8.92s/it]6 ran successfully, 0 failed:  78%|███████▊  | 7/9 [00:58<00:16,  8.31s/it]7 ran successfully, 0 failed:  78%|███████▊  | 7/9 [00:58<00:16,  8.31s/it]7 ran successfully, 0 failed:  89%|████████▉ | 8/9 [00:59<00:07,  7.48s/it]8 ran successfully, 0 failed:  89%|████████▉ | 8/9 [00:59<00:07,  7.48s/it]8 ran successfully, 0 failed: 100%|██████████| 9/9 [01:11<00:00,  7.90s/it]9 ran successfully, 0 failed: 100%|██████████| 9/9 [01:11<00:00,  7.90s/it]9 ran successfully, 0 failed: 100%|██████████| 9/9 [01:11<00:00,  7.90s/it]
+Error in evaluation for django__django-13230: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-27_1033_loop_llama_w1/openai__passthrough/django__django-13230/run_instance.log) for more information.
+Error in evaluation for django__django-15819: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-27_1033_loop_llama_w1/openai__passthrough/django__django-15819/run_instance.log) for more information.
+All instances run.
+Total instances: 15
+Instances submitted: 15
+Instances completed: 7
+Instances incomplete: 0
+Instances resolved: 4
+Instances unresolved: 3
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 1
+Instances with empty patches: 6
+Instances with errors: 2
+Unstopped containers: 0
+Unremoved images: 15
+Report written to openai__passthrough.2026-10-27_1033_loop_llama_w1.json

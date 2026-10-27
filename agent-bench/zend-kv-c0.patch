@@ -1,0 +1,17 @@
+diff --git a/zend/src/session.rs b/zend/src/session.rs
+index 0e3657ee..c63ce4f9 100644
+--- a/zend/src/session.rs
++++ b/zend/src/session.rs
+@@ -1429,10 +1429,8 @@ impl InferenceState {
+             qsa_selection_budget,
+             qsa_strata,
+         )
+-        // Dialogue turns compress at C5 (moderate adaptive quantization).
+-        // Paired with the removed uniform-K pin (see `ModelBuilder::engine`),
+-        // so K is adaptive too.
+-        .compression_level(5)
++        // Bench build: C0, near-lossless KV, to measure what C5 costs an agent.
++        .compression_level(0)
+         // Per-layer corrupt-turn policy (from the projection schema): the
+         // startup reload drops the whole conversation for ingest layers and
+         // only the corrupt turn for dialogue.

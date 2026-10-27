@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261025133208
+Start time: 20261027034339
 Username: THOR\k0ng
 RunAs User: THOR\k0ng
 Configuration Name: 
 Machine: THOR (Microsoft Windows NT 10.0.26300.0)
-Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\k0ng\source\repos\candle-bench\agent-bench\zend-bringup.ps1
-Process ID: 8700
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1 -Base 35e9a2b8 -Branch bench/zend-qwen36
+Process ID: 36088
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,46 +17,29 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 == Local branch with the one-line model switch
-git : Switched to a new branch 'bench/zend-qwen36'
-At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:10 char:1
-+ git -C $Repo checkout -B bench/zend-qwen36 upstream/main 2>&1
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Switched to a n...ch/zend-qwen36':String) [], RemoteException
+git : Switched to and reset branch 'bench/zend-qwen36'
+At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:12 char:1
++ git -C $Repo checkout -f -B $Branch $Base 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Switched to and...ch/zend-qwen36':String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
 
-branch 'bench/zend-qwen36' set up to track 'upstream/main'.
-git : Switched to a new branch 'bench/zend-qwen36'
-At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:10 char:1
-+ git -C $Repo checkout -B bench/zend-qwen36 upstream/main 2>&1
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Switched to a n...ch/zend-qwen36':String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
+
 git : Checking patch host/src/model.rs...
-At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:11 char:1
-+ git -C $Repo apply --verbose (Join-Path $PSScriptRoot 'zend-qwen36.pa ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:14 char:3
++   git -C $Repo apply --verbose (Join-Path $PSScriptRoot $p) 2>&1
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (Checking patch host/src/model.rs...:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
 
 Applied patch host/src/model.rs cleanly.
-git : Checking patch host/src/model.rs...
-At C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1:11 char:1
-+ git -C $Repo apply --verbose (Join-Path $PSScriptRoot 'zend-qwen36.pa ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Checking patch host/src/model.rs...:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
 
-Applied patch host/src/model.rs cleanly.
- host/src/model.rs | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-Based on upstream 35e9a2b8
+
+Based on upstream 35e9a2b8, branch bench/zend-qwen36, patches: zend-qwen36.patch
 == cargo build --release -p zend
 
 build exit 0 (full output: D:\candle-work\logs\cargo-zend.log)
 == Standalone workspace
-
-
-
 repos:
   - name: scratch
 
@@ -70,5 +53,5 @@ checkouts:
 == DONE (zend.exe at D:\candle-work\candle\target\release\zend.exe)
 **********************
 Windows PowerShell transcript end
-End time: 20261025144429
+End time: 20261027034436
 **********************

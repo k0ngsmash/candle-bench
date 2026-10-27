@@ -1,0 +1,28 @@
+{
+ "n_cpu_moe": 8,
+ "ctx_per_slot": 65536,
+ "slots": 8,
+ "args": [
+  "/home/bench/llama.cpp/build/bin/llama-server",
+  "-m",
+  "/home/bench/models/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+  "--alias",
+  "passthrough",
+  "--jinja",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "8001",
+  "-ngl",
+  "99",
+  "--n-cpu-moe",
+  "8",
+  "-c",
+  "524288",
+  "--parallel",
+  "8",
+  "--flash-attn",
+  "on",
+  "--metrics"
+ ]
+}

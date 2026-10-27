@@ -1,0 +1,44 @@
+{
+ "backend": "zend",
+ "workers": 1,
+ "tasks": 15,
+ "fresh_context": false,
+ "repetition_penalty": null,
+ "wall_seconds": 1950,
+ "agent_exit": 0,
+ "score": {
+  "resolved": 4,
+  "submitted": 15,
+  "empty_patches": 11,
+  "errors": 0,
+  "resolved_ids": [
+   "astropy__astropy-12907",
+   "django__django-12708",
+   "django__django-13230",
+   "matplotlib__matplotlib-23987"
+  ]
+ },
+ "metrics": {
+  "model_calls": 1081,
+  "failed_calls": 0,
+  "prompt_tokens_total": 23125557,
+  "completion_tokens_total": 215230,
+  "call_seconds_median": 0.8,
+  "call_seconds_p90": 2.99,
+  "decode_tps_per_call_median": 129.8,
+  "completion_tps_aggregate": 110.4,
+  "steps_per_task_median": 75.0,
+  "task_minutes_median": 2.0,
+  "context_peak_tokens_median": 32907,
+  "context_peak_tokens_max": 34082,
+  "gpu_util_mean_pct": 67.6,
+  "gpu_mem_peak_mib": 23735.0,
+  "exit_statuses": {
+   "Submitted": 4,
+   "LimitsExceeded": 11
+  },
+  "max_command_repeats_median": 4,
+  "tasks_repeating_a_command_5plus": 7,
+  "model_busy_seconds": 1430
+ }
+}

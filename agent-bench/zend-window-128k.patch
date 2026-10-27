@@ -1,0 +1,34 @@
+diff --git a/candle-conversation/src/projection/builder.rs b/candle-conversation/src/projection/builder.rs
+index 111f0eaa..3b2ebe95 100644
+--- a/candle-conversation/src/projection/builder.rs
++++ b/candle-conversation/src/projection/builder.rs
+@@ -426,6 +426,15 @@ impl Builder {
+         self
+     }
+ 
++    /// Bench build: set every layer's projection window to `tokens`.
++    #[must_use]
++    pub fn layer_window(mut self, tokens: usize) -> Self {
++        for layer in &mut self.schema.layers {
++            layer.window = tokens;
++        }
++        self
++    }
++
+     /// Look up a layer by id. Returns `None` only if the id was issued by
+     /// a different builder.
+     pub fn layer(&self, id: LayerId) -> Option<&LayerSchema> {
+diff --git a/zend/src/passthrough.rs b/zend/src/passthrough.rs
+index 4ede518c..36ed2a96 100644
+--- a/zend/src/passthrough.rs
++++ b/zend/src/passthrough.rs
+@@ -388,6 +388,9 @@ pub fn open(
+             DecodePriority::High,
+         )
+         .free_tool_calls_from_penalties()
++        // Bench build: 128K in place of the single-section schema's 32K, so an
++        // agent attends to its whole history instead of the newest 32K tokens.
++        .layer_window(131_072)
+     };
+ 
+     let mut stored = engine.find_conversations_by_metadata(METADATA_KEY, &key);

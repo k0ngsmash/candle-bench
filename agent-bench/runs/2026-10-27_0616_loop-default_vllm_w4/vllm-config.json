@@ -1,0 +1,30 @@
+{
+ "cpu_offload_gb": 6,
+ "max_model_len": 65536,
+ "args": [
+  "/home/bench/venvs/vllm/bin/vllm",
+  "serve",
+  "cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit",
+  "--served-model-name",
+  "passthrough",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "8000",
+  "--max-model-len",
+  "65536",
+  "--gpu-memory-utilization",
+  "0.90",
+  "--max-num-seqs",
+  "8",
+  "--enable-auto-tool-choice",
+  "--tool-call-parser",
+  "qwen3_coder",
+  "--reasoning-parser",
+  "qwen3",
+  "--limit-mm-per-prompt",
+  "{\"image\":0,\"video\":0}",
+  "--cpu-offload-gb",
+  "6"
+ ]
+}

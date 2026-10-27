@@ -259,6 +259,31 @@ def overlay(path, max_tokens, repetition_penalty=None, backend="zend"):
     path.write_text(yaml.safe_dump(cfg, sort_keys=False))
 
 
+NOTES_TEXT = """
+
+Working notes: keep the file /tmp/notes.md as your memory for this task. After any command that teaches
+you something (where a file is, how to run the tests, an error, an approach that failed), append one short
+line to it with echo >> /tmp/notes.md. Before running a command like one you have run before, run
+cat /tmp/notes.md first, and do not repeat an approach the notes say has failed.
+"""
+
+
+def notes_config(path):
+    """Write a config that appends the working-notes instruction to mini-swe-agent's own SWE-bench
+    instance template (read from the installed package, so nothing else in it changes)."""
+    import yaml
+    import minisweagent
+    found = sorted(Path(minisweagent.__file__).parent.rglob("swebench.yaml"))
+    if not found:
+        raise RuntimeError("swebench.yaml not found in the mini-swe-agent package")
+    base = yaml.safe_load(found[0].read_text())
+    template = (base.get("agent") or {}).get("instance_template")
+    if not template:
+        raise RuntimeError(f"no agent.instance_template in {found[0]}")
+    path.write_text(yaml.safe_dump({"agent": {"instance_template": template + NOTES_TEXT}}, sort_keys=False))
+    log(f"working-notes instruction appended to the template from {found[0]}")
+
+
 def score(run_dir, ids):
     """Score preds.json with the SWE-bench harness (its current dataset, which carries each
     instance's image and eval script) and return the counts, or None."""
@@ -311,6 +336,8 @@ def main():
     ap.add_argument("--tasks-file", help="run exactly these instance ids (one per line) instead of the standard list")
     ap.add_argument("--fresh-context", action="store_true",
                     help="proxy makes every call a new conversation (tests zend without its held context)")
+    ap.add_argument("--notes", action="store_true",
+                    help="tell the agent to keep working notes in /tmp/notes.md (agent-memory experiment)")
     ap.add_argument("--zend-env", action="append", default=[], metavar="KEY=VALUE",
                     help="environment variable for the zend process (repeatable), e.g. ZEND_PT_SUPPRESS_PENALTY=0")
     a = ap.parse_args()
@@ -324,6 +351,8 @@ def main():
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
     log(f"{a.backend}: {len(ids)} tasks, {a.workers} parallel agents -> {run_dir}")
 
+    if a.notes:
+        notes_config(run_dir / "notes.yaml")   # before any server starts, so a failure here stops cleanly
     stop_vllm(); stop_llama(); stop_zend(); time.sleep(5)
     if a.backend == "zend":
         if a.zend_env:
@@ -350,11 +379,12 @@ def main():
         stop_backend(a.backend)
         sys.exit(1)
     overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend)
+    extra = ["-c", str(run_dir / "notes.yaml")] if a.notes else []
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
     agent_cmd = [str(AGENT_BIN / "mini-extra"), "swebench", "--subset", "lite", "--split", "test",
                  "--filter", filt, "-w", str(a.workers), "-o", str(run_dir / "agent"),
-                 "-c", "swebench.yaml", "-c", str(run_dir / "overlay.yaml"), "--environment-class", "docker", "--redo-existing"]
+                 "-c", "swebench.yaml", "-c", str(run_dir / "overlay.yaml"), *extra, "--environment-class", "docker", "--redo-existing"]
     log("agents running")
     t0 = time.time()
     with open(run_dir / "agent.log", "w") as f:
