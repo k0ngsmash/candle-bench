@@ -1,0 +1,21 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 10 instances...
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:25<03:49, 25.55s/it]1 ran successfully, 0 failed:  10%|█         | 1/10 [00:25<03:49, 25.55s/it]2 ran successfully, 0 failed:  20%|██        | 2/10 [00:25<01:42, 12.80s/it]2 ran successfully, 0 failed:  30%|███       | 3/10 [00:26<01:01,  8.73s/it]3 ran successfully, 0 failed:  30%|███       | 3/10 [00:26<01:01,  8.73s/it]3 ran successfully, 0 failed:  30%|███       | 3/10 [00:38<01:29, 12.72s/it]3 ran successfully, 0 failed:  40%|████      | 4/10 [00:53<01:20, 13.40s/it]4 ran successfully, 0 failed:  40%|████      | 4/10 [00:53<01:20, 13.40s/it]4 ran successfully, 0 failed:  50%|█████     | 5/10 [00:55<00:55, 11.03s/it]5 ran successfully, 0 failed:  50%|█████     | 5/10 [00:55<00:55, 11.03s/it]5 ran successfully, 0 failed:  60%|██████    | 6/10 [01:00<00:40, 10.16s/it]6 ran successfully, 0 failed:  60%|██████    | 6/10 [01:00<00:40, 10.16s/it]6 ran successfully, 0 failed:  70%|███████   | 7/10 [01:02<00:26,  8.88s/it]7 ran successfully, 0 failed:  70%|███████   | 7/10 [01:02<00:26,  8.88s/it]7 ran successfully, 0 failed:  80%|████████  | 8/10 [01:09<00:17,  8.73s/it]8 ran successfully, 0 failed:  80%|████████  | 8/10 [01:09<00:17,  8.73s/it]8 ran successfully, 0 failed:  90%|█████████ | 9/10 [01:18<00:08,  8.68s/it]9 ran successfully, 0 failed:  90%|█████████ | 9/10 [01:18<00:08,  8.68s/it]9 ran successfully, 0 failed: 100%|██████████| 10/10 [01:22<00:00,  8.27s/it]10 ran successfully, 0 failed: 100%|██████████| 10/10 [01:22<00:00,  8.27s/it]10 ran successfully, 0 failed: 100%|██████████| 10/10 [01:22<00:00,  8.27s/it]
+Error in evaluation for pytest-dev__pytest-7490: >>>>> Patch Apply Failed:
+patch: **** Only garbage was found in the patch input.
+
+Check (logs/run_evaluation/2026-10-28_0938_loop-overnight-b_llama_w1/openai__passthrough/pytest-dev__pytest-7490/run_instance.log) for more information.
+All instances run.
+Total instances: 15
+Instances submitted: 15
+Instances completed: 9
+Instances incomplete: 0
+Instances resolved: 4
+Instances unresolved: 5
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 1
+Instances with empty patches: 5
+Instances with errors: 1
+Unstopped containers: 0
+Unremoved images: 15
+Report written to openai__passthrough.2026-10-28_0938_loop-overnight-b_llama_w1.json

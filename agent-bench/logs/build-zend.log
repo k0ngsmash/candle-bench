@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027034339
+Start time: 20261027231708
 Username: THOR\k0ng
 RunAs User: THOR\k0ng
 Configuration Name: 
 Machine: THOR (Microsoft Windows NT 10.0.26300.0)
 Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\k0ng\source\repos\candle-bench\agent-bench\build-zend.ps1 -Base 35e9a2b8 -Branch bench/zend-qwen36
-Process ID: 36088
+Process ID: 37496
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -53,5 +53,5 @@ checkouts:
 == DONE (zend.exe at D:\candle-work\candle\target\release\zend.exe)
 **********************
 Windows PowerShell transcript end
-End time: 20261027034436
+End time: 20261027231928
 **********************

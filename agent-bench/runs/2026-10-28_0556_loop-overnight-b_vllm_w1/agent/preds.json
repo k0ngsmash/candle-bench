@@ -1,0 +1,77 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..45bea3608 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -242,7 +242,7 @@ def _cstack(left, right):\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": "diff --git a/django/core/checks/model_checks.py b/django/core/checks/model_checks.py\nindex 5c2266ca1d..1cdfe0d8b4 100755\n--- a/django/core/checks/model_checks.py\n+++ b/django/core/checks/model_checks.py\n@@ -5,6 +5,7 @@ from itertools import chain\n \n from django.apps import apps\n from django.core.checks import Error, Tags, register\n+from django.db import router\n \n \n @register(Tags.models)\n@@ -19,7 +20,9 @@ def check_all_models(app_configs=None, **kwargs):\n         models = chain.from_iterable(app_config.get_models() for app_config in app_configs)\n     for model in models:\n         if model._meta.managed and not model._meta.proxy:\n-            db_table_models[model._meta.db_table].append(model._meta.label)\n+            db_table = model._meta.db_table\n+            db_alias = router.db_for_read(model)\n+            db_table_models[(db_table, db_alias)].append(model._meta.label)\n         if not inspect.ismethod(model.check):\n             errors.append(\n                 Error(\n@@ -35,12 +38,12 @@ def check_all_models(app_configs=None, **kwargs):\n             indexes[model_index.name].append(model._meta.label)\n         for model_constraint in model._meta.constraints:\n             constraints[model_constraint.name].append(model._meta.label)\n-    for db_table, model_labels in db_table_models.items():\n+    for (db_table, db_alias), model_labels in db_table_models.items():\n         if len(model_labels) != 1:\n             errors.append(\n                 Error(\n                     \"db_table '%s' is used by multiple models: %s.\"\n-                    % (db_table, ', '.join(db_table_models[db_table])),\n+                    % (db_table, ', '.join(db_table_models[(db_table, db_alias)])),\n                     obj=db_table,\n                     id='models.E028',\n                 )\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": "class TupleSerializer(BaseSequenceSerializer):\n    def _format(self):\n        # When len(value)==0, the empty tuple should be serialized as \"()\",\n        # not \"(,)\" because (,) is invalid Python syntax.\n        return \"(%s)\" if len(self.value) != 1 else \"(%s,)\"\n\n\nclass TypeSerializer(BaseSerializer):\n    def serialize(self):\n        special_cases = [\n            (models.Model, \"models.Model\", []),\n            (type(None), 'type(None)', []),\n        ]\n        for case, string, imports in special_cases:\n            if case is self.value:\n                return string, set(imports)\n        if hasattr(self.value, \"__module__\"):\n            module = self.value.__module__\n            if module == builtins.__name__:\n                return self.value.__name__, set()\n            else:\n                name = self.value.__qualname__\n                # For locally defined classes, use __name__ because the class\n                # won't be accessible via its qualified name.\n                if '<locals>' in name:\n                    name = self.value.__name__\n                return \"%s.%s\" % (module, name), {\"import %s\" % module}\n\n\nclass UUIDSerializer(BaseSerializer):\n    def serialize(self):\n        return \"uuid.%s\" % repr(self.value), {\"import uuid\"}\n\n\nclass Serializer:\n    _registry = {\n        # Some of these are order-dependent.\n        frozenset: FrozensetSerializer,\n        list: SequenceSerializer,\n        set: SetSerializer,\n        tuple: TupleSerializer,\n        dict: DictionarySerializer,\n        models.Choices: ChoicesSerializer,\n        enum.Enum: EnumSerializer,\n        datetime.datetime: DatetimeDatetimeSerializer,\n        (datetime.date, datetime.timedelta, datetime.time): DateTimeSerializer,\n        SettingsReference: SettingsReferenceSerializer,\n        float: FloatSerializer,\n        (bool, int, type(None), bytes, str, range): BaseSimpleSerializer,\n        decimal.Decimal: DecimalSerializer,\n"
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": "\n    def alter_index_together(self, model, old_index_together, new_index_together):\n        \"\"\"\n        Deal with a model changing its index_together. The input\n        index_togethers must be doubly-nested, not the single-nested\n        [\"foo\", \"bar\"] format.\n        \"\"\"\n        olds = {tuple(fields) for fields in old_index_together}\n        news = {tuple(fields) for fields in new_index_together}\n        # Deleted indexes\n        for fields in olds.difference(news):\n            self._delete_composed_index(model, fields, {'index': True, 'unique': False}, self.sql_delete_index)\n        # Created indexes\n        for field_names in news.difference(olds):\n            fields = [model._meta.get_field(field) for field in field_names]\n            self.execute(self._create_index_sql(model, fields, suffix=\"_idx\"))\n"
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 68ffb0bfe0..a09cc5fe74 100755\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -214,6 +214,7 @@ class Feed:\n                 author_link=author_link,\n                 categories=self._get_dynamic_attr('item_categories', item),\n                 item_copyright=self._get_dynamic_attr('item_copyright', item),\n+                comments=self._get_dynamic_attr('item_comments', item),\n                 **self.item_extra_kwargs(item)\n             )\n         return feed\n"
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": "No patch.txt found, submitting git diff directly\n"
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": "Patch file not found, creating it now...\ndiff --git a/django/contrib/contenttypes/models.py b/django/contrib/contenttypes/models.py\nindex 759a53ce67..9247919291 100755\n--- a/django/contrib/contenttypes/models.py\n+++ b/django/contrib/contenttypes/models.py\n@@ -17,7 +17,7 @@ class ContentTypeManager(models.Manager):\n \n     def get_by_natural_key(self, app_label, model):\n         try:\n-            ct = self._cache[self.db][(app_label, model)]\n+            ct = self._cache.setdefault(self.db, {})[(app_label, model)]\n         except KeyError:\n             ct = self.get(app_label=app_label, model=model)\n             self._add_to_cache(self.db, ct)\n@@ -30,7 +30,7 @@ class ContentTypeManager(models.Manager):\n \n     def _get_from_cache(self, opts):\n         key = (opts.app_label, opts.model_name)\n-        return self._cache[self.db][key]\n+        return self._cache.setdefault(self.db, {})[key]\n \n     def get_for_model(self, model, for_concrete_model=True):\n         \"\"\"\n@@ -112,7 +112,7 @@ class ContentTypeManager(models.Manager):\n         (though ContentTypes are not created on-the-fly by get_by_id).\n         \"\"\"\n         try:\n-            ct = self._cache[self.db][id]\n+            ct = self._cache.setdefault(self.db, {})[id]\n         except KeyError:\n             # This could raise a DoesNotExist; that's correct behavior and will\n             # make sure that only correct ctypes get stored in the cache dict.\n"
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "diff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..014cef6919 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2422,13 +2422,15 @@ class Figure(FigureBase):\n                     \"The Figure parameters 'tight_layout' and \"\n                     \"'constrained_layout' cannot be used together. Please use \"\n                     \"'layout' parameter\")\n-            self.set_layout_engine(layout='tight')\n-            if isinstance(tight_layout, dict):\n-                self.get_layout_engine().set(**tight_layout)\n+            if tight_layout:\n+                self.set_layout_engine(layout='tight')\n+                if isinstance(tight_layout, dict):\n+                    self.get_layout_engine().set(**tight_layout)\n         elif constrained_layout is not None:\n-            self.set_layout_engine(layout='constrained')\n-            if isinstance(constrained_layout, dict):\n-                self.get_layout_engine().set(**constrained_layout)\n+            if constrained_layout:\n+                self.set_layout_engine(layout='constrained')\n+                if isinstance(constrained_layout, dict):\n+                    self.get_layout_engine().set(**constrained_layout)\n         else:\n             # everything is None, so use default:\n             self.set_layout_engine(layout=layout)\n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": "diff --git a/src/_pytest/python.py b/src/_pytest/python.py\nindex 37735784..1436d07f 100755\n--- a/src/_pytest/python.py\n+++ b/src/_pytest/python.py\n@@ -1258,11 +1258,12 @@ def _show_fixtures_per_test(config, session):\n         argname = fixture_def.argname\n         if verbose <= 0 and argname.startswith(\"_\"):\n             return\n+        scope = fixture_def.scope\n         if verbose > 0:\n             bestrel = get_best_relpath(fixture_def.func)\n-            funcargspec = \"{} -- {}\".format(argname, bestrel)\n+            funcargspec = \"{} (scope: {}) -- {}\".format(argname, scope, bestrel)\n         else:\n-            funcargspec = argname\n+            funcargspec = \"{} (scope: {})\".format(argname, scope)\n         tw.line(funcargspec, green=True)\n         fixture_doc = fixture_def.func.__doc__\n         if fixture_doc:\n@@ -1342,10 +1343,11 @@ def _showfixtures_main(config, session):\n                 currentmodule = module\n         if verbose <= 0 and argname[0] == \"_\":\n             continue\n+        scope = fixturedef.scope\n         if verbose > 0:\n-            funcargspec = \"%s -- %s\" % (argname, bestrel)\n+            funcargspec = \"%s (scope: %s) -- %s\" % (argname, scope, bestrel)\n         else:\n-            funcargspec = argname\n+            funcargspec = \"%s (scope: %s)\" % (argname, scope)\n         tw.line(funcargspec, green=True)\n         loc = getlocation(fixturedef.func, curdir)\n         doc = fixturedef.func.__doc__ or \"\"\n"
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": "diff --git a/src/_pytest/skipping.py b/src/_pytest/skipping.py\nindex 335e10996..2d4d21a97 100755\n--- a/src/_pytest/skipping.py\n+++ b/src/_pytest/skipping.py\n@@ -291,6 +291,18 @@ def pytest_runtest_makereport(item: Item, call: CallInfo[None]):\n             else:\n                 rep.outcome = \"passed\"\n                 rep.wasxfail = xfailed.reason\n+    elif call.excinfo and call.when == \"call\":\n+        # Re-evaluate xfail marks if we have a failure during the call\n+        # phase and didn't find an xfail mark earlier. This handles the\n+        # case where a marker was added dynamically during test execution.\n+        xfailed = item._store[xfailed_key] = evaluate_xfail_marks(item)\n+        if xfailed:\n+            raises = xfailed.raises\n+            if raises is not None and not isinstance(call.excinfo.value, raises):\n+                rep.outcome = \"failed\"\n+            else:\n+                rep.outcome = \"skipped\"\n+                rep.wasxfail = xfailed.reason\n \n     if (\n         item._store.get(skipped_by_mark_key, True)\n"
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": "No patch.txt found, creating it...\n"
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": ""
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": "No patch file exists yet, generating...\n"
+  }
+}

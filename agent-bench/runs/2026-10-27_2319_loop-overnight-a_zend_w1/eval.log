@@ -1,0 +1,17 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 4 instances...
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:23<01:09, 23.21s/it]1 ran successfully, 0 failed:  25%|██▌       | 1/4 [00:23<01:09, 23.21s/it]1 ran successfully, 0 failed:  50%|█████     | 2/4 [00:26<00:26, 13.24s/it]2 ran successfully, 0 failed:  50%|█████     | 2/4 [00:26<00:26, 13.24s/it]2 ran successfully, 0 failed:  75%|███████▌  | 3/4 [00:34<00:11, 11.63s/it]3 ran successfully, 0 failed:  75%|███████▌  | 3/4 [00:34<00:11, 11.63s/it]3 ran successfully, 0 failed: 100%|██████████| 4/4 [01:02<00:00, 15.54s/it]4 ran successfully, 0 failed: 100%|██████████| 4/4 [01:02<00:00, 15.54s/it]4 ran successfully, 0 failed: 100%|██████████| 4/4 [01:02<00:00, 15.54s/it]
+All instances run.
+Total instances: 15
+Instances submitted: 15
+Instances completed: 4
+Instances incomplete: 0
+Instances resolved: 2
+Instances unresolved: 2
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 1
+Instances with empty patches: 11
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 15
+Report written to openai__passthrough.2026-10-27_2319_loop-overnight-a_zend_w1.json

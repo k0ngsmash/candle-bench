@@ -1,0 +1,77 @@
+{
+  "astropy__astropy-12907": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "astropy__astropy-12907",
+    "model_patch": "diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py\nindex a308e2729..45bea3608 100755\n--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -242,7 +242,7 @@ def _cstack(left, right):\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\n-        cright[-right.shape[0]:, -right.shape[1]:] = 1\n+        cright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+  },
+  "django__django-11630": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-11630",
+    "model_patch": "diff --git a/django/core/checks/model_checks.py b/django/core/checks/model_checks.py\nindex 5c2266ca1d..577db7f8b7 100755\n--- a/django/core/checks/model_checks.py\n+++ b/django/core/checks/model_checks.py\n@@ -9,7 +9,7 @@ from django.core.checks import Error, Tags, register\n \n @register(Tags.models)\n def check_all_models(app_configs=None, **kwargs):\n-    db_table_models = defaultdict(list)\n+    db_table_models = defaultdict(lambda: defaultdict(list))\n     indexes = defaultdict(list)\n     constraints = defaultdict(list)\n     errors = []\n@@ -19,7 +19,7 @@ def check_all_models(app_configs=None, **kwargs):\n         models = chain.from_iterable(app_config.get_models() for app_config in app_configs)\n     for model in models:\n         if model._meta.managed and not model._meta.proxy:\n-            db_table_models[model._meta.db_table].append(model._meta.label)\n+            db_table_models[model._meta.db_table][model._meta.app_label].append(model._meta.label)\n         if not inspect.ismethod(model.check):\n             errors.append(\n                 Error(\n@@ -35,16 +35,17 @@ def check_all_models(app_configs=None, **kwargs):\n             indexes[model_index.name].append(model._meta.label)\n         for model_constraint in model._meta.constraints:\n             constraints[model_constraint.name].append(model._meta.label)\n-    for db_table, model_labels in db_table_models.items():\n-        if len(model_labels) != 1:\n-            errors.append(\n-                Error(\n-                    \"db_table '%s' is used by multiple models: %s.\"\n-                    % (db_table, ', '.join(db_table_models[db_table])),\n-                    obj=db_table,\n-                    id='models.E028',\n+    for db_table, app_models in db_table_models.items():\n+        for app_label, model_labels in app_models.items():\n+            if len(model_labels) > 1:\n+                errors.append(\n+                    Error(\n+                        \"db_table '%s' is used by multiple models: %s.\"\n+                        % (db_table, ', '.join(db_table_models[db_table][app_label])),\n+                        obj=db_table,\n+                        id='models.E028',\n+                    )\n                 )\n-            )\n     for index_name, model_labels in indexes.items():\n         if len(model_labels) > 1:\n             model_labels = set(model_labels)\n"
+  },
+  "django__django-12125": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12125",
+    "model_patch": ""
+  },
+  "django__django-12708": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-12708",
+    "model_patch": "diff --git a/django/db/backends/base/schema.py b/django/db/backends/base/schema.py\nindex 61f88401ab..e55c4c28f3 100755\n--- a/django/db/backends/base/schema.py\n+++ b/django/db/backends/base/schema.py\n@@ -403,6 +403,15 @@ class BaseDatabaseSchemaEditor:\n         meta_constraint_names = {constraint.name for constraint in model._meta.constraints}\n         meta_index_names = {constraint.name for constraint in model._meta.indexes}\n         columns = [model._meta.get_field(field).column for field in fields]\n+        # If we're looking for non-unique indexes, we need to exclude unique \n+        # constraints as well since they have index=True. This fixes the issue\n+        # where deleting an index_together fails when there's a unique_together\n+        # on the same fields.\n+        if not constraint_kwargs.get(\"unique\"):\n+            unique_constraint_names = self._constraint_names(\n+                model, columns, unique=True, primary_key=False, exclude=meta_constraint_names\n+            )\n+            meta_constraint_names = meta_constraint_names | set(unique_constraint_names)\n         constraint_names = self._constraint_names(\n             model, columns, exclude=meta_constraint_names | meta_index_names,\n             **constraint_kwargs\n"
+  },
+  "django__django-13230": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-13230",
+    "model_patch": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 68ffb0bfe0..a09cc5fe74 100755\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -214,6 +214,7 @@ class Feed:\n                 author_link=author_link,\n                 categories=self._get_dynamic_attr('item_categories', item),\n                 item_copyright=self._get_dynamic_attr('item_copyright', item),\n+                comments=self._get_dynamic_attr('item_comments', item),\n                 **self.item_extra_kwargs(item)\n             )\n         return feed\n"
+  },
+  "django__django-15819": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-15819",
+    "model_patch": "diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py\nindex f33bcbdccf..1b7aa12dc8 100755\n--- a/django/core/management/commands/inspectdb.py\n+++ b/django/core/management/commands/inspectdb.py\n@@ -182,6 +182,9 @@ class Command(BaseCommand):\n                             if ref_db_table == table_name\n                             else table2model(ref_db_table)\n                         )\n+                        # Add related_name for self-referential relations to avoid E304 error.\n+                        if rel_to == \"self\":\n+                            extra_params[\"related_name\"] = \"%s_rel\" % att_name\n                         if rel_to in known_models:\n                             field_type = \"%s(%s\" % (rel_type, rel_to)\n                         else:\n"
+  },
+  "django__django-16400": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "django__django-16400",
+    "model_patch": ""
+  },
+  "matplotlib__matplotlib-23987": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "matplotlib__matplotlib-23987",
+    "model_patch": "diff --git a/lib/matplotlib/figure.py b/lib/matplotlib/figure.py\nindex 5bbb786984..0648640708 100755\n--- a/lib/matplotlib/figure.py\n+++ b/lib/matplotlib/figure.py\n@@ -2416,7 +2416,7 @@ class Figure(FigureBase):\n                     \"The Figure parameters 'layout' and 'constrained_layout' \"\n                     \"cannot be used together. Please use 'layout' only.\")\n             self.set_layout_engine(layout=layout)\n-        elif tight_layout is not None:\n+        elif tight_layout:\n             if constrained_layout is not None:\n                 _api.warn_external(\n                     \"The Figure parameters 'tight_layout' and \"\n@@ -2425,7 +2425,7 @@ class Figure(FigureBase):\n             self.set_layout_engine(layout='tight')\n             if isinstance(tight_layout, dict):\n                 self.get_layout_engine().set(**tight_layout)\n-        elif constrained_layout is not None:\n+        elif constrained_layout:\n             self.set_layout_engine(layout='constrained')\n             if isinstance(constrained_layout, dict):\n                 self.get_layout_engine().set(**constrained_layout)\n"
+  },
+  "pytest-dev__pytest-5221": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-5221",
+    "model_patch": "diff --git a/src/_pytest/python.py b/src/_pytest/python.py\nindex 37735784..8254f49c 100755\n--- a/src/_pytest/python.py\n+++ b/src/_pytest/python.py\n@@ -1258,11 +1258,12 @@ def _show_fixtures_per_test(config, session):\n         argname = fixture_def.argname\n         if verbose <= 0 and argname.startswith(\"_\"):\n             return\n+        scope = fixture_def.scope\n         if verbose > 0:\n             bestrel = get_best_relpath(fixture_def.func)\n-            funcargspec = \"{} -- {}\".format(argname, bestrel)\n+            funcargspec = \"{} [{}] -- {}\".format(argname, scope, bestrel)\n         else:\n-            funcargspec = argname\n+            funcargspec = \"{} [{}]\".format(argname, scope)\n         tw.line(funcargspec, green=True)\n         fixture_doc = fixture_def.func.__doc__\n         if fixture_doc:\n@@ -1342,10 +1343,11 @@ def _showfixtures_main(config, session):\n                 currentmodule = module\n         if verbose <= 0 and argname[0] == \"_\":\n             continue\n+        scope = fixturedef.scope\n         if verbose > 0:\n-            funcargspec = \"%s -- %s\" % (argname, bestrel)\n+            funcargspec = \"%s [%s] -- %s\" % (argname, scope, bestrel)\n         else:\n-            funcargspec = argname\n+            funcargspec = \"%s [%s]\" % (argname, scope)\n         tw.line(funcargspec, green=True)\n         loc = getlocation(fixturedef.func, curdir)\n         doc = fixturedef.func.__doc__ or \"\"\n"
+  },
+  "pytest-dev__pytest-7490": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "pytest-dev__pytest-7490",
+    "model_patch": "--- a/src/_pytest/skipping.py\\n+++ b/src/_pytest/skipping.py\\n@@ -261,7 +261,11 @@ def pytest_runtest_call(item: Item) -> Generator[None, None, None]:\\n def pytest_runtest_makereport(item: Item, call: CallInfo[None]):\\n     outcome = yield\\n     rep = outcome.get_result()\\n+    # Re-evaluate xfail marks to account for any markers added during test execution.\\n+    # See issue https://github.com/pytest-dev/pytest/issues/7564\\n     xfailed = item._store.get(xfailed_key, None)\\n+    if xfailed is None:\\n+        item._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\\n     # unittest special case, see setting of unexpectedsuccess_key\\n     if unexpectedsuccess_key in item._store and rep.when == \"call\":\\n         reason = item._store[unexpectedsuccess_key]\n"
+  },
+  "sphinx-doc__sphinx-7686": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sphinx-doc__sphinx-7686",
+    "model_patch": ""
+  },
+  "sympy__sympy-13895": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-13895",
+    "model_patch": ""
+  },
+  "sympy__sympy-15308": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-15308",
+    "model_patch": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\nindex a0eb97792..09c3e230e 100755\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -1470,6 +1470,9 @@ def _print_Adjoint(self, expr):\n         else:\n             return r\"%s^\\dagger\" % self._print(mat)\n \n+    def _print_Trace(self, expr):\n+        return r\"\\operatorname{Trace}{%s}\" % self._print(expr.arg)\n+\n     def _print_MatAdd(self, expr):\n         terms = [self._print(t) for t in expr.args]\n         l = []\n"
+  },
+  "sympy__sympy-17022": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-17022",
+    "model_patch": ""
+  },
+  "sympy__sympy-20590": {
+    "model_name_or_path": "openai/passthrough",
+    "instance_id": "sympy__sympy-20590",
+    "model_patch": "diff --git a/sympy/core/_print_helpers.py b/sympy/core/_print_helpers.py\nindex 96d7e72676..f7875b9eec 100755\n--- a/sympy/core/_print_helpers.py\n+++ b/sympy/core/_print_helpers.py\n@@ -17,6 +17,8 @@ class Printable:\n     This also adds support for LaTeX printing in jupyter notebooks.\n     \"\"\"\n \n+    __slots__ = ()\n+\n     # Note, we always use the default ordering (lex) in __str__ and __repr__,\n     # regardless of the global setting. See issue 5487.\n     def __str__(self):\n"
+  }
+}

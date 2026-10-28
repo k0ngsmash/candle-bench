@@ -1,0 +1,17 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running 8 instances...
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:25<02:57, 25.39s/it]1 ran successfully, 0 failed:  12%|█▎        | 1/8 [00:25<02:57, 25.39s/it]1 ran successfully, 0 failed:  25%|██▌       | 2/8 [00:25<01:17, 12.99s/it]2 ran successfully, 0 failed:  25%|██▌       | 2/8 [00:25<01:17, 12.99s/it]2 ran successfully, 0 failed:  38%|███▊      | 3/8 [00:28<00:46,  9.37s/it]3 ran successfully, 0 failed:  38%|███▊      | 3/8 [00:28<00:46,  9.37s/it]3 ran successfully, 0 failed:  50%|█████     | 4/8 [00:54<00:54, 13.72s/it]4 ran successfully, 0 failed:  50%|█████     | 4/8 [00:54<00:54, 13.72s/it]4 ran successfully, 0 failed:  62%|██████▎   | 5/8 [00:58<00:35, 11.68s/it]5 ran successfully, 0 failed:  62%|██████▎   | 5/8 [00:58<00:35, 11.68s/it]5 ran successfully, 0 failed:  75%|███████▌  | 6/8 [01:00<00:20, 10.09s/it]6 ran successfully, 0 failed:  75%|███████▌  | 6/8 [01:00<00:20, 10.09s/it]6 ran successfully, 0 failed:  88%|████████▊ | 7/8 [01:01<00:08,  8.85s/it]7 ran successfully, 0 failed:  88%|████████▊ | 7/8 [01:01<00:08,  8.85s/it]7 ran successfully, 0 failed: 100%|██████████| 8/8 [01:16<00:00,  9.59s/it]8 ran successfully, 0 failed: 100%|██████████| 8/8 [01:16<00:00,  9.59s/it]8 ran successfully, 0 failed: 100%|██████████| 8/8 [01:16<00:00,  9.59s/it]
+All instances run.
+Total instances: 15
+Instances submitted: 15
+Instances completed: 8
+Instances incomplete: 0
+Instances resolved: 5
+Instances unresolved: 3
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 1
+Instances with empty patches: 7
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 15
+Report written to openai__passthrough.2026-10-28_0425_loop-overnight-a_llama_w1.json
