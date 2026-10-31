@@ -56,7 +56,11 @@ speed or solves. zend also scales with concurrency once resident.
 - Loop metric is read from the agent trajectories (no SWE-bench Docker scoring in these runs);
   "Submitted" is agent completion, not verified resolution.
 
-## Flash-Next gate (T3): pending
+## Flash-Next gate (T3): inconclusive — prerequisite missing
 
-The 24 GB card hit CUDA_ERROR_ALREADY_MAPPED building Flash-Next's MoE live table; whether that was
-the 24 GB ceiling or a genuine bug is being tested on this 96 GB card. Result to follow.
+Flash-Next is not a downloadable checkpoint like the 35B: zend prepares its model pack locally from
+Q8_0 source shards (Qwen3.8-Flash-Next-Q8_0-00001..00006.gguf) via the quantized_qwen38_moe
+preparation step. Those shards were not staged on the box and the pack was never prepared, so zend
+exited at the "Loading model" step before reaching the MoE live-table step — the point where the
+24 GB card hit CUDA_ERROR_ALREADY_MAPPED. The ceiling-vs-bug question therefore remains open;
+answering it needs the Flash-Next source pack staged and prepared on the 96 GB card first.
