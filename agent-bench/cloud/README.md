@@ -102,3 +102,18 @@ consecutive repetitions, onset) on the exact action strings and again on a `cano
 `summary.md` reports both; `ccycled_3` = some pattern of actions repeated three times in a row.
 
 Offline tests (no GPU): `python harness/test_context_policy.py [run_dir ...]`.
+
+## P2 — next box session (queue in one command)
+
+The box is stopped, not deleted, so everything above survives. On restart (new public IP):
+
+    bash cloud/mkjobs-p2.sh <public-ip> ./p2-jobs 93     # writes 13 gated jobs; drop into queue/ in order
+
+| group | jobs | what it settles | ~time |
+|---|---|---|---|
+| probe + prepull | 2 | deps sanity; `06-prepull-verified.sh` picks `verified150.txt` (stratified, seed 0, stuck-15 excluded) and pre-pulls its 150 images | 1 h, overlaps |
+| `p2-engine` | zend-256K × 3 | whether zend's looping is an **engine** property (window holds everything) or a retention one | 1.2 h |
+| `p2-hardcap` | B, C × 3 at a **hard** 32K | relevance vs recency when the cap actually bites; like-for-like with zend-32K | 1.7 h |
+| `p2-verified` | B150, C150, 8 agents | the H2 replication at n = 150 per arm | ~6 h |
+
+`--dataset verified` switches the agent subset and the grader together; `summary.json` carries it.

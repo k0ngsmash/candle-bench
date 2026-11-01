@@ -230,11 +230,17 @@ def start_llama(run_dir, cpu_moe_list, max_len, slots):
     raise RuntimeError("llama.cpp could not start with any --n-cpu-moe value tried")
 
 
-def task_ids(n):
-    cache = BENCH / "instances.txt"
+DATASETS = {  # agent subset name, HF dataset for the SWE-bench eval harness
+    "lite": ("lite", "SWE-bench/SWE-bench_Lite"),
+    "verified": ("verified", "SWE-bench/SWE-bench_Verified"),
+}
+
+
+def task_ids(n, dataset="lite"):
+    cache = BENCH / ("instances.txt" if dataset == "lite" else f"instances-{dataset}.txt")
     if not cache.exists():
         from datasets import load_dataset
-        ds = load_dataset("princeton-nlp/SWE-bench_Lite", split="test")
+        ds = load_dataset(DATASETS[dataset][1], split="test")
         cache.write_text("\n".join(ds[i]["instance_id"] for i in range(0, len(ds), 10)) + "\n")
     return cache.read_text().split()[:n]
 
@@ -283,7 +289,7 @@ def notes_config(path):
     log(f"working-notes instruction appended to the template from {found[0]}")
 
 
-def score(run_dir, ids):
+def score(run_dir, ids, dataset="lite"):
     preds = run_dir / "agent" / "preds.json"
     if not preds.exists():
         return None
@@ -291,7 +297,7 @@ def score(run_dir, ids):
     run_id = run_dir.name
     with open(run_dir / "eval.log", "w") as f:
         subprocess.run([str(AGENT_BIN / "python"), "-m", "swebench.harness.run_evaluation",
-                        "--dataset_name", "SWE-bench/SWE-bench_Lite", "--split", "test",
+                        "--dataset_name", DATASETS[dataset][1], "--split", "test",
                         "--predictions_path", str(preds), "--max_workers", "4", "--run_id", run_id,
                         "--instance_ids", *ids], cwd=run_dir, stdout=f, stderr=subprocess.STDOUT)
     reports = list(run_dir.glob(f"*.{run_id}.json"))
@@ -307,7 +313,7 @@ def score(run_dir, ids):
 def rescore(run_dir):
     ids = (run_dir / "tasks.txt").read_text().split()
     s = json.loads((run_dir / "summary.json").read_text())
-    s["score"] = score(run_dir, ids)
+    s["score"] = score(run_dir, ids, s.get("dataset", "lite"))
     (run_dir / "summary.json").write_text(json.dumps(s, indent=1))
     subprocess.run([str(AGENT_BIN / "python"), str(HARNESS / "summarize.py"), str(run_dir)])
 
@@ -366,6 +372,7 @@ def main():
     ap.add_argument("--rescore", metavar="RUN_DIR")
     ap.add_argument("--repetition-penalty", type=float)
     ap.add_argument("--tasks-file")
+    ap.add_argument("--dataset", default="lite", choices=list(DATASETS), help="SWE-bench subset the task ids belong to (agent env + grading)")
     ap.add_argument("--fresh-context", action="store_true")
     ap.add_argument("--notes", action="store_true")
     ap.add_argument("--zend-env", action="append", default=[], metavar="KEY=VALUE")
@@ -384,7 +391,7 @@ def main():
         rescore(Path(a.rescore).resolve())
         return
 
-    ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks)
+    ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks, a.dataset)
     pol = "" if a.policy == "none" else f"_{a.policy}{a.budget_tokens // 1024}k{'hard' if a.clip_recent else ''}"
     run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}{pol}_w{a.workers}"
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -441,7 +448,7 @@ def main():
     extra = ["-c", str(run_dir / "notes.yaml")] if a.notes else []
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
-    agent_cmd = [str(AGENT_BIN / "mini-extra"), "swebench", "--subset", "lite", "--split", "test",
+    agent_cmd = [str(AGENT_BIN / "mini-extra"), "swebench", "--subset", DATASETS[a.dataset][0], "--split", "test",
                  "--filter", filt, "-w", str(a.workers), "-o", str(run_dir / "agent"),
                  "-c", "swebench.yaml", "-c", str(run_dir / "overlay.yaml"), *extra, "--environment-class", "docker", "--redo-existing"]
     log("agents running")
@@ -463,11 +470,11 @@ def main():
     if not a.keep_backend:
         stop_backend(a.backend)
 
-    resolved = None if a.no_eval else score(run_dir, ids)
+    resolved = None if a.no_eval else score(run_dir, ids, a.dataset)
     # which token ruler the proxy's budget used (tiktoken, or chars/4 if its BPE file was unreachable)
     ruler = next((l.split("ruler: ")[1].strip() for l in open(run_dir / "proxy.log", errors="replace") if "ruler: " in l), None)
 
-    summary = {"backend": a.backend, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
+    summary = {"backend": a.backend, "dataset": a.dataset, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
                "agent_exit": rc, "score": resolved, "seed": a.seed,
                "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "cap": "hard" if a.clip_recent else "soft",
                           "keep_last": a.keep_last, "ruler": ruler,
