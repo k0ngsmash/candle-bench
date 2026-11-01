@@ -8,3 +8,4 @@ agent-bench/queue/*
 !agent-bench/queue/.gitkeep
 # daemon stdout dumps are large and transient
 agent-bench/logs/*.out
+__pycache__/

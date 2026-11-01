@@ -6,6 +6,9 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from loopmetrics import analyse_run  # noqa: E402
+
 
 def pct(xs, p):
     xs = sorted(xs)
@@ -29,7 +32,6 @@ def main(run_dir: Path):
     gen_busy = sum(secs)
 
     exits = defaultdict(int)
-    max_repeats = []   # per task: how many times its most repeated command was issued
     for traj in (run_dir / "agent").glob("*/*.traj.json"):
         try:
             d = json.loads(traj.read_text())
@@ -37,15 +39,11 @@ def main(run_dir: Path):
             exits["unreadable"] += 1
             continue
         exits[d.get("info", {}).get("exit_status", "unknown")] += 1
-        cmds = defaultdict(int)
-        for m in d.get("messages", []):
-            for tc in (m.get("tool_calls") or []) if m.get("role") == "assistant" else []:
-                try:
-                    cmds[json.loads(tc["function"]["arguments"]).get("command", "")] += 1
-                except (ValueError, KeyError, TypeError, AttributeError):
-                    pass
-        if cmds:
-            max_repeats.append(max(cmds.values()))
+    loops = analyse_run(run_dir)          # writes loop.csv; the looping metric lives in loopmetrics.py
+    lag = loops["aggregate"]
+    K = loops["k"]
+    max_repeats = [r["max_repeat"] for r in loops["rows"]]
+    pol = [c["policy"] for c in ok if c.get("policy")]
 
     gpu = list(csv.DictReader(open(run_dir / "gpu.csv"))) if (run_dir / "gpu.csv").exists() else []
     util = [float(r["util_pct"]) for r in gpu if r.get("util_pct", "").replace(".", "").isdigit()]
@@ -68,8 +66,12 @@ def main(run_dir: Path):
         "max_command_repeats_median": st.median(max_repeats) if max_repeats else None,
         "tasks_repeating_a_command_5plus": sum(1 for r in max_repeats if r >= 5),
         "model_busy_seconds": round(gen_busy),
+        "policy_tokens_sent_median": int(st.median(p["tokens_after"] for p in pol)) if pol else None,
+        "policy_turns_kept_median": st.median(p["turns_kept"] for p in pol) if pol else None,
+        "policy_turns_total_median": st.median(p["turns_total"] for p in pol) if pol else None,
     }
     s["metrics"] = m
+    s["looping"] = {"k": loops["k"], **lag}
     (run_dir / "summary.json").write_text(json.dumps(s, indent=1))
 
     score = s.get("score") or {}
@@ -85,7 +87,18 @@ def main(run_dir: Path):
              f"- GPU: mean utilisation {m['gpu_util_mean_pct']}%, peak memory {m['gpu_mem_peak_mib']} MiB",
              f"- Agent exits: {dict(exits)}",
              f"- Looping: median task's most-repeated command issued {m['max_command_repeats_median']}x; "
-             f"{m['tasks_repeating_a_command_5plus']} task(s) issued one command 5+ times"]
+             f"{m['tasks_repeating_a_command_5plus']} task(s) issued one command 5+ times",
+             f"- Loop metric (k={K}): {lag.get(f'tasks_looped_{K}')} / {loops['tasks']} tasks looped "
+             f"(rate {lag.get(f'loop_rate_{K}')}); repeat fraction {lag.get('repeat_fraction_mean')}; "
+             f"longest run median {lag.get('longest_run_median')}; onset median step {lag.get(f'loop_onset_{K}_median')}"
+             + (f"; per-step reliability r={lag['per_step_reliability']['r']}" if lag.get("per_step_reliability") else "")
+             if loops["tasks"] else "- Loop metric: no trajectories"]
+    if (s.get("policy") or {}).get("policy", "none") != "none":
+        p = s["policy"]
+        lines.append(f"- Context policy: **{p['policy']}** budget {p['budget_tokens']:,} keep_last {p['keep_last']}"
+                     + (f" embed {p['embed_model']}" if p["policy"] == "relevance" else "")
+                     + (f"; sent median {m['policy_tokens_sent_median']:,} tokens, kept {m['policy_turns_kept_median']} of {m['policy_turns_total_median']} turns (median)"
+                        if pol else ""))
     (run_dir / "summary.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 

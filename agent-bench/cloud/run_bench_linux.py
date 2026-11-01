@@ -238,11 +238,13 @@ def task_ids(n):
     return cache.read_text().split()[:n]
 
 
-def overlay(path, max_tokens, repetition_penalty=None, backend="zend"):
+def overlay(path, max_tokens, repetition_penalty=None, backend="zend", seed=None):
     import yaml
     sampling = json.loads(json.dumps(SAMPLING))
     if repetition_penalty is not None:
         sampling["extra_body"]["repetition_penalty"] = repetition_penalty
+    if seed is not None:
+        sampling["seed"] = seed
     if backend == "llama":
         sampling["extra_body"]["repeat_penalty"] = sampling["extra_body"].pop("repetition_penalty")
     cfg = {
@@ -330,17 +332,32 @@ def main():
     ap.add_argument("--fresh-context", action="store_true")
     ap.add_argument("--notes", action="store_true")
     ap.add_argument("--zend-env", action="append", default=[], metavar="KEY=VALUE")
+    # context-retention policy (the application-level arms; applied in the proxy, engine untouched)
+    ap.add_argument("--policy", default="none", choices=["none", "recency", "relevance", "compaction"])
+    ap.add_argument("--budget-tokens", type=int, default=32768, help="matched footprint cap for recency/relevance/compaction")
+    ap.add_argument("--keep-last", type=int, default=4)
+    ap.add_argument("--max-turn-tokens", type=int, default=1024)
+    ap.add_argument("--embed-model", default="bow", help="relevance: 'bow' or a sentence-transformers model")
+    ap.add_argument("--score-order", action="store_true")
+    ap.add_argument("--max-summary-tokens", type=int, default=1500)
+    ap.add_argument("--seed", type=int, help="sampling seed passed to the engine (fixed seeds per rep)")
     a = ap.parse_args()
     if a.rescore:
         rescore(Path(a.rescore).resolve())
         return
 
     ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks)
-    run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}_w{a.workers}"
+    pol = "" if a.policy == "none" else f"_{a.policy}{a.budget_tokens // 1024}k"
+    run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}{pol}_w{a.workers}"
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
     log(f"{a.backend}: {len(ids)} tasks, {a.workers} parallel agents -> {run_dir}")
 
+    if a.policy != "none" and a.backend == "zend" and not a.fresh_context:
+        # zend's passthrough keeps its own per-conversation context and ignores a rewritten history
+        # unless each call is a new conversation; the policy arms are meant for vLLM/llama anyway.
+        log("policy arm on zend: forcing --fresh-context so the rewritten history is what zend sees")
+        a.fresh_context = True
     if a.notes:
         notes_config(run_dir / "notes.yaml")
     stop_vllm(); stop_llama(); stop_zend(); time.sleep(5)
@@ -353,9 +370,13 @@ def main():
     else:
         upstream = start_llama(run_dir, [int(x) for x in a.cpu_moe.split(",")], a.max_model_len, max(a.workers, 1))
 
+    policy_args = ["--policy", a.policy, "--budget-tokens", str(a.budget_tokens), "--keep-last", str(a.keep_last),
+                   "--max-turn-tokens", str(a.max_turn_tokens), "--embed-model", a.embed_model,
+                   "--max-summary-tokens", str(a.max_summary_tokens)] + (["--score-order"] if a.score_order else [])
     proxy = subprocess.Popen([str(AGENT_BIN / "python"), str(HARNESS / "proxy.py"), "--listen", str(PROXY_PORT),
                               "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")]
-                             + (["--fresh-context"] if a.fresh_context else []))
+                             + (["--fresh-context"] if a.fresh_context else []) + policy_args,
+                             stdout=open(run_dir / "proxy.log", "w"), stderr=subprocess.STDOUT)
     time.sleep(3)
     stop = threading.Event()
     sampler = threading.Thread(target=gpu_sampler, args=(run_dir / "gpu.csv", stop), daemon=True)
@@ -368,7 +389,7 @@ def main():
         stop.set(); proxy.terminate()
         stop_backend(a.backend)
         sys.exit(1)
-    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend)
+    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend, a.seed)
     extra = ["-c", str(run_dir / "notes.yaml")] if a.notes else []
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
@@ -397,7 +418,10 @@ def main():
     resolved = None if a.no_eval else score(run_dir, ids)
 
     summary = {"backend": a.backend, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
-               "agent_exit": rc, "score": resolved}
+               "agent_exit": rc, "score": resolved, "seed": a.seed,
+               "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "keep_last": a.keep_last,
+                          "max_turn_tokens": a.max_turn_tokens, "embed_model": a.embed_model,
+                          "order": "score" if a.score_order else "time", "max_summary_tokens": a.max_summary_tokens}}
     (run_dir / "summary.json").write_text(json.dumps(summary, indent=1))
     log(f"summary: {json.dumps(summary)}")
     subprocess.run([str(AGENT_BIN / "python"), str(HARNESS / "summarize.py"), str(run_dir)])
