@@ -54,3 +54,22 @@ Per-step reliability (geometric fit, observed-steps variant): A .971–.981, B .
 - The window × step-budget factorial for H3.
 
 Runs: `agent-bench/runs/2026-11-01_*_p1-arm*` on the box (`summary.json`, `summary.md`, `loop.csv`, `calls.jsonl`, trajectories). Job logs: `agent-bench/queue/logs/20261101-*_7[0-9]-p1-*` through `84`, re-summarized by `86`.
+
+## P1-ext — zend at a 64K window (the "fair" engine-level cell)
+
+Same everything, `zend-win65536` instead of `zend-win32768`, 3 seeds. The window did widen (peaks reach 64–66K, no longer pinned at 32K).
+
+| zend window | Resolved (s1/s2/s3) | /45 | Looped k=3 (s1/s2/s3) | /45 | legacy "5+" (s1/s2/s3) | rf | LE /45 |
+|---|---|---|---|---|---|---|---|
+| 32K (P1 arm E) | 2 / 2 / 2 | 6 (13%) | 14 / 9 / 12 | 35 (78%) | 6 / 6 / 9 | .182 | 35 |
+| **64K** | 1 / 2 / 4 | **7 (16%)** | 11 / 11 / 8 | **30 (67%)** | 5 / 7 / 5 | .204 | 31 |
+| *phase 1, 1 agent, 1 seed, ungraded* | – | – | – | – | *32K: 6 · 64K: 3* | | |
+
+Fisher two-sided: 64K vs 32K looped p = 0.35, resolved p = 1.0. 64K vs recency-soft-32K (B) looped p = 0.034; vs relevance (C) p = 0.001.
+
+**Two corrections to the record.**
+
+1. **Phase 1's headline does not replicate.** The single-agent, single-seed, ungraded run that showed "64K halves zend's looping" (6 → 3 tasks on the legacy count) was within seed noise: with 3 seeds and 4 agents the legacy count is 5/7/5 at 64K against 6/6/9 at 32K, the k=3 rate drops only 78% → 67% (n.s.), and the repeat fraction does not fall at all. Widening the window is not the fix for zend's looping. The phase-1 result should be read as "32K reproduced the 4090 baseline; the 64K improvement was a fluke".
+2. **The E-vs-A–D gap is between engines, not retention budgets.** zend loops in 67–78% of tasks at either window; every vLLM arm, including the one with *no* retention policy at all, sits at 31–47%. zend runs its own build of the same weights with its own per-block KV compression (C0–C10) and its own sampling path; vLLM runs AWQ-4bit. H4 ("engine-level vs application-level retention") is therefore confounded by engine, and arm E cannot be read as a statement about provenance-selected retention until that is controlled.
+
+**The control that settles it:** zend with a window that holds everything (`zend-win262144`), 3 seeds — the zend-side equivalent of arm A. If it still loops at ~70%, the looping is a property of the zend engine (quantisation, sampling, or the projection layer itself), not of what it retains, and the retention comparison has to be made within one engine (B vs C on vLLM, which it already is). If it drops to arm-A levels, the window *is* the lever after all and 64K simply wasn't enough. Either way that one cell is worth more than any further proxy-arm seeds. Not run tonight; the box is stopped with everything in place.
