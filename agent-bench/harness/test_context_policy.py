@@ -14,7 +14,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from context_policy import ConversationState, PolicyConfig, apply_policy, count_tokens, segment  # noqa: E402
-from loopmetrics import actions_from_traj, fit_per_step_reliability, loop_metrics  # noqa: E402
+from loopmetrics import actions_from_traj, canonical, cycle_metrics, fit_per_step_reliability, loop_metrics  # noqa: E402
 
 
 # ── synthetic agent history ──────────────────────────────────────────────────
@@ -88,6 +88,18 @@ def test_policies():
     out_r, st_r = apply_policy(h, PolicyConfig(policy="recency", budget_tokens=budget, keep_last=1, max_turn_tokens=400), ConversationState())
     assert 2 not in st_r.kept_indices, "test is not discriminating: recency reached the early turn too"
     print(f"relevance retrieved the code turn that recency could not (recency kept {st_r.kept_indices[0]}..)")
+    # hard cap: even when the last-K turns alone exceed the budget, the prompt never does
+    big = synth_history(12, big_every=1)                      # every observation is ~6000 chars
+    tight = total_tokens(big) // 6
+    for pol in ("recency", "relevance"):
+        out_s, st_s = apply_policy(big, PolicyConfig(policy=pol, budget_tokens=tight, keep_last=4, max_turn_tokens=300), ConversationState())
+        out_h, st_h = apply_policy(big, PolicyConfig(policy=pol, budget_tokens=tight, keep_last=4, max_turn_tokens=300, clip_recent=True), ConversationState())
+        assert st_s.tokens_after > tight, f"{pol}: soft cap unexpectedly held ({st_s.tokens_after} <= {tight}) - test not discriminating"
+        assert st_h.tokens_after <= tight, f"{pol}: HARD cap exceeded ({st_h.tokens_after} > {tight})"
+        assert pairs_intact(out_h) and out_h[-1]["role"] == "tool"
+        print(f"hard cap [{pol}]: soft sent {st_s.tokens_after} > {tight}; hard sent {st_h.tokens_after} <= {tight}, kept {st_h.turns_kept} turns")
+    out_h, st_h = apply_policy(big, PolicyConfig(policy="compaction", budget_tokens=tight, keep_last=4, clip_recent=True), ConversationState(), lambda p: "SUMMARY")
+    assert st_h.tokens_after <= tight and pairs_intact(out_h)
     # under budget: untouched
     cfg = PolicyConfig(policy="recency", budget_tokens=full * 2)
     out, st = apply_policy(h, cfg, ConversationState())
@@ -118,6 +130,20 @@ def test_loop_metrics():
     r = fit_per_step_reliability([(True, 10), (True, 20), (False, 40), (False, 60), (True, 15)])
     assert r and 0.9 < r["r"] < 1.0, r
     print(f"loop metric: ok; reliability fit r={r['r']} on toy data")
+    # cycles: period, repetitions, onset; broken patterns and scattered re-issues are not cycles
+    c = cycle_metrics(["ls", "sed", "pytest", "sed", "pytest", "sed", "pytest", "git"], k=3)
+    assert (c["cycle_period"], c["cycle_repeats_max"], c["cycle_onset"], c["cycled_3"]) == (2, 3, 5, True), c
+    assert cycle_metrics(list("abbbbc"), k=3)["cycle_period"] == 1                      # stutter is period 1
+    assert cycle_metrics(["a", "b", "c", "a", "b", "x", "a", "b", "c"])["cycle_period"] is None
+    assert cycle_metrics(["ls", "a", "ls", "b", "ls", "c"])["cycle_period"] is None       # re-issued, not cyclic
+    # canonical form: free text and code bodies collapse, paths and short literals survive
+    assert canonical("cd /t && python -c \"x=1 # test the fix\"") == canonical("cd /t && python -c \"y=2 # test the issue\"")
+    assert canonical("sed -n '1,40p' a/b.py") != canonical("sed -n '41,80p' a/b.py")      # paging is not looping
+    assert canonical("cat > f.py << 'EOF'\nprint(1)\nEOF\npython f.py") == "cat f.py && python f.py"
+    near = [c for i in range(3) for c in ("cd /t && sed -n '10,50p' a.py", f"cd /t && python -c \"# try A{i}\"", f"cd /t && python -c \"# try B{i}\"")]
+    m = loop_metrics(near, 3)
+    assert m["cycle_period"] is None and m["ccycle_period"] == 3 and m["ccycled_3"], m   # exact blind, canonical sees it
+    print("cycle detector + canonical form: ok")
 
 
 # ── end to end through the proxy with a fake upstream ────────────────────────

@@ -233,6 +233,7 @@ class PolicyConfig:
     embed_model: str = "bow"
     chronological: bool = True       # relevance: re-order retrieved turns by time (else by score)
     max_summary_tokens: int = 1500   # compaction: size of the running summary the model is asked for
+    clip_recent: bool = False        # hard cap: clip the last-K window too, and drop oldest kept turns until under budget
 
 
 @dataclass
@@ -287,6 +288,10 @@ def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationSta
     fixed = sum(msg_tokens(m) for m in head) + sum(msg_tokens(m) for m in tail)
     recent = turns[-cfg.keep_last:] if cfg.keep_last > 0 else []
     older = turns[:-cfg.keep_last] if cfg.keep_last > 0 else list(turns)
+    if cfg.clip_recent:
+        # hard-cap mode: the recent window is clipped like any other turn (soft mode keeps the latest
+        # observations whole, which is why P1's soft-32K arms peaked at 53-65K)
+        recent = [truncate_turn(t, cfg.max_turn_tokens) for t in recent]
     budget_left = cfg.budget_tokens - fixed - sum(t.tokens for t in recent)
 
     if cfg.policy == "recency":
@@ -339,6 +344,9 @@ def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationSta
             state.summary_through = older[-1].index if older else state.summary_through
             base.summarised = len(new_turns)
         summary_msg = {"role": "user", "content": "Summary of the session so far (earlier steps were compacted):\n" + (state.summary or "")}
+        if cfg.clip_recent:
+            while len(recent) > 1 and fixed + msg_tokens(summary_msg) + sum(t.tokens for t in recent) > cfg.budget_tokens:
+                recent = recent[1:]
         out = head + [summary_msg] + [m for t in recent for m in t.messages] + tail
         stats = PolicyStats(cfg.policy, n, len(recent), before, sum(msg_tokens(m) for m in out),
                             [t.index for t in recent], base.summarised)
@@ -347,6 +355,11 @@ def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationSta
     else:
         raise ValueError(f"unknown policy {cfg.policy}")
 
+    if cfg.clip_recent:
+        # enforce the cap: drop the oldest kept turn until the assembled prompt fits (the last turn
+        # is always kept so the model sees the observation it must act on)
+        while len(kept) > 1 and fixed + sum(t.tokens for t in kept) > cfg.budget_tokens:
+            kept.pop(0)
     out = head + [m for t in kept for m in t.messages] + tail
     stats = PolicyStats(cfg.policy, n, len(kept), before, sum(msg_tokens(m) for m in out), [t.index for t in kept])
     return out, stats
@@ -355,7 +368,7 @@ def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationSta
 def describe(cfg: PolicyConfig) -> str:
     if cfg.policy == "none":
         return "none"
-    s = f"{cfg.policy} budget={cfg.budget_tokens} keep_last={cfg.keep_last} clip={cfg.max_turn_tokens}"
+    s = f"{cfg.policy} budget={cfg.budget_tokens}{' HARD' if cfg.clip_recent else ' soft'} keep_last={cfg.keep_last} clip={cfg.max_turn_tokens}"
     if cfg.policy == "relevance":
         s += f" embed={cfg.embed_model} order={'time' if cfg.chronological else 'score'}"
     if cfg.policy == "compaction":

@@ -97,10 +97,14 @@ def main(run_dir: Path):
              f"(rate {lag.get(f'loop_rate_{K}')}); repeat fraction {lag.get('repeat_fraction_mean')}; "
              f"longest run median {lag.get('longest_run_median')}; onset median step {lag.get(f'loop_onset_{K}_median')}"
              + (f"; per-step reliability r={lag['per_step_reliability']['r']}" if lag.get("per_step_reliability") else "")
-             if loops["tasks"] else "- Loop metric: no trajectories"]
+             if loops["tasks"] else "- Loop metric: no trajectories",
+             f"- Cycles (k={K}): exact {lag.get(f'tasks_cycled_{K}')} / {loops['tasks']} tasks (period mode {lag.get('cycle_period_mode')}); "
+             f"canonical {lag.get(f'tasks_ccycled_{K}')} / {loops['tasks']} (period mode {lag.get('ccycle_period_mode')}, "
+             f"repeats median {lag.get('ccycle_repeats_median')}, fraction of actions in a cycle {lag.get('ccycle_fraction_mean')})"
+             if loops["tasks"] else "- Cycles: n/a"]
     if (s.get("policy") or {}).get("policy", "none") != "none":
         p = s["policy"]
-        lines.append(f"- Context policy: **{p['policy']}** budget {p['budget_tokens']:,} keep_last {p['keep_last']}"
+        lines.append(f"- Context policy: **{p['policy']}** budget {p['budget_tokens']:,} ({p.get('cap', 'soft')} cap) keep_last {p['keep_last']}"
                      + (f" embed {p['embed_model']}" if p["policy"] == "relevance" else "")
                      + (f"; sent median {m['policy_tokens_sent_median']:,} tokens, kept {m['policy_turns_kept_median']} of {m['policy_turns_total_median']} turns (median)"
                         if pol else "")

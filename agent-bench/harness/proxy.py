@@ -121,7 +121,8 @@ async def on_cleanup(app):
 def build_app(a) -> web.Application:
     cfg = PolicyConfig(policy=a.policy, budget_tokens=a.budget_tokens, keep_last=a.keep_last,
                        max_turn_tokens=a.max_turn_tokens, embed_model=a.embed_model,
-                       chronological=not a.score_order, max_summary_tokens=a.max_summary_tokens)
+                       chronological=not a.score_order, max_summary_tokens=a.max_summary_tokens,
+                       clip_recent=a.clip_recent)
     app = web.Application(client_max_size=256 * 1024 * 1024)
     upstream = a.upstream.rstrip("/")
     app.update(upstream=upstream, log=a.log, fresh=a.fresh_context, state={"n": 0}, cfg=cfg,
@@ -147,6 +148,7 @@ def main():
     p.add_argument("--embed-model", default="bow", help="'bow' (built-in) or a sentence-transformers model name")
     p.add_argument("--score-order", action="store_true", help="relevance: order retrieved turns by score, not time")
     p.add_argument("--max-summary-tokens", type=int, default=1500)
+    p.add_argument("--clip-recent", action="store_true", help="hard cap: clip the last-K window too and never exceed the budget")
     p.add_argument("--model", default="passthrough", help="model name for compaction side calls")
     a = p.parse_args()
     app = build_app(a)

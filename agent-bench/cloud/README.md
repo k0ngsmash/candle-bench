@@ -68,8 +68,11 @@ only the message list it is sent changes. Definitions in `harness/context_policy
 All budget arms use the same token counter (tiktoken cl100k, an approximation of the Qwen tokenizer;
 the point is one ruler for every arm). A *turn* = one assistant tool call + its result; turns are kept
 or dropped whole so the chat format stays valid. Retrieved history turns are clipped head+tail at
-`--max-turn-tokens` (default 1024); the last-K window is never clipped. `--seed` fixes sampling per
-repetition. Per-call policy stats (turns kept, tokens before/after) go to `calls.jsonl`; summaries
+`--max-turn-tokens` (default 1024). By default the last-K window is never clipped (a **soft** cap: the
+agent always sees its latest observations whole, so single prompts can exceed the budget - P1's
+soft-32K arms peaked at 53-65K). `--clip-recent` makes it a **hard** cap: the recent window is clipped
+too and the oldest kept turn is dropped until the prompt fits. `summary.json` records `policy.cap`.
+`--seed` fixes sampling per repetition. Per-call policy stats (turns kept, tokens before/after) go to `calls.jsonl`; summaries
 roll up into `summary.md`.
 
 Example — arm C at a 32K budget, graded, seed 1:
@@ -90,5 +93,12 @@ P(success | h steps) = r^h — the observed-steps variant of the agent-rot model
 `python harness/loopmetrics.py runs/<dir> ...` re-analyses any run. Early observation from the 4090
 trajectories: the looping is a **cycle**, not a stutter — longest consecutive run 1–2, but the same
 command re-issued 6–8 times across a 75-step run, onset around step 50–68.
+
+**Cycles.** Exact re-issue counts miss the shape P1 showed: the same file re-read every third step
+with *near*-duplicate test snippets in between. `cycle_metrics` finds repeated subsequences (period,
+consecutive repetitions, onset) on the exact action strings and again on a `canonical` form - program
++ paths + short literals, free text and code bodies stripped - so `python -c "# try A"` and
+`python -c "# try B"` match while `sed -n '1,40p' f.py` and `sed -n '41,80p' f.py` (paging) do not.
+`summary.md` reports both; `ccycled_3` = some pattern of actions repeated three times in a row.
 
 Offline tests (no GPU): `python harness/test_context_policy.py [run_dir ...]`.
