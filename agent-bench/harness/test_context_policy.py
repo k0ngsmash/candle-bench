@@ -112,6 +112,12 @@ def test_policies():
         print(f"hard cap [{pol}]: soft sent {st_s.tokens_after} > {tight}; hard sent {st_h.tokens_after} <= {tight}, kept {st_h.turns_kept} turns")
     out_h, st_h = apply_policy(big, PolicyConfig(policy="compaction", budget_tokens=tight, keep_last=4, clip_recent=True), ConversationState(), lambda p: "SUMMARY")
     assert st_h.tokens_after <= tight and pairs_intact(out_h)
+    # strip-reasoning: works with policy none, removes every reasoning_content, changes nothing else
+    out_n, st_n = apply_policy(h, PolicyConfig(policy="none", strip_reasoning=True), ConversationState())
+    assert not any("reasoning_content" in m for m in out_n) and len(out_n) == len(h) and pairs_intact(out_n)
+    assert st_n.reasoning_stripped == 40 and st_n.reasoning_tokens_stripped > 0 and st_n.tokens_after < total_tokens(h) / 2
+    assert all(a["content"] == b["content"] for a, b in zip(out_n, h))
+    print(f"strip-reasoning: {st_n.reasoning_stripped} msgs, {st_n.reasoning_tokens_stripped} tokens removed, history otherwise identical: ok")
     # under budget: untouched
     cfg = PolicyConfig(policy="recency", budget_tokens=full * 2)
     out, st = apply_policy(h, cfg, ConversationState())
@@ -184,11 +190,13 @@ def test_proxy_e2e(tmp=Path("/tmp/ctxpol-test")):
     time.sleep(1)
     h = synth_history(30)
     budget = total_tokens(h) // 2
-    for pol in ("none", "recency", "relevance", "compaction"):
+    for pol in ("none", "recency", "relevance", "compaction", "none+strip"):
         log = tmp / f"calls-{pol}.jsonl"
         log.unlink(missing_ok=True)
+        extra = ["--strip-reasoning"] if pol.endswith("+strip") else []
+        pol = pol.split("+")[0]
         p = subprocess.Popen([sys.executable, str(HERE / "proxy.py"), "--listen", "18000", "--upstream", "http://127.0.0.1:18090",
-                              "--log", str(log), "--policy", pol, "--budget-tokens", str(budget), "--keep-last", "3"],
+                              "--log", str(log), "--policy", pol, "--budget-tokens", str(budget), "--keep-last", "3", *extra],
                              stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         time.sleep(1.5)
         try:
@@ -201,12 +209,14 @@ def test_proxy_e2e(tmp=Path("/tmp/ctxpol-test")):
             rec = json.loads(log.read_text().splitlines()[-1])
             fwd = [b for b in seen if b["messages"][0]["role"] == "system"][-1]["messages"]
             assert pairs_intact(fwd)
-            if pol == "none":
+            if pol == "none" and extra:
+                assert len(fwd) == len(h) and rec["policy"]["reasoning_stripped"] == 30 and not any("reasoning_content" in m for m in fwd)
+            elif pol == "none":
                 assert len(fwd) == len(h) and "policy" not in rec
             else:
                 assert rec["policy"]["policy"] == pol and rec["policy"]["tokens_after"] <= budget * 1.05
                 assert len(fwd) < len(h)
-            print(f"proxy e2e [{pol}]: forwarded {len(fwd)}/{len(h)} messages, upstream saw {rec['prompt_tokens']} tokens"
+            print(f"proxy e2e [{pol}{'+strip' if extra else ''}]: forwarded {len(fwd)}/{len(h)} messages, upstream saw {rec['prompt_tokens']} tokens"
                   + (f", summary side-calls {sum(1 for l in log.read_text().splitlines() if '\"kind\": \"summary\"' in l)}" if pol == "compaction" else ""))
         finally:
             p.terminate()

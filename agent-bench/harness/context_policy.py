@@ -251,6 +251,7 @@ class PolicyConfig:
     chronological: bool = True       # relevance: re-order retrieved turns by time (else by score)
     max_summary_tokens: int = 1500   # compaction: size of the running summary the model is asked for
     clip_recent: bool = False        # hard cap: clip the last-K window too, and drop oldest kept turns until under budget
+    strip_reasoning: bool = False    # remove past reasoning_content from every history message (any policy, incl. none)
 
 
 @dataclass
@@ -262,6 +263,8 @@ class PolicyStats:
     tokens_after: int
     kept_indices: list = field(default_factory=list)
     summarised: int = 0              # compaction: turns folded into the summary this call
+    reasoning_stripped: int = 0      # messages whose reasoning_content was removed
+    reasoning_tokens_stripped: int = 0
 
     def as_dict(self) -> dict:
         d = self.__dict__.copy()
@@ -294,10 +297,23 @@ def _total(head, turns, tail) -> int:
 def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationState,
                  summarise: Optional[Callable[[str], str]] = None) -> tuple[list[dict], PolicyStats]:
     """Return (new_messages, stats). `summarise(prompt_text) -> summary` is required for compaction."""
+    stripped_n = stripped_tok = 0
+    if cfg.strip_reasoning:
+        # the agent's own past thinking leaves the history; everything else is untouched, so this
+        # isolates "does seeing its earlier reasoning help or hurt the agent" from budget and policy
+        out = []
+        for m in messages:
+            r = m.get("reasoning_content")
+            if isinstance(r, str) and r:
+                stripped_n += 1; stripped_tok += count_tokens(r)
+                m = {k: v for k, v in m.items() if k != "reasoning_content"}
+            out.append(m)
+        messages = out
     head, turns, tail = segment(messages)
     before = _total(head, turns, tail)
     n = len(turns)
-    base = PolicyStats(cfg.policy, n, n, before, before, list(range(n)))
+    base = PolicyStats(cfg.policy, n, n, before, before, list(range(n)),
+                       reasoning_stripped=stripped_n, reasoning_tokens_stripped=stripped_tok)
 
     if cfg.policy == "none" or n == 0 or before <= cfg.budget_tokens:
         return messages, base
@@ -366,7 +382,7 @@ def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationSta
                 recent = recent[1:]
         out = head + [summary_msg] + [m for t in recent for m in t.messages] + tail
         stats = PolicyStats(cfg.policy, n, len(recent), before, sum(msg_tokens(m) for m in out),
-                            [t.index for t in recent], base.summarised)
+                            [t.index for t in recent], base.summarised, stripped_n, stripped_tok)
         return out, stats
 
     else:
@@ -378,14 +394,16 @@ def apply_policy(messages: list[dict], cfg: PolicyConfig, state: ConversationSta
         while len(kept) > 1 and fixed + sum(t.tokens for t in kept) > cfg.budget_tokens:
             kept.pop(0)
     out = head + [m for t in kept for m in t.messages] + tail
-    stats = PolicyStats(cfg.policy, n, len(kept), before, sum(msg_tokens(m) for m in out), [t.index for t in kept])
+    stats = PolicyStats(cfg.policy, n, len(kept), before, sum(msg_tokens(m) for m in out), [t.index for t in kept],
+                        reasoning_stripped=stripped_n, reasoning_tokens_stripped=stripped_tok)
     return out, stats
 
 
 def describe(cfg: PolicyConfig) -> str:
+    sr = " strip-reasoning" if cfg.strip_reasoning else ""
     if cfg.policy == "none":
-        return "none"
-    s = f"{cfg.policy} budget={cfg.budget_tokens}{' HARD' if cfg.clip_recent else ' soft'} keep_last={cfg.keep_last} clip={cfg.max_turn_tokens}"
+        return "none" + sr
+    s = f"{cfg.policy}{sr} budget={cfg.budget_tokens}{' HARD' if cfg.clip_recent else ' soft'} keep_last={cfg.keep_last} clip={cfg.max_turn_tokens}"
     if cfg.policy == "relevance":
         s += f" embed={cfg.embed_model} order={'time' if cfg.chronological else 'score'}"
     if cfg.policy == "compaction":

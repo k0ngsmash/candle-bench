@@ -117,3 +117,10 @@ The box is stopped, not deleted, so everything above survives. On restart (new p
 | `p2-verified` | B150, C150, 8 agents | the H2 replication at n = 150 per arm | ~6 h |
 
 `--dataset verified` switches the agent subset and the grader together; `summary.json` carries it.
+
+## P3 — the reasoning question (`bash cloud/mkjobs-p3.sh <ip> <publish-job>`)
+
+P2 found that a hard 32K cap — which clips the agent's past `reasoning_content` first — solved no
+fewer tasks than full attention. `--strip-reasoning` removes past reasoning from the history under
+*any* policy, including none, so P3 isolates that one variable: A-strip and Bsoft-strip × 3 seeds on
+the stuck-15, then a second verified150 seed for B/C, A150 as the Verified ceiling, and A150-strip.

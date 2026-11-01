@@ -102,6 +102,9 @@ def main(run_dir: Path):
              f"canonical {lag.get(f'tasks_ccycled_{K}')} / {loops['tasks']} (period mode {lag.get('ccycle_period_mode')}, "
              f"repeats median {lag.get('ccycle_repeats_median')}, fraction of actions in a cycle {lag.get('ccycle_fraction_mean')})"
              if loops["tasks"] else "- Cycles: n/a"]
+    sr = [c["policy"] for c in ok if (c.get("policy") or {}).get("reasoning_stripped")]
+    if (s.get("policy") or {}).get("strip_reasoning"):
+        lines.append(f"- Reasoning stripped from history: yes; median {int(st.median(p['reasoning_tokens_stripped'] for p in sr)) if sr else 0:,} tokens removed per call")
     if (s.get("policy") or {}).get("policy", "none") != "none":
         p = s["policy"]
         lines.append(f"- Context policy: **{p['policy']}** budget {p['budget_tokens']:,} ({p.get('cap', 'soft')} cap) keep_last {p['keep_last']}"

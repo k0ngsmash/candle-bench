@@ -59,7 +59,7 @@ async def handle(request: web.Request) -> web.Response:
     is_chat = request.path.endswith("/chat/completions") and bool(body.get("messages"))
     conv = conversation_tag(body)          # before any change, so calls group by task
     policy_stats = None
-    if is_chat and app["cfg"].policy != "none":
+    if is_chat and (app["cfg"].policy != "none" or app["cfg"].strip_reasoning):
         state = app["conv_state"][conv]
         state.embedder = app["embedder"]
         loop = asyncio.get_running_loop()
@@ -122,7 +122,7 @@ def build_app(a) -> web.Application:
     cfg = PolicyConfig(policy=a.policy, budget_tokens=a.budget_tokens, keep_last=a.keep_last,
                        max_turn_tokens=a.max_turn_tokens, embed_model=a.embed_model,
                        chronological=not a.score_order, max_summary_tokens=a.max_summary_tokens,
-                       clip_recent=a.clip_recent)
+                       clip_recent=a.clip_recent, strip_reasoning=a.strip_reasoning)
     app = web.Application(client_max_size=256 * 1024 * 1024)
     upstream = a.upstream.rstrip("/")
     app.update(upstream=upstream, log=a.log, fresh=a.fresh_context, state={"n": 0}, cfg=cfg,
@@ -149,6 +149,7 @@ def main():
     p.add_argument("--score-order", action="store_true", help="relevance: order retrieved turns by score, not time")
     p.add_argument("--max-summary-tokens", type=int, default=1500)
     p.add_argument("--clip-recent", action="store_true", help="hard cap: clip the last-K window too and never exceed the budget")
+    p.add_argument("--strip-reasoning", action="store_true", help="remove past reasoning_content from the history (works with --policy none too)")
     p.add_argument("--model", default="passthrough", help="model name for compaction side calls")
     a = p.parse_args()
     app = build_app(a)

@@ -385,6 +385,7 @@ def main():
     ap.add_argument("--score-order", action="store_true")
     ap.add_argument("--max-summary-tokens", type=int, default=1500)
     ap.add_argument("--clip-recent", action="store_true", help="hard cap: clip the last-K window too; the prompt never exceeds --budget-tokens")
+    ap.add_argument("--strip-reasoning", action="store_true", help="remove the agent's past reasoning_content from the history (any policy)")
     ap.add_argument("--seed", type=int, help="sampling seed passed to the engine (fixed seeds per rep)")
     a = ap.parse_args()
     if a.rescore:
@@ -392,7 +393,7 @@ def main():
         return
 
     ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks, a.dataset)
-    pol = "" if a.policy == "none" else f"_{a.policy}{a.budget_tokens // 1024}k{'hard' if a.clip_recent else ''}"
+    pol = ("" if a.policy == "none" else f"_{a.policy}{a.budget_tokens // 1024}k{'hard' if a.clip_recent else ''}") + ("_nothink" if a.strip_reasoning else "")
     run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}{pol}_w{a.workers}"
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
@@ -427,7 +428,7 @@ def main():
     policy_args = ["--policy", a.policy, "--budget-tokens", str(a.budget_tokens), "--keep-last", str(a.keep_last),
                    "--max-turn-tokens", str(a.max_turn_tokens), "--embed-model", a.embed_model,
                    "--max-summary-tokens", str(a.max_summary_tokens)] + (["--score-order"] if a.score_order else []) \
-                  + (["--clip-recent"] if a.clip_recent else [])
+                  + (["--clip-recent"] if a.clip_recent else []) + (["--strip-reasoning"] if a.strip_reasoning else [])
     proxy = subprocess.Popen([str(AGENT_BIN / "python"), str(HARNESS / "proxy.py"), "--listen", str(PROXY_PORT),
                               "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")]
                              + (["--fresh-context"] if a.fresh_context else []) + policy_args,
@@ -476,7 +477,7 @@ def main():
 
     summary = {"backend": a.backend, "dataset": a.dataset, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
                "agent_exit": rc, "score": resolved, "seed": a.seed,
-               "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "cap": "hard" if a.clip_recent else "soft",
+               "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "cap": "hard" if a.clip_recent else "soft", "strip_reasoning": a.strip_reasoning,
                           "keep_last": a.keep_last, "ruler": ruler,
                           "max_turn_tokens": a.max_turn_tokens, "embed_model": a.embed_model,
                           "order": "score" if a.score_order else "time", "max_summary_tokens": a.max_summary_tokens}}
