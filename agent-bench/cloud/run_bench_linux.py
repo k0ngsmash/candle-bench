@@ -76,6 +76,7 @@ def stop_zend():
             Zend.proc.kill()
     Zend.proc = None
     subprocess.run(["pkill", "-f", "release/zend"], capture_output=True)
+    subprocess.run(["pkill", "-f", f"cloud/bin/{ZEND_BIN.name}"], capture_output=True)   # a reused (inherited) zend
     time.sleep(3)
 
 
@@ -313,6 +314,42 @@ def rescore(run_dir):
 
 def stop_backend(backend):
     {"zend": stop_zend, "vllm": stop_vllm, "llama": stop_llama}[backend]()
+    BACKEND_STATE.unlink(missing_ok=True)
+
+
+BACKEND_STATE = HOME / ".bench-backend.json"   # what is currently serving, written on a successful start
+HEALTH = {"zend": f"{ZEND_URL}/v1/status", "vllm": f"{VLLM_URL}/health", "llama": f"{LLAMA_URL}/health"}
+
+
+def backend_signature(a) -> dict:
+    """Everything that would make two backend starts different, so reuse is only ever like-for-like."""
+    if a.backend == "zend":
+        detail = f"{ZEND_BIN.name} env={sorted(a.zend_env)}"
+    elif a.backend == "vllm":
+        detail = f"{VLLM_MODEL} max_len={a.max_model_len} offloads={a.offloads}"
+    else:
+        detail = f"{LLAMA_GGUF.name} max_len={a.max_model_len} slots={max(a.workers, 1)} cpu_moe={a.cpu_moe}"
+    return {"backend": a.backend, "detail": detail}
+
+
+def reuse_backend(want: dict):
+    """URL of a running backend matching `want`, else None. Never reuses across a config change."""
+    if not BACKEND_STATE.exists():
+        return None
+    try:
+        have = json.loads(BACKEND_STATE.read_text())
+    except ValueError:
+        return None
+    if have != want:
+        log(f"backend up but different ({have.get('backend')}: {have.get('detail')}) - restarting")
+        return None
+    ok, body = http_ok(HEALTH[want["backend"]])
+    if not ok or (want["backend"] == "zend" and '"state":"ready"' not in body.replace(" ", "")):
+        log("backend state file present but the server is not healthy - restarting")
+        BACKEND_STATE.unlink(missing_ok=True)
+        return None
+    # the stop_* helpers pkill by pattern, so an inherited process is still stoppable at the end
+    return {"zend": ZEND_URL, "vllm": VLLM_URL, "llama": LLAMA_URL}[want["backend"]]
 
 
 def main():
@@ -360,15 +397,24 @@ def main():
         a.fresh_context = True
     if a.notes:
         notes_config(run_dir / "notes.yaml")
-    stop_vllm(); stop_llama(); stop_zend(); time.sleep(5)
-    if a.backend == "zend":
-        if a.zend_env:
-            (run_dir / "zend-env.txt").write_text("\n".join(a.zend_env) + "\n")
-        upstream = start_zend(run_dir, a.zend_env)
-    elif a.backend == "vllm":
-        upstream = start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
+    # Reuse a healthy backend left up by a previous --keep-backend run if its config matches; a vLLM
+    # start is 3-4 minutes, so back-to-back runs on the same engine should not pay it again.
+    want = backend_signature(a)
+    upstream = reuse_backend(want)
+    if upstream:
+        log(f"reusing the running {a.backend} backend ({want['detail']})")
+        (run_dir / "backend-reused.json").write_text(json.dumps(want, indent=1))
     else:
-        upstream = start_llama(run_dir, [int(x) for x in a.cpu_moe.split(",")], a.max_model_len, max(a.workers, 1))
+        stop_vllm(); stop_llama(); stop_zend(); time.sleep(5)
+        if a.backend == "zend":
+            if a.zend_env:
+                (run_dir / "zend-env.txt").write_text("\n".join(a.zend_env) + "\n")
+            upstream = start_zend(run_dir, a.zend_env)
+        elif a.backend == "vllm":
+            upstream = start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
+        else:
+            upstream = start_llama(run_dir, [int(x) for x in a.cpu_moe.split(",")], a.max_model_len, max(a.workers, 1))
+        BACKEND_STATE.write_text(json.dumps(want))
 
     policy_args = ["--policy", a.policy, "--budget-tokens", str(a.budget_tokens), "--keep-last", str(a.keep_last),
                    "--max-turn-tokens", str(a.max_turn_tokens), "--embed-model", a.embed_model,
