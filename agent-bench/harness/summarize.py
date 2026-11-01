@@ -17,8 +17,10 @@ def pct(xs, p):
 
 def main(run_dir: Path):
     s = json.loads((run_dir / "summary.json").read_text())
-    calls = [json.loads(l) for l in open(run_dir / "calls.jsonl")] if (run_dir / "calls.jsonl").exists() else []
-    ok = [c for c in calls if c["status"] == 200]
+    recs = [json.loads(l) for l in open(run_dir / "calls.jsonl")] if (run_dir / "calls.jsonl").exists() else []
+    summaries = [c for c in recs if c.get("kind") == "summary"]      # compaction side calls, logged by the proxy
+    calls = [c for c in recs if c.get("kind") != "summary"]
+    ok = [c for c in calls if c.get("status") == 200]
     by_conv = defaultdict(list)
     for c in ok:
         by_conv[c["conv"]].append(c)
@@ -69,6 +71,9 @@ def main(run_dir: Path):
         "policy_tokens_sent_median": int(st.median(p["tokens_after"] for p in pol)) if pol else None,
         "policy_turns_kept_median": st.median(p["turns_kept"] for p in pol) if pol else None,
         "policy_turns_total_median": st.median(p["turns_total"] for p in pol) if pol else None,
+        "compaction_summaries": len(summaries),
+        "compaction_summary_seconds": round(sum(c.get("seconds") or 0 for c in summaries)),
+        "compaction_summary_tokens_generated": sum(c.get("completion_tokens") or 0 for c in summaries),
     }
     s["metrics"] = m
     s["looping"] = {"k": loops["k"], **lag}
@@ -98,7 +103,9 @@ def main(run_dir: Path):
         lines.append(f"- Context policy: **{p['policy']}** budget {p['budget_tokens']:,} keep_last {p['keep_last']}"
                      + (f" embed {p['embed_model']}" if p["policy"] == "relevance" else "")
                      + (f"; sent median {m['policy_tokens_sent_median']:,} tokens, kept {m['policy_turns_kept_median']} of {m['policy_turns_total_median']} turns (median)"
-                        if pol else ""))
+                        if pol else "")
+                     + (f"; {len(summaries)} summary side-calls ({m['compaction_summary_seconds']} s, {m['compaction_summary_tokens_generated']:,} tokens)"
+                        if summaries else ""))
     (run_dir / "summary.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 
