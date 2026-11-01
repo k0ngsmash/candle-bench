@@ -41,14 +41,18 @@ try:
     import tiktoken
 
     _ENC = tiktoken.get_encoding("cl100k_base")
+    TOKENIZER = "tiktoken/cl100k_base"
 
     def count_tokens(text: str) -> int:
         return len(_ENC.encode(text, disallowed_special=()))
-except Exception:  # noqa: BLE001 - tiktoken optional
+except Exception:  # noqa: BLE001 - tiktoken optional (or its BPE file unreachable)
     _ENC = None
+    TOKENIZER = "chars/4"
 
     def count_tokens(text: str) -> int:
         return max(1, len(text) // 4)
+# TOKENIZER is recorded per run (summary.json) because the two rulers differ by ~1.5x on code and a
+# matched-budget comparison is only matched if every arm was measured with the same one.
 
 
 def msg_text(m: dict) -> str:

@@ -416,10 +416,12 @@ def main():
         stop_backend(a.backend)
 
     resolved = None if a.no_eval else score(run_dir, ids)
+    # which token ruler the proxy's budget used (tiktoken, or chars/4 if its BPE file was unreachable)
+    ruler = next((l.split("ruler: ")[1].strip() for l in open(run_dir / "proxy.log", errors="replace") if "ruler: " in l), None)
 
     summary = {"backend": a.backend, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
                "agent_exit": rc, "score": resolved, "seed": a.seed,
-               "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "keep_last": a.keep_last,
+               "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "keep_last": a.keep_last, "ruler": ruler,
                           "max_turn_tokens": a.max_turn_tokens, "embed_model": a.embed_model,
                           "order": "score" if a.score_order else "time", "max_summary_tokens": a.max_summary_tokens}}
     (run_dir / "summary.json").write_text(json.dumps(summary, indent=1))

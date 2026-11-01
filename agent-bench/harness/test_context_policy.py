@@ -27,12 +27,14 @@ def synth_history(n_turns: int, big_every: int = 5) -> list[dict]:
                "python -m pytest astropy/modeling/tests/test_separable.py -x", "git diff"][i % 5]
         if i == n_turns - 3:
             cmd = "sed -i 's/cleft/cright/' astropy/modeling/separable.py"   # the distinctive edit step
+        if i == n_turns - 1:
+            cmd = "grep -n 'cleft\\|_cstack' astropy/modeling/separable.py"  # the current step: asks about the code
         call_id = f"call_{i}"
         msgs.append({"role": "assistant", "content": f"Step {i}: I will run {cmd.split()[0]}.",
                      "tool_calls": [{"id": call_id, "type": "function",
                                      "function": {"name": "bash", "arguments": json.dumps({"command": cmd})}}]})
         out = f"output of turn {i} for {cmd}\n" + ("x" * 6000 if i % big_every == 0 else "ok\n" * 20)
-        if "separable.py" in cmd and "cat" in cmd:
+        if i == 2:   # exactly one early turn holds the code the final step asks about
             out += "\ndef _cstack(left, right):\n    cleft = _coord_matrix(left, 'left', noutp)\n    cright = ...\n"
         msgs.append({"role": "tool", "tool_call_id": call_id, "content": out})
     return msgs
@@ -78,10 +80,14 @@ def test_policies():
         assert out[-1]["content"] == h[-1]["content"] and out[-2]["content"] == h[-2]["content"]
         print(f"{pol}: {st.turns_total} turns -> {st.turns_kept}, {st.tokens_before} -> {st.tokens_after} tokens "
               f"(budget {budget}); kept {st.kept_indices}")
-    # relevance must prefer the turn that mentions the thing the current step is about
+    # relevance must retrieve the one early turn (index 2) that holds the code the current step asks
+    # about, while recency - at the same budget - cannot reach back that far
     cfg = PolicyConfig(policy="relevance", budget_tokens=budget, keep_last=1, max_turn_tokens=400)
     out, st = apply_policy(h, cfg, ConversationState())
-    assert 37 in st.kept_indices or any("sed -i" in json.dumps(m) for m in out), "relevance dropped the edit step"
+    assert 2 in st.kept_indices, f"relevance dropped the turn with the code (kept {st.kept_indices})"
+    out_r, st_r = apply_policy(h, PolicyConfig(policy="recency", budget_tokens=budget, keep_last=1, max_turn_tokens=400), ConversationState())
+    assert 2 not in st_r.kept_indices, "test is not discriminating: recency reached the early turn too"
+    print(f"relevance retrieved the code turn that recency could not (recency kept {st_r.kept_indices[0]}..)")
     # under budget: untouched
     cfg = PolicyConfig(policy="recency", budget_tokens=full * 2)
     out, st = apply_policy(h, cfg, ConversationState())

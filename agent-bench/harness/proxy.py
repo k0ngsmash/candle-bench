@@ -18,7 +18,7 @@ from collections import defaultdict
 
 from aiohttp import ClientSession, ClientTimeout, web
 
-from context_policy import ConversationState, PolicyConfig, apply_policy, describe, make_embedder
+from context_policy import TOKENIZER, ConversationState, PolicyConfig, apply_policy, describe, make_embedder
 
 
 def conversation_tag(body: dict) -> str:
@@ -150,7 +150,7 @@ def main():
     p.add_argument("--model", default="passthrough", help="model name for compaction side calls")
     a = p.parse_args()
     app = build_app(a)
-    print(f"proxy :{a.listen} -> {a.upstream}  policy: {describe(app['cfg'])}", flush=True)
+    print(f"proxy :{a.listen} -> {a.upstream}  policy: {describe(app['cfg'])}  ruler: {TOKENIZER}", flush=True)
     web.run_app(app, host="127.0.0.1", port=a.listen, print=None)
 
 
