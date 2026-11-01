@@ -38,6 +38,16 @@ Per-step reliability (geometric fit, observed-steps variant): A .971–.981, B .
 
 ## Caveats, honestly
 
+- **Correction (2 Nov): the proxy ruler ignored `reasoning_content`.** Thinking models return their
+  reasoning as a separate field; mini-swe-agent sends it back in the history and vLLM's chat
+  template re-injects it, at 2-10K chars per step. The proxy counted only content + tool calls, so
+  the "32K budget" arms sent ~32K of *non-reasoning* history and the engine saw roughly twice that
+  (hence the 53-65K peaks). B, C and D were matched against each other on the same blind ruler, so
+  their comparison stands; the absolute budget on the label does not, and the hard-cap runs made
+  before the fix (p2-Bhard s1-s2, s3, p2-Chard s1-s3) capped only the non-reasoning part. Fixed in
+  the harness (reasoning is counted, and clipped first when a turn is trimmed); the hard-cap and
+  verified150 runs are re-queued on the fixed code.
+
 - **n = 15 tasks × 3 seeds.** Seed-to-seed swing is ±1–2 solves. Only arm E's looping clears significance. Directions 3–4 are hypotheses for P2, not findings.
 - **Soft vs hard budget.** B/C/D never clip the last four turns (by design: the agent always sees its latest observations whole), so single calls can exceed the budget and one task in C3 hit vLLM's 64K ceiling (`ContextWindowExceededError`). zend's window is hard. The budgets are matched across B/C/D, not between them and E.
 - **Ruler offset.** The proxy budgets in tiktoken cl100k tokens; vLLM reports Qwen tokens, ~17% more. "32K budget" is ~38K in the engine's count. Identical across B/C/D; recorded per run in `summary.json` (`policy.ruler`).

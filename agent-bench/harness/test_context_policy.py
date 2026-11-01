@@ -13,7 +13,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from context_policy import ConversationState, PolicyConfig, apply_policy, count_tokens, segment  # noqa: E402
+from context_policy import ConversationState, PolicyConfig, apply_policy, count_tokens, msg_tokens, segment, truncate_turn  # noqa: E402
 from loopmetrics import actions_from_traj, canonical, cycle_metrics, fit_per_step_reliability, loop_metrics  # noqa: E402
 
 
@@ -31,6 +31,7 @@ def synth_history(n_turns: int, big_every: int = 5) -> list[dict]:
             cmd = "grep -n 'cleft\\|_cstack' astropy/modeling/separable.py"  # the current step: asks about the code
         call_id = f"call_{i}"
         msgs.append({"role": "assistant", "content": f"Step {i}: I will run {cmd.split()[0]}.",
+                     "reasoning_content": f"thinking about step {i}... " * 150,     # ~4K chars, like a real thinking model
                      "tool_calls": [{"id": call_id, "type": "function",
                                      "function": {"name": "bash", "arguments": json.dumps({"command": cmd})}}]})
         out = f"output of turn {i} for {cmd}\n" + ("x" * 6000 if i % big_every == 0 else "ok\n" * 20)
@@ -55,6 +56,17 @@ def pairs_intact(msgs):
 
 def total_tokens(msgs):
     return sum(count_tokens(json.dumps(m)) for m in msgs)
+
+
+def test_reasoning_counted():
+    h = synth_history(6)
+    a = next(m for m in h if m["role"] == "assistant")
+    with_r, without_r = msg_tokens(a), msg_tokens({k: v for k, v in a.items() if k != "reasoning_content"})
+    assert with_r > without_r * 5, (with_r, without_r)
+    head, turns, _ = segment(h)
+    t = truncate_turn(turns[0], 300)
+    assert t.tokens <= 300 * 1.2 and "reasoning elided" in t.messages[0]["reasoning_content"], t.tokens
+    print(f"reasoning_content counted ({with_r} vs {without_r} tokens) and clipped ({turns[0].tokens} -> {t.tokens}): ok")
 
 
 def test_segment():
@@ -218,7 +230,7 @@ def real_trajectories(paths):
 
 
 if __name__ == "__main__":
-    test_segment(); test_policies(); test_loop_metrics(); test_proxy_e2e()
+    test_reasoning_counted(); test_segment(); test_policies(); test_loop_metrics(); test_proxy_e2e()
     print("all tests passed")
     if sys.argv[1:]:
         print("\nreal trajectories:")

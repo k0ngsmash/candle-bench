@@ -56,7 +56,13 @@ except Exception:  # noqa: BLE001 - tiktoken optional (or its BPE file unreachab
 
 
 def msg_text(m: dict) -> str:
-    """Everything in a message that costs tokens, flattened to text."""
+    """Everything in a message that costs tokens, flattened to text.
+
+    Includes `reasoning_content`: thinking models return it, mini-swe-agent sends it back in the
+    history, and vLLM's chat template re-injects it - at 2-10K chars per step it is often the larger
+    half of the prompt. Before 2 Nov the ruler ignored it, so the P1 "32K" budgets were ~60K in
+    engine tokens (matched across B/C/D, but not the number on the label).
+    """
     parts = []
     c = m.get("content")
     if isinstance(c, str):
@@ -64,6 +70,9 @@ def msg_text(m: dict) -> str:
     elif isinstance(c, list):
         for p in c:
             parts.append(p.get("text", "") if isinstance(p, dict) else str(p))
+    r = m.get("reasoning_content")
+    if isinstance(r, str) and r:
+        parts.append(r)
     for tc in m.get("tool_calls") or []:
         fn = tc.get("function") or {}
         parts.append(fn.get("name", "") + " " + (fn.get("arguments") or ""))
@@ -134,9 +143,17 @@ def truncate_turn(t: Turn, max_tokens: int) -> Turn:
     if t.tokens <= max_tokens:
         return t
     msgs = [dict(m) for m in t.messages]
+    # 1. past reasoning goes first: it is the bulkiest part of a turn and the least useful to re-read
+    for m in msgs:
+        r = m.get("reasoning_content")
+        if isinstance(r, str) and r:
+            keep = max_tokens // 8 * 4                 # ~an eighth of the turn budget, head only
+            m["reasoning_content"] = r[:keep] + ("\n…[reasoning elided by context policy]" if len(r) > keep else "")
     tool_msgs = [m for m in msgs if m.get("role") == "tool" and isinstance(m.get("content"), str)]
     if not tool_msgs:
-        return t
+        nt = Turn(t.index, msgs, key=t.key); nt.tokens = sum(msg_tokens(m) for m in msgs)
+        return nt
+    # 2. then tool output, head + tail
     fixed = sum(msg_tokens(m) for m in msgs if m not in tool_msgs)
     per = max(64, (max_tokens - fixed) // len(tool_msgs))
     for m in tool_msgs:
