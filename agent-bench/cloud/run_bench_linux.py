@@ -46,6 +46,10 @@ MODELS = {
                ["--tool-call-parser", "qwen3_coder", "--reasoning-parser", "qwen3", "--limit-mm-per-prompt", '{"image":0,"video":0}']),
     "gptoss120b": ("openai/gpt-oss-120b",
                    ["--tool-call-parser", "openai", "--reasoning-parser", "openai_gptoss"]),
+    # Mistral family, 24B dense FP8, not a reasoning model; on the official SWE-bench leaderboard
+    # with mini-SWE-agent, i.e. its tool calls are known to work under this harness.
+    "devstral2": ("mistralai/Devstral-Small-2-24B-Instruct-2512",
+                  ["--tool-call-parser", "mistral"]),
 }
 LLAMA_URL = "http://127.0.0.1:8001"
 LLAMA_SERVER = HOME / "llama.cpp/build/bin/llama-server"
@@ -266,6 +270,7 @@ MODEL_PROXY_FLAGS = {
 
 MODEL_SAMPLING = {
     "gptoss120b": {"temperature": 1.0, "top_p": 1.0, "extra_body": {}},
+    "devstral2": {"temperature": 0.15, "extra_body": {}},          # Mistral's recommended setting
 }
 
 
