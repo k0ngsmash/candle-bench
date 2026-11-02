@@ -253,9 +253,18 @@ def task_ids(n, dataset="lite"):
     return cache.read_text().split()[:n]
 
 
-def overlay(path, max_tokens, repetition_penalty=None, backend="zend", seed=None):
+# Per-model sampling where the model's own recommended settings differ from the Qwen defaults above.
+# gpt-oss: OpenAI recommends temperature 1.0 / top_p 1.0 and no penalties; a repetition penalty
+# corrupts long tool-call JSON (the tokens that must repeat are quotes, escapes and braces) - the P4
+# first attempt hit RepeatedFormatError on 14/15 tasks with the Qwen settings. Qwen is unchanged.
+MODEL_SAMPLING = {
+    "gptoss120b": {"temperature": 1.0, "top_p": 1.0, "extra_body": {}},
+}
+
+
+def overlay(path, max_tokens, repetition_penalty=None, backend="zend", seed=None, model="qwen36"):
     import yaml
-    sampling = json.loads(json.dumps(SAMPLING))
+    sampling = json.loads(json.dumps(MODEL_SAMPLING.get(model, SAMPLING) if backend == "vllm" else SAMPLING))
     if repetition_penalty is not None:
         sampling["extra_body"]["repetition_penalty"] = repetition_penalty
     if seed is not None:
@@ -455,7 +464,7 @@ def main():
         stop.set(); proxy.terminate()
         stop_backend(a.backend)
         sys.exit(1)
-    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend, a.seed)
+    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend, a.seed, a.model)
     extra = ["-c", str(run_dir / "notes.yaml")] if a.notes else []
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
