@@ -39,6 +39,14 @@ ZEND_WS = Path(os.environ.get("ZEND_WS", HOME / "zend-ws"))
 BENCH_DISK = os.environ.get("BENCH_DISK", str(HOME))   # zend writes its substrate under the workspace
 VLLM_URL = "http://127.0.0.1:8000"
 VLLM_MODEL = "cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit"
+# second model family for P4: hf id + the vLLM parser flags that model needs. The agent sees
+# "passthrough" either way, so nothing in the harness or sampling changes with the model.
+MODELS = {
+    "qwen36": ("cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit",
+               ["--tool-call-parser", "qwen3_coder", "--reasoning-parser", "qwen3", "--limit-mm-per-prompt", '{"image":0,"video":0}']),
+    "gptoss120b": ("openai/gpt-oss-120b",
+                   ["--tool-call-parser", "openai", "--reasoning-parser", "openai_gptoss"]),
+}
 LLAMA_URL = "http://127.0.0.1:8001"
 LLAMA_SERVER = HOME / "llama.cpp/build/bin/llama-server"
 LLAMA_GGUF = HOME / "models/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf"
@@ -129,13 +137,13 @@ def stop_vllm():
     time.sleep(5)
 
 
-def start_vllm(run_dir, offloads, max_len):
+def start_vllm(run_dir, offloads, max_len, model="qwen36"):
+    hf_id, parser_args = MODELS[model]
     for off in offloads:
-        args = [str(VLLM), "serve", VLLM_MODEL, "--served-model-name", "passthrough",
+        args = [str(VLLM), "serve", hf_id, "--served-model-name", "passthrough",
                 "--host", "127.0.0.1", "--port", "8000",
                 "--max-model-len", str(max_len), "--gpu-memory-utilization", "0.90",
-                "--max-num-seqs", "8", "--enable-auto-tool-choice", "--tool-call-parser", "qwen3_coder",
-                "--reasoning-parser", "qwen3", "--limit-mm-per-prompt", '{"image":0,"video":0}']
+                "--max-num-seqs", "8", "--enable-auto-tool-choice", *parser_args]
         # On 96 GB the 35B needs no CPU offload; 0 means "all on GPU". Kept configurable for headroom tests.
         if off:
             args += ["--cpu-offload-gb", str(off)]
@@ -332,7 +340,7 @@ def backend_signature(a) -> dict:
     if a.backend == "zend":
         detail = f"{ZEND_BIN.name} env={sorted(a.zend_env)}"
     elif a.backend == "vllm":
-        detail = f"{VLLM_MODEL} max_len={a.max_model_len} offloads={a.offloads}"
+        detail = f"{MODELS[a.model][0]} max_len={a.max_model_len} offloads={a.offloads}"
     else:
         detail = f"{LLAMA_GGUF.name} max_len={a.max_model_len} slots={max(a.workers, 1)} cpu_moe={a.cpu_moe}"
     return {"backend": a.backend, "detail": detail}
@@ -373,6 +381,7 @@ def main():
     ap.add_argument("--repetition-penalty", type=float)
     ap.add_argument("--tasks-file")
     ap.add_argument("--dataset", default="lite", choices=list(DATASETS), help="SWE-bench subset the task ids belong to (agent env + grading)")
+    ap.add_argument("--model", default="qwen36", choices=list(MODELS), help="vLLM model (the agent always sees 'passthrough')")
     ap.add_argument("--fresh-context", action="store_true")
     ap.add_argument("--notes", action="store_true")
     ap.add_argument("--zend-env", action="append", default=[], metavar="KEY=VALUE")
@@ -394,7 +403,8 @@ def main():
 
     ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks, a.dataset)
     pol = ("" if a.policy == "none" else f"_{a.policy}{a.budget_tokens // 1024}k{'hard' if a.clip_recent else ''}") + ("_nothink" if a.strip_reasoning else "")
-    run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}{pol}_w{a.workers}"
+    mdl = "" if a.model == "qwen36" else f"_{a.model}"
+    run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}{mdl}{pol}_w{a.workers}"
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
     log(f"{a.backend}: {len(ids)} tasks, {a.workers} parallel agents -> {run_dir}")
@@ -420,7 +430,7 @@ def main():
                 (run_dir / "zend-env.txt").write_text("\n".join(a.zend_env) + "\n")
             upstream = start_zend(run_dir, a.zend_env)
         elif a.backend == "vllm":
-            upstream = start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len)
+            upstream = start_vllm(run_dir, [int(x) for x in a.offloads.split(",")], a.max_model_len, a.model)
         else:
             upstream = start_llama(run_dir, [int(x) for x in a.cpu_moe.split(",")], a.max_model_len, max(a.workers, 1))
         BACKEND_STATE.write_text(json.dumps(want))
@@ -475,7 +485,7 @@ def main():
     # which token ruler the proxy's budget used (tiktoken, or chars/4 if its BPE file was unreachable)
     ruler = next((l.split("ruler: ")[1].strip() for l in open(run_dir / "proxy.log", errors="replace") if "ruler: " in l), None)
 
-    summary = {"backend": a.backend, "dataset": a.dataset, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
+    summary = {"backend": a.backend, "model": a.model if a.backend == "vllm" else "zend-build", "dataset": a.dataset, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
                "agent_exit": rc, "score": resolved, "seed": a.seed,
                "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "cap": "hard" if a.clip_recent else "soft", "strip_reasoning": a.strip_reasoning,
                           "keep_last": a.keep_last, "ruler": ruler,

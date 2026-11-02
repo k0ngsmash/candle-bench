@@ -124,3 +124,10 @@ P2 found that a hard 32K cap — which clips the agent's past `reasoning_content
 fewer tasks than full attention. `--strip-reasoning` removes past reasoning from the history under
 *any* policy, including none, so P3 isolates that one variable: A-strip and Bsoft-strip × 3 seeds on
 the stuck-15, then a second verified150 seed for B/C, A150 as the Verified ceiling, and A150-strip.
+
+## P4 — a second model family (`bash cloud/mkjobs-p4.sh <ip> <publish-job>`)
+
+P1–P3 found no context manipulation that moves solves or looping on Qwen3.6-35B. P4 asks whether
+that null is model-specific: `--model gptoss120b` serves openai/gpt-oss-120b (MXFP4, ~63 GB) with
+its own vLLM parser flags; the agent, sampling, tasks and grading are unchanged. Jobs: a download +
+graded smoke, then A × 3 and B-hard × 3 on the stuck-15, then A150 and B150-hard on verified150.
