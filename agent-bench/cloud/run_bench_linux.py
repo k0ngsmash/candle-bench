@@ -257,6 +257,13 @@ def task_ids(n, dataset="lite"):
 # gpt-oss: OpenAI recommends temperature 1.0 / top_p 1.0 and no penalties; a repetition penalty
 # corrupts long tool-call JSON (the tokens that must repeat are quotes, escapes and braces) - the P4
 # first attempt hit RepeatedFormatError on 14/15 tasks with the Qwen settings. Qwen is unchanged.
+# Per-model proxy flags. gpt-oss emits long bash commands whose tool arguments are almost-JSON
+# (raw newlines, unescaped quotes); without repair 14/15 tasks end in RepeatedFormatError and the run
+# measures the parser, not the agent. Repairs are logged per call and reported in summary.md.
+MODEL_PROXY_FLAGS = {
+    "gptoss120b": ["--repair-tool-args"],
+}
+
 MODEL_SAMPLING = {
     "gptoss120b": {"temperature": 1.0, "top_p": 1.0, "extra_body": {}},
 }
@@ -447,7 +454,8 @@ def main():
     policy_args = ["--policy", a.policy, "--budget-tokens", str(a.budget_tokens), "--keep-last", str(a.keep_last),
                    "--max-turn-tokens", str(a.max_turn_tokens), "--embed-model", a.embed_model,
                    "--max-summary-tokens", str(a.max_summary_tokens)] + (["--score-order"] if a.score_order else []) \
-                  + (["--clip-recent"] if a.clip_recent else []) + (["--strip-reasoning"] if a.strip_reasoning else [])
+                  + (["--clip-recent"] if a.clip_recent else []) + (["--strip-reasoning"] if a.strip_reasoning else []) \
+                  + (MODEL_PROXY_FLAGS.get(a.model, []) if a.backend == "vllm" else [])
     proxy = subprocess.Popen([str(AGENT_BIN / "python"), str(HARNESS / "proxy.py"), "--listen", str(PROXY_PORT),
                               "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")]
                              + (["--fresh-context"] if a.fresh_context else []) + policy_args,

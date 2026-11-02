@@ -18,6 +18,7 @@ from collections import defaultdict
 
 from aiohttp import ClientSession, ClientTimeout, web
 
+from toolargs import repair as repair_args
 from context_policy import TOKENIZER, ConversationState, PolicyConfig, apply_policy, describe, make_embedder
 
 
@@ -88,13 +89,25 @@ async def handle(request: web.Request) -> web.Response:
         ctype = up.headers.get("content-type", "application/json")
     t1 = time.time()
     if request.path.endswith("/chat/completions"):
-        usage, finish, n_calls = {}, None, 0
+        usage, finish, n_calls, repairs = {}, None, 0, []
         try:
             resp = json.loads(data)
             usage = resp.get("usage") or {}
             choice = (resp.get("choices") or [{}])[0]
             finish = choice.get("finish_reason")
-            n_calls = len((choice.get("message") or {}).get("tool_calls") or [])
+            tcs = (choice.get("message") or {}).get("tool_calls") or []
+            n_calls = len(tcs)
+            if app["repair"] and tcs:
+                # make almost-JSON tool arguments parseable (see toolargs.py); logged per call
+                for tc in tcs:
+                    fn = tc.get("function") or {}
+                    fixed, how = repair_args(fn.get("arguments"))
+                    if how != "ok":
+                        repairs.append(how)
+                    if fixed is not None:
+                        fn["arguments"] = fixed
+                if any(h in ("strict-off", "shape") for h in repairs):
+                    data = json.dumps(resp).encode()
         except ValueError:
             pass
         rec = {
@@ -103,6 +116,8 @@ async def handle(request: web.Request) -> web.Response:
             "prompt_tokens": usage.get("prompt_tokens"), "completion_tokens": usage.get("completion_tokens"),
             "finish_reason": finish, "tool_calls": n_calls,
         }
+        if repairs:
+            rec["arg_repairs"] = repairs
         if policy_stats:
             rec["policy"] = policy_stats
         with open(app["log"], "a") as f:
@@ -125,7 +140,7 @@ def build_app(a) -> web.Application:
                        clip_recent=a.clip_recent, strip_reasoning=a.strip_reasoning)
     app = web.Application(client_max_size=256 * 1024 * 1024)
     upstream = a.upstream.rstrip("/")
-    app.update(upstream=upstream, log=a.log, fresh=a.fresh_context, state={"n": 0}, cfg=cfg,
+    app.update(upstream=upstream, log=a.log, fresh=a.fresh_context, state={"n": 0}, cfg=cfg, repair=a.repair_tool_args,
                conv_state=defaultdict(ConversationState),
                embedder=make_embedder(cfg.embed_model) if cfg.policy == "relevance" else None,
                summarise=make_summariser(upstream, a.model, cfg.max_summary_tokens, a.log) if cfg.policy == "compaction" else None)
@@ -150,6 +165,7 @@ def main():
     p.add_argument("--max-summary-tokens", type=int, default=1500)
     p.add_argument("--clip-recent", action="store_true", help="hard cap: clip the last-K window too and never exceed the budget")
     p.add_argument("--strip-reasoning", action="store_true", help="remove past reasoning_content from the history (works with --policy none too)")
+    p.add_argument("--repair-tool-args", action="store_true", help="repair almost-JSON tool-call arguments in responses (gpt-oss); logged per call")
     p.add_argument("--model", default="passthrough", help="model name for compaction side calls")
     a = p.parse_args()
     app = build_app(a)

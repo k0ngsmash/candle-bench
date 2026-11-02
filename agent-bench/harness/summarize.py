@@ -102,6 +102,11 @@ def main(run_dir: Path):
              f"canonical {lag.get(f'tasks_ccycled_{K}')} / {loops['tasks']} (period mode {lag.get('ccycle_period_mode')}, "
              f"repeats median {lag.get('ccycle_repeats_median')}, fraction of actions in a cycle {lag.get('ccycle_fraction_mean')})"
              if loops["tasks"] else "- Cycles: n/a"]
+    rep = [h for c in ok for h in (c.get("arg_repairs") or [])]
+    if rep:
+        from collections import Counter as _C
+        tc_total = sum(c.get("tool_calls") or 0 for c in ok)
+        lines.append(f"- Tool-arg repairs: {len(rep)} of {tc_total} tool calls ({len(rep) / max(tc_total, 1):.1%}); {dict(_C(rep))}")
     sr = [c["policy"] for c in ok if (c.get("policy") or {}).get("reasoning_stripped")]
     if (s.get("policy") or {}).get("strip_reasoning"):
         lines.append(f"- Reasoning stripped from history: yes; median {int(st.median(p['reasoning_tokens_stripped'] for p in sr)) if sr else 0:,} tokens removed per call")
