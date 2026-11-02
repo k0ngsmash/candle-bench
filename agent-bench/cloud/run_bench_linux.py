@@ -18,6 +18,7 @@ import os
 import re
 import shutil
 import signal
+import socket
 import subprocess
 import sys
 import threading
@@ -466,7 +467,22 @@ def main():
                               "--upstream", upstream, "--log", str(run_dir / "calls.jsonl")]
                              + (["--fresh-context"] if a.fresh_context else []) + policy_args,
                              stdout=open(run_dir / "proxy.log", "w"), stderr=subprocess.STDOUT)
-    time.sleep(3)
+    # Wait for the proxy to listen. The relevance policy loads an embedding model at startup, which
+    # takes longer than a fixed sleep; with a reused engine nothing else covers that gap.
+    t0 = time.time()
+    while True:
+        if proxy.poll() is not None:
+            tail = (run_dir / "proxy.log").read_text(errors="replace")[-2000:]
+            log(f"proxy exited during startup (code {proxy.returncode}):\n{tail}")
+            sys.exit(1)
+        try:
+            with socket.create_connection(("127.0.0.1", PROXY_PORT), timeout=2):
+                break
+        except OSError:
+            if time.time() - t0 > 300:
+                log("proxy did not start listening within 300 s"); proxy.terminate(); sys.exit(1)
+            time.sleep(2)
+    log(f"proxy listening after {time.time() - t0:.0f} s")
     stop = threading.Event()
     sampler = threading.Thread(target=gpu_sampler, args=(run_dir / "gpu.csv", stop), daemon=True)
     sampler.start()
