@@ -131,3 +131,12 @@ P1–P3 found no context manipulation that moves solves or looping on Qwen3.6-35
 that null is model-specific: `--model gptoss120b` serves openai/gpt-oss-120b (MXFP4, ~63 GB) with
 its own vLLM parser flags; the agent, sampling, tasks and grading are unchanged. Jobs: a download +
 graded smoke, then A × 3 and B-hard × 3 on the stuck-15, then A150 and B150-hard on verified150.
+
+## P5 — does history matter once the cap actually bites, or the task runs longer?
+
+P1–P3's null came with a measurement the results under-weighted: in the median task the 32K cap
+removed nothing ("kept 24 of 24 turns"), because tasks end within 75 steps at ~27–35K tokens. P5
+tests the regime where retention could matter: `harness/dose.py` re-slices every run by how much
+history the cap actually removed and compares each task with the *same task* under full history;
+then tighter caps (8K, 16K), longer horizons (`--step-limit 150 / 250`, full history vs a 16K cap),
+and verified150 at 8K. Recency and relevance are both run wherever a cap is applied.

@@ -29,7 +29,11 @@ fi
 
 step "vLLM venv (~/venvs/vllm)  [comparator, optional for phase 1]"
 uv venv -q --python 3.12 ~/venvs/vllm
-VIRTUAL_ENV=~/venvs/vllm uv pip install -q vllm \
+# Pinned to what the P1-P4 runs used. vllm 0.32.0 calls mistral_common's
+# GrammarFactory.get_lark_from_jinja() without force_tool_names, which 1.13.0 made required - an
+# unpinned upgrade breaks every Mistral-family tool call (Devstral) on the first request. The box
+# also needs python3-dev (Python.h), ninja on PATH and a matching flashinfer build - see P1 notes.
+VIRTUAL_ENV=~/venvs/vllm uv pip install -q "vllm==0.32.0" "mistral_common[image]==1.12.0" ninja \
   && ~/venvs/vllm/bin/python -c "import vllm, torch; print('vllm', vllm.__version__, '| torch', torch.__version__, '| cuda', torch.cuda.is_available())" \
   || echo "vLLM install failed - skip; not needed for phase 1 (zend-only)"
 

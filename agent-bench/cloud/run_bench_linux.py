@@ -274,7 +274,7 @@ MODEL_SAMPLING = {
 }
 
 
-def overlay(path, max_tokens, repetition_penalty=None, backend="zend", seed=None, model="qwen36"):
+def overlay(path, max_tokens, repetition_penalty=None, backend="zend", seed=None, model="qwen36", step_limit=STEP_LIMIT):
     import yaml
     sampling = json.loads(json.dumps(MODEL_SAMPLING.get(model, SAMPLING) if backend == "vllm" else SAMPLING))
     if repetition_penalty is not None:
@@ -284,7 +284,7 @@ def overlay(path, max_tokens, repetition_penalty=None, backend="zend", seed=None
     if backend == "llama":
         sampling["extra_body"]["repeat_penalty"] = sampling["extra_body"].pop("repetition_penalty")
     cfg = {
-        "agent": {"step_limit": STEP_LIMIT, "cost_limit": 0},
+        "agent": {"step_limit": step_limit, "cost_limit": 0},
         "model": {
             "model_name": "openai/passthrough",
             "model_kwargs": {"api_base": f"http://127.0.0.1:{PROXY_PORT}/v1", "api_key": "none",
@@ -402,6 +402,7 @@ def main():
     ap.add_argument("--repetition-penalty", type=float)
     ap.add_argument("--tasks-file")
     ap.add_argument("--dataset", default="lite", choices=list(DATASETS), help="SWE-bench subset the task ids belong to (agent env + grading)")
+    ap.add_argument("--step-limit", type=int, default=STEP_LIMIT, help="agent step limit (default 75; P5 raises it to test longer horizons)")
     ap.add_argument("--model", default="qwen36", choices=list(MODELS), help="vLLM model (the agent always sees 'passthrough')")
     ap.add_argument("--fresh-context", action="store_true")
     ap.add_argument("--notes", action="store_true")
@@ -424,7 +425,7 @@ def main():
 
     ids = Path(a.tasks_file).read_text().split() if a.tasks_file else task_ids(a.tasks, a.dataset)
     pol = ("" if a.policy == "none" else f"_{a.policy}{a.budget_tokens // 1024}k{'hard' if a.clip_recent else ''}") + ("_nothink" if a.strip_reasoning else "")
-    mdl = "" if a.model == "qwen36" else f"_{a.model}"
+    mdl = ("" if a.model == "qwen36" else f"_{a.model}") + ("" if a.step_limit == STEP_LIMIT else f"_steps{a.step_limit}")
     run_dir = BENCH / "runs" / f"{dt.datetime.now():%Y-%m-%d_%H%M}_{a.label}_{a.backend}{mdl}{pol}_w{a.workers}"
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "tasks.txt").write_text("\n".join(ids) + "\n")
@@ -477,7 +478,7 @@ def main():
         stop.set(); proxy.terminate()
         stop_backend(a.backend)
         sys.exit(1)
-    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend, a.seed, a.model)
+    overlay(run_dir / "overlay.yaml", MAX_TOKENS, a.repetition_penalty, a.backend, a.seed, a.model, a.step_limit)
     extra = ["-c", str(run_dir / "notes.yaml")] if a.notes else []
     filt = "^(" + "|".join(re.escape(i) for i in ids) + ")$"
     env = dict(os.environ, MSWEA_COST_TRACKING="ignore_errors", MSWEA_SILENT_STARTUP="1")
@@ -507,7 +508,7 @@ def main():
     # which token ruler the proxy's budget used (tiktoken, or chars/4 if its BPE file was unreachable)
     ruler = next((l.split("ruler: ")[1].strip() for l in open(run_dir / "proxy.log", errors="replace") if "ruler: " in l), None)
 
-    summary = {"backend": a.backend, "model": a.model if a.backend == "vllm" else "zend-build", "dataset": a.dataset, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
+    summary = {"step_limit": a.step_limit, "backend": a.backend, "model": a.model if a.backend == "vllm" else "zend-build", "dataset": a.dataset, "workers": a.workers, "tasks": len(ids), "fresh_context": a.fresh_context, "repetition_penalty": a.repetition_penalty, "wall_seconds": round(wall),
                "agent_exit": rc, "score": resolved, "seed": a.seed,
                "policy": {"policy": a.policy, "budget_tokens": a.budget_tokens, "cap": "hard" if a.clip_recent else "soft", "strip_reasoning": a.strip_reasoning,
                           "keep_last": a.keep_last, "ruler": ruler,
