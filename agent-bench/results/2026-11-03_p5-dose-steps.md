@@ -78,9 +78,28 @@ verified150, full history vs caps, resolve rate per SWE-bench Verified time-to-f
 1. **The earlier null was mostly a weak treatment.** At 32K and 75 steps the cap rarely removed anything. With a treatment that bites, there is an effect.
 2. **How much you keep matters at the extreme; what you keep does not.** Removing ~75–80% of history (8K) costs ~9 points of solve rate on Verified (p = 0.007). Removing ~50% (16K) costs nothing measurable once the agent has room to finish. Recency and relevance are level everywhere (P2–P5), so H2 stays rejected.
 3. **The cost of losing history is spent as steps, not as loops.** A heavily capped agent redoes work it can no longer see. Step-limit exits double (p = 0.0001) while looping is unchanged. This is the agent-rot paper's per-step decay seen from the context side: less history, more steps per unit of progress.
-4. **Step budget and history budget trade off.** At 75 steps, a 16K cap looks harmful only because the agent is cut off; at 150–250 steps it matches full history with a tenth of the context. Whether more steps also rescue an 8K cap is untested.
+4. **Step budget and history budget trade off, but only down to a point.** At 75 steps, a 16K cap looks harmful only because the agent is cut off; at 150–250 steps it matches full history with a tenth of the context. An 8K cap is not rescued by more steps (follow-up below): full history gains more from the extra steps than the 8K cap does, and the gap widens.
 5. **Looping is a property of the agent and model, not of retention.** Its rate is unchanged across every cap and step limit tested.
-6. **Nothing here shows history mattering more on harder tasks**, but this task set cannot test that: its hard tasks are unsolved either way.
+6. **At 75 steps nothing showed history mattering more on harder tasks, but the step limit was masking it.** With 150 steps, full history solves far more medium-difficulty tasks, and that is where an 8K cap costs most (follow-up below).
+
+## Follow-up (3–4 Nov): 8K at 150 steps on verified150
+
+Does a bigger step budget rescue a tight cap? Three more verified150 runs, all at a 150-step limit, one seed each: full history, 8K recency, 8K relevance.
+
+| arm | 75 steps | **150 steps** | hit step limit (150) | looped (150) | context sent |
+|---|---|---|---|---|---|
+| full history | 74/150 | **92/150** (61%) | 2 | 55 | median peak 25K, max 113K |
+| hard 8K recency | 61/150 | **67/150** | 45 | 67 | ~7.8K |
+| hard 8K relevance | 62/150 | **76/150** | 41 | 80 | ~8.1K |
+
+- **Full history also gains from the extra steps:** 74 → 92 (p = 0.048), with step-limit exits falling from 31 to 2. The 75-step limit was holding back the full-history agent on Verified too, so P3's A150 understated the ceiling.
+- **More steps do not rescue an 8K cap.** 8K pooled moves 123/300 → 143/300 (p = 0.12) while full history reaches 92/150: **143/300 (48%) vs 92/150 (61%), p = 0.007.** Paired on the same tasks: 43–50% capped vs 61% full.
+- **The capped agent keeps running out of steps even with twice as many:** 86/300 vs 2/150. It does not just need more time; it re-derives what it cannot see, and loses track again.
+- **Given more steps, the capped agent loops more:** 147/300 vs 55/150 (p = 0.016); relevance 80 vs 55 (p = 0.005). At 75 steps the loop rates were equal; the extra steps give the history-starved agent room to circle back to actions it no longer remembers taking.
+- **Recency vs relevance:** 67 vs 76 (p = 0.36); pooled over both step limits, 128 vs 138 of 300 (p = 0.46). Still level.
+- **By difficulty, the cost now concentrates on harder tasks.** With 150 steps, full history solves 68% / 58% / 29% of easy / medium / hard tasks (at 75 steps: 70% / 36% / 0%). 8K pooled: easy 60% vs 68% (p = 0.28), **medium 41% vs 58% (p = 0.017)**, hard 1/14 vs 2/7. Once the step limit stops masking it, history matters more on harder work. The follow-up runs are single seeds.
+
+**Revised picture:** there is a floor. Down to roughly half the history (16K here) the agent loses nothing, given steps to finish. At roughly a fifth (8K), the agent is impaired in a way more steps do not fix, it loops more, and the damage is concentrated on the medium-difficulty tasks that full history can solve with enough steps. Where exactly the floor sits between 8K and 16K is untested.
 
 ## Caveats
 
@@ -90,4 +109,4 @@ verified150, full history vs caps, resolve rate per SWE-bench Verified time-to-f
 - Only 5 of the stuck-15 tasks are in Verified, so stuck-15 difficulty buckets have 1–3 tasks each and are not interpreted.
 - Run accounting: jobs 185 and 197 failed at start-up (proxy not yet listening on a reused engine) and were rerun after the fix in `f9aa869`; their empty run directories are matched by the analysis globs but contribute no task-runs. Job 208 lost its SSH session after the run had finished and been scored; its rerun (208r) was kept as a fourth seed.
 
-Runs: `agent-bench/runs/2026-11-0[23]_*_p5-*` on the box. Job logs: `queue/logs/20261103-*_1[89][0-9]*-p5-*`, `*_20[0-9]*-p5-*`, `*_181-dose-existing.log`, `*_215-strata-early.log`, `*_217-dose-final.log`.
+Runs: `agent-bench/runs/2026-11-0[23]_*_p5-*` on the box. Job logs: `queue/logs/20261103-*_1[89][0-9]*-p5-*`, `*_20[0-9]*-p5-*`, `*_181-dose-existing.log`, `*_215-strata-early.log`, `*_217-dose-final.log`. Follow-up: `runs/2026-11-03_*_p6-*`, logs `*_22[0-3]-p6-*`.
