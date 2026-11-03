@@ -68,6 +68,7 @@ def run_tasks(run_dir: Path) -> dict:
         dropped = [p["turns_total"] - p["turns_kept"] for p in pol]
         fracs = [(p["turns_total"] - p["turns_kept"]) / p["turns_total"] for p in pol if p.get("turns_total")]
         out[task] = {"resolved": (task in resolved) if graded else None, "looped": m["looped_3"],
+                     "exit": (d.get("info") or {}).get("exit_status"),
                      "cycled": m.get("ccycled_3"), "dropped_max": max(dropped) if dropped else 0,
                      "frac_max": max(fracs) if fracs else 0.0, "calls": len(pol)}
     return out
